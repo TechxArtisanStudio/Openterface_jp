@@ -110,10 +110,9 @@ extra:
     #   lang: nl
 
   consent:
-    title: Cookie Consent
+    title: Cookieの同意
     description: >- 
-      We use cookies to enhance quality of docs content, analyse site effectiveness and needs. 
-      By consenting, you help us improve our website. Thanks!
+      当社では、ドキュメントのコンテンツの品質を向上させ、サイトの有効性とニーズを分析するためにCookieを使用しています。同意していただくことで、ウェブサイトの改善にご協力いただけます。ありがとうございます!
     actions:
       - accept
       - reject
