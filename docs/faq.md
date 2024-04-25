@@ -6,120 +6,119 @@ tags:
   - BIOS
 ---
 
-# Frequently Asked Questions (FAQs) about Openterface Mini-KVM
+# Openterface Mini-KVMに関する#よくある質問(FAQ)
 
-We're delighted to have you here! ❤️ This section aims to provide answers to commonly asked questions regarding the Openterface Mini-KVM. 
-If you don't find what you're looking for, please join our Openterface [subreddit](https://www.reddit.com/r/Openterface_miniKVM/) to pose your questions and engage in discussions. Furthermore, feel free to reach out via this [form](https://forms.gle/rwDDsMbs5pFwq7227). 
+このページをご覧いただき、誠にありがとうございます！❤️ このセクションでは、Openterface Mini-KVMに関するよくある質問に対する回答を提供することを目的としています。
+お探しのものが見つからない場合は、Openterface [subreddit](https://www.reddit.com/r/Openterface_miniKVM/)に参加して質問を投げかけたり、ディスカッションに参加してください。さらに、こちらの [フォーム](https://forms.gle/rwDDsMbs5pFwq7227) からお気軽にお問い合わせください。
 
+## 基本
 
-## Basic
+### Openterface Mini-KVMとは？
 
-### **What is the Openterface mini-KVM?**
+   - Openterface Mini-KVMは、[USBおよびHDMI接続](//quick-start/#connection)を介して別のコンピュータを制御できるポータブルデバイスです。このKVM-over-USBソリューションは、HDMI経由でビデオをキャプチャし、キーボードとマウス入力をシミュレートします。自分のラップトップを使用して、ターゲットデバイスを直接表示し、制御することができます。このツールは、技術愛好家やIT専門家にとって、余分なモニター、キーボード、マウスを必要とせず、ヘッドレスデバイスの設定やトラブルシューティングに便利です。
 
-   - The Openterface Mini-KVM is a portable device that allows control over another computer through [USB and HDMI connection](/quick-start/#connection). This KVM-over-USB solution captures video via HDMI and simulates a keyboard and mouse input. It enables to use your own laptop to display and control the target device directly. This tool is handy for tech enthusiasts and IT professionals for configuring or troubleshooting headless devices without the need for extra monitor, keyboard and mouse, especially in cases where the network connection is unreliable or not available at all.
+### 類似製品と比較して、Openterface Mini-KVMのユニークなセールスポイントは何ですか？
 
-### **What are the unique selling points of the Openterface Mini-KVM compared to similar products?**
+   - Openterface Mini-KVMは、プラグアンドプレイ機能、BIOSレベルの直接アクセス、ポータブル設計、およびホストとターゲット間で共有される切り替え可能なUSB-Aポートで際立っています。ネットワークに依存することなく、安定した高速なコントロール体験を提供するため、ネットワークアクセスが制限されていたり、信頼性が低い不確実な状況に最適です。ヘッドレス・デバイスのコンフィギュレーションを行うのに、自分のラップトップを効果的に使うことができます。
 
-   - The Openterface Mini-KVM stands out for its plug-and-play functionality, direct BIOS-level access, portable design, and a switchable USB-A port shared between host and target. It offers a stable and fast control experience without network dependency, making it ideal for uncertain situations where network access is limited or unreliable. It is about using your own laptop effectivly to do configuring for headless device: plug in, do things, and then move on to next one, without concern of network.
+### このミニKVMのユースケースは？
+   - こちらのページをご覧ください： [ユースケース](/use-cases)
 
-### **What are use cases for this mini-KVM?**
-   - Please check out this page: [Use Cases](/use-cases)
+### Openterface Mini-KVMと互換性のあるデバイスは？
 
-### **What devices are compatible with the Openterface Mini-KVM?**
+- ホストコンピュータ
+      - ホストコンピュータ用のアプリケーションは、現在macOSと互換性があります。
+      - また、WindowsやLinuxなど他のオペレーティング・システムをサポートするホスト・アプリケーションの構築にも取り組んでいます。
+- ターゲット・デバイス
+      - Openterface Mini-KVMは、HDMIポートを介して画面表示を出力し、USBポートを介してシミュレートされたキーボード/マウスHID制御信号を入力できるあらゆるデバイスに対応しています。したがって、Windows、macOS、Linux、Android、iOS で動作するほとんどのデバイスを制御することができます。
 
-- Host Computer
-      - The application for the host computer is currently compatible with macOS.
-      - We are also working on building host applications to support other operating systems, such as Windows and Linux.
-- Target Devices
-      - The Openterface Mini-KVM is compatible with any device that can output its screen display through an HDMI port and input simulated Keyboard/Mouse HID control signals via a USB port. Thus, it supports to control over most of devices operating on Windows, macOS, Linux, Android, and iOS.
+### Openterface Mini-KVMは、ホストとターゲットデバイス間のファイル転送をサポートしますか？
 
-### **Can the Openterface Mini-KVM support file transfers between the host and target device?**
-
-   - Yes, the Openterface Mini-KVM includes a switchable USB-A port shared between the host and target devices. With a usb stickdisk plugged into this port, files are able to transfer between host and target by following steps:
-      1. Mount a usb stick drive on host, when the small black switch is on the side of host type-c port, then
-      2. Copy the files onto this mounted drive. After copying, 
-      3. Unmount the drive without physically unplugging it; Instead, 
-      4. Simply flip the small black switch to other side. This action switches the USB-A port's connection to the the target. Next,
-      5. Mount the usb stick on the target device and copy/move files off the drive, completing the transfer process of files from host to target. 
+   - はい、Openterface Mini-KVMには、ホストデバイスとターゲットデバイス間で共有される切り替え可能なUSB-Aポートが搭載されています。このポートに USB スティックディスクを接続すると、以下の手順でホストとターゲット間でファイルを転送できます：
+      1. 1.USBスティック・ドライブをホストにマウントし、小さな黒いスイッチがホストType-Cポートの側面にあることを確認します。
+      2. マウントしたドライブにファイルをコピーする。コピー後 
+      3. ドライブを物理的に抜かずにマウントを解除する、 
+      4. 黒い小さなスイッチを反対側に回すだけです。この操作で、USB-Aポートの接続がターゲットに切り替わる。次へ
+      5. usbスティックをターゲットデバイスにマウントし、ドライブからファイルをコピー/移動して、ホストからターゲットへのファイル転送プロセスを完了します。
       
-      This method can also be used in the opposite direction.
+      この方法は逆方向にも使えます。
 
-### **Can the switchable USB-A port be toggled at the software level? Could this be achieved through a button instead?**
-   - The current design does not support toggling at the software level; it can only be physically flipped for now.
-   - Implementing toggling at the software level would necessitate a new design, incorporating a button and an LED indicator (either green/blue or on/off) to signify whether the USB port is set to the host or target mode. Additionally, this would require the integration of an additional chip, leading to increased costs in both hardware and software development. The existing design represents a compromise, aimed at balancing between cost-efficiency and basic functionality. Despite the potential for increased costs, we are interested in incorporating this feature in a future version for better user experience.
+### USB-Aポートの切り替えはソフトウェアレベルで可能ですか？代わりにボタンで実現できますか？
+   - 現在の設計では、ソフトウェアレベルでの切り替えはサポートしていません。
+   - ソフトウェア・レベルでトグル機能を実装するには、USBポートがホスト・モードかターゲット・モードかを示すボタンとLEDインジケータ（緑/青またはオン/オフのいずれか）を組み込んだ新しい設計が必要になります。さらに、これには追加チップの統合が必要となり、ハードウェアとソフトウェアの両方の開発コストの増加につながる。既存の設計は、コスト効率と基本的な機能のバランスを目指した妥協の産物です。コスト増加の可能性はありますが、より良いユーザー体験のために、将来のバージョンにこの機能を組み込むことに関心を持っています。
 
-### **Will there be technical support and documentation available for the Openterface Mini-KVM?**
+### Openterface Mini-KVMのテクニカルサポートとドキュメンテーションはありますか？
 
-   - Extensive documentation for the Openterface Mini-KVM can be found on our website at [Openterface.com](https://www.openterface.com/). We continuously update these resources to optimise your experience with the device.
-   - For technical support, we invite you to join our [subreddit](https://www.reddit.com/r/Openterface_miniKVM/), a community-driven platform for sharing queries and insights among fellow users and our expert team.
-   - If your issue remains unresolved, our team is available to provide further technical assistance. You can  reach out via this [form](https://forms.gle/rwDDsMbs5pFwq7227). 
+   - Openterface Mini-KVMの広範なドキュメントは、当社ウェブサイト[Openterface.com](https://www.openterface.com/)でご覧いただけます。当社では、デバイスを最適にご利用いただくために、これらのリソースを継続的に更新しています。
+   - テクニカルサポートについては、[subreddit](https://www.reddit.com/r/Openterface_miniKVM/) にご参加ください。このプラットフォームは、ユーザー仲間や当社の専門家チームの間でクエリや洞察を共有するためのコミュニティ主導型のプラットフォームです。
+   - 問題が解決しない場合は、私たちのチームがさらなる技術サポートを提供します。こちらの[フォーム](https://forms.gle/rwDDsMbs5pFwq7227)からご連絡ください。
 
-### **What is the expected price point?**
+### 予想価格帯は？
 
-   - Pricing is still being determined and will depend on production costs and demand. We're exploring options like crowdfunding. Knowing how many people would like to buy this Openterface mini-KVM in advance will be very helpful for us to plan and control production costs more effectively, leading to a more affordable price. Thus, if you are interested into buying our product, please join this [Be Our Backer](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm).
+   - 価格はまだ決定しておらず、生産コストと需要によります。クラウドファンディングのような選択肢を模索しています。このOpenterfaceミニKVMを購入したい人の数を事前に知ることは、生産コストをより効果的に計画・管理し、より手頃な価格を実現するのに非常に役立ちます。よって、私たちの製品を購入することに興味がある方は、この[Be Our Backer](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)にご参加ください。
 
-## Technical
+## テクニカル
 
-### **Is the Openterface Mini-KVM open-source?**
+### Openterface Mini-KVMはオープンソースですか？
 
-   - Plans to open-source the project are under consideration. Just bear with us a little longer; We need to tidy quite some things up for opening up. If you are interested into contributing, please do tell us via this [form](https://forms.gle/rwDDsMbs5pFwq7227). Stay tuned!
+   - オープンソースの計画は検討中です。オープンソースにするためには、もう少し整理する必要があります。貢献することに興味がある方は、こちらの[フォーム](https://forms.gle/rwDDsMbs5pFwq7227)からお知らせください。ご期待ください！
 
-### **Can I access a device's BIOS/firmware settings?**
+### デバイスの BIOS/ファームウェア設定にアクセスできますか？
 
-   - Yes, the direct connection of the Openterface Mini-KVM enables access to low-level BIOS or firmware settings. This feature stands in contrast to software-based KVM solutions or remote control applications like TeamViewer and Zoom, which are typically not able to do BIOS-level interactions.
-
-
-### **How is video/data transmitted between devices?**
-
-   - Video data is captured via HDMI and transmitted over USB 2.0 to the host computer for display. 
-   - The switchable USB 2.0 port allows basic peripheral sharing. Future versions may offer higher throughput connections with USB 3.
-
-### **How does the Openterface Mini-KVM handle power supply and consumption?**
-
-- The device does not require an external power supply, as it is designed to be powered through its Type-C connections from the host, enhancing its portability.
-- In scenarios where the target device is a low-power micro-computer, such as a Raspberry Pi, it could be powered through the host via the Mini-KVM's switchable USB port. However, this is not recommended. The standard method of operation is to have an external power supply to the target device.
-
-## Control Mechanism 
-
-### **Are there plans for a version with wireless or Ethernet connectivity?**
-
-   - There are no immediate plans for us to support wireless or Ethernet connectivity in our Openterface products, as the focus of this mini-KVM is on fast, stable, direct control over USB to a target device, without concern of network condition. 
-   - If we change our mind on this matter, we will keep [our community](https://www.reddit.com/r/Openterface_miniKVM/) updated 😃
-   - Nevertheless, please feel free to [share](https://forms.gle/rwDDsMbs5pFwq7227) your thoughts with us, if you really can not find a satisfying KVM-over-IP out there in the market.
-
-### **How is this different from other KVM solutions like traditional KVMs, KVM-over-IP and VNC, etc?**
-   - Please go to the page [Comparison](/comparison) for more details there.
+   - はい、Openterface Mini-KVMの直接接続により、低レベルのBIOSまたはファームウェア設定にアクセスできます。この機能は、TeamViewer や Zoom のようなソフトウェアベースの KVM ソリューションやリモートコントロールアプリケーションとは対照的です。
 
 
-### **Does it work with PS/2 output to control the target?**
+### デバイス間でビデオ/データはどのように転送されますか？
 
-   - Consideration for supporting a built-in PS/2 interfaces is part of our future development plan.
+   - ビデオデータはHDMI経由でキャプチャされ、USB 2.0経由でホストコンピュータに転送されます。
+   - 切り替え可能なUSB 2.0ポートは、基本的な周辺機器の共有を可能にします。将来のバージョンでは、USB 3でより高いスループットの接続が可能になるかもしれません。
 
-## Video Related
+### Openterface Mini-KVMはどのように電源供給と消費に対応しますか？
 
-### **What about video latency and resolution?**
+- このデバイスは、ホストから Type-C 接続を介して給電されるように設計されているため、外部電源は必要ありません。
+- ターゲット・デバイスがRaspberry Piのような低消費電力のマイクロコンピュータである場合、Mini-KVMの切り替え可能なUSBポートを介してホストから電源を供給することができます。しかし、これは推奨されません。標準的な操作方法は、ターゲットデバイスに外部電源を供給することです。
 
-   - The device is engineered to handle 1080p video with minimal latency, ensuring a seamless control experience.
+## 制御メカニズム 
 
-### **Is the Openterface Mini-KVM suitable for high-quality gaming?**
+### ワイヤレスまたはイーサネット接続バージョンは予定されていますか？
 
-   - Currently, our device is designed with a focus on providing direct control of target devices for technical / IT operations rather than prioritising high-resolution display output for gaming. As such, while the Openterface Mini-KVM facilitates efficient device configuration and troubleshooting, it may not support the high-quality display requirements necessary for an optimal gaming experience. Our priority is on reliability and functionality for technical tasks rather than gaming.
+   - このミニKVMの焦点は、ネットワークの状態を気にすることなく、高速で安定した、ターゲットデバイスへのUSB経由の直接制御であるため、当社のOpenterface製品でワイヤレスまたはイーサネット接続をサポートする当面の計画はありません。
+   - もしこの件に関して我々の考えが変わった場合は、[我々のコミュニティ](https://www.reddit.com/r/Openterface_miniKVM/)に最新情報をお知らせします😃。
+   - とはいえ、もし市場で満足のいくKVM-over-IPが見つからなかった場合は、遠慮なくあなたの考えを私たちと[共有](https://forms.gle/rwDDsMbs5pFwq7227)してください。
 
-### **Will there be support for high-quality display in future versions of the Openterface Mini-KVM?**
+### 従来のKVM、KVM-over-IP、VNCなど、他のKVMソリューションとの違いは何ですか？
+   - 詳しくは[比較](/比較)のページをご覧ください。
 
-   - Yes, we are aware that there is significant interest in high-quality display capabilities among our users. While it is not our main focus at the moment, we are considering the inclusion of enhanced display features for a professional version of the Openterface Mini-KVM. We value the feedback from our community and aim to cater to the needs of our users in future product developments.
 
-### **Why doesn't the Openterface Mini-KVM stream video over local IP or wireless video broadcast and support wireless keyboard and mouse control?**
+### PS/2出力でターゲットをコントロールできますか？
 
-   - The design philosophy behind the Openterface Mini-KVM emphasizes stable, wired control to ensure reliability and performance. By prioritizing direct connections through HDMI and USB, we aim to provide a seamless and efficient user experience, free from the potential instabilities and latency associated with wireless communications and network streaming. However, we are open to exploring these features in future versions of our device, as we continue to assess user needs and technological advancements.
+   - 内蔵PS/2インターフェースへの対応は、今後の開発計画の一部として検討しています。
 
-### **Does it work with analog video outputs like VGA?**
+## ビデオ関連
 
-   - Currently it only captures digital video via HDMI. VGA support may be added in the future. Simple analog conversion can be achieved using HDMI-to-VGA adapters.
+### ビデオのレイテンシーと解像度はどうですか？
 
-### **Does the Openterface Mini-KVM support VLC for streaming video?**
+   - このデバイスは1080pのビデオを最小のレイテンシーで扱うように設計されており、シームレスなコントロール体験を保証します。
 
-   - No, the Openterface Mini-KVM does not support VLC for streaming video. This is because the device is not designed as a network-based solution, which is typically required for streaming applications like VLC. Our focus is on direct USB connectivity for device control and management, rather than network-dependent functionalities.
+### Openterface Mini-KVMは高品質のゲームに適していますか？
+
+   - 現在のところ、当社のデバイスは、ゲーム用の高解像度ディスプレイ出力を優先するよりも、技術／ IT オペレーション用のターゲットデバイスの直接制御を提供することに重点を置いて設計されています。そのため、Openterface Mini-KVMは、効率的なデバイス設定とトラブルシューティングを容易にしますが、最適なゲーム体験に必要な高画質ディスプレイ要件をサポートしない可能性があります。当社は、ゲームよりも、技術的な作業に対する信頼性と機能性を優先しています。
+
+### Openterface Mini-KVMの将来のバージョンで高画質ディスプレイのサポートはありますか？
+
+   - はい、ユーザーの間で高画質ディスプレイ機能に大きな関心が寄せられていることは承知しています。現時点では主な焦点ではありませんが、Openterface Mini-KVMのプロフェッショナルバージョンに拡張ディスプレイ機能を搭載することを検討しています。私たちは、コミュニティからのフィードバックを重視し、将来の製品開発においてユーザーのニーズに応えることを目指しています。
+
+### なぜOpenterface Mini-KVMは、ローカルIPまたはワイヤレスビデオブロードキャストでビデオをストリーミングし、ワイヤレスキーボードとマウスコントロールをサポートしないのですか？
+
+   - Openterface Mini-KVMの設計思想は、信頼性とパフォーマンスを確保するために、安定した有線制御を重視しています。HDMIとUSBによる直接接続を優先することで、無線通信やネットワークストリーミングに関連する潜在的な不安定性や待ち時間から解放され、シームレスで効率的なユーザーエクスペリエンスを提供することを目指しています。しかし、ユーザーのニーズと技術の進歩を評価し続けるため、将来のバージョンでこのような機能を検討することに前向きです。
+
+### VGAのようなアナログビデオ出力で動作しますか？
+
+   - 現在のところ、HDMI経由のデジタルビデオのみをキャプチャします。VGAのサポートは将来追加されるかもしれません。簡単なアナログ変換は、HDMI-VGAアダプタを使用して実現できます。
+
+### Openterface Mini-KVMは、ストリーミングビデオ用のVLCをサポートしていますか？
+
+   - いいえ、Openterface Mini-KVMは、ストリーミングビデオ用のVLCをサポートしていません。これは、このデバイスが、VLC のようなストリーミング・アプリケーションに通常必要とされるネットワークベースのソリューションとして設計されていないためです。当社では、ネットワークに依存する機能性よりも、デバイスの制御と管理のための直接的な USB 接続性に重点を置いています。
 
 <section class="dialogue-section-white" id="dialogues-section">
     <div class="container">
