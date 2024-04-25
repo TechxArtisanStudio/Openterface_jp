@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Serve Local",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/serve_local.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Run Local",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_local.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}
