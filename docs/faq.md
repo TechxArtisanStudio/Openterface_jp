@@ -126,19 +126,19 @@ If you don't find what you're looking for, please join our Openterface [subreddi
     <div class="callout-button-container">
         <div class="dialogue-bubble" id="op-bubble">
          <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-         <p>Question?🤔</p>
-         <a href="https://www.reddit.com/r/Openterface_miniKVM/" class="md-button md-button--primary" id="join-waitlist-button">Ask in Subreddit</a>
+         <p>質問？🤔</p>
+         <a href="https://www.reddit.com/r/Openterface_miniKVM/" class="md-button md-button--primary" id="join-waitlist-button">Subredditで尋ねる</a>
          <!-- <a href="https://forms.gle/rwDDsMbs5pFwq7227" class="md-button md-button--primary" id="join-waitlist-button">Ask NOW</a> -->
         </div>
       <div class="dialogue-bubble" id="op-bubble">
         <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-        <p>Read more 📖</p>
+        <p>もっと読む 📖</p>
         <a href="/quick-start" class="md-button md-button--primary" id="join-waitlist-button">Docs</a>
       </div>
       <div class="dialogue-bubble" id="op-bubble">
         <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-        <p>Be Our Backer! ❤️</p>
-        <a href="https://www.crowdsupply.com/techxartisan/openterface-mini-kvm" class="md-button md-button--primary" id="join-waitlist-button">Go to Crowd Supply</a>
+        <p>支援者になる！❤️</p>
+        <a href="https://www.crowdsupply.com/techxartisan/openterface-mini-kvm" class="md-button md-button--primary" id="join-waitlist-button">Crowd Supply へ行く</a>
       </div>
     </div>
 </section>

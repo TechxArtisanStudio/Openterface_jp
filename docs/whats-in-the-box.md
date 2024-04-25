@@ -1,24 +1,24 @@
-# What's In The Box
+# 箱の中身
 
-Explore our two purchase options designed to meet your needs, whether you're looking for the essentials or a complete set of tools.
+あなたのニーズに合わせて設計された2つの購入オプションを探索してください。基本的なものを探している場合でも、ツールの完全なセットを探している場合でも対応します。
 
-## Package 1: Basic Pack
+## パッケージ1：ベーシックパック
 
 ![basic-pack](/images/product/product-option-1-basic.jpg)
 
-1. Core Product: Openterface Mini-KVM
-2. Quick Start Guide
+1. コア製品：Openterface Mini-KVM
+2. クイックスタートガイド
 
-## Package 2: Toolkit Pack
+## パッケージ2：ツールキットパック
 
 ![toolkit-pack](/images/product/product-option-2-toolkit.jpg)
 
-1. Core Product: Openterface Mini-KVM
-2. Quick Start Guide
-3. HDMI Male-to-Male Cable (30cm)
-4. Type-C Male to USB-A Male Cable (30cm) with USB-A Female to USB-C Male Adapter
-5. Type-C Male-to-Male Cable (150cm)
-6. Toolkit Bag (14cm L x 10cm W x 3.8cm H)
+1. コア製品：Openterface Mini-KVM
+2. クイックスタートガイド
+3. HDMI オス-オスケーブル（30cm）
+4. Type-C オスからUSB-A オスケーブル（30cm）および USB-A オスから Type-C オスアダプター
+5. Type-C オス-オスケーブル（150cm）
+6. ツールキットバッグ（長さ14cm x 幅10cm x 高さ3.8cm）
 
 <section class="dialogue-section-white" id="dialogues-section">
     <div class="container">
@@ -26,11 +26,11 @@ Explore our two purchase options designed to meet your needs, whether you're loo
             <div class="dialogue-bubble" id="op-bubble">
                 <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
                 <p>Order NOW! ❤️</p>
-                <a href="https://www.crowdsupply.com/techxartisan/openterface-mini-kvm" class="md-button md-button--primary" id="join-waitlist-button">Go to Crowd Supply</a>
+                <a href="https://www.crowdsupply.com/techxartisan/openterface-mini-kvm" class="md-button md-button--primary" id="join-waitlist-button">Crowd Supply へ行く</a>
             </div>
             <div class="dialogue-bubble" id="op-bubble">
                 <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-                <p>Read more 📖</p>
+                <p>もっと読む 📖</p>
                 <a href="/faq" class="md-button md-button--primary" id="join-waitlist-button">FAQs</a>
             </div>
         </div>

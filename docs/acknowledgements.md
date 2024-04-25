@@ -1,23 +1,23 @@
-# Acknowledgements
+# 謝辞
 
-## 🚀 Introduction
-Welcome to our little corner of the internet, a tribute to the 🦸 **HEROES** 🌟 driving the Openterface Mini-KVM forward! Every contribution, whether it's a line of code 💻, a piece of advice 📝, or an insightful review 🔍, plays a crucial role in shaping not just the project itself but the community around it.
+## 🚀 はじめに
+インターネットのこの小さな隅へようこそ。ここは、Openterface Mini-KVMを推進する🦸 **ヒーローたち** 🌟に捧げるトリビュートです！コードの一行💻、助言の一つ📝、洞察に富んだレビュー🔍など、あらゆる貢献がプロジェクト自体だけでなく、その周囲のコミュニティを形成する上で重要な役割を果たしています。
 
-If you are passionate about making a difference and wish to join us, please do not hesitate to [send an email](mailto:techxartisan@gmail.com) ✉️. We are eager to have you aboard, ready to embrace fresh perspectives and skills to enhance our project. ❤️
+何かを変えたいと情熱を持っている方々がいれば、ぜひ[メールを送って](mailto:techxartisan@gmail.com) ✉️ください。新たな視点とスキルをプロジェクトに取り入れるため、あなたを迎え入れる準備ができています。❤️
 
-## 🛠 Core Team
+## 🛠 コアチーム
 
 - Billy Wang
 - Kevin Peng
 - Shawn Ling
 
-## 💻 Development Contributors
+## 💻 開発貢献者
 
 - Vileer
 
-## 🌍 Community Contributors
+## 🌍 コミュニティ貢献者
 
-## 🌟 Special Thanks
+## 🌟 特別感謝
 
 - Vincent
 - Vileer

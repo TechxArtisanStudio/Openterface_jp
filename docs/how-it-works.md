@@ -1,16 +1,16 @@
-# How It Works
+# 仕組み
 
-## Process Breakdown
+## プロセスの詳細
 
-- **Screen Streaming**: The mini-KVM captures the screen stream from the target computer and displays it on the host computer’s app. This allows users to view and manage the target system directly from their host machine.
-- **Cursor and Mouse Control**: By moving the mouse to the app window on the host computer, users can control the cursor on the target device as if they were using a VNC. This functionality enables operating two systems simultaneously on one screen.
-- **Keyboard Input**: When the app window is active, any keystrokes made on the host computer’s keyboard are transmitted to the target device, allowing for seamless typing and command entry.
-- **HID Signal Conversion**: All keyboard and mouse inputs within the app are converted into Human Interface Device (HID) control signals, which are then sent to the target computer.
-- **Synchronization**: The app ensures that the target computer’s screen and cursor are synchronized with the host computer’s display, facilitating a unified user experience.
+- **スクリーンストリーミング**: ミニKVMはターゲットコンピュータからの画面ストリームをキャプチャし、ホストコンピュータのアプリに表示します。これにより、ユーザーはホストマシンから直接ターゲットシステムを閲覧および管理できます。
+- **カーソルとマウスの制御**: ホストコンピュータのアプリウィンドウにマウスを移動することで、ユーザーはVNCを使用しているかのようにターゲットデバイスのカーソルを制御できます。この機能により、1つの画面で2つのシステムを同時に操作できます。
+- **キーボード入力**: アプリウィンドウがアクティブな場合、ホストコンピュータのキーボードで行われた任意のキーストロークがターゲットデバイスに送信され、シームレスなタイピングとコマンド入力が可能になります。
+- **HIDシグナル変換**: アプリ内のすべてのキーボードおよびマウス入力は、ヒューマンインターフェースデバイス（HID）制御シグナルに変換され、その後ターゲットコンピュータに送信されます。
+- **同期**: アプリはターゲットコンピュータの画面とカーソルがホストコンピュータのディスプレイと同期することを保証し、統一されたユーザーエクスペリエンスを実現します。
 
-## Explore Hardware Details
+## ハードウェアの詳細を探る
 
-- [Openterface_Mini-KVM_Hardware](https://github.com/TechxArtisan/Openterface_Mini-KVM_Hardware): Explore our comprehensive hardware design, schematics, and components.
+- [Openterface_Mini-KVM_Hardware](https://github.com/TechxArtisan/Openterface_Mini-KVM_Hardware): 当社の包括的なハードウェアデザイン、回路図、およびコンポーネントを探索してください。
 
 ![openterface-mini-kvm-product-with-PCB](/images/product/openterface-mini-kvm-product-with-PCB.jpg)
 
@@ -18,14 +18,14 @@
     <div class="container">
         <div class="callout-button-container">
             <div class="dialogue-bubble" id="op-bubble">
-                <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-                <p>Read more 📖</p>
-                <a href="/faq" class="md-button md-button--primary" id="join-waitlist-button">FAQs</a>
+                <img src="/images/op-avatar.jpg" alt="アバター" class="avatar" draggable="false">
+                <p>詳細を読む 📖</p>
+                <a href="/faq" class="md-button md-button--primary" id="join-waitlist-button">FAQ</a>
             </div>
             <div class="dialogue-bubble" id="op-bubble">
-                <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-                <p>Question?🤔</p>
-                <a href="https://www.reddit.com/r/Openterface_miniKVM/" class="md-button md-button--primary" id="join-waitlist-button">Ask in Subreddit</a>
+                <img src="/images/op-avatar.jpg" alt="アバター" class="avatar" draggable="false">
+                <p>質問？🤔</p>
+                <a href="https://www.reddit.com/r/Openterface_miniKVM/" class="md-button md-button--primary" id="join-waitlist-button">Subredditで尋ねる</a>
             </div>
         </div>
     </div>

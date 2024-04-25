@@ -1,34 +1,34 @@
-# Quick Start
+# クイックスタート
 
-## Product Overview
+## 製品概要
 
-Our **Openterface™ Mini-KVM** allows you to control a nearby headless computer (which we refer to as the **Target**) directly from your own laptop or desktop (referred to as the **Host**), via usb and HDMI connection, without the need for an extra keyboard, mouse, monitor or network.
+私たちの**Openterface™ Mini-KVM**を使用すると、usbおよびHDMI接続を介して、余分なキーボード、マウス、モニター、またはネットワークを必要とせずに、近くのヘッドレスコンピュータ（**ターゲット**と呼びます）を直接自分のラップトップまたはデスクトップ（**ホスト**と呼びます）から制御できます。
 
-## Connection Instructions
+## 接続手順
 
-To set up your Mini-KVM, follow these steps:
+Mini-KVMを設定するには、次の手順に従ってください：
 
-- **Host Computer Connection**: Connect the Type-C port located on the orange end of the Mini-KVM to your host computer.
-- **Target Device Connection**:
-    - **Video Output**: Connect the HDMI port on the black end to the video output of the target device. Depending on the available video output ports on the target computer, you may need an appropriate video adapter.
-    - **Type-C Connection**: Attach the Type-C port on the black end to the target device.
+- **ホストコンピュータ接続**：Mini-KVMのオレンジ色の端にあるType-Cポートをホストコンピュータに接続します。
+- **ターゲットデバイス接続**：
+    - **ビデオ出力**：黒い端のHDMIポートをターゲットデバイスのビデオ出力に接続します。ターゲットコンピュータの利用可能なビデオ出力ポートによっては、適切なビデオアダプターが必要になる場合があります。
+    - **Type-C接続**：黒い端のType-Cポートをターゲットデバイスに接続します。
 
 ![use-case-pc-angled-view](images/product/use-case-pc-angled-view.jpg)
 
-## Set Up Your Host Apps
+## ホストアプリの設定
 
-To use this mini-KVM, the host computer must install one of the below host applications. 
+このミニKVMを使用するには、ホストコンピュータに以下のいずれかのホストアプリケーションをインストールする必要があります。
 
-- [Openterface_MacOS](https://github.com/TechxArtisan/Openterface_MacOS): Host Applications for MacOS Support; You can also find the macOS app on Apple's App Store by searching for "Openterface".
-- [Openterface_QT](https://github.com/TechxArtisan/Openterface_QT): Host Applications for Windows and Linux Support
-- [Openterface_Android](https://github.com/TechxArtisan/Openterface_Android): Host Applications for Android Support
-- [Openterface_WebExtension](https://github.com/TechxArtisan/Openterface_WebExtension): Web-based App for Chrome/Firefox Extension
+- [Openterface_MacOS](https://github.com/TechxArtisan/Openterface_MacOS): MacOSサポート用ホストアプリケーション; macOSアプリはAppleのApp Storeで「Openterface」と検索することでも見つけることができます。
+- [Openterface_QT](https://github.com/TechxArtisan/Openterface_QT): WindowsおよびLinuxサポート用ホストアプリケーション
+- [Openterface_Android](https://github.com/TechxArtisan/Openterface_Android): Androidサポート用ホストアプリケーション
+- [Openterface_WebExtension](https://github.com/TechxArtisan/Openterface_WebExtension): Chrome/Firefox拡張機能用ウェブベースアプリ
 
-The above host applications are **currently under development**. We are actively coding 🛠️ and enhancing them as we go! 💪 If you're interested in contributing and want to be part of an innovative development team, [join us now!](mailto:techxartisan@gmail.com) 🚀
+上記のホストアプリケーションは**現在開発中**です。私たちは積極的にコーディング🛠️し、改善を進めています！💪 革新的な開発チームの一員になりたいと思う方は、[今すぐ参加してください！](mailto:techxartisan@gmail.com) 🚀
 
-## Target Device Compatibility
+## ターゲットデバイスの互換性
 
-**No pre-installation or configuration** is required on the target device. As long as the target device supports UI operations with video output (HDMI, VGA, e.g.) and has a USB port to receive emulated keyboard and mouse control (HID) signals, it can be used. Thus, Supported target device platforms include Windows, macOS, Linux, Android, and iOS.
+**事前のインストールや設定は**ターゲットデバイスでは必要ありません。ターゲットデバイスがビデオ出力（HDMI、VGAなど）をサポートし、エミュレートされたキーボードとマウスの制御信号（HID）を受け取るUSBポートを持っていれば、使用できます。したがって、サポートされているターゲットデバイスのプラットフォームには、Windows、macOS、Linux、Android、iOSが含まれます。
 
 
 <section class="dialogue-section-white" id="dialogues-section">
@@ -36,13 +36,13 @@ The above host applications are **currently under development**. We are actively
         <div class="callout-button-container">
             <div class="dialogue-bubble" id="op-bubble">
                 <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-                <p>Read more 📖</p>
+                <p>もっと読む 📖</p>
                 <a href="/faq" class="md-button md-button--primary" id="join-waitlist-button">FAQs</a>
             </div>
             <div class="dialogue-bubble" id="op-bubble">
                 <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-                <p>Question?🤔</p>
-                <a href="https://www.reddit.com/r/Openterface_miniKVM/" class="md-button md-button--primary" id="join-waitlist-button">Ask in Subreddit</a>
+                <p>質問？🤔</p>
+                <a href="https://www.reddit.com/r/Openterface_miniKVM/" class="md-button md-button--primary" id="join-waitlist-button">Subredditで尋ねる</a>
             </div>
         </div>
     </div>
