@@ -1,6 +1,6 @@
 # Project information
 site_name: Openterface Mini-KVM | ノートパソコンをKVMコンソールに変える
-site_url: https://ja.openterface.com/
+site_url: https://jp.openterface.com/
 site_author: Billy Wang
 site_description: 機能豊富でオープンソース、コミュニティ主導のKVM-over-USBソリューション
 
@@ -10,7 +10,7 @@ repo_url: https://github.com/TechxArtisan/Openterface
 
 # Copyright
 copyright: >-
-  著作権 © 全ての権利を保有。2023 <a href="https://www.openterface.com">Openterface MiniKVM</a>, 広州比利奥科技有限公司<br>
+  著作権 © 全ての権利を保有。2023 <a href="https://jp.openterface.com">Openterface MiniKVM</a>, 広州比利奥科技有限公司<br>
   <a href="">ホーム</a> |
   <a href="/terms-of-service">利用規約</a> |
   <a href="/privacy-policy">プライバシーポリシー</a> | 
@@ -80,7 +80,7 @@ extra:
     #   lang: zh-Hant
     - name: 日本語 🇯🇵
       link: https://jp.openterface.com/
-    #   lang: ja
+      lang: ja
     # - name: 한국어 🇰🇷
     #   link: https://kr.openterface.com/
     #   lang: ko
@@ -120,20 +120,6 @@ extra:
   analytics:
     provider: google
     property: G-EKZEH6QYWT
-    # feedback:
-    #   title: Was this page helpful?
-    #   ratings:
-    #     - icon: material/heart
-    #       name: This page was helpful
-    #       data: 1
-    #       note: >-
-    #         Thanks for your feedback!
-    #     - icon: material/heart-broken
-    #       name: This page could be improved
-    #       data: 0
-    #       note: >- 
-    #         Thanks for your feedback! Help us improve this page by
-    #         using our <a href="https://forms.gle/7AoXW2YCPMfmpRmr5" target="_blank" rel="noopener">feedback form</a>.
 
 markdown_extensions:
   # Enables admonitions
