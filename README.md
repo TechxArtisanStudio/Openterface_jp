@@ -1,6 +1,6 @@
 これはOpenterface Mini-KVMのウェブサイトをホスティングするためのGithubレポです。
 
-プレローンチページ](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)が**Crowd Supply**で公開されました！これは正式なクラウドファンディングキャンペーンに向けた重要なステップであり、私たちはこれを成功させたいと思っています。クラウドサプライにご登録いただき、ご支援をご検討いただくことで、私たちのゴールに近づき、最終的にはMini-KVM Openterfaceをより早く皆様にお届けすることができます。
+[プレローンチページ](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)が**Crowd Supply**で公開されました！これは正式なクラウドファンディングキャンペーンに向けた重要なステップであり、私たちはこれを成功させたいと思っています。クラウドサプライにご登録いただき、ご支援をご検討いただくことで、私たちのゴールに近づき、最終的にはMini-KVM Openterfaceをより早く皆様にお届けすることができます。
 
 ---------
 
@@ -18,7 +18,7 @@
 
 ## 特徴・仕様  
 
-！[openterface-mini-kvm-product-view-two-sides](/docs/images/product/openterface-mini-kvm-product-view-two-sides.jpg)
+![openterface-mini-kvm-product-view-two-sides](/docs/images/product/openterface-mini-kvm-product-view-two-sides.jpg)
 
 - ホストアプリケーションの互換性**： 現在macOSをサポートし、WindowsとLinuxも開発中です。
 
