@@ -1,82 +1,82 @@
-This is Github repo for hosting Openterface Mini-KVM's Website.
+これはOpenterface Mini-KVMのウェブサイトをホスティングするためのGithubレポです。
 
-We've reached a pivotal moment: our [Pre-launch Page](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm) is now live on **Crowd Supply**! This is a crucial step towards our official crowdfunding campaign, and we're eager to make it a success. By subscribing and considering to be our backer, you'll bring us closer to our goal and, ultimately, to delivering Mini-KVM Openterface to you faster.
+プレローンチページ](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)が**Crowd Supply**で公開されました！これは正式なクラウドファンディングキャンペーンに向けた重要なステップであり、私たちはこれを成功させたいと思っています。クラウドサプライにご登録いただき、ご支援をご検討いただくことで、私たちのゴールに近づき、最終的にはMini-KVM Openterfaceをより早く皆様にお届けすることができます。
 
 ---------
 
 ![pre_launch_poster](docs/images/event/pre_launch_poster.jpg)
 
-**Openterface Mini-KVM** allows you to control a headless target device, such as a mini PC, kiosk, or server, directly from your laptop or desktop without the need for an extra keyboard, mouse, and monitor.
+**Openterface Mini-KVM**は、余分なキーボード、マウス、モニターを必要とせずに、ミニPC、キオスク、サーバーなどのヘッドレスターゲットデバイスをラップトップやデスクトップから直接制御することができます。
 
-It's a plug-and-play tool that connects via HDMI for display and USB for emulated keyboard/mouse (HID) signals. It requires minimal setup: install our host application on your host computer, and you're ready to have on-the-go headless control.
+ディスプレイはHDMIで、エミュレートされたキーボード/マウス（HID）信号はUSBで接続するプラグアンドプレイツールです。ホストコンピュータに当社のホストアプリケーションをインストールすれば、すぐにヘッドレスコントロールが可能です。
 
-## Control Your Devices Whenever and Wherever
+## デバイスをいつでもどこでもコントロール
 
-![use-case-demo-industrial-pc](/docs//images/product/use-case-demo-industrial-pc.jpg)
+![ユースケース・デモ・インダストリアルPC](/docs//images/product/use-case-demo-industrial-pc.jpg)
 
-Whether you're an IT professional needing to troubleshoot a server, a developer managing multiple tests on edge computing machines, a tech enthusiast hacking single-board computers, or simply someone looking to declutter their desk, Openterface Mini-KVM is the solution.
+サーバーのトラブルシューティングを必要とするITプロフェッショナル、エッジコンピューティングマシンで複数のテストを管理する開発者、シングルボードコンピュータをハックする技術愛好家、あるいは単に机の上をすっきりさせたい人など、Openterface Mini-KVMは、どのような方にも最適なソリューションです。
 
-## Features & Specifications  
+## 特徴・仕様  
 
-![openterface-mini-kvm-product-view-two-sides](/docs/images/product/openterface-mini-kvm-product-view-two-sides.jpg)
+！[openterface-mini-kvm-product-view-two-sides](/docs/images/product/openterface-mini-kvm-product-view-two-sides.jpg)
 
-- **Host App Compatibility**: Currently supports macOS, with support for Windows and Linux in development.
+- ホストアプリケーションの互換性**： 現在macOSをサポートし、WindowsとLinuxも開発中です。
 
-- **Plug-and-Play Convenience**: Headless control via HDMI and emulated keyboard/mouse, without network concern.
+- プラグアンドプレイの利便性**： HDMI およびエミュレートされたキーボード/マウスによるヘッドレス制御で、ネットワークを気にすることなく使用できます。
 
-- **Portability**: Its compact and lightweight design makes it the perfect tool for professionals on the go.
+- 携帯性**： コンパクトで軽量なデザインは、外出中のプロフェッショナルに最適なツールです。
 
-- **Text Transfer from Host to Target**: Ideal for copying usernames, passwords, and small chunks of code to the target computer via our host applications.
+- ホストからターゲットへのテキスト転送**： ユーザー名、パスワード、小さなコードの塊を、ホスト・アプリケーションを介してターゲット・コンピューターにコピーするのに理想的です。
 
-- **Full HD with Low Latency**: Captures video via HDMI at a 1920x1080 resolution at 30fps, with under 140 milliseconds of latency. With the help of a video adapter, it can also support DisplayPort and DVI video sources.
+- 低遅延**の**フルHD： HDMI経由でビデオを1920x1080の解像度で30fps、140ミリ秒以下のレイテンシでキャプチャします。ビデオアダプタを使用すれば、DisplayPortおよびDVIビデオソースもサポートします。
 
-- **Audio Integration**: Captures and plays the target device's audio directly on the host computer.
+- オーディオ統合**： ターゲット・デバイスのオーディオをキャプチャし、ホスト・コンピュータで直接再生します。
 
-- **BIOS-Level Access**: Provides direct access to the target device's BIOS, firmware, or startup management.
+- BIOSレベルアクセス**： ターゲット・デバイスのBIOS、ファームウェア、スタートアップ管理への直接アクセスを提供します。
 
-- **Switchable USB Type-A Port**: This allows you to toggle USB access between the host and the target, ideal for sharing a USB drive without replugging.
+- 切り替え可能なUSB Type-Aポート**： これにより、ホストとターゲット間でUSBアクセスを切り替えることができ、再接続せずにUSBドライブを共有するのに理想的です。
 
-- **Clean Setup**: Leaves no software on the target computer.
+- クリーンセットアップ**： ターゲットコンピュータにソフトウェアを残しません。
 
-## Open Source
+## オープンソース
 
-Openterface Mini-KVM is open hardware and uses open source host software. We will make more information available when the campaign begins. We're also working on documentation, which you can [read on our website](https://openterface.com/quick-start/).
+Openterface Mini-KVMはオープンハードウェアであり、オープンソースのホストソフトウェアを使用しています。キャンペーンが開始されたら、より多くの情報を公開する予定です。また、ドキュメントも作成中で、[ウェブサイトで読むことができます](https://openterface.com/quick-start/)。
 
-## Interested in This Project?
+## このプロジェクトに興味がありますか？
 
-You can sign up at our [Pre-launch Page](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm) on **Crowd Supply** to be notified when the campaign launches and to receive other updates. We provide useful information only, and you can unsubscribe at any time.
+クラウドサプライ**の[プレローンチページ](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)に登録すると、キャンペーン開始のお知らせやその他の最新情報を受け取ることができます。有益な情報のみを提供いたしますので、いつでも配信を停止することができます。
 
-## Contact Us
+## お問い合わせ
 
-We're delighted you're interested in reaching out to us. Whether you have questions, feedback, or just want to say hello, here are several ways to connect with us:
+私たちにご興味をお持ちいただきありがとうございます。ご質問、ご意見、ご挨拶など、お気軽にお問い合わせください：
 
-### Official Contact Emails
+### 公式お問い合わせメール
 
-To ensure you're communicating with us securely and directly, please note our official contact email addresses. For any enquiries, support, or feedback, feel free to reach out to us at:
+私たちと安全かつ直接連絡を取るために、私たちの公式連絡先メールアドレスをご確認ください。お問い合わせ、サポート、フィードバックは下記までお気軽にご連絡ください：
 
 - **Primary Contact Email:** [techxartisan@gmail.com](mailto:techxartisan@gmail.com)
 
-Additionally, any email address ending with the following domains is recognized as an official communication channel for our members and customers:
+また、以下のドメインで終わるメールアドレスは、メンバーおよびお客様との公式な連絡先として認められています：
 
-- **TechxArtisan Domain:** *@techxartisan.com
-- **Openterface Domain:** *@openterface.com
+- **TechxArtisan ドメイン:** *@techxartisan.com
+- **Openterface ドメイン:** *@openterface.com
 
-Emails from these addresses are from our team, dedicated to providing you with the support and information you need.
+これらのアドレスからの電子メールは、お客様が必要とするサポートや情報を提供するために専心している弊社チームからのものです。
 
-### Follow Us on Social Media
+### ソーシャルメディア
 
-Stay updated and engaged with us through our social media channels:
+私たちのソーシャルメディア・チャンネルを通じて、最新情報を入手し、私たちと関わってください：
 
-- [Join our subreddit](https://www.reddit.com/r/Openterface_miniKVM/)
+- [サブレディットへの参加](https://www.reddit.com/r/Openterface_miniKVM/)
 - [TechxArtisan on GitHub](https://github.com/TechxArtisan)
-- [Follow us on Twitter](https://twitter.com/TechxArtisan)
-- [Like us on Facebook](https://www.facebook.com/TechxArtisan)
-- [Join our Discord community](https://discord.gg/4khsrbGS)
-- [Subscribe to our YouTube channel](https://youtube.com/@TechxArtisan)
-- [Follow us on LinkedIn](https://www.linkedin.com/company/techxartisan/)
+- [Twitterでフォロー](https://twitter.com/TechxArtisan)
+- [Facebookでいいね！](https://www.facebook.com/TechxArtisan)
+- [Discord コミュニティに参加](https://discord.gg/4khsrbGS)
+- [YouTubeチャンネルに登録](https://youtube.com/@TechxArtisan)
+- [LinkedInでフォロー](https://www.linkedin.com/company/techxartisan/)
 
-### Visit Our Website
+### ウェブサイトを見る
 
-For more information about us and our work, please visit our website:
+TechxArtisanのウェブサイトをご覧ください：
 
-- [TechxArtisan Official Website](https://techxartisan.com/en/)
+- [TechxArtisan公式ウェブサイト](https://techxartisan.com/en/)
