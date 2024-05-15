@@ -25,7 +25,7 @@
         <div class="callout-button-container">
             <div class="dialogue-bubble" id="op-bubble">
                 <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-                <p>Order NOW! ❤️</p>
+                <p>今すぐ注文！❤️</p>
                 <a href="https://www.crowdsupply.com/techxartisan/openterface-mini-kvm" class="md-button md-button--primary" id="join-waitlist-button">Crowd Supply へ行く</a>
             </div>
             <div class="dialogue-bubble" id="op-bubble">
