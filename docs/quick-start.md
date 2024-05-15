@@ -19,10 +19,10 @@ Mini-KVMを設定するには、次の手順に従ってください：
 
 このミニKVMを使用するには、ホストコンピュータに以下のいずれかのホストアプリケーションをインストールする必要があります。
 
-- [Openterface_MacOS](https://github.com/TechxArtisan/Openterface_MacOS): MacOSサポート用ホストアプリケーション; macOSアプリはAppleのApp Storeで「Openterface」と検索することでも見つけることができます。
-- [Openterface_QT](https://github.com/TechxArtisan/Openterface_QT): WindowsおよびLinuxサポート用ホストアプリケーション
-- [Openterface_Android](https://github.com/TechxArtisan/Openterface_Android): Androidサポート用ホストアプリケーション
-- [Openterface_WebExtension](https://github.com/TechxArtisan/Openterface_WebExtension): Chrome/Firefox拡張機能用ウェブベースアプリ
+- [Openterface_MacOS](https://github.com/TechxArtisan/Openterface_MacOS)（進行中）: MacOSサポート用ホストアプリケーション; macOSアプリはAppleのApp Storeで「Openterface」と検索することでも見つけることができます。
+- [Openterface_QT](https://github.com/TechxArtisan/Openterface_QT)（進行中）: WindowsおよびLinuxサポート用ホストアプリケーション
+- [Openterface_Android](https://github.com/TechxArtisan/Openterface_Android)（進行中）: Androidサポート用ホストアプリケーション
+- [Openterface_WebExtension](https://github.com/TechxArtisan/Openterface_WebExtension)（進行中）: Chrome/Firefox拡張機能用ウェブベースアプリ
 
 上記のホストアプリケーションは**現在開発中**です。私たちは積極的にコーディング🛠️し、改善を進めています！💪 革新的な開発チームの一員になりたいと思う方は、[今すぐ参加してください！](mailto:techxartisan@gmail.com) 🚀
 

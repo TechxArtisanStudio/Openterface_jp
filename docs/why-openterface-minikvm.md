@@ -12,7 +12,7 @@
 
 ## プロジェクトを支援する！
 
-私たちは間もなく **Crowd Supply** で Openterface mini-KVM の公式クラウドファンディングキャンペーンを開始します。このキャンペーンを成功に導くために、あなたのサポートが必要です。[事前登録]((https://www.crowdsupply.com/techxartisan/openterface-mini-kvm))に登録して支援者になることで、私たちの目標に近づき、最終的にはOpenterface Mini-KVMをより早くお届けできます。
+Openterface mini-KVMの公式クラウドファンディングキャンペーンが**Crowd Supply**で開始されました。成功させるために、皆様のサポートが必要です。[キャンペーン](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)に登録してサポーターになることで、私たちの目標に一歩近づき、Mini-KVM Openterfaceをより早くお届けすることができます。
 
 アップデートをお楽しみに、そして[私たちのコミュニティに参加](https://www.reddit.com/r/Openterface_miniKVM/)して、このエキサイティングな旅の一部となりましょう！ ❤️
 
