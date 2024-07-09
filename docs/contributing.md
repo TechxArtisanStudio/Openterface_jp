@@ -1,7 +1,3 @@
----
-comments: true
----
-
 # 貢献について
 
 こんにちは！Openterface mini-KVMの[コミュニティ](/community)に参加し、貢献を考えていますか？素晴らしいですね！🧡

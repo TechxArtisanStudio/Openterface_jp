@@ -31,24 +31,24 @@ Mini-KVMの旅は、活気あふれる中国広州のTechxArtisanスタジオか
 ### その場しのぎの解決策
 当初は、バッテリーパックで駆動するその場しのぎのポータブルモニターソリューションや、タッチパッド付きのワイヤレスミニキーボードに頼っていました。しかし、これらはしばしば忘れたり置き忘れたりしたため、コーディングやセットアップのために常に携帯しているノートパソコンを活用できる専用のハードウェア・ソリューションが必要になった。
 
-DIYモニター・キーボード](029/diy-monitor-keyboard.jpg)
+![diy-monitor-keyboard](029/diy-monitor-keyboard.jpg)
 *現場でのプロジェクトには、この2つのガジェットを携帯する必要がある。
 
 ### 最初のプロトタイプ
 私たちの最初のDIYプロトタイプは、ヘッドレスデバイスからビデオを取り出すためのキャプチャカードと、USBキーボード／マウスシミュレータの、シンプルで効果的な組み合わせであった。
 
-![/初期ミニkvm-pcb](029/初期ミニkvm-pcb.jpg)
+![early-mini-kvm-pcb](029/early-mini-kvm-pcb.jpg)
 *ミニKVM PCBの初期バージョンの1つ。
 
 私たちは、2023年11月のShenzhen Maker Faireで、Davidにmini-KVMのプロトタイプを披露するつもりで、クールなテック・アート・プロジェクトを展示した。しかし、デビッドからのプレゼントに興奮して、それを忘れてしまった！
 
-[techxartisan_team_with_david_groom](029/techxartisan_team_with_david_groom.jpg)。
+![techxartisan_team_with_david_groom](029/techxartisan_team_with_david_groom.jpg)
 *MAKE:Magazineのステッカーとポストカードはマジでクール！*。
 
 ## コミュニティからのフィードバックと開発
 Redditで私たちのプロトタイプを共有した後、私たちは[コミュニティ](http://openterface.com/community/#community-contributors)から貴重なフィードバックを受け取り、私たちのソリューションを洗練された製品に改良し、開発するよう励まされました。このコミュニティのサポートは、私たちのその場しのぎのデバイスを、ホームラボ、システム管理者、技術愛好家、そしてヘッドレスコンピュータを扱うすべての人のための、洗練された効率的なツールに変えるのに役立ちました。
 
-got_feedback_from_reddit](029/got_feedback_from_reddit.jpg)。
+![got_feedback_from_reddit](029/got_feedback_from_reddit.jpg)
 *ホームラバーズ*から超多量のフィードバックを受け取った。
 
 ## 疑問の克服
@@ -57,7 +57,7 @@ got_feedback_from_reddit](029/got_feedback_from_reddit.jpg)。
 ## クラウドファンディングと今後の計画
 クラウドサプライでのOpenterface Mini-KVMのクラウドファンディングキャンペーンは、残り約2週間となり、本格的に盛り上がってきています。このキャンペーンは、Mini-KVMの開発だけでなく、コミュニティ主導のイノベーションの力を証明するものです。次は、生産管理、ソフトウェアの改善、そしてこの便利なガジェットを素晴らしい支援者にお届けすることです。
 
-！[techxartisan_openterface_discord](029/techxartisan_openterface_discord.jpg)
+![techxartisan_openterface_discord](029/techxartisan_openterface_discord.jpg)
 *TechxArtisanのDiscord*では、ベータテスターが日々の技術タスクにおけるOpenterface Mini-KVMの使用方法を共有しています。
 
 ## オープンソースのビジョンを受け入れる
