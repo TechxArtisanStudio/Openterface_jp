@@ -275,7 +275,8 @@
 }
 
 .feature-dev-test {
-    background: var(--md-default-bg-color);
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 1'><path d='M0,0 H1123' style='stroke: hsla(0, 0%, 100%, 1); stroke-width: 1'/></svg>") no-repeat bottom, 
+    linear-gradient(to top, var(--md-primary-fg-color) 30%, #ffffff 100%, var(--md-default-bg-color) 100%);
     padding: var(--shared-padding);
     text-align: center;
     color: var(--description-font-dark);
@@ -378,8 +379,6 @@
     align-items: flex-start;
     margin-bottom: 2rem;
 }
-
-
 
 .twitter-feed-section .twitter-tweet {
     flex-basis: 22%;
@@ -599,7 +598,7 @@
         flex-wrap: nowrap;
         justify-content: normal;
         overflow-x: auto;
-        scroll-snap-type: x proximity; /* changed to 'proximity' for more forgiving scrolling */
+        scroll-snap-type: x proximity;
     }
 
     .twitter-feed-section .twitter-tweet {
@@ -632,6 +631,13 @@
     text-align: center;
 }
 
+.dialogue-section-white h2 {
+    font-size: 2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: inherit;
+}
+
 .dialogue-bubble {
     display: inline-block;
     background-color: white;
@@ -639,7 +645,7 @@
     padding: 1rem 1.5rem;
     position: relative;
     margin: 1rem;
-    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.25);
     border: 1px solid #e7e7e7;
 }
 
@@ -671,6 +677,19 @@
     border-style: solid;
     border-color: white transparent transparent transparent;
     transform: translateX(-50%);
+}
+
+.dialogue-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -38px;
+    left: 50%;
+    border-width: 16px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.25) transparent transparent transparent; /* Shadow colour */
+    transform: translateX(-50%);
+    z-index: -1;
+    filter: blur(4px);
 }
 
 .callout-button-container {
@@ -746,4 +765,96 @@
         font-size: 0.8rem;
         margin-bottom: 0.5rem;
     }
+}
+
+#mc_embed_shell {
+    background: var(--md-primary-fg-color);
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#mc_embed_signup {
+    background: var(--md-primary-fg-color);
+    clear: left;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    max-width: 580px;
+    padding-bottom: 24px;
+}
+
+#mc_embed_signup h2 {
+    color: var(--description-font-light);
+    font-weight: bold;
+    text-align: center;
+}
+
+#mc_embed_signup .mc-field-group {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#mc_embed_signup label {
+    display: block;
+    font-weight: bold;
+    color: var(--description-font-dark);
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+#mc_embed_signup input[type="email"],
+#mc_embed_signup input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--md-primary-fg-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#mc_embed_signup input[type="email"]:focus,
+#mc_embed_signup input[type="text"]:focus {
+    border-color: var(--md-accent-fg-color);
+    outline: none;
+}
+
+#mc_embed_signup .clear {
+    text-align: center;
+}
+
+#mc_embed_signup .button {
+    background-color: var(--md-primary-fg-color);
+    color: var(--description-font-light);
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    margin: auto;
+    display: block;
+}
+
+#mc_embed_signup .button:hover {
+    background-color: var(--button-hover-color);
+    color: var(--md-primary-fg-color);
+}
+
+#mc_embed_signup .response {
+    display: none;
+}
+
+#mc_embed_signup .response.show {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#mc_embed_signup .dialogue-bubble {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
