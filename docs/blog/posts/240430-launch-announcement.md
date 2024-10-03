@@ -45,7 +45,7 @@ Openterface Mini-KVMの開発は、私たち自身の課題と、より効果的
 
 ### 繋がり、参加しよう
 
-最新の開発情報を受け取り、技術サポートを受け、他のユーザーと繋がるために、[Crowd Supplyのプレローンチページ](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)を訪れ、[openterface.com](https://openterface.com/)のウェブサイトを探索し、私たちのsubreddit [r/Openterface_miniKVM](/reddit)やDiscordコミュニティ[TechxArtisan](https://discord.com/invite/4khsrbGS)に参加してください。
+最新の開発情報を受け取り、技術サポートを受け、他のユーザーと繋がるために、[Crowd Supplyのプレローンチページ](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)を訪れ、[openterface.com](/)のウェブサイトを探索し、私たちのsubreddit [r/Openterface_miniKVM](/reddit)やDiscordコミュニティ[TechxArtisan](https://discord.com/invite/4khsrbGS)に参加してください。
 
 このエキサイティングな旅に一緒に乗り出し、ヘッドレスデバイスの操作方法を革新しましょう。Openterface Mini-KVMを現実のものにするために、ぜひご参加ください！
 

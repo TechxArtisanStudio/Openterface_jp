@@ -61,19 +61,19 @@ categories:
 
 私たちのベータチームは、米国🇺🇸、英国🇬🇧、日本🇯🇵、ドイツ🇩🇪、チェコ共和国🇨🇿、ノルウェー🇳🇴、ベルギー🇧🇪、フランス🇫🇷、オーストリア🇦🇹、オーストラリア🇦🇺、ポーランド🇵🇱、オランダ🇳🇱、中国🇨🇳など、世界中から集まったメンバーによる素晴らしいグローバルなコラボレーションです。これらのテスターは、Openterface Mini-KVMの開発経験や実際の使用ケースを持ち、オープンソースプロジェクトをサポートする情熱を持っています。ベータチームはすでにこの便利なガジェットを日常のタスクで使用し、問題を報告し、機能の提案を行ってくれています。
 
-ほとんどの皆さんはこの初期バージョンのmini-KVMを持っていませんが、GitHubで私たちのコードをレビューし、[コミュニティ](https://openterface.com/community/)でベータチームや開発チームと会話に参加することができます！見つけたことを教えてください。皆さんと一緒にこのデバイスを素晴らしいものにしましょう！
+ほとんどの皆さんはこの初期バージョンのmini-KVMを持っていませんが、GitHubで私たちのコードをレビューし、[コミュニティ](/community/)でベータチームや開発チームと会話に参加することができます！見つけたことを教えてください。皆さんと一緒にこのデバイスを素晴らしいものにしましょう！
 
 以下は私たちのオープンソースGitHubリポジトリの更新情報です：
 
 #### [**Openterface_MacOS**](https://github.com/TechxArtisanStudio/Openterface_MacOS)
 
-Openterface MacOSホストアプリはすでに**Apple App Store**で公式に公開されています。「Openterface」または「mini-KVM」で検索してアプリページを見つけてください。さらに、GitHubリポジトリにフルコードをアップロードしました：Openterface_MacOS for the Mini-KVM。こちらの[基本操作デモ](https://openterface.com/basic-testing/)もご覧ください。
+Openterface MacOSホストアプリはすでに**Apple App Store**で公式に公開されています。「Openterface」または「mini-KVM」で検索してアプリページを見つけてください。さらに、GitHubリポジトリにフルコードをアップロードしました：Openterface_MacOS for the Mini-KVM。こちらの[基本操作デモ](/basic-testing/)もご覧ください。
 
 ![openterface-macos-app-store](https://www.crowdsupply.com/img/1c9c/f855deb7-a88e-415b-a826-f360e6d41c9c/openterface-macos-app-store_png_md-xl.jpg)
 
 #### [**Openterface_QT**](https://github.com/TechxArtisanStudio/Openterface_QT)
 
-QTは私たちが愛用する多用途のフレームワークであり、mini-KVMを基に構築しました。**Windowsバージョン**については、こちらの初期デモビデオをご覧ください。[こちら](https://openterface.com/basic-testing/)で、低遅延で安定した接続が確認できます。GitHubリポジトリから初期ベータアプリをダウンロードできます。
+QTは私たちが愛用する多用途のフレームワークであり、mini-KVMを基に構築しました。**Windowsバージョン**については、こちらの初期デモビデオをご覧ください。[こちら](/basic-testing/)で、低遅延で安定した接続が確認できます。GitHubリポジトリから初期ベータアプリをダウンロードできます。
 
 ![openterface-win-app-demo-1](https://www.crowdsupply.com/img/fff1/6900b965-207d-4d91-8816-9ab73489fff1/openterface-win-app-demo-1_jpg_gallery-lg.jpg)
   
@@ -97,7 +97,7 @@ Appleのモバイルシステム、特にiPadOSとの互換性も検討してい
 
 今後2〜3週間でハードウェアの詳細を段階的に公開していきます。さらに、高いオープンソース標準を維持するために、オープンソースハードウェア協会（**OSHWA**）の認証要件に従う予定です。
 
-その間、こちらでハードウェアの詳細を学ぶことができます：[データシート](https://docs.google.com/document/d/1UPw5RwGTp0AjKL3wOvQZUS1hp3IPMxkCujtqy5haeP0/edit?usp=sharing) と [How It Works](https://openterface.com/how-it-works/)。このページでは、USB-HDMIキャプチャ統合に関する**CH9329**チップの詳細が説明されています。技術愛好家はこのチップの詳細に特に興味を持つかもしれません。さらに、私たちのmini-KVMは**CH340**チップを利用しており、ホストとターゲットの両方に2つの内蔵USBハブをサポートしています。私たちのmini-KVMは現在市場に出回っている多くのビデオキャプチャカードと比較可能です。
+その間、こちらでハードウェアの詳細を学ぶことができます：[データシート](https://docs.google.com/document/d/1UPw5RwGTp0AjKL3wOvQZUS1hp3IPMxkCujtqy5haeP0/edit?usp=sharing) と [How It Works](/how-it-works/)。このページでは、USB-HDMIキャプチャ統合に関する**CH9329**チップの詳細が説明されています。技術愛好家はこのチップの詳細に特に興味を持つかもしれません。さらに、私たちのmini-KVMは**CH340**チップを利用しており、ホストとターゲットの両方に2つの内蔵USBハブをサポートしています。私たちのmini-KVMは現在市場に出回っている多くのビデオキャプチャカードと比較可能です。
 
 #### しばらくお待ちください！
 
@@ -122,7 +122,7 @@ Appleのモバイルシステム、特にiPadOSとの互換性も検討してい
 
 ### 次に何が来るのか？
 
-次週のアップデートでは、ホストアプリケーションの機能、ロードマップ、生産進捗、ベータチームが共有する実際の使用ケースなどについて詳しくお伝えします。それまでの間、[Openterface](https://openterface.com/)と[FAQs](https://openterface.com/faq/)をご覧いただき、[Crowd Supplyでの支援](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)を検討し、広めてください！
+次週のアップデートでは、ホストアプリケーションの機能、ロードマップ、生産進捗、ベータチームが共有する実際の使用ケースなどについて詳しくお伝えします。それまでの間、[Openterface](/)と[FAQs](/faq/)をご覧いただき、[Crowd Supplyでの支援](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)を検討し、広めてください！
 
 読んでいただき、私たちの旅の一部になっていただき、ありがとうございます！よろしくお願いします！
 

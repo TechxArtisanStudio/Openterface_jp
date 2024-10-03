@@ -16,7 +16,7 @@
 - **電源供給**: USB経由で給電
 
 ### 使用例
-このケーブルの詳細な使用例については、[ストリームラインドサーバー管理](https://openterface.com/use-cases/#streamlined-server-management)をご覧ください。
+このケーブルの詳細な使用例については、[ストリームラインドサーバー管理](/use-cases/#streamlined-server-management)をご覧ください。
 
 ### デモビデオ
 Techインフルエンサーの**キャメロン・グレイ**による、このケーブルをMini-KVMと一緒に使用する方法のデモビデオをご覧ください: [このUSB KVMコンソールは素晴らしい！](https://youtu.be/xAEQpWyfY-c?si=auB5NtqHVw2C7iIK&t=1693)

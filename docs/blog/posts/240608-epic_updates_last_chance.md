@@ -42,7 +42,7 @@ categories:
 
 ### その他のアプリ
 
-  - 前回の[アップデート](https://openterface.com/blog/from-development-to-your-hands--behind-the-scenes-/#openterface_android-and-openterface_webextension)でお伝えしたように、AndroidとWebExtensionの概念実証が完了しました。優先度は低いですが、確実に進行中です。また、ChromeOSのサポートやMシリーズチップを搭載したiPadでの動作も検討しています。コミュニティでの議論に参加して、洞察を共有してください！
+  - 前回の[アップデート](/blog/from-development-to-your-hands--behind-the-scenes-/#openterface_android-and-openterface_webextension)でお伝えしたように、AndroidとWebExtensionの概念実証が完了しました。優先度は低いですが、確実に進行中です。また、ChromeOSのサポートやMシリーズチップを搭載したiPadでの動作も検討しています。コミュニティでの議論に参加して、洞察を共有してください！
 
 ## ハードウェアのオープンソース化
 
@@ -62,14 +62,14 @@ categories:
 
 ![type-c-cable-v2-plugged-old-mac](https://www.crowdsupply.com/img/9871/2f6f967e-b9ea-4b48-b5dd-da135fb29871/type-c-cable-v2-plugged-old-mac_jpg_md-xl.jpg)
 
-シリコンのような手触りが特徴の[スタイリッシュなオレンジType-Cケーブル](https://openterface.com/blog/from-development-to-your-hands--behind-the-scenes-/#upgrading-toolkit-accessories)を覚えていますか？最初のサンプルが届きましたが、見た目も素晴らしいです！これらのケーブルは**240Wの急速充電**（電圧DC50V、電流5A、電力240W）をサポートし、Mini-KVMと完璧に動作します。製造元と支援者の皆さんに大きな感謝を！
+シリコンのような手触りが特徴の[スタイリッシュなオレンジType-Cケーブル](/blog/from-development-to-your-hands--behind-the-scenes-/#upgrading-toolkit-accessories)を覚えていますか？最初のサンプルが届きましたが、見た目も素晴らしいです！これらのケーブルは**240Wの急速充電**（電圧DC50V、電流5A、電力240W）をサポートし、Mini-KVMと完璧に動作します。製造元と支援者の皆さんに大きな感謝を！
 
 ![type-c-cable-v2-open-2](https://www.crowdsupply.com/img/71b2/b37b66e3-7f2e-4c5e-bb45-8944ee2971b2/type-c-cable-v2-open-2_jpg_gallery-lg.jpg)
 
 
 ### アップグレードされたツールキットバッグ
 
-1.5mのType-Cケーブルと[1mのVGA-to-HDMIケーブルのアップデート](https://openterface.com/blog/-upgrade-on-vga-to-hdmi-cable-as-a-free-bonus-/)に便利なアダプターが付属しているため、ツールキットバッグのサイズを16 cm L x 10 cm W x 3.8 cm Hに拡大することにしました。これで少し余裕ができます！
+1.5mのType-Cケーブルと[1mのVGA-to-HDMIケーブルのアップデート](/blog/-upgrade-on-vga-to-hdmi-cable-as-a-free-bonus-/)に便利なアダプターが付属しているため、ツールキットバッグのサイズを16 cm L x 10 cm W x 3.8 cm Hに拡大することにしました。これで少し余裕ができます！
 
 ![beta-round2-toolkit](https://www.crowdsupply.com/img/0f20/4aed395b-dbef-4670-b340-403ee8e30f20/beta-round2-toolkit_jpg_md-xl.jpg)
 
@@ -87,7 +87,7 @@ categories:
 
 ## 懸念への対応
 
-詐欺的なクラウドファンディングプロジェクトに対する[懸念](https://openterface.com/blog/from-development-to-your-hands--behind-the-scenes-/#addressing-concerns)は理解しています。私たちを信頼していただける理由は以下の通りです：
+詐欺的なクラウドファンディングプロジェクトに対する[懸念](/blog/from-development-to-your-hands--behind-the-scenes-/#addressing-concerns)は理解しています。私たちを信頼していただける理由は以下の通りです：
 
 **Crowd Supplyを信頼:** 2012年以来、Crowd Supplyは電子製品のリーディングプラットフォームであり、[支援者の権利を保護](https://www.crowdsupply.com/guide/backer-protection)し、私たちの開発を厳しく監視し、プロフェッショナルなアドバイスを提供して、皆さんに最適な製品を提供できるようにしています。
 
@@ -99,7 +99,7 @@ categories:
 
 ### 今後の予定
 
-常にエキサイティングなことを計画していますので、どうぞお楽しみに！質問がある場合は、[コミュニティ](https://openterface.com/community/)でお話しするか、メールでお問い合わせください: info@techxartisan.com。今後のアップデートをお楽しみに、そしてご支援ありがとうございます！😄
+常にエキサイティングなことを計画していますので、どうぞお楽しみに！質問がある場合は、[コミュニティ](/community/)でお話しするか、メールでお問い合わせください: info@techxartisan.com。今後のアップデートをお楽しみに、そしてご支援ありがとうございます！😄
 
 それでは、
 
