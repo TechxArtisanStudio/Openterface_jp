@@ -15,62 +15,6 @@ tags:
 
 *更新日: 2024年8月20日*
 
-### 質問一覧
-
-##### 基本
-- [Openterface Mini-KVMとは何ですか？](#what-is-openterface-mini-kvm)
-- [Openterface Mini-KVMはなぜ特別なのですか？](#why-does-the-openterface-mini-kvm-make-a-difference)
-- [このmini-KVMの使用例は何ですか？](#what-are-use-cases-for-this-mini-kvm)
-- [Openterface Mini-KVMに対応するホストコンピュータは何ですか？](#what-host-computers-are-compatible-with-the-openterface-mini-kvm)
-- [Openterface Mini-KVMに対応するターゲットデバイスは何ですか？](#what-target-devices-are-compatible-with-the-openterface-mini-kvm)
-- [Openterface Mini-KVMには技術サポートとドキュメントが提供されますか？](#will-there-be-technical-support-and-documentation-available-for-the-openterface-mini-kvm)
-
-##### ソフトウェア  
-
-- [ホストアプリケーションはどこでダウンロードできますか？](#where-can-i-download-the-host-applications)
-- [Android用のホストアプリはいつ利用可能になりますか？](#when-will-the-host-app-for-android-be-available)
-- [ChromeOSに対応するホストアプリはありますか？](#is-there-a-host-app-supporting-chromeos)
-- [Appleのモバイルデバイスに対応するホストアプリはありますか？](#is-there-a-host-app-supporting-apples-mobile-devices)
-- [MacOSアプリケーションでF11が機能しない場合はどうすればいいですか？](#what-if-f11-doesnt-work-on-macos-applications)
-
-##### 切り替え可能なUSBポートとファイル転送
-- [Openterface Mini-KVMはファイル転送をサポートしていますか？](#can-the-openterface-mini-kvm-support-file-transfers)
-- [ソフトウェアレベルで切り替え可能なUSB-Aポートを操作できますか？](#can-the-switchable-usb-a-port-be-toggled-at-the-software-level)
-- [なぜこの切り替え可能なUSBポートはUSB 3.0ではなくUSB 2.0なのですか？](#why-usb-20-but-not-usb-30-for-this-switchable-usb-port)  
-
-##### 技術的な質問
-- [Openterface Mini-KVMはオープンソースですか？](#is-the-openterface-mini-kvm-open-source)
-- [デバイスのBIOS設定にアクセスできますか？](#can-i-access-a-devices-bios-settings)
-- [デバイス間のビデオやデータはどのように伝送されますか？](#how-is-videodata-transmitted-between-devices)
-- [Openterface Mini-KVMは電源管理をどのように行いますか？](#how-does-the-openterface-mini-kvm-handle-power)
-
-##### 制御メカニズム
-- [無線やイーサネット接続に対応したバージョンの計画はありますか？](#are-there-plans-for-a-version-with-wireless-or-ethernet-connectivity)
-- [従来のKVMやKVM-over-IP、VNCなどの他のKVMソリューションとどう違いますか？](#how-is-this-different-from-other-kvm-solutions-like-traditional-kvms-kvm-over-ip-and-vnc-etc)
-- [PS/2を必要とするターゲットコンピュータでも動作しますか？](#does-it-work-with-a-target-computer-requiring-ps2)
-- [複数のMini-KVMを使用して、1台のマスターコンピュータから複数のターゲットデバイスを制御できますか？](#can-i-use-multiple-mini-kvms-to-control-multiple-target-devices-from-one-master-computer)
-- [接続されたコンピュータの電源をオン/オフすることは可能ですか？](#is-it-capable-of-powering-offon-the-computer-its-connected-to)
-
-##### ビデオ関連
-- [ビデオの遅延や解像度についてはどうですか？](#what-about-video-latency-and-resolution)
-- [Openterface Mini-KVMは高品質なゲームに適していますか？](#is-the-openterface-mini-kvm-suitable-for-high-quality-gaming)
-- [将来のバージョンで高品質なディスプレイをサポートしますか？](#will-there-be-support-for-high-quality-display-in-future-versions-of-the-openterface-mini-kvm)
-- [なぜOpenterface Mini-KVMはローカルIP経由でビデオをストリーミングしないのですか？](#why-doesnt-openterface-mini-kvm-stream-video-over-local-ip)
-- [VGA、DVI、DisplayPortなどの異なるビデオ出力に対応していますか？](#can-it-work-with-different-video-outputs-like-vga-dvi-displayport-etc)
-
-##### トラブルシューティング
-- [Openterface Mini-KVMがUSBハブ経由で接続されると問題が発生するのはなぜですか？](#why-does-the-openterface-mini-kvm-sometimes-experience-issues-when-connected-through-a-usb-hub)
-
-- [アプリがターゲットの画面を表示しない、またはマウスやキーボードが反応しないなど、Openterface Mini-KVMが不安定になった場合はどうすればいいですか？](#what-should-i-do-if-the-openterface-mini-kvm-becomes-unstable-such-as-when-the-app-doesnt-display-the-targets-screen-or-the-mouse-and-keyboard-are-unresponsive)
-
-##### その他
-
-- [このプロジェクトにどのように貢献できますか？](#how-can-i-contribute-into-this-project)
-- [私たちの便利なガジェットをレビューしてみませんか？](#want-to-review-our-handy-gadget)
-- [mini-KVMのために計画されている高度な機能は何ですか？](#what-are-the-advanced-features-planned-for-the-mini-kvm)
-- [OpenterfaceはAIとどのように統合され、将来の可能性は何ですか？](#how-does-the-mini-kvm-integrate-with-ai-and-what-are-its-future-possibilities)
-- [Openterface Mini-KVMのアクセサリーは何がありますか？](#what-accessories-are-available-for-the-openterface-mini-kvm)
-
 ### 基本情報
 
 #### Openterface Mini-KVMとは何ですか？
@@ -102,7 +46,7 @@ Openterface Mini-KVMは、さまざまなユーザーやシナリオに最適な
 こちらのページもご覧ください：[使用例](https://openterface.com/use-cases/)
 
 #### Openterface Mini-KVMに対応するホストコンピュータは何ですか？
-このMini-KVMを使用するには、ホストコンピュータにMacOS、Windows、Linuxをサポートする[ホストアプリケーション](https://openterface.com/quick-start/#install-host-application)のいずれかをインストールする必要があります。現在、ウェブベースの拡張機能とAndroidアプリも開発中です。
+このMini-KVMを使用するには、ホストコンピュータにMacOS、Windows、Linux、Androidをサポートする[ホストアプリケーション](https://openterface.com/quick-start/#install-host-application)のいずれかをインストールする必要があります。
 
 #### Openterface Mini-KVMに対応するターゲットデバイスは何ですか？
 ターゲットデバイスには事前のインストールや設定は不要です。ターゲットデバイスがビデオ出力（例：HDMI、VGA）をサポートし、USBポートを介してエミュレートされたキーボードとマウスの制御（HID）信号を受信できる限り、使用可能です。したがって、対応するターゲットデバイスのプラットフォームには、Windows、MacOS、Linux、Android、iOSが含まれます。
@@ -118,9 +62,6 @@ Openterface Mini-KVMの詳細なドキュメントは、[Openterface.com](https:
 
 ??? warning "プライバシーとセキュリティ：サードパーティのホストアプリ使用時の注意"
     当プロジェクトはオープンソースであるため、他の開発者が作成したMini-KVM互換のホストアプリケーションの代替バージョンを見つけることができます。これらは追加機能を提供する場合がありますが、そのセキュリティとプライバシーの実践を確認してください。**Openterfaceチームは、サードパーティアプリケーションの安全性を保証することはできませんし、責任を負いません**。
-
-#### Android用のホストアプリはいつ利用可能になりますか？
-現在、Android用のホストアプリを開発中ですが、macOS、Windows、Linuxなどの主要なオペレーティングシステム向けのバージョンに比べて優先度は低くなっています。進捗状況については随時お知らせしますので、しばらくお待ちください。開発にご協力いただける方は、ぜひコミュニティに参加するか、メールでご連絡ください！
 
 #### ChromeOSをサポートするホストアプリはありますか？
 はい、現在開発中です。ChromeおよびFirefoxブラウザの両方をサポートするウェブ拡張機能を作成する予定です。macOS、Windows、Linuxなどの主要なオペレーティングシステム向けの開発優先度はやや低いですが、積極的に取り組んでいます。進捗状況については随時お知らせしますので、しばらくお待ちください。開発にご協力いただける方は、ぜひコミュニティに参加するか、メールでご連絡ください！
@@ -174,7 +115,7 @@ USB 3.0を使用すると、PCB設計が非常に複雑になり、生産コス�
 #### デバイスのBIOS設定にアクセスできますか？
 はい、Openterface Mini-KVMの直接接続により、低レベルのBIOSやファームウェア設定にアクセスすることができます。
 
-この機能は、TeamViewerやZoomなどのソフトウェアベースのKVMソリューションやリモートコントロールアプリケーションとは異なり、通常BIOSレベルの操作ができないものと対照的です。
+この機能は、TeamViewerやVNCなどのソフトウェアベースのKVMソリューションやリモートコントロールアプリケーションとは異なり、通常BIOSレベルの操作ができないものと対照的です。
 
 #### なぜ一部の古いターゲットコンピュータではBIOSレベルでキーボードが動作しないのですか？
 一部の古いコンピュータのBIOSが当社デバイスのUSBハブを認識できないため、エミュレートされたキーボードやマウスがBIOSレベルで正しく動作しないことがあります。この問題については注視しています。
