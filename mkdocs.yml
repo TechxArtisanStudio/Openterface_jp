@@ -1,12 +1,12 @@
 # Project information
-site_name: Openterface Mini-KVM | ノートパソコンをKVMコンソールに変える
+site_name: Openterface | インターフェースをつなげ、新たな可能性を開く。
 site_url: https://jp.openterface.com/
 site_author: Billy Wang
 site_description: 機能豊富でオープンソース、コミュニティ主導のKVM-over-USBソリューション
 
 # Repository
 repo_name: Openterface
-repo_url: https://github.com/TechxArtisanStudio/Openterface
+repo_url: https://github.com/TechxArtisanStudio/Openterface_jp
 
 # Copyright
 copyright: >-
@@ -20,8 +20,8 @@ copyright: >-
 extra_css:
   - assets/stylesheets/extra.css
 
-# extra_javascript:
-#   - assets/javascripts/extra.js
+extra_javascript:
+  - assets/javascripts/extra.js
 
 # Configuration
 theme:
@@ -31,7 +31,7 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  logo: assets/logo.png
+  logo: assets/app-logo.png
   favicon: images/favicon.png
   features:
    - navigation.tabs
@@ -45,9 +45,27 @@ theme:
    - content.tabs
    - content.code.annotation
    - content.code.copy
+   - content.tabs.link
+
   palette:
-    primary: deep orange
-    accent: custom
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: deep orange
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: ダークモードに切り替え
+
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: deep orange
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: ライトモードに切り替え
+
   icon:
     admonition:
       note: fontawesome/solid/note-sticky
@@ -79,9 +97,6 @@ extra:
       link: https://www.facebook.com/TechxArtisan
     - icon: fontawesome/brands/linkedin-in
       link: https://www.linkedin.com/company/techxartisan/
-
-    # - icon: fontawesome/brands/github-alt
-    #   link: https://github.com/TechxArtisan
   
   alternate:
     - name: English
@@ -136,6 +151,7 @@ extra:
     property: G-EKZEH6QYWT
 
 markdown_extensions:
+  # Enables tables
   - tables
   # Enables admonitions
   - admonition
@@ -146,6 +162,8 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.tabbed:
+      alternate_style: true
   # Enables emoji shortcodes like :+1: or :sunglasses:
   - attr_list
   - md_in_html
@@ -162,6 +180,21 @@ markdown_extensions:
 plugins:
   - glightbox
   - search
+  - redirects:
+      redirect_maps:
+        'basic-testing.md': 'basic.md'
+        'community.md': 'https://www.reddit.com/r/Openterface_miniKVM/'
+        'discord.md': 'https://discord.gg/6sa65CBmtv'
+        'reddit.md': 'https://www.reddit.com/r/Openterface_miniKVM/'
+        'macos.md': 'https://github.com/TechxArtisanStudio/Openterface_MacOS'
+        'android.md': 'https://github.com/TechxArtisanStudio/Openterface_Android'
+        'qt.md': 'https://github.com/TechxArtisanStudio/Openterface_QT'
+        'window.md': 'https://github.com/TechxArtisanStudio/Openterface_QT'
+        'linux.md': 'https://github.com/TechxArtisanStudio/Openterface_QT'
+        'hardware.md': 'https://github.com/TechxArtisanStudio/Openterface_Mini-KVM_Hardware'
+        'feedback.md': 'https://forms.gle/YJLrCKwro8tbi6ar7'
+        'oshw.md': 'https://certification.oshwa.org/cn000015.html'
+        'x.md': 'https://x.com/TechxArtisan'
   - tags:
       tags_file: tags.md
   - blog:
@@ -178,26 +211,36 @@ plugins:
 
 nav:
   - ホーム: index.md
-  - よくある質問: faq.md
   - ドキュメント:
     - クイックスタート: quick-start.md
-    - Openterfaceの理由: why-openterface-minikvm.md
-    - 使用事例: use-cases.md
+    - 機能: features.md
+    - 接続方法: how-to-connect.md
+    - オープンソフトウェア: app.md
+    - オープンハードウェア: open-hardware.md
+    - 基本操作: basic.md
+    - 切り替え可能なUSBポート: usb-switch.md
+    - 拡張ピン: pin.md
+    - 使用例: use-cases.md
     - 仕様: specifications.md
-    - 箱の中身: whats-in-the-box.md
-    - 仕組み 💬: how-it-works.md
-    - 比較 💬: comparison.md
-    - よくある質問 💬: faq.md
-    - 発達:
-          - 貢献 💬: contributing.md
-          - 基本テスト 💬: basic-testing.md
-  - コミュニティ:
-      - ようこそ: community.md
-  - 投稿:
+    - 同梱物: whats-in-the-box.md
+    - アクセサリー: accessories.md
+    - 仕組み: how-it-works.md
+    - なぜOpenterfaceか: why-openterface.md
+    - 比較: comparison.md
+    - よくある質問: faq.md
+    - 開発:
+      - テストと開発: test.md
+      - ロードマップ: roadmap.md
+      - 貢献: contributing.md
+  - よくある質問: /faq
+  - 使用例: /use-cases
+  - ブログ:
     - blog/index.md
+  - Reddit: /reddit
+  - Discord: /discord
   - について:
-      - 連絡先: contact.md
-      - ポリシー:
-        - プライバシーポリシー: privacy-policy.md
-        - 利用規約: terms-of-service.md
-        - 返品、返金、保証: return-refunds-warranty.md
+    - お問い合わせ: contact.md
+    - ポリシー:
+      - プライバシーポリシー: privacy-policy.md
+      - 利用規約: terms-of-service.md
+      - 返品、返金、保証: return-refunds-warranty.md

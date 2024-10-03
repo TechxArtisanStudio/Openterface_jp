@@ -1,36 +1,31 @@
-# ユースケース
-* ***効率的なサーバー管理***: サーバールームの保守と運用に携わるIT専門家に最適で、私たちのミニKVMは、自分のラップトップから複数のサーバーを単一のワークステーションとして制御できるようにし、運用効率を向上させます。
+# 使用例
+## ***持ち運びに便利なトラブルシューティングツール***
+Openterface Mini-KVMとClockworkのuConsoleを組み合わせることで、このポータブルPiコンピュータが便利なKVMツールに変身します。プラグアンドプレイで迅速なトラブルシューティングが可能となり、フィールドエンジニアや技術愛好家にとって、コンパクトで効率的なデバイス管理と診断のソリューションを提供します。
+
+<img src="https://pbs.twimg.com/media/GRaeGqHa0AA_GMv?format=jpg&name=4096x4096" alt="use-case-demo-uconsole" width="560" height="560">
+
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Here&#39;s a quick demo video of our Qt host app running on the Pi within this uConsole. <a href="https://t.co/xwrOE9pCcF">pic.twitter.com/xwrOE9pCcF</a></p>&mdash; TechxArtisan (@TechxArtisan) <a href="https://twitter.com/TechxArtisan/status/1807824199152722019?ref_src=twsrc%5Etfw">July 1, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+## ***サーバー管理の効率化***
+サーバールームの保守や運用に携わるITプロフェッショナルに最適なMini-KVMは、複数のサーバーを自分のノートパソコンから一元管理でき、運用効率を向上させます。
 ![use-case-demo-pc-bios-1](/images/product/use-case-demo-pc-bios-1.jpg)
 
-* ***テクノロジーエンスージアストのためのシンプルなセットアップ***: この製品は、Raspberry PiやJetson Nanoのようなデバイスを使用するマイクロコンピューター愛好家のセットアッププロセスを容易にします。追加の周辺機器を必要とせず、メインコンピューターから直接制御できます。
+## ***テクノロジー愛好家のための簡単セットアップ***
+Raspberry PiやJetson Nanoなどのマイクロコンピュータを扱う愛好家にとって、この製品はセットアッププロセスを簡素化します。メインコンピュータから直接制御できるため、追加の周辺機器が不要です。
 
 ![use-case-demo-respberry-pi](/images/product/use-case-demo-respberry-pi.jpg)
 
-* ***多様なデバイスの統一制御***: 個人用と仕事用のコンピューターの間でジャグリングをする専門家や、ATM、VLT、キオスクなどのデバイスを管理する人々にとって完璧です。OpenterfaceミニKVMは、複数のデバイスを簡単に管理できる統一インターフェイスを提供します。
+## ***多様なデバイスの統合管理***
+個人用と仕事用のコンピュータを切り替えたり、ATMやVLT、キオスクなどのデバイスを管理するプロフェッショナルに最適です。Openterface Mini-KVMは、複数のデバイス管理を簡素化する統一インターフェースを提供します。
 
 ![use-case-demo-macmini2009](/images/product/use-case-demo-macmini2009-3.jpg)
 
-* ***セキュアな操作で敏感なタスクを管理***: ネットワーク分離が必要なタスク、例えば暗号資産の管理を行う専門家にとって、この製品は安全なローカル操作を維持するために不可欠です。
+## ***セキュアな操作が求められるタスクに***
+暗号資産の管理など、ネットワーク分離が必要なタスクを管理するプロフェッショナルにとって、この製品はセキュアでローカルな操作を維持するために不可欠です。
 
 ![use-case-demo-industrial-pc](images/product/use-case-demo-industrial-pc.jpg)
 
-* ***複合ワークフローの効率的な統合***: 個人用コンピューターと仕事用コンピューターの間で頻繁に切り替えるユーザーや、エッジコンピューティングデバイスを管理するユーザーは、OpenterfaceミニKVMが提供する効率的なワークフロー統合の恩恵を受けるでしょう。
+## ***混在するワークフローの効率的な統合***
+個人用と仕事用のコンピュータを頻繁に切り替えるユーザーや、エッジコンピューティングデバイスを管理するユーザーにとって、Openterface Mini-KVMはワークフローの統合を効率化します。
 
 ![use-case-demo-macbookpro2010](/images/product/use-case-demo-macbookpro2010.jpg)
-
-<section class="dialogue-section-white" id="dialogues-section">
-    <div class="container">
-        <div class="callout-button-container">
-            <div class="dialogue-bubble" id="op-bubble">
-                <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-                <p>もっと読む 📖</p>
-                <a href="/faq" class="md-button md-button--primary" id="join-waitlist-button">FAQs</a>
-            </div>
-            <div class="dialogue-bubble" id="op-bubble">
-                <img src="/images/op-avatar.jpg" alt="Avatar" class="avatar" draggable="false">
-                <p>話そう！💬</p>
-                <a href="https://www.reddit.com/r/Openterface_miniKVM/" class="md-button md-button--primary" id="join-waitlist-button">subreddit</a>
-            </div>
-        </div>
-    </div>
-</section>

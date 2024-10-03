@@ -1,40 +1,47 @@
-## 概要
+# 仕様
 
-![lig-front](images/product/lig-front.svg)
-![lig-back](images/product/lig-back.svg)
+![lig-front](images/product/minikvm-v1-9-front.svg#only-light){:style="max-height:260px"}
+![lig-back](images/product/minikvm-v1-9-back.svg#only-light){:style="max-height:260px"}
+![lig-front](images/product/minikvm-v1-9-front_1.svg#only-dark){:style="max-height:260px"}
+![lig-back](images/product/minikvm-v1-9-back_1.svg#only-dark){:style="max-height:260px"}
 
-- 寸法：61 x 13.5 x 53 mm / 2.40 x 0.53 x 2.09 インチ（長さ x 幅 x 高さ）
-- 重量：48g
-- ケーシング：アルミニウムプロファイルケーシング
+## 製品情報
+- 製品名: Openterface Mini-KVM Basic / Toolkit
+- モデル名: OP-MINIKVM-BASIC / OP-MINIKVM-TOOLKIT
 
-## インターフェース
+## 物理的特性
+- デバイス寸法 (長さ x 幅 x 高さ): 61 x 53 x 13.5 mm / 2.40 x 2.09 x 0.53 インチ
+- デバイス重量: 約48g
+- ケース素材: アルミニウム合金、PLA
 
-![host-side](images/labels/host-side.png)
-![target-side](images/labels/target-side.png)
-
-- ① ![Type-C to Host](images/labels/Host.svg) **ホスト USB-C ポート**（メス）：USBデバイスポートとして、内蔵USBハブを通じてホストコンピューターにデータ転送のために接続します。
-- ② ![Type-C to Target](images/labels/Target.svg) **ターゲット USB-C ポート**（メス）：USBデバイスポートとして、内蔵USBハブを通じてホストコンピューターにキーボードおよびマウスHID出力をエミュレートするために接続します。
-- ③ ![HDMI Port](images/labels/HDMI.svg) **HDMI入力ポート（メス）**：ターゲットコンピューターからのHDMIソース入力
-- ④ ![Switchable USB-A Port](images/labels/sw-USB.svg) **切替可能な USB-A 2.0 ポート（メス）**：ホストコンピュータまたはターゲットコンピュータによって任意の時点で利用されるUSBホストポートとして、しかし同時には利用されません。
-- ⑤ ![Switcher](images/labels/USB-sw-front.svg) **トグルスイッチ**：ホストとターゲットコンピュータ間でUSB-A 2.0ポートの接続を切り替えるためのスイッチ
-
-## 電源
-
-- 接続タイプ：USB-Cによる電源供給。外部電源は必要ありません。
+## 互換性
+- ホスト: Windows、macOS、Linux、Android（対応アプリが必要）
+- ターゲット: ソフトウェアインストール不要
 
 ## ビデオ
-
-- 最大ビデオ入力：3840x2160@30Hzまで、HDMI経由（注：アダプターを使用することで、VGA、マイクロHDMI、DVIなどの他のビデオ入力ソースもサポート可能）
-- サポートされるビデオ解像度：1920x1080@30Hzまで
-- ビデオ圧縮方式：YUV、MJPEG
-- 遅延：140ミリ秒未満
+- 最大ビデオ入力: HDMI経由で最大3840x2160@30Hz
+- 最大ビデオ出力: 最大1920x1080@30Hz
+- ビデオ圧縮方式: YUV、MJPEG
+- 追加ビデオサポート: VGA、DVI、Micro HDMI（アダプター経由）
+- レイテンシー: 140ミリ秒未満
 
 ## オーディオ
+- オーディオキャプチャ: HDMI埋め込みオーディオパススルー
 
-- オーディオキャプチャモード：HDMI埋め込みオーディオ
+## 電源
+- USB-C給電。外部電源不要。
 
-## 環境
+## 接続性
+- USB伝送: 12Mbpsフルスピード
 
-- 動作温度：0°C から 40°C
-- 保管温度：-10°C から 50°C
-- 湿度：80% RH
+## 機能
+- フルキーボードおよびマウスエミュレーション（絶対＆相対）
+- テキスト転送
+- マルチメディアキーサポート
+- カスタムHID機能
+- コンピュータウェイクアップ機能
+
+## 環境条件
+- 動作温度: 0°Cから40°C
+- 保管温度: -10°Cから50°C
+- 湿度: 80% RH

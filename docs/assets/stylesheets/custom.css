@@ -13,15 +13,9 @@
     font-weight: bold;
 }
 
-.md-button.md-button:hover {
-    background-color: var(--button-hover-color);
-    border-color: var(--md-primary-fg-color);
-    color: var(--md-primary-fg-color);
-}
-
 .mdx-container {
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 1'><path d='M0,0 H1123' style='stroke: hsla(0, 0%, 100%, 1); stroke-width: 1'/></svg>") no-repeat bottom, 
-    linear-gradient(to bottom, var(--md-primary-fg-color) 30%, #ffffff 100%, var(--md-default-bg-color) 100%);
+    linear-gradient(to bottom, var(--md-primary-fg-color) 30%, transparent 100%, var(--md-default-bg-color) 100%);
     padding-top: 1rem;
 }
 
@@ -41,8 +35,9 @@
     text-align: left;
 }
 
+
 .mdx-hero .md-button {
-    color: var(--md-primary-fg-color);
+    color: #ffffff;
     border-color: var(--md-accent-bg-color);
     margin-right: .5rem;
     margin-top: .5rem
@@ -108,7 +103,8 @@
 .product-close-up .product-description p {
     font-size: 1rem;
     line-height: 1.6;
-    color: var(--description-font-dark);
+    color: inherit;
+    /* color: var(--description-font-dark); */
 }
 
 .connection-row {
@@ -185,29 +181,35 @@
     border-color: var(--md-primary-fg-color);
 }
 
-.product-features {
+.blog {
     background: var(--md-primary-fg-color);
     padding: var(--shared-padding);
     text-align: center;
 }
 
-.product-features h2 {
+.blog h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
     color: var(--description-font-light);
 }
 
-.product-features .features-list .feature{
+.blog .blog-list .post{
     margin-bottom: 1rem;
 }
 
-.product-features .features-list h3 {
+.blog .blog-list h3 {
     font-size: 1.2rem;
     color: var(--description-font-light);
 }
 
-.product-features .features-list p {
-    font-size: 0.8rem;
+.blog .blog-list .date {
+    font-size: 0.9rem;
+    color: var(--description-font-light);
+    margin-top: -1rem;
+}
+
+.blog .blog-list p {
+    font-size: 1rem;
     color: var(--description-font-light);
     max-width: var(--shared-p-width);
     text-align: center;
@@ -215,7 +217,7 @@
     margin-right: auto;
 }
 
-.product-features .read-more-btn {
+.blog .read-more-btn {
     margin-top: 1rem;
     float: right;
     padding: 0.5rem 1rem;
@@ -228,7 +230,7 @@
     border: 1px solid var(--description-font-light);
 }
 
-.product-features .read-more-btn:hover {
+.blog .read-more-btn:hover {
     background-color: var(--button-hover-color);
     color: var(--md-primary-fg-color);
 }
@@ -276,10 +278,9 @@
 
 .feature-dev-test {
     background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 1'><path d='M0,0 H1123' style='stroke: hsla(0, 0%, 100%, 1); stroke-width: 1'/></svg>") no-repeat bottom, 
-    linear-gradient(to top, var(--md-primary-fg-color) 30%, #ffffff 100%, var(--md-default-bg-color) 100%);
+    linear-gradient(to top, var(--md-primary-fg-color) 30%, transparent 100%, var(--md-default-bg-color) 100%);
     padding: var(--shared-padding);
     text-align: center;
-    color: var(--description-font-dark);
 }
 
 .feature-dev-test h2 {
@@ -394,7 +395,6 @@
     display: block; /* or 'flex', depending on your layout needs */
 }
 
-
 .twitter-feed-section .twitter-tweet:hover {
     box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
 }
@@ -422,212 +422,74 @@
   padding: 20px 0;
 }
 
-.poster-image {
+.poster-image-shadow {
   max-width: 780px;
   width: 100%;
   height: auto;
+  box-shadow: -5px 5px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
-.poster-image-shadow {
+.poster-image {
     max-width: 780px;
     width: 100%;
     height: auto;
-    box-shadow: -5px 5px 25px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    margin-bottom: 20px;
 }
 
-@media screen and (min-width: 76.25em) {
-    .mdx-hero__image {
-        transform: translateX(8rem);
-    }
-    /* Wide screens: place videos side by side */
-    .videos-wrapper {
-      flex-direction: row; /* Align side by side */
-      justify-content: space-around; /* Distribute space evenly */
-    }
-  
-    .video-container {
-      max-width: 45%; /* Adjust max width for side-by-side view */
-      margin-bottom: 0; /* Remove margin between videos when side by side */
-    }
-  }
 
-@media screen and (min-width:60em) {
-
-    .mdx-hero {
-        align-items: stretch;
-        display: flex;
-    }
-
-    .mdx-hero__content {
-        margin-top: 3.5rem;
-        max-width: 19rem;
-        padding-bottom: 14vw;
-    }
-
-    .mdx-hero__image {
-        order: 1;
-        transform: translateX(4rem);
-        width: 38rem;
-    }
-
-    .product-close-up .product-close-up-content {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .product-close-up .product-image, .product-close-up .product-description {
-        flex-basis: 50%;
-    }
-
-    .product-close-up .product-description {
-        padding-left: 2rem;
-        text-align: left;
-    }
-
-    .product-close-up .reverse-layout {
-        flex-direction: row-reverse; /* Reverse layout for alternate sections */
-    }
-
-    .product-close-up .reverse-layout .product-description {
-        padding-left: 0;
-        padding-right: 2rem;
-    }
+.icon-section {
+    padding: var(--shared-padding);
+    text-align: center;
 }
 
-@media screen and (max-width:60em) {
-    .mdx-hero {
-        display: block;
-    }
-
-    .mdx-hero__content {
-        margin-top: 1rem;
-        max-width: none;
-        padding-bottom: 2rem;
-        text-align: center;
-    }
-
-    .mdx-hero__content .logo-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        max-width: 50%;
-        margin: auto; /* Center the container */
-    }
-
-    .mdx-hero__content .logo-container img {
-        max-width: 100%; /* Allow logos to scale down */
-        height: auto; /* Maintain aspect ratio */
-    }
-
-    .mdx-hero__content .logo-container img[src="assets/logo.png"] {
-        width: 26%;
-    }
-
-    .mdx-hero__content img, 
-    .mdx-hero__content p, 
-    .mdx-hero__content a {
-        display: block; /* Stack images, paragraphs, and links */
-        margin: 0 auto; /* Center-align the elements */
-        max-width: 100%; /* Ensure they fit the container */
-        font-size: 0.8rem;
-        color: var(--description-font-light);
-    }
-
-    .mdx-hero__image {
-        order: 0;
-        transform: none;
-        width: auto; /* Adjust the image width */
-        margin-bottom: 1rem; /* Space between the image and content */
-        padding-left: 3rem; /* Added left padding */
-        padding-right: 3rem; /* Added right padding */
-    }
-
-    .connection-row {
-        padding-bottom: 1rem;
-    }
-
-    .comparison-solution {
-        padding: var(--shared-padding-mobile);
-        padding-bottom: var(--shared-padding-mobile-bottom);
-    }
-
-    .comparison-solution .read-more-btn {
-        float: none; /* Prevents floating on smaller screens */
-        display: block; /* Makes the button take full width */
-        margin: 1rem auto 0; /* Centers the button */
-    }
-
-    .product-features {
-        padding: var(--shared-padding-mobile);
-        padding-bottom: var(--shared-padding-mobile-bottom);
-    }
-
-    .product-features .read-more-btn {
-        float: none;
-        display: block;
-        margin: 1rem auto 0;
-    }
-
-    .use-cases {
-        padding: var(--shared-padding-mobile);
-        padding-bottom: var(--shared-padding-mobile-bottom);
-    }
-
-    .use-cases .read-more-btn {
-        float: none;
-        display: block;
-        margin: 1rem auto 0;
-    }
-
-    .feature-dev-test {
-        padding: var(--shared-padding-mobile);
-        padding-bottom: var(--shared-padding-mobile-bottom);
-    }
-
-    .feature-dev-test .read-more-btn {
-        float: none;
-        display: block;
-        margin: 1rem auto 0;
-    }
-
-    .twitter-feed-section {
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        padding-left: 0rem;
-        padding-right: 0rem;
-        overflow-x: auto;
-    }
-
-    .twitter-feed-section .twitter-posts {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: normal;
-        overflow-x: auto;
-        scroll-snap-type: x proximity;
-    }
-
-    .twitter-feed-section .twitter-tweet {
-        flex: 0 0 80%;
-        scroll-snap-align: center;
-        margin-left: 10px;
-    }
-
-    .twitter-feed-section .twitter-posts::-webkit-scrollbar {
-        display: none;
-    }
-
-    .twitter-feed-section .read-more-btn {
-        float: none;
-        display: block;
-        margin: 1rem 1rem;
-    }
-
+.icon-section h2 {
+    font-size: 2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: inherit;
 }
 
+.icon-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: inherit;
+}
+
+.icon-container {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.icon-item svg {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.5rem;
+}
+
+.icon-item p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: inherit;
+}
 
 .dialogue-section {
     background: var(--md-primary-fg-color);
@@ -642,6 +504,13 @@
 
 .dialogue-section-white h2 {
     font-size: 2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: inherit;
+}
+
+.dialogue-section-white p {
+    font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
     color: inherit;
@@ -731,13 +600,207 @@
     margin-right: 10px; /* Space between avatar and text */
 }
 
-@media screen and (max-width: 60em) {
-    .dialogue-section {
+@media screen and (min-width:76.25em) { /* larger desktops and wide screens. */
+    .mdx-hero__image {
+        transform: translateX(8rem);
+    }
+    /* Wide screens: place videos side by side */
+    .videos-wrapper {
+      flex-direction: row; /* Align side by side */
+      justify-content: space-around; /* Distribute space evenly */
+    }
+  
+    .video-container {
+      max-width: 45%; /* Adjust max width for side-by-side view */
+      margin-bottom: 0; /* Remove margin between videos when side by side */
+    }
+  }
+
+@media screen and (min-width:60em) { /* tablets in landscape, laptops, and desktops. */
+
+    .mdx-hero {
+        align-items: stretch;
+        display: flex;
+    }
+
+    .mdx-hero__content {
+        margin-top: 3.5rem;
+        max-width: 19rem;
+        padding-bottom: 14vw;
+    }
+
+    .mdx-hero__image {
+        order: 1;
+        transform: translateX(4rem);
+        width: 38rem;
+    }
+
+    .product-close-up .product-close-up-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .product-close-up .product-image, .product-close-up .product-description {
+        flex-basis: 50%;
+    }
+
+    .product-close-up .product-description {
+        padding-left: 2rem;
+        text-align: left;
+    }
+
+    .product-close-up .reverse-layout {
+        flex-direction: row-reverse; /* Reverse layout for alternate sections */
+    }
+
+    .product-close-up .reverse-layout .product-description {
+        padding-left: 0;
+        padding-right: 2rem;
+    }
+
+    .icon-item img {
+        height: 60px;
+    }
+}
+
+@media screen and (max-width:60em) { /* mobile phones */
+    .mdx-hero {
+        display: block;
+    }
+
+    .mdx-hero__content {
+        margin-top: 1rem;
+        max-width: none;
+        padding-bottom: 2rem;
+        text-align: center;
+    }
+
+    .mdx-hero__content .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        max-width: 90%;
+        margin: auto; /* Center the container */
+    }
+
+    .mdx-hero__content img, 
+    .mdx-hero__content p, 
+    .mdx-hero__content a {
+        display: block; /* Stack images, paragraphs, and links */
+        margin: 0.2rem auto; /* Center-align the elements and add top margin */
+        max-width: 100%; /* Ensure they fit the container */
+        font-size: 0.8rem;
+        /* color: var(--description-font-dark); */
+    }
+
+    .mdx-hero__image {
+        order: 0;
+        transform: none;
+        width: auto; /* Adjust the image width */
+        margin-bottom: 1rem; /* Space between the image and content */
+        padding-left: 3rem; /* Added left padding */
+        padding-right: 3rem; /* Added right padding */
+    }
+
+    .connection-row {
+        padding-bottom: 1rem;
+    }
+
+    .comparison-solution {
+        padding: var(--shared-padding-mobile);
+        padding-bottom: var(--shared-padding-mobile-bottom);
+    }
+
+    .comparison-solution .read-more-btn {
+        float: none; /* Prevents floating on smaller screens */
+        display: block; /* Makes the button take full width */
+        margin: 1rem auto 0; /* Centers the button */
+    }
+
+    .blog {
+        padding: var(--shared-padding-mobile);
+        padding-bottom: var(--shared-padding-mobile-bottom);
+    }
+
+    .blog .read-more-btn {
+        float: none;
+        display: block;
+        margin: 1rem auto 0;
+    }
+
+    .use-cases {
+        padding: var(--shared-padding-mobile);
+        padding-bottom: var(--shared-padding-mobile-bottom);
+    }
+
+    .use-cases .read-more-btn {
+        float: none;
+        display: block;
+        margin: 1rem auto 0;
+    }
+
+    .icon-section {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .feature-dev-test {
+        padding: var(--shared-padding-mobile);
+        padding-bottom: var(--shared-padding-mobile-bottom);
+    }
+
+    .feature-dev-test .read-more-btn {
+        float: none;
+        display: block;
+        margin: 1rem auto 0;
+    }
+
+    .twitter-feed-section {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        padding-left: 0rem;
+        padding-right: 0rem;
+        overflow-x: auto;
+    }
+
+    .twitter-feed-section .twitter-posts {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: normal;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+    }
+
+    .twitter-feed-section .twitter-tweet {
+        flex: 0 0 80%;
+        scroll-snap-align: center;
+        margin-left: 10px;
+    }
+
+    .twitter-feed-section .twitter-posts::-webkit-scrollbar {
+        display: none;
+    }
+
+    .twitter-feed-section .read-more-btn {
+        float: none;
+        display: block;
+        margin: 1rem 1rem;
+    }
+
+    .icon-section {
         padding: 2rem 0rem;
     }
 
+    .dialogue-section {
+        padding: 0rem 0rem;
+    }
+
     .dialogue-section-white {
-        padding: 2rem 0rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        padding: 0rem 0rem;
     }
 
     .avatar {
@@ -746,14 +809,20 @@
         height: 32px;
     }
 
+    .callout-button-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Two columns for mobile */
+        gap: 0rem;
+        justify-content: center;
+    }
+
     .dialogue-bubble {
-        padding: 1rem 1rem;
+        padding: 0.5rem 1rem;
         margin: 1rem;
     }
 
     .dialogue-bubble p {
-        padding-left: 0rem;
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
 
     #op-bubble p {
@@ -774,6 +843,10 @@
         font-size: 0.8rem;
         margin-bottom: 0.5rem;
     }
+
+    .icon-item img {
+        height: 40px;
+    }
 }
 
 #mc_embed_shell {
@@ -792,12 +865,6 @@
     text-align: center;
     max-width: 580px;
     padding-bottom: 24px;
-}
-
-#mc_embed_signup h2 {
-    color: var(--description-font-light);
-    font-weight: bold;
-    text-align: center;
 }
 
 #mc_embed_signup .mc-field-group {
@@ -866,4 +933,23 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+}
+
+#mc_embed_signup .dialogue-bubble h2 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--description-font-dark);
+    font-weight: bold;
+    text-align: center;
+}
+
+#mc_embed_signup .dialogue-bubble p {
+    font-weight: normal;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.8rem;
+    padding-bottom: 0.3rem;
 }
