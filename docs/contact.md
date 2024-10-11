@@ -21,6 +21,7 @@
 
 - :fontawesome-brands-reddit-alien: [私たちのsubredditに参加](/reddit)
 - :fontawesome-brands-x-twitter: [Twitterでフォロー](https://twitter.com/TechxArtisan)
+- :fontawesome-brands-facebook-f: [Facebookで「いいね！」](https://www.facebook.com/TechxArtisan)
 - :fontawesome-brands-discord: [Discordコミュニティに参加](/discord)
 - :fontawesome-brands-youtube: [YouTubeチャンネルを登録](https://youtube.com/@TechxArtisan)
 - :fontawesome-brands-linkedin-in: [LinkedInでフォロー](https://www.linkedin.com/company/techxartisan/)
