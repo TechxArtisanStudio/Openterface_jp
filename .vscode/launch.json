@@ -7,14 +7,16 @@
             "request": "launch",
             "program": "${workspaceFolder}/serve_local.py",
             "console": "integratedTerminal",
-            "justMyCode": true
+            "justMyCode": true,
+            "python": "/opt/homebrew/bin/python3"
         },
         {
             "name": "Run Local",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}/run_local.py",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "python": "/opt/homebrew/bin/python3"
         }
     ]
 }
