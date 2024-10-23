@@ -25,6 +25,7 @@ categories:
 **カテゴリー:** 技術的なスキルと創造性の両方でトップパフォーマーに賞が授与されるので、誰にでもチャンスがあります！
 
 **素晴らしい賞品:**
+
 - 透明と銀のケースを持つ限定版Openterface Mini-KVM。
 - HackerGadgetsの未来的なPi-Cast KVM。
 - Clockworkのレトロ風GameShell。
