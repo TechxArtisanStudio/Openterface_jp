@@ -102,12 +102,8 @@ extra:
     - name: English
       link: https://openterface.com/
       lang: en
-    # - name: 中文简体
-    #   link: https://zh.openterface.com/
-    #   lang: zh
-    # - name: 中文繁體
-    #   link: https://tw.openterface.com/
-    #   lang: zh-Hant
+    - name: 简中文
+      link: https://cn.openterface.com/
     - name: 日本語
       link: https://jp.openterface.com/
       lang: ja
@@ -126,6 +122,13 @@ extra:
     - name: Español
       link: https://es.openterface.com/
       lang: es
+      lang: zh
+    - name: Português
+      link: https://pt.openterface.com/
+      lang: pt
+    - name: Română
+      link: https://ro.openterface.com/
+      lang: ro
     # - name: Português
     #   link: https://pt.openterface.com/
     #   lang: pt
