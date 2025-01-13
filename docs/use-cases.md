@@ -29,3 +29,5 @@ Raspberry PiやJetson Nanoなどのマイクロコンピュータを扱う愛好
 個人用と仕事用のコンピュータを頻繁に切り替えるユーザーや、エッジコンピューティングデバイスを管理するユーザーにとって、Openterface Mini-KVMはワークフローの統合を効率化します。
 
 ![use-case-demo-macbookpro2010](/images/product/use-case-demo-macbookpro2010.jpg)
+
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="ja" dir="ltr">こちらは、このuConsole内のPiで実行されているQtホストアプリのクイックデモビデオです。 <a href="https://t.co/xwrOE9pCcF">pic.twitter.com/xwrOE9pCcF</a></p>&mdash; TechxArtisan (@TechxArtisan) <a href="https://twitter.com/TechxArtisan/status/1872660955768946823?ref_src=twsrc%5Etfw">July 1, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
