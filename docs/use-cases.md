@@ -30,4 +30,9 @@ Raspberry PiやJetson Nanoなどのマイクロコンピュータを扱う愛好
 
 ![use-case-demo-macbookpro2010](/images/product/use-case-demo-macbookpro2010.jpg)
 
-<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="ja" dir="ltr">こちらは、このuConsole内のPiで実行されているQtホストアプリのクイックデモビデオです。 <a href="https://t.co/xwrOE9pCcF">pic.twitter.com/xwrOE9pCcF</a></p>&mdash; TechxArtisan (@TechxArtisan) <a href="https://twitter.com/TechxArtisan/status/1872660955768946823?ref_src=twsrc%5Etfw">July 1, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+## ***シームレスな制御: Mini-KVM + Android Pencil = 純粋な魔法***
+もし、#Androidのペンシルを使用して、#Openterfaceの#MiniKVMを介して、Androidタブレット上で直接#Windowsや#macOSシステムを制御できたとしたらどうでしょうか？精度をもってデザインをスケッチしたり、文書にマークアップを施したり、ソフトウェアをナビゲートすることを想像してみてください—すべてデバイスを切り替えることなく！グラフィックデザインツールのようなPhotoshop、3Dモデリングアプリ、またはプレゼンテーションエディタであっても、体験は流暢で直観的です。
+
+Mini-KVMは、このシームレスな統合を解除し、Androidタブレットをクロスプラットフォーム制御のハブとして使用できるようにします。最初にテストしたいソフトウェアがあなたにありますか？教えてください、それからワークスペースをより高めるためのより創造的な方法について、続きをご覧ください！
+
+<blockquote class="twitter-tweet" data-media-max-width="560"><p lang="en" dir="ltr">Here&#39;s a quick demo video of our Qt host app running on the Pi within this uConsole. <a href="https://t.co/xwrOE9pCcF">pic.twitter.com/xwrOE9pCcF</a></p>&mdash; TechxArtisan (@TechxArtisan) <a href="https://twitter.com/TechxArtisan/status/1872660955768946823?ref_src=twsrc%5Etfw">July 1, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
