@@ -1,22 +1,22 @@
 {
     "version": "0.2.0",
+    "python.pythonPath": "/home/project/openterface/website/mkdocs-venv/bin/python",
+    "python.terminal.activateEnvironment": true,
     "configurations": [
         {
+            "name": "Run Local",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_local.py",
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Serve Local",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/serve_local.py",
             "console": "integratedTerminal",
-            "justMyCode": true,
-            "python": "/opt/homebrew/bin/python3"
+            "justMyCode": true
         },
-        {
-            "name": "Run Local",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/run_local.py",
-            "console": "integratedTerminal",
-            "python": "/opt/homebrew/bin/python3"
-        }
     ]
 }
