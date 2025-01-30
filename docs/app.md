@@ -16,7 +16,7 @@
 
     Windows用のOpenterface QTアプリをダウンロード
 
-    [:octicons-download-24: バージョン0.0.3をダウンロード](https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/v0.0.3/openterfaceQT.windows.amd64.exe)  <br>
+    [:octicons-download-24: バージョン{{qt_version}}をダウンロード](https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{qt_version}}/openterfaceQT.windows.amd64.exe)  <br>
     [:octicons-mark-github-16: Openterface_QT](https://github.com/TechxArtisanStudio/Openterface_QT)  <br>
     [:octicons-play-24: デモを見る](https://youtu.be/ERzpGtRvP2o?si=e9k402f0nxsD8o2j)
 
@@ -43,10 +43,11 @@
 
     ---
 
-    Androidバージョンは現在開発中
+    Androidフォンまたはタブレット用のAPKをダウンロード
 
-    [:octicons-clock-24: 近日公開](https://github.com/TechxArtisanStudio/Openterface_Android)  <br>
-    [:octicons-play-24: デモを見る](https://x.com/TechxArtisan/status/1825460088922071398)
+    [:octicons-download-24: バージョン{{android_version}}をダウンロード](https://github.com/TechxArtisanStudio/Openterface_Android/releases/download/{{android_version}}/OpenterfaceAndroid.apk)  <br>
+    [:octicons-mark-github-16: Openterface_Android](https://github.com/TechxArtisanStudio/Openterface_Android)  <br>
+    [:octicons-play-24: Watch Demo](https://x.com/TechxArtisan/status/1825460088922071398)
 
 </div>
 
