@@ -16,7 +16,8 @@
 
     Windows用のOpenterface QTアプリをダウンロード
 
-    [:octicons-download-24: バージョン{{qt_version}}をダウンロード](https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{qt_version}}/openterfaceQT.windows.amd64.exe)  <br>
+    [:octicons-download-24: バージョン{{qt_version}}インストーラー](https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{qt_version}}/openterfaceQT.windows.amd64.installer.zip)  <br>
+    [:octicons-download-24: バージョン{{qt_version}}ポータブル EXE](https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{qt_version}}/openterfaceQT.windows.amd64.portable.zip)  <br>
     [:octicons-mark-github-16: Openterface_QT](https://github.com/TechxArtisanStudio/Openterface_QT)  <br>
     [:octicons-play-24: デモを見る](https://youtu.be/ERzpGtRvP2o?si=e9k402f0nxsD8o2j)
 
