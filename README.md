@@ -1,63 +1,78 @@
-このGitHubリポジトリは、[Openterface Mini-KVM](https://jp.openterface.com/)のウェブサイトをホストしています。Openterface Mini-KVMは、コンパクトで機能豊富なKVMデバイスで、オープンソースであり、[活気あるコミュニティ](https://jp.openterface.com/community/)によって支えられています。
+# Openterface Mini-KVM: Docs & Product Site
 
-我々は画期的な瞬間に到達しました：**Crowd Supply**での[クラウドファンディングキャンペーン](https://www.crowdsupply.com/techxartisan/openterface-mini-kvm)がいま、ライブです！わずか数時間で$12,000の目標を達成しました！皆さん、素晴らしいですね！このパーティーを続けましょう！Openterface Mini-KVMを早く皆さんにお届けするために、ぜひ購読してバックアップしてください。私たちの[コミュニティ](https://jp.openterface.com/community/)で一緒に楽しみましょう！
+![use-case-demo-industrial-pc](docs/images/product/use-case-demo-industrial-pc.jpg)
 
-**[Openterface Mini-KVM](https://jp.openterface.com/)**を使用すると、ミニPC、キオスク、またはサーバーなどのヘッドレスターゲットデバイスを、追加のキーボード、マウス、モニターなしで、ラップトップまたはデスクトップから直接制御できます。
+Welcome to the official repository for the **Openterface Mini-KVM** — a portable, plug-and-play USB KVM gadget for BIOS-level control, local troubleshooting, and file-sharing, all without the need for a network connection.
 
-これは、ディスプレイ用のHDMI経由で接続し、エミュレートされたキーボード/マウス（HID）信号用のUSB経由で接続するプラグアンドプレイのツールです。最小限のセットアップが必要です：ホストコンピューターにホストアプリケーションをインストールして、移動中にヘッドレスコントロールを開始できます。
+> 💡 This repository powers the **official Openterface Mini-KVM product website** via GitHub Pages. It is *not* intended as a template for self-hosting. Instead, it's the home of our documentation, compliance info, software download links, and other product resources.
 
-詳細は、[FAQページ](https://jp.openterface.com/faq/)で確認してください。
+---
 
-## いつでもどこでもデバイスを制御
+## 🌟 What Is Openterface Mini-KVM?
 
-ITプロフェッショナルでサーバーのトラブルシューティングが必要な場合、エッジコンピューティングマシンで複数のテストを管理する開発者、シングルボードコンピューターをハッキングするテックエンスージアスト、または単にデスクを整理したい人、Openterface Mini-KVMが解決策です。
+The **Openterface Mini-KVM** is a compact open-source USB-based KVM solution that lets you control a target computer (e.g. a headless server or embedded system) using your host machine — just plug in USB and HDMI cables, no network or drivers required.
 
-[ユースケース](https://jp.openterface.com/use-cases/)について詳しく調べてください。
+🔧 Designed for:
+- IT professionals managing headless setups
+- Developers using SBCs like Raspberry Pi
+- Embedded system engineers
+- Anyone needing **portable, BIOS-level access**
 
-## 機能と仕様
+📦 Features:
+- HDMI + USB capture for video, keyboard & mouse input
+- Direct USB port file sharing
+- Less than 1s startup time
+- Cross-platform host app (macOS, Windows, Linux, Android)
+- Fully open-source hardware & software
+- CE, UKCA, RoHS, WEEE certified
+- OSHWA certified: [UID CN000015](https://certification.oshwa.org/cn000015.html)
 
-- **ホストアプリの互換性**：現在はmacOSをサポートしており、WindowsとLinuxのサポートが開発中です。
-- **プラグアンドプレイの便利さ**：HDMIおよびエミュレートされたキーボード/マウスによるヘッドレス制御、ネットワークの心配なし。
-- **携帯性**：コンパクトで軽量なデザインで、移動中のプロフェッショナルに最適なツールです。
-- **ホストからターゲットへのテキスト転送**：ユーザー名、パスワード、およびターゲットコンピューターへのコードの小さな断片のコピーに最適です。
-- **低遅延のフルHD**：1920x1080の解像度でHDMI経由でビデオをキャプチャし、遅延は140ミリ秒未満です。ビデオアダプターの使用により、DisplayPortおよびDVIビデオソースもサポートできます。
-- **オーディオ統合**：ターゲットデバイスのオーディオをホストコンピューターで直接キャプチャして再生します。
-- **BIOSレベルのアクセス**：ターゲットデバイスのBIOS、ファームウェア、または起動管理に直接アクセスします。
-- **切り替え可能なUSB Type-Aポート**：これにより、USBドライブを再プラグインすることなく、ホストとターゲット間でUSBアクセスを切り替えることができます。
-- **クリーンなセットアップ**：ターゲットコンピューターにソフトウェアを残しません。
+📖 Learn more: [KVM-over-USB Basics](https://openterface.com/faq/usbkvm/kvm-over-usb/), [Openterface Mini-KVM](https://openterface.com/faq/minikvm/op-minikvm/)
 
-[仕様](https://jp.openterface.com/specifications/)について詳しく学びます。
+---
 
-## ホストアプリのインストール
+## 📲 Download the Host App
 
-このミニKVMを使用するには、ホストコンピューターに以下のホストアプリのいずれかをインストールする必要があります。
+To use the Mini-KVM, install the corresponding **host-side app** on your computer or mobile:
 
-- [Openterface_MacOS](https://github.com/TechxArtisanStudio/Openterface_MacOS)（作業中）：macOSサポート用；macOSアプリはまた、AppleのApp Storeで「Openterface」を検索して入手できます。
-- [Openterface_QT](https://github.com/TechxArtisanStudio/Openterface_QT)（作業中）：WindowsとLinuxサポート用
-- [Openterface_Android](https://github.com/TechxArtisanStudio/Openterface_Android)（作業中）：Androidサポート用
-- [Openterface_WebExtension](https
+- 💻 [Windows, macOS, Linux, Android builds & source](https://openterface.com/app/)
+- 📺 [Watch Demos on YouTube](https://youtube.com/@TechxArtisan)
 
-://github.com/TechxArtisanStudio/Openterface_WebExtension)（作業中）：Chrome/Firefox拡張機能のWebベースアプリ
+> ⚠️ All apps are open source and community-tested. Be cautious when using third-party forks — KVM tools handle sensitive inputs.
 
-## オープンソースのコミットメント
+---
 
-上記のホストアプリケーションは積極的に開発中です。私たちのチームは、これらのツールのパフォーマンスと機能を向上させるために継続的にコーディングと洗練を行っています。ハードウェアのオープン性とオープンソースソフトウェアへの私たちのコミットメントは堅固であり、キャンペーン中にさらなる詳細を開示します。
+## 🔓 100% Open Source & Certified
 
-現在、リポジトリをクリーンアップして整理し、コードを公開リリース用に準備中です。
+We take openness seriously. Both our hardware and software are fully transparent and certified.
 
-貢献したいと思っており、私たちの開発チームに参加したい場合は、[今日ご連絡ください](mailto:info@techxartisan.com)。技術の未来を形作るのにお手伝いいただけます！ 🚀
+- 📘 [AGPL-3.0 Licensed Software](https://openterface.com/compliance/)
+- 🛠 [OSHWA-Certified Hardware](https://openterface.com/compliance/)
+- 📦 [Hardware Source Files](https://github.com/TechxArtisanStudio/Openterface_Mini-KVM_Hardware)
 
-## 連絡を取り合い、最新情報を入手
+---
 
-私たちに連絡を取りたいと思っていることを喜んでいます！質問やフィードバックがある場合、または単にこんにちはを言いたい場合は、私たちと連絡を取る方法のすべてについての[連絡ページ](https://jp.openterface.com/contact/)に移動してください。
+## ❓ FAQs & Use Cases
 
-最新情報を入手し、コミュニティと関わり合いに参加するには、次のソーシャルメディアチャンネルで私たちをフォローしてください：
+Learn how the Mini-KVM compares to IP-based and software-based KVMs:
 
-- **Reddit**：[サブレディットに参加](https://www.reddit.com/r/Openterface_miniKVM/)
-- **Discord**：[Discordコミュニティに参加](https://discord.gg/sFTJD6a3R8)
-- **Twitter**：[Twitterでフォロー](https://twitter.com/TechxArtisan)
-- **YouTube**：[YouTubeチャンネルに登録](https://youtube.com/@TechxArtisan)
-- **Facebook**：[Facebookで「いいね！」](https://www.facebook.com/TechxArtisan)
-- **LinkedIn**：[LinkedInでフォロー](https://www.linkedin.com/company/techxartisan/)
+- ⚙️ [Use Cases & Comparison Charts](https://openterface.com/faq/usbkvm/kvm-over-usb/)
+- 🤔 [Why Openterface?](https://openterface.com/faq/usbkvm/openterface/)
+- 🧑‍💻 [Tech Support, Discord & Community](https://openterface.com/discord)
 
-会話に参加し、成長するコミュニティの一部になりましょう！
+---
+
+## 🌐 About This Repository
+
+This repo is:
+
+- The **source of the Openterface Mini-KVM website** (hosted via GitHub Pages)
+- A hub for product docs, software links, and compliance references
+- Maintained by [TechxArtisan](https://techxartisan.com), the creators of the Openterface family
+
+💌 Questions or ideas? Email us at [info@openterface.com](mailto:info@openterface.com) or [join our Discord](/discord)
+
+---
+
+**💬 Have feedback about this site?**  
+[Let us know here.](https://forms.gle/wmxoR2C1VdG36mT69)

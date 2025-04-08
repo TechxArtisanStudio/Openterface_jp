@@ -1,4 +1,13 @@
 .DS_Store
 Pipfile
 Pipfile.lock
-.ipynb_checkpoints/
+site
+.vscode/settings.json
+.ipynb_checkpoints
+mkdocs_env/
+venv
+Openterface/
+.venv
+.cache
+.ipynb_checkpoints
+mkdocs-venv

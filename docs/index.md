@@ -3,7 +3,7 @@ template: home.html
 title: ホーム
 social:
   cards_layout_options:
-    title: Openterface Mini-KVM | ノートパソコンをKVMコンソールに変身
+    title: Openterface Mini-KVM | ノートパソコンをKVMコンソールに変えよう
 ---
 
-Openterface Mini-KVMへようこそ。
+Openterface mini-KVMへようこそ。

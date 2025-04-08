@@ -1,0 +1,13 @@
+flatten_single_child_sections: true
+nav:
+    - ホーム: index.md
+    - よくある質問: faq
+    - 製品: product
+    - アプリ: app
+    - 使用例: use-cases.md
+    - レビュー: /product/minikvm/reviews/
+    - 準拠: compliance.md
+    - ショップ: https://shop.techxartisan.com
+    - Discord: /discord
+    - ブログ: blog
+    - について: about.md
