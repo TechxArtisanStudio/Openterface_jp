@@ -1,7 +1,7 @@
-<!-- Footer -->
+<!-- フッター -->
 <footer class="md-footer">
 
-    <!-- Link to previous and/or next page -->
+    <!-- 前のページまたは次のページへのリンク -->
     {% if "navigation.footer" in features %}
       {% if page.previous_page or page.next_page %}
         {% if page.meta and page.meta.hide %}
@@ -13,7 +13,7 @@
           {{ hidden }}
         >
   
-          <!-- Link to previous page -->
+          <!-- 前のページへのリンク -->
           {% if page.previous_page %}
             {% set direction = lang.t("footer.previous") %}
             <a
@@ -36,7 +36,7 @@
             </a>
           {% endif %}
   
-          <!-- Link to next page -->
+          <!-- 次のページへのリンク -->
           {% if page.next_page %}
             {% set direction = lang.t("footer.next") %}
             <a
@@ -62,14 +62,14 @@
       {% endif %}
     {% endif %}
   
-    <!-- Further information -->
+    <!-- さらなる情報 -->
     <div class="md-footer-meta md-typeset">
       <div class="md-footer-meta__inner md-grid footer-flex-container">
 
-        <!-- Signup form -->
+        <!-- サインアップフォーム -->
         <div class="signup-form-container footer-flex-item">
           <div id="google_form_signup">
-            <!-- Modified form to submit to Google Form -->
+            <!-- Googleフォームに送信するための修正済みフォーム -->
             <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdFc5YUQN74mQpFj6U4NkpNH4TGZGgxur7wVADWSWEsmNezdg/formResponse" 
                   method="post" 
                   id="google-form-subscribe-form" 
@@ -77,27 +77,27 @@
                   target="_blank">
               <div id="google_form_signup_scroll">
                 <div class="gf-field-group">
-                  <input type="text" name="entry.1988135673" class="required" id="google-form-first-name" required="" placeholder="Your Name">
+                  <input type="text" name="entry.1988135673" class="required" id="google-form-first-name" required="" placeholder="お名前">
                 </div>
                 <div class="gf-field-group">
-                  <input type="email" name="emailAddress" class="required email" id="google-form-email" required="" placeholder="Your Email Address *">
+                  <input type="email" name="emailAddress" class="required email" id="google-form-email" required="" placeholder="メールアドレス *">
                   <input type="hidden" name="entry.22394832" value="Openterface-eng">
                 </div>
                 <div class="clear">
-                  <input type="submit" name="submit" id="google-form-submit" class="button" value="✉️ Subscribe to the Latest Buzz! 🐝">
-                  <p class="footnote">No more than one email a month. Unsubscribe anytime.</p>
+                  <input type="submit" name="submit" id="google-form-submit" class="button" value="✉️ 最新情報を購読する！ 🐝">
+                  <p class="footnote">月に1回以上のメールはありません。いつでも購読解除できます。</p>
                 </div>
               </div>
             </form>
           </div>
         </div>
 
-        <!-- Copyright info -->
+        <!-- 著作権情報 -->
         <div class="footer-flex-item footer-copyright">
           {% include "partials/copyright.html" %}
         </div>
 
-        <!-- Social links -->
+        <!-- ソーシャルリンク -->
         {% if config.extra.social %}
           <div class="footer-flex-item footer-social">
             {% include "partials/social.html" %}
