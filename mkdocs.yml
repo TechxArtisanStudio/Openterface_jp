@@ -16,6 +16,7 @@ copyright: >-
   <a href="/policy/privacy">プライバシーポリシー</a> | 
   <a href="#__consent">クッキー設定</a> | 
   <a href="/about">について</a>
+  
 extra_css:
   - assets/stylesheets/extra.css
   - assets/stylesheets/signup_form.css
