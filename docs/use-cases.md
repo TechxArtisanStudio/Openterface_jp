@@ -40,7 +40,7 @@ keywords: "Openterface Mini-KVM, 企業向けKVMソリューション, 大口注
     ---
 
     ネットワークの分離が必要なプロジェクト（例：暗号通貨管理）に最適です。インターネットに依存せず、安全なローカル操作を活用できます。
-    <img src="/images/product/use-case-demo-industrial-pc.jpg" alt="産業用PCでの安全な操作" style="max-width: 100%;"/>
+    <img src="/images/product/use-case-demo-industrial-pc.webp" alt="産業用PCでの安全な操作" style="max-width: 100%;"/>
 
 -   :material-school:{ .lg } __混合ワークフローの効率的な統合__
 
