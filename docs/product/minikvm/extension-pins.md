@@ -7,7 +7,7 @@ keywords: "Mini-KVM 拡張ピン, カスタム開発, ハードウェア改造, 
 # **拡張ピン** | 開発者モード | Openterface Mini-KVM
 
 ![mini-kvm-pins-port](/images/product/mini-kvm-pins-port.png){:style="height:360px"}
-![pin-cap](/images/product/part/pin-cap.jpg){:style="height:300px"}
+![pin-cap](https://assets.openterface.com/images/product/part/pin-cap.jpg){:style="height:300px"}
 
 Openterface Mini-KVMは、先進的な開発や[オープンソフトウェア](/app)の実験のための拡張ピンを備えています。これらのピンは、標準のケース構成では露出していません。
 
@@ -48,7 +48,7 @@ Openterface Mini-KVMは、先進的な開発や[オープンソフトウェア](
 
 ## 拡張ピンキャップ
 
-![pin-cap](/images/product/part/pin-cap.jpg){:style="height:360px"}
+![pin-cap](https://assets.openterface.com/images/product/part/pin-cap.jpg){:style="height:360px"}
 
 この3Dプリントの拡張ピンキャップは、Openterface Mini-KVMの元のキャップを置き換え、上級ユーザーが拡張ピンにアクセスできるようにします。3DモデルファイルはGitHubリポジトリからダウンロードして、自分でキャップを印刷できます。
 
