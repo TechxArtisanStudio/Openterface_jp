@@ -2,7 +2,7 @@
 
 ## ブランドとスローガン
 
-![Openterface Logo](images/openterface.png)  
+![Openterface Logo](https://assets.openterface.com/images/openterface.webp)  
 
 **Openterface**は、シンプルでありながら力強いアイデアから生まれた名前です：  
 
