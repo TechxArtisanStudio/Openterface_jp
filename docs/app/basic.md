@@ -5,7 +5,7 @@ keywords: "Mini-KVM操作、マウス制御モード、キーボード入力、B
 
 # ホストアプリの基本操作
 
-![use-case-pc-angled-view](/images/product/use-case-pc-angled-view.jpg){ width=600 }
+![use-case-pc-angled-view](https://assets.openterface.com/images/product/use-case-pc-angled-view.jpg){ width=600 }
 
 ## 💻 互換性
 

@@ -8,8 +8,8 @@ keywords: "Mini-KVM 設定, KVM 接続ガイド, USB-C KVM 設定, HDMI KVM 接�
 
 ## 接続手順
 
-![to-host](/images/product/to-host.svg#only-light){:style="height:260px"} ![to-host](/images/product/to-host_1.svg#only-dark){:style="height:260px"}
-![to-target](/images/product/to-target.svg#only-light){:style="height:260px"} ![to-target](/images/product/to-target_1.svg#only-dark){:style="height:260px"}
+![to-host](https://assets.openterface.com/images/product/to-host.svg#only-light){:style="height:260px"} ![to-host](https://assets.openterface.com/images/product/to-host_1.svg#only-dark){:style="height:260px"}
+![to-target](https://assets.openterface.com/images/product/to-target.svg#only-light){:style="height:260px"} ![to-target](https://assets.openterface.com/images/product/to-target_1.svg#only-dark){:style="height:260px"}
 
 Mini-KVMを設定するには、以下の手順に従ってください。
 
@@ -33,13 +33,13 @@ Mini-KVMを設定するには、以下の手順に従ってください。
 
 ## インターフェース
 
-![host-side](/images/product/host-htc.svg#only-light){:style="width:360px"}
+![host-side](https://assets.openterface.com/images/product/host-htc.svg#only-light){:style="width:360px"}
 
-![target-side](/images/product/target-htc.svg#only-light){:style="width:360px"}
+![target-side](https://assets.openterface.com/images/product/target-htc.svg#only-light){:style="width:360px"}
 
-![host-side](/images/product/host-htc_1.svg#only-dark){:style="width:360px"}
+![host-side](https://assets.openterface.com/images/product/host-htc_1.svg#only-dark){:style="width:360px"}
 
-![target-side](/images/product/target-htc_1.svg#only-dark){:style="width:360px"}
+![target-side](https://assets.openterface.com/images/product/target-htc_1.svg#only-dark){:style="width:360px"}
 
 ① ![Type-C to Host](/images/shell-icons/host.svg#only-light){:style="height:15px"} ![Type-C to Host](/images/shell-icons/host_1.svg#only-dark){:style="height:15px"} - **ホストUSB-Cポート**（メス）: USBデバイスポートとして、ホストコンピュータに接続し、内蔵USBハブを介してデータ転送を行います。
 

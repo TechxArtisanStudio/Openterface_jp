@@ -6,10 +6,10 @@ keywords: "Mini-KVM 仕様, KVM 技術詳細, HDMI KVM 仕様, 4K KVM スイッ�
 
 # **技術仕様** | Openterface Mini-KVM
 
-![lig-front](/images/product/minikvm-v1-9-front.svg#only-light){:style="max-height:260px"}
-![lig-back](/images/product/minikvm-v1-9-back.svg#only-light){:style="max-height:260px"}
-![lig-front](/images/product/minikvm-v1-9-front_1.svg#only-dark){:style="max-height:260px"}
-![lig-back](/images/product/minikvm-v1-9-back_1.svg#only-dark){:style="max-height:260px"}
+![lig-front](https://assets.openterface.com/images/product/minikvm-v1-9-front.svg#only-light){:style="max-height:260px"}
+![lig-back](https://assets.openterface.com/images/product/minikvm-v1-9-back.svg#only-light){:style="max-height:260px"}
+![lig-front](https://assets.openterface.com/images/product/minikvm-v1-9-front_1.svg#only-dark){:style="max-height:260px"}
+![lig-back](https://assets.openterface.com/images/product/minikvm-v1-9-back_1.svg#only-dark){:style="max-height:260px"}
 
 ## 製品情報
 - 製品名: Openterface Mini-KVM Basic / Toolkit

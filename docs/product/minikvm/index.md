@@ -7,7 +7,7 @@ keywords: "Mini-KVM, KVM over USB, KVM over IP, ヘッドレス制御, HDMI KVM,
 
 # **Openterface Mini-KVM**
 
-![basic-two-angled](/images/product/basic-two-angled.jpg){:style="max-height:320px"}
+![basic-two-angled](https://assets.openterface.com/images/product/basic-two-angled.jpg){:style="max-height:320px"}
 
 私たちの**Openterface™ Mini-KVM**は、プラグアンドプレイの**KVM-over-USB**ソリューションです。USBとHDMI接続を使用して、近くのヘッドレスコンピュータをノートパソコンやデスクトップから直接制御できるため、追加の周辺機器やネットワーク接続は不要です。このドキュメント全体では、
 

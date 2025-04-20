@@ -6,7 +6,7 @@ keywords: "Mini-KVM 拡張ピン, カスタム開発, ハードウェア改造, 
 
 # **拡張ピン** | 開発者モード | Openterface Mini-KVM
 
-![mini-kvm-pins-port](/images/product/mini-kvm-pins-port.png){:style="height:360px"}
+![mini-kvm-pins-port](https://assets.openterface.com/images/product/mini-kvm-pins-port.png){:style="height:360px"}
 ![pin-cap](https://assets.openterface.com/images/product/part/pin-cap.jpg){:style="height:300px"}
 
 Openterface Mini-KVMは、先進的な開発や[オープンソフトウェア](/app)の実験のための拡張ピンを備えています。これらのピンは、標準のケース構成では露出していません。
@@ -18,8 +18,8 @@ Openterface Mini-KVMは、先進的な開発や[オープンソフトウェア](
 3. 拡張ピンキャップの[3Dモデル](https://github.com/TechxArtisanStudio/Openterface_Mini-KVM_Hardware/tree/main/models)をダウンロードします。
 4. [ハードウェアGitHubリポジトリ](https://github.com/TechxArtisanStudio/Openterface_Mini-KVM_Hardware)をチェックしてください。
 
-![change-cap](/images/product/change-cap.svg#only-light){:style="height:300px"}
-![change-cap](/images/product/change-cap_1.svg#only-dark){:style="height:300px"}
+![change-cap](https://assets.openterface.com/images/product/change-cap.svg#only-light){:style="height:300px"}
+![change-cap](https://assets.openterface.com/images/product/change-cap_1.svg#only-dark){:style="height:300px"}
 
 !!! warning "保証無効"
     元のケースを取り外すと、製品の保証が無効になる可能性があります。すべての改造や分解は、ユーザーの自己責任で行ってください。
@@ -29,10 +29,10 @@ Openterface Mini-KVMは、先進的な開発や[オープンソフトウェア](
 
 ## ピン構成
 
-![target-side](/images/product/extension-pins-1.svg#only-light){:style="height:200px"}
-![host-side](/images/product/extension-pins-2.svg#only-light){:style="height:200px"}
-![target-side](/images/product/extension-pins-1_1.svg#only-dark){:style="height:200px"}
-![host-side](/images/product/extension-pins-2_1.svg#only-dark){:style="height:200px"}
+![target-side](https://assets.openterface.com/images/product/extension-pins-1.svg#only-light){:style="height:200px"}
+![host-side](https://assets.openterface.com/images/product/extension-pins-2.svg#only-light){:style="height:200px"}
+![target-side](https://assets.openterface.com/images/product/extension-pins-1_1.svg#only-dark){:style="height:200px"}
+![host-side](https://assets.openterface.com/images/product/extension-pins-2_1.svg#only-dark){:style="height:200px"}
 
 拡張ピンは以下の接続を提供します：
 

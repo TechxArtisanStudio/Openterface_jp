@@ -19,21 +19,21 @@ keywords: "Openterface Mini-KVM, 企業向けKVMソリューション, 大口注
     ---
 
     データセンターのITプロフェッショナルに最適です。Mini-KVMは、1台のノートパソコンから複数のサーバーを制御し、効率を高め、ダウンタイムを減少させます。
-    <img src="/images/product/use-case-demo-pc-bios-1.jpg" alt="サーバー管理のBIOSデモ" style="max-width: 100%;"/>
+    <img src="https://assets.openterface.com/images/product/use-case-demo-pc-bios-1.jpg" alt="サーバー管理のBIOSデモ" style="max-width: 100%;"/>
 
 -   :material-tools:{ .lg } __テクノロジー愛好者のための簡単なセットアップ__
 
     ---
 
     Raspberry PiやJetson Nanoを使用する組み込み開発者のために、Mini-KVMは追加のモニターや周辺機器なしで直接制御を可能にします。
-    <img src="/images/product/use-case-demo-respberry-pi.jpg" alt="Raspberry Piのセットアップデモ" style="max-width: 100%;"/>
+    <img src="https://assets.openterface.com/images/product/use-case-demo-respberry-pi.jpg" alt="Raspberry Piのセットアップデモ" style="max-width: 100%;"/>
 
 -   :material-devices:{ .lg } __多様なデバイスの統一管理__
 
     ---
 
     個人用/仕事用のマシンや特殊なハードウェア（ATM、キオスク、VLT）を1つのインターフェースから管理できます。ケーブルやキーボードを交換する必要はありません。
-    <img src="/images/product/use-case-demo-macmini2009-3.jpg" alt="複数デバイスの統一管理" style="max-width: 100%;"/>
+    <img src="https://assets.openterface.com/images/product/use-case-demo-macmini2009-3.jpg" alt="複数デバイスの統一管理" style="max-width: 100%;"/>
 
 -   :material-hospital-building:{ .lg } __敏感な作業のための安全な操作__
 
@@ -47,7 +47,7 @@ keywords: "Openterface Mini-KVM, 企業向けKVMソリューション, 大口注
     ---
 
     個人用、仕事用、またはエッジコンピューティングのセットアップをシームレスに切り替えられます。
-    <img src="/images/product/use-case-demo-macbookpro2010.jpg" alt="混合ワークフローの統合" style="max-width: 100%;"/>
+    <img src="https://assets.openterface.com/images/product/use-case-demo-macbookpro2010.jpg" alt="混合ワークフローの統合" style="max-width: 100%;"/>
 
 -   :material-pencil:{ .lg } __シームレスな制御：Mini-KVM + Androidペンシル__
 
