@@ -15,7 +15,7 @@ Openterface Mini-KVMは、Androidベースのインターフェースを通じ�
 -   接続されたターゲットデバイスからAndroid画面にリアルタイムでビデオ出力をストリーミングします。
 -   最適な視聴のための画像調整をサポートします。
 
-![image](https://assets.openterface.com/images/android/videoConnect.jpg)
+![image](https://assets.openterface.com/images/android/videoConnect.webp)
 
 #### ユーザーインターフェースの説明
 
@@ -63,7 +63,7 @@ Openterface Mini-KVMは、Androidベースのインターフェースを通じ�
 
 -   相対マウスコントロール（開発中、設定でトグル可能）。
 
-## ![image](https://assets.openterface.com/images/android/mouseThouchMode.jpg)
+## ![image](https://assets.openterface.com/images/android/mouseThouchMode.webp)
 
 ### 3. キーボード入力
 
@@ -89,8 +89,8 @@ Openterface Mini-KVMは、Androidベースのインターフェースを通じ�
 -   **標準キー**: 0-9、A-Z、Enter、Space、Delete。
 
 ![image](https://assets.openterface.com/images/android/enlargeAndKeyBoard.webp)
-![image](https://assets.openterface.com/images/android/keyBoardFunction.jpg)
-![image](https://assets.openterface.com/images/android/keyBoardSystem.jpg)
+![image](https://assets.openterface.com/images/android/keyBoardFunction.webp)
+![image](https://assets.openterface.com/images/android/keyBoardSystem.webp)
 
 ---
 
