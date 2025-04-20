@@ -17,4 +17,4 @@ keywords: "USB-Cケーブル, ナイロンUSB-C, 急速充電ケーブル, 240W�
 - **データ転送速度**: 最大10Gbps
 - **充電出力**: 240W
 
-<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/upgraded-nylon-usb-c-cable-240w-fast-charging-10gbps-data-transfer-1-5m-with-usb-a-adapter-eye-catching-orange'"> 注文する <img src="/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>
+<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/upgraded-nylon-usb-c-cable-240w-fast-charging-10gbps-data-transfer-1-5m-with-usb-a-adapter-eye-catching-orange'"> 注文する <img src="https://assets.openterface.com/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>

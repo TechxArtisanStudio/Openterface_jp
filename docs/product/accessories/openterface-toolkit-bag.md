@@ -14,4 +14,4 @@ keywords: "ツールキットバッグ, ケーブル管理バッグ, ポータ�
 - **色**: オレンジのジッパー付き黒
 - **用途**: Mini-KVMとそのケーブルを収納・整理するのに最適です。
 
-<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/openterface-toolkit-bag'"> 注文する <img src="/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>
+<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/openterface-toolkit-bag'"> 注文する <img src="https://assets.openterface.com/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>

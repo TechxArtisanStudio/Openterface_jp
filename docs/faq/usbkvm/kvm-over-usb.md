@@ -12,8 +12,8 @@ description: KVM-over-USB技術について、その利点や他のKVMソリュ�
 
 ### :material-chat-question:{ .faq } USB KVMはどのように機能しますか？ {: #how-usb-kvm-works }
 
-![USB KVM接続ダーク](/images/usbkvm/usb-kvm-connect-dark.svg#only-dark)
-![USB KVM接続ライト](/images/usbkvm/usb-kvm-connect-light.svg#only-light)
+![USB KVM接続ダーク](https://assets.openterface.com/images/usbkvm/usb-kvm-connect-dark.svg#only-dark)
+![USB KVM接続ライト](https://assets.openterface.com/images/usbkvm/usb-kvm-connect-light.svg#only-light)
 
 1. **画面ストリーミング**  
    対象デバイスのディスプレイをキャプチャ（HDMI経由）し、ホストコンピュータのアプリケーションウィンドウに表示します。

@@ -100,7 +100,7 @@ slug: /openterface-mini-kvm-reviews
 
 - <a href="https://www.cnx-software.com/"><img src="https://www.cnx-software.com/wp-content/uploads/2021/04/cropped-CNX-Software-Square-Logo-Light-Grey-100x100.png.webp" alt="" width="28" style="border-radius: 50%; vertical-align: middle;" onerror="this.style.display='none'"></a> **[Jean-Luc Aufranc (CNXSoft):](https://www.cnx-software.com/2024/05/09/openterface-mini-kvm-affordable-kvm-over-usb-device/)** *"Openterface Mini-KVMは、プラグアンドプレイでネットワークに依存しないKVM-over-USBデバイスとして非常に異なり（かつ安価）、ホストコンピュータとターゲットデバイスの間に直接HDMIおよびUSB接続を確立します。"*
 
-- <a href="https://www.crowdsupply.com/"><img src="/images/trademark/crowd-supply.svg" alt="" width="28" style="border-radius: 50%; vertical-align: middle;" onerror="this.style.display='none'"></a> **[Helen Leigh, Crowd Supply:](https://x.com/TechxArtisan/status/1800563644046188896)** *"これは大ヒットしています！"*
+- <a href="https://www.crowdsupply.com/"><img src="https://assets.openterface.com/images/trademark/crowd-supply.svg" alt="" width="28" style="border-radius: 50%; vertical-align: middle;" onerror="this.style.display='none'"></a> **[Helen Leigh, Crowd Supply:](https://x.com/TechxArtisan/status/1800563644046188896)** *"これは大ヒットしています！"*
 
 - <a href="https://www.electronics-lab.com/"><img src="https://pbs.twimg.com/profile_images/1721615885071261696/kpS5kOzE_200x200.jpg" alt="" width="28" style="border-radius: 50%; vertical-align: middle;" onerror="this.style.display='none'"></a> **[Electronics-Lab.com:](https://www.electronics-lab.com/experience-effortless-device-control-with-openterface-mini-kvm/)** *"Openterface Mini-KVMは、ミニPC、キオスク、サーバーなどのヘッドレスデバイスをノートパソコンやデスクトップから直接管理するためのシンプルなソリューションを提供します。"*
 

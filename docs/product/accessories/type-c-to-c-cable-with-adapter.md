@@ -15,4 +15,4 @@ keywords: "Type-Cケーブル, USB-Aアダプター, 高速データ転送, ハ�
 - **アダプター**: USB-CメスからUSB-Aオス
 - **用途**: ホストコンピュータとMini-KVM間の高速データ転送および携帯電話やノートパソコンの高速充電用。
 
-<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/type-c-cable-with-usb-a-adapter-1-5m-4-11ft-240w-fast-charging-data-transfer-usb2-0'"> 注文する <img src="/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>
+<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/type-c-cable-with-usb-a-adapter-1-5m-4-11ft-240w-fast-charging-data-transfer-usb2-0'"> 注文する <img src="https://assets.openterface.com/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>

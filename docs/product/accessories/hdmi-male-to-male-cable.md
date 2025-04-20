@@ -14,4 +14,4 @@ keywords: "HDMIケーブル, オス-オスHDMI, 高解像度ビデオケーブ�
 - **色**: 黒
 - **用途**: ターゲットデバイスからMini-KVMへの高解像度ビデオ伝送に最適です。
 
-<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/hdmi-male-to-male-cable'"> 注文する <img src="/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>
+<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/hdmi-male-to-male-cable'"> 注文する <img src="https://assets.openterface.com/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>

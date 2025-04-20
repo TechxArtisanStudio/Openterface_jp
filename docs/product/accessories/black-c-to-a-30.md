@@ -15,4 +15,4 @@ keywords: "Type-C to USB-Aケーブル, USBアダプター, データ転送ケ�
 - **アダプター**: USB-AメスからUSB-Cオス
 - **用途**: ターゲットデバイスへの簡単な制御とデータ転送を促進します。
 
-<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/type-c-to-usb-a-cable-with-adapter'"> 注文する <img src="/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>
+<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/type-c-to-usb-a-cable-with-adapter'"> 注文する <img src="https://assets.openterface.com/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>

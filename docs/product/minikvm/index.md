@@ -11,8 +11,8 @@ keywords: "Mini-KVM, KVM over USB, KVM over IP, ヘッドレス制御, HDMI KVM,
 
 私たちの**Openterface™ Mini-KVM**は、プラグアンドプレイの**KVM-over-USB**ソリューションです。USBとHDMI接続を使用して、近くのヘッドレスコンピュータをノートパソコンやデスクトップから直接制御できるため、追加の周辺機器やネットワーク接続は不要です。このドキュメント全体では、
 
-- 制御するノートパソコンやPCを ![host-computer](/images/shell-icons/host-computer.svg#only-light){:style="height:18px"} ![Host](/images/shell-icons/host.svg#only-light){:style="height:15px"} ![host-computer](/images/shell-icons/host-computer_1.svg#only-dark){:style="height:18px"} ![Host](/images/shell-icons/host_1.svg#only-dark){:style="height:15px"} と呼びます。
-- 制御されるデバイスを ![target-computer](/images/shell-icons/target-computer.svg#only-light){:style="height:18px"} ![Target](/images/shell-icons/target.svg#only-light){:style="height:18px"} ![target-computer](/images/shell-icons/target-computer_1.svg#only-dark){:style="height:18px"} ![Target](/images/shell-icons/target_1.svg#only-dark){:style="height:18px"} と呼びます。
+- 制御するノートパソコンやPCを ![host-computer](https://assets.openterface.com/images/shell-icons/host-computer.svg#only-light){:style="height:18px"} ![Host](https://assets.openterface.com/images/shell-icons/host.svg#only-light){:style="height:15px"} ![host-computer](https://assets.openterface.com/images/shell-icons/host-computer_1.svg#only-dark){:style="height:18px"} ![Host](https://assets.openterface.com/images/shell-icons/host_1.svg#only-dark){:style="height:15px"} と呼びます。
+- 制御されるデバイスを ![target-computer](https://assets.openterface.com/images/shell-icons/target-computer.svg#only-light){:style="height:18px"} ![Target](https://assets.openterface.com/images/shell-icons/target.svg#only-light){:style="height:18px"} ![target-computer](https://assets.openterface.com/images/shell-icons/target-computer_1.svg#only-dark){:style="height:18px"} ![Target](https://assets.openterface.com/images/shell-icons/target_1.svg#only-dark){:style="height:18px"} と呼びます。
 
 <div class="grid cards" markdown>
 

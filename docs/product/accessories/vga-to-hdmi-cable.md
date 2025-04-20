@@ -71,4 +71,4 @@ keywords: "VGAからHDMI, 変換ケーブル, 音声統合, 映像変換"
 テックインフルエンサーの**キャメロン・グレイ**による、このケーブルをMini-KVMで使用する方法のデモ動画をご覧ください:  
 [このUSB KVMコンソールは素晴らしい！](https://youtu.be/xAEQpWyfY-c?si=auB5NtqHVw2C7iIK&t=1693)
 
-<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/vga-to-hdmi-converter-cable'"> 注文する <img src="/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>
+<button class="md-button" onclick="window.location.href='https://shop.techxartisan.com/products/vga-to-hdmi-converter-cable'"> 注文する <img src="https://assets.openterface.com/images/trademark/txa.svg" alt="TxA Shop" style="vertical-align: middle; height: 20px;"></button>

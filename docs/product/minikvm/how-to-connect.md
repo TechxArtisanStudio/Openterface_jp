@@ -41,13 +41,13 @@ Mini-KVMを設定するには、以下の手順に従ってください。
 
 ![target-side](https://assets.openterface.com/images/product/target-htc_1.svg#only-dark){:style="width:360px"}
 
-① ![Type-C to Host](/images/shell-icons/host.svg#only-light){:style="height:15px"} ![Type-C to Host](/images/shell-icons/host_1.svg#only-dark){:style="height:15px"} - **ホストUSB-Cポート**（メス）: USBデバイスポートとして、ホストコンピュータに接続し、内蔵USBハブを介してデータ転送を行います。
+① ![Type-C to Host](https://assets.openterface.com/images/shell-icons/host.svg#only-light){:style="height:15px"} ![Type-C to Host](https://assets.openterface.com/images/shell-icons/host_1.svg#only-dark){:style="height:15px"} - **ホストUSB-Cポート**（メス）: USBデバイスポートとして、ホストコンピュータに接続し、内蔵USBハブを介してデータ転送を行います。
 
-② ![Type-C to Target](/images/shell-icons/target.svg#only-light){:style="height:18px"} ![Type-C to Target](/images/shell-icons/target_1.svg#only-dark){:style="height:18px"} - **ターゲットUSB-Cポート**（メス）: USBデバイスポートとして、ホストコンピュータに接続し、内蔵USBハブを介してキーボードとマウスのHID出力をエミュレートします。
+② ![Type-C to Target](https://assets.openterface.com/images/shell-icons/target.svg#only-light){:style="height:18px"} ![Type-C to Target](https://assets.openterface.com/images/shell-icons/target_1.svg#only-dark){:style="height:18px"} - **ターゲットUSB-Cポート**（メス）: USBデバイスポートとして、ホストコンピュータに接続し、内蔵USBハブを介してキーボードとマウスのHID出力をエミュレートします。
 
-③ ![HDMI Input](/images/shell-icons/input.svg#only-light){:style="height:18px"} ![HDMI Input](/images/shell-icons/input_1.svg#only-dark){:style="height:18px"} - **HDMI入力ポート**（メス）: ターゲットコンピュータからのHDMIソース入力。
+③ ![HDMI Input](https://assets.openterface.com/images/shell-icons/input.svg#only-light){:style="height:18px"} ![HDMI Input](https://assets.openterface.com/images/shell-icons/input_1.svg#only-dark){:style="height:18px"} - **HDMI入力ポート**（メス）: ターゲットコンピュータからのHDMIソース入力。
 
-④ ![USB-A Port](/images/shell-icons/switchable-usb.svg#only-light){:style="height:26px"} ![USB-A Port](/images/shell-icons/switchable-usb_1.svg#only-dark){:style="height:26px"} - **切り替え可能なUSB-A 2.0ポート**（メス）: USBホストポートとして、ホストコンピュータまたはターゲットコンピュータのいずれか一方で使用されますが、同時には使用できません。詳細は[USBポート切り替えガイド](../usb-switch)を確認してください。
+④ ![USB-A Port](https://assets.openterface.com/images/shell-icons/switchable-usb.svg#only-light){:style="height:26px"} ![USB-A Port](https://assets.openterface.com/images/shell-icons/switchable-usb_1.svg#only-dark){:style="height:26px"} - **切り替え可能なUSB-A 2.0ポート**（メス）: USBホストポートとして、ホストコンピュータまたはターゲットコンピュータのいずれか一方で使用されますが、同時には使用できません。詳細は[USBポート切り替えガイド](../usb-switch)を確認してください。
 
 !!! warning "USB電力制限"
     USBポートから供給される電力はホストマザーボードに依存します。多くの電力を必要とするUSBデバイスを接続することは推奨されません。通常、電力消費は1.5Wを超えないようにしてください。高出力デバイスを接続すると、動作が不安定になったり、損傷の可能性があります。
@@ -60,6 +60,6 @@ Mini-KVMを設定するには、以下の手順に従ってください。
 
     また、接続するUSBハブは外部電源が供給されていることを確認してください。電源が供給されていないハブは、Mini-KVM全体の不安定さや故障を引き起こす可能性があります。
 
-⑤ ![Toggle Switch](/images/shell-icons/toggle-h-t.svg#only-light){:style="height:20px"} ![Toggle Switch](/images/shell-icons/toggle-h-t_1.svg#only-dark){:style="height:20px"} - **トグルスイッチ**: USB-A 2.0ポートの接続をホストとターゲットコンピュータの間で切り替えるためのスイッチ。
+⑤ ![Toggle Switch](https://assets.openterface.com/images/shell-icons/toggle-h-t.svg#only-light){:style="height:20px"} ![Toggle Switch](https://assets.openterface.com/images/shell-icons/toggle-h-t_1.svg#only-dark){:style="height:20px"} - **トグルスイッチ**: USB-A 2.0ポートの接続をホストとターゲットコンピュータの間で切り替えるためのスイッチ。
 
-⑥ ![Extension Pins](/images/shell-icons/pins.svg#only-light){:style="height:15px"} ![Extension Pins](/images/shell-icons/pins_1.svg#only-dark){:style="height:15px"} - **拡張ピン**: デフォルトでは隠されており、別のキャップに交換することでのみアクセス可能です。詳細については、開発者向けの[拡張ピン](../extension-pins)を確認してください。
+⑥ ![Extension Pins](https://assets.openterface.com/images/shell-icons/pins.svg#only-light){:style="height:15px"} ![Extension Pins](https://assets.openterface.com/images/shell-icons/pins_1.svg#only-dark){:style="height:15px"} - **拡張ピン**: デフォルトでは隠されており、別のキャップに交換することでのみアクセス可能です。詳細については、開発者向けの[拡張ピン](../extension-pins)を確認してください。
