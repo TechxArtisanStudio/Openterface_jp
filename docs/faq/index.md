@@ -55,6 +55,6 @@ keywords: USB KVM, Openterface, KVM-over-USB, ポータブルKVM, プラグア�
 
 このセクションでは、KVM-over-USB技術、当社のOpenterfaceブランド、そして当社の製品がさまざまなシナリオにどのように適合するかについての質問に対する回答を提供します。初心者の方でも経験豊富なプロフェッショナルの方でも、これらのFAQはあなたを導くために設計されています。
 
-![USB-KMV-例](https://assets.openterface.com/images/product/use-case-demo-industrial-pc.jpg){:style="max-height:320px"}
+![USB-KMV-例](https://assets.openterface.com/images/product/use-case-demo-industrial-pc.webp){:style="max-height:320px"}
 
 *USB KVM: ポータブル、プラグアンドプレイ、ネットワークフリーのヘッドレスデバイス制御*

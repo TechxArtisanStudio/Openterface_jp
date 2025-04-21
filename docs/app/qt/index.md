@@ -7,7 +7,7 @@
 ### 設定
 
 設定メニューでは、ユーザーが4つのページを持つダイアログを通じて設定をカスタマイズできます。<br>
-![設定一般](https://assets.openterface.com/images/qt/preferenceGernal.png)
+![設定一般](https://assets.openterface.com/images/qt/preferenceGernal.webp)
 
 -   **一般** このページでは、デバッグログのフィルターやアプリケーションが実行中のときにスクリーンセーバーを抑制するかどうかを設定します。ログのカテゴリは以下の通りです：
 
@@ -18,7 +18,7 @@
 
     ユーザーはログを.txtファイルに保存するか、スクリーンセーバーを抑制するかを選択できます。<br>
 
-![設定ビデオ](https://assets.openterface.com/images/qt/preferenceVideo.png)
+![設定ビデオ](https://assets.openterface.com/images/qt/preferenceVideo.webp)
 
 -   **ビデオ** このページでは、ユーザーが以下のことを行えます：
 
@@ -28,7 +28,7 @@
 
 -   **オーディオ** このページは現在開発中です。<br>
 
-![設定ターゲットコントロール](https://assets.openterface.com/images/qt/preferenceTargetControl.png)
+![設定ターゲットコントロール](https://assets.openterface.com/images/qt/preferenceTargetControl.webp)
 
 -   **ターゲットコントロール** このページでは、ターゲットデバイスの制御モードを設定するオプションを提供します：
 
@@ -58,15 +58,15 @@
 ### 詳細
 
 詳細メニューには以下のオプションが含まれます：<br>
-![詳細メニュー](https://assets.openterface.com/images/qt/menuAdvance.png)
+![詳細メニュー](https://assets.openterface.com/images/qt/menuAdvance.webp)
 
 -   **環境チェック：** ソフトウェアに必要なドライバーがインストールされているか確認します。
 -   **シリアルポートのリセット：** シリアルポートを再起動します。
 -   **キーボードとマウスのリセット：** キーボードとマウスの設定をリセットします。
 -   **HIDチップの工場出荷時リセット：** HIDチップを工場出荷時の設定に戻します。<br>
-    ![詳細シリアルコンソール](https://assets.openterface.com/images/qt/advanceSerialConsole.png)
+    ![詳細シリアルコンソール](https://assets.openterface.com/images/qt/advanceSerialConsole.webp)
 -   **シリアルコンソール：** シリアルポートに送信されたすべてのメッセージを監視する新しいウィンドウを開き、送信/受信メッセージのフィルターを設定します。<br>
-    ![詳細スクリプトツール](https://assets.openterface.com/images/qt/advanceScriptTool.png)
+    ![詳細スクリプトツール](https://assets.openterface.com/images/qt/advanceScriptTool.webp)
 -   **スクリプトツール：** AutoHotkey（AHK）スクリプトを実行します。この機能はAutoHotkeyを模倣しますが、マウス/キーボード機能とスクリーンショット機能の一部のみをサポートします。スクリプトはターゲットデバイスに影響を与えます。
 -   **TCPサーバー：** TCPを介してAutoHotkeyコマンドを受信し、ターゲットデバイスで実行します。
 -   **ファームウェアの更新：** リモートサーバーから最新のファームウェアを取得し、ユーザーがデバイスにフラッシュするかどうかを選択できるようにします。
@@ -85,7 +85,7 @@
 ### ヘルプ
 
 ヘルプメニューでは以下を提供します：<br>
-![ヘルプメニュー](https://assets.openterface.com/images/qt/menuHelp.png)
+![ヘルプメニュー](https://assets.openterface.com/images/qt/menuHelp.webp)
 
 -   公式ウェブサイトへのリンクとソフトウェア/ハードウェアの問題に関するフィードバックフォーム。
 -   ハードウェアの購入に関する情報。
@@ -97,7 +97,7 @@
 
 メニューバーは左から右に以下の機能を含みます：<br>
 
-![メニューバー](https://assets.openterface.com/images/qt/menubar.png)
+![メニューバー](https://assets.openterface.com/images/qt/menubar.webp)
 
 -   キーボードレイアウトの選択：キーボードレイアウトを選択します。
 -   ズームコントロール：ズームイン、ズームアウト、またはキャプチャしたビデオストリームの表示をリセットします。

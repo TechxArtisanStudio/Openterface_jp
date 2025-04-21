@@ -10,14 +10,14 @@ keywords: "Mini-KVM, KVMスイッチ, HDMI KVM, USB KVM, ヘッドレス制御, 
 
 ## パッケージ1: ベーシックパック
 
-![basic-pack](https://assets.openterface.com/images/product/basic-with-maunal.jpg){:style="width:680px"}
+![basic-pack](https://assets.openterface.com/images/product/basic-with-maunal.webp){:style="width:680px"}
 
 1. コア製品: Openterface Mini-KVM
 2. クイックスタートガイド
 
 ## パッケージ2: ツールキットパック
 
-![toolkit-open](https://assets.openterface.com/images/product/toolkit-open-2024.jpg){:style="width:680px"}
+![toolkit-open](https://assets.openterface.com/images/product/toolkit-open-2024.webp){:style="width:680px"}
 
 1. コア製品: Openterface Mini-KVM
 2. クイックスタートガイド
@@ -27,4 +27,4 @@ keywords: "Mini-KVM, KVMスイッチ, HDMI KVM, USB KVM, ヘッドレス制御, 
 6. Type-CオスからUSB-Aオスケーブル (0.3m) とUSB-AメスからUSB-Cオスアダプター
 7. Type-Cオス-オスケーブル (1.5m) とUSB-CメスからUSB-Aオスアダプター
 
-![toolkit-parts-layout-2-numbers](https://assets.openterface.com/images/product/toolkit-parts-layout-2-numbers.jpg){:style="width:680px"}
+![toolkit-parts-layout-2-numbers](https://assets.openterface.com/images/product/toolkit-parts-layout-2-numbers.webp){:style="width:680px"}

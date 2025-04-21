@@ -6,7 +6,7 @@ keywords: "VGAからHDMI, 変換ケーブル, 音声統合, 映像変換"
 
 # VGAからHDMIへの変換ケーブル
 
-![CABLE100-VGA2HDMI](https://assets.openterface.com/images/product/part/CABLE100-VGA2HDMI-1.jpg){:style="height:360px"}
+![CABLE100-VGA2HDMI](https://assets.openterface.com/images/product/part/CABLE100-VGA2HDMI-1.webp){:style="height:360px"}
 
 この製品は、VGA映像をHDMIに変換し、音声を統合することで、VGAデバイスをHDMIディスプレイに簡単に接続できるようにします。
 
