@@ -1,6 +1,6 @@
 # Openterface Mini-KVM: ドキュメント & 製品サイト
 
-![use-case-demo-industrial-pc](docs/images/product/use-case-demo-industrial-pc.jpg)
+![use-case-demo-industrial-pc](https://assets.openterface.com/images/product/use-case-demo-industrial-pc.webp)
 
 **Openterface Mini-KVM**の公式リポジトリへようこそ。これは、BIOSレベルの制御、ローカルトラブルシューティング、ファイル共有をネットワーク接続なしで実現する、ポータブルでプラグアンドプレイのUSB KVMガジェットです。
 
