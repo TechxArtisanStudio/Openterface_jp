@@ -14,7 +14,7 @@
 <img src="https://assets.openterface.com/images/minikvm-lite/hdmi-p5.webp" loading="lazy" alt="Openterface Lite HDMI 画像5" style="max-width: 100%; height: auto; max-height: 260px;">
 <img src="https://assets.openterface.com/images/minikvm-lite/hdmi-p4.webp" loading="lazy" alt="Openterface Lite HDMI 画像4" style="max-width: 100%; height: auto; max-height: 260px;">
 
-**この[Googleフォーム](https://forms.gle/yaS1F5E5MSo8DWNZ6)にメールアドレスを入力するだけで**、この新製品の最新情報、先行プレビュー、早期アクセスが得られます。
+**この[Googleフォーム](https://docs.google.com/forms/d/e/1FAIpQLSeSl6Ubd-Pl1vQ4SGBbLTaYED7Zc2tGqFVA-Pe0CNi9XTbj7w/viewform?usp=dialog)にメールアドレスを入力するだけで**、この新製品の最新情報、先行プレビュー、早期アクセスが得られます。
 
 Openterface Mini-KVMは既に便利で携帯性の高いKVM-over-USBツールですが、私たちは常に自問自答していました：もっと小さく、持ち運びやすくするにはどうすればいいのか？
 
