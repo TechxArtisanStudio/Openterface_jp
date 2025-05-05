@@ -1,0 +1,195 @@
+{% extends "main.html" %}
+
+{% block tabs %}
+  {{ super() }}
+
+  <style>.md-header{position:initial}.md-main__inner{margin:0}.md-content{display:none}@media screen and (min-width:60em){.md-sidebar--secondary{display:none}}@media screen and (min-width:76.25em){.md-sidebar--primary{display:none}}</style>
+
+  <section class="mdx-container">
+    <div class="md-grid md-typeset">
+      <div class="mdx-hero">
+        <div class="mdx-hero__image">
+          <img src="https://assets.openterface.com/images/cover.webp" alt="" width="1659" height="1200" draggable="false">
+        </div>
+        <div class="mdx-hero__content">
+          <div class="image-container">
+            <img src="https://assets.openterface.com/images/openterface-mini-kvm-v1-9-s.webp" alt="Openterface Mini-KVM製品" width="460" draggable="false">
+          </div>
+          <a href="{{ 'https://www.crowdsupply.com/techxartisan/openterface-mini-kvm' | url }}" title="予約注文" class="md-button md-button--primary">
+            Mini-KVM<img src="https://assets.openterface.com/images/trademark/crowd-supply.svg" alt="Crowd Supply" style="vertical-align: middle; height: 26px;">
+          </a>
+          <a href="{{ '/product/minikvm-lite/pre-launch/' | url }}" title="プレローンチ" class="md-button" style="background-color: #ff4500; color: #fff; font-weight: bold; border: 2px solid #ff4500; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); animation: pulse 1.5s infinite;">
+            Lite プレローンチ
+          </a>
+          <p>近日公開：ビデオコネクタ内蔵の超コンパクト<strong>KVMスティック</strong>！</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dialogue-section-white" id="app">
+    <div class="slideshow-container">
+      <div class="slideshow-wrapper">
+        <div class="slides fade">
+          <img src="https://assets.openterface.com/images/product/use-case-demo-industrial-pc.webp" alt="産業用PC" loading="lazy" draggable="false">
+        </div>
+        
+        <div class="slides fade">
+          <img src="https://assets.openterface.com/images/product/use-case-demo-respberry-pi.webp" alt="Raspberry Pi" loading="lazy" draggable="false">
+        </div>
+        
+        <div class="slides fade">
+          <img src="https://assets.openterface.com/images/product/use-case-demo-pc-bios-1.webp" alt="PC BIOS" loading="lazy" draggable="false">
+        </div>
+        
+        <div class="slides fade">
+          <img src="https://assets.openterface.com/images/product/use-case-demo-macbookpro2010.webp" alt="MacBook Pro 2010" loading="lazy" draggable="false">
+        </div>
+        
+        <div class="slides fade">
+          <img src="https://assets.openterface.com/images/product/use-case-demo-macmini2009-3.webp" alt="Mac Mini 2009" loading="lazy" draggable="false">
+        </div>
+      </div>
+      
+      <div class="slideshow-text">
+        <p>Openterface Mini-KVMでテクノロジーツールキットをレベルアップ：<br> <strong>コンパクトで機能豊富なオープンソースKVM-over-USB</strong>ソリューションで<br> ITタスクとトラブルシューティングを簡単に。</p>
+        <p class="more-link"><a href="/use-cases/" style="color: var(--md-primary-fg-color);">ユースケースをもっと見る →</a></p>
+      </div>
+    </div>
+    
+    <div class="callout-button-container">
+        <div class="dialogue-bubble" id="op-bubble">
+            <div>
+              <img src="https://assets.openterface.com/images/trademark/win.svg" alt="アバター" class="avatar" draggable="false">
+              <p>Windows</p>
+            </div>
+            <h4>{{ config.extra.qt_version }}</h4>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{ config.extra.qt_version }}/openterfaceQT.windows.amd64.installer.exe" class="md-button md-button--primary" id="join-waitlist-button">インストーラー</a>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{ config.extra.qt_version }}/openterfaceQT-portable.exe" class="md-button md-button--primary" id="join-waitlist-button">ポータブル版</a>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_QT" class="md-button md-button--primary" id="join-waitlist-button">ソースコード</a>
+           </div>
+        <div class="dialogue-bubble" id="op-bubble">
+            <div>
+              <img src="https://assets.openterface.com/images/trademark/app-store.svg" alt="アバター" class="avatar" draggable="false" style="margin-bottom: 8px;">
+              <p>macOS</p>
+            </div>
+            <h4>{{ config.extra.macos_version }}</h4>
+            <a class="btnappstore" href="/appstore"></a>
+        </div>
+        <div class="dialogue-bubble" id="op-bubble">
+            <div>
+              <img src="https://assets.openterface.com/images/trademark/linux.svg" alt="アバター" class="avatar" draggable="false">
+              <p>Linux</p>
+            </div>
+            <h4>{{ config.extra.qt_version }}</h4>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{ config.extra.qt_version }}/openterfaceQT.linux.amd64.deb" class="md-button md-button--primary" id="join-waitlist-button">AMD64 DEB</a>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{ config.extra.qt_version }}/openterfaceQT.linux.amd64.rpm" class="md-button md-button--primary" id="join-waitlist-button">AMD64 RPM</a>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{ config.extra.qt_version }}/openterfaceQT.linux.amd64.AppImage" class="md-button md-button--primary" id="join-waitlist-button">AMD64 AppImage</a>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{ config.extra.qt_version }}/openterfaceQT.linux.arm64.deb" class="md-button md-button--primary" id="join-waitlist-button">ARM64 DEB</a>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/{{ config.extra.qt_version }}/openterfaceQT.linux.arm64.rpm" class="md-button md-button--primary" id="join-waitlist-button">ARM64 RPM</a>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_QT" class="md-button md-button--primary" id="join-waitlist-button">ソースコード</a>
+        </div>
+        <div class="dialogue-bubble" id="op-bubble">
+            <div>
+              <img src="https://assets.openterface.com/images/trademark/android.svg" alt="アバター" class="avatar" draggable="false">
+              <p>Android</p>
+            </div>
+            <h4>{{ config.extra.android_version }}</h4>
+            <a class="btngogoleplay" href="/playstore"></a>
+            <a href="https://github.com/TechxArtisanStudio/Openterface_Android/releases/download/{{ config.extra.android_version }}/OpenterfaceAndroid-release.apk" class="md-button md-button--primary" id="join-waitlist-button">apk</a>
+        </div>
+    </div>
+    <p>and <a href="/app" style="color: var(--md-primary-fg-color);">more</a>.</p>
+  </section>
+
+  <section class="product-close-up" id="product-close-up">
+    
+    <div class="container">
+
+      <div class="product-close-up-content reverse-layout">
+        <div class="product-image">
+          <img src="https://assets.openterface.com/images/product/toolkit-open.webp" alt="Pre Launch Poster" loading="lazy">
+        </div>
+        <div class="product-description">
+          <p> <strong>余分なモニター、キーボード、マウスにさようなら！</strong>
+            ラップトップをスマートKVMコンソールに変えて、HDMIとUSB経由でヘッドレスデバイスを制御できます。
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="icon-section" id="icon">
+    <div class="icon-container">
+        <h2>機能</h2>
+        <div class="icon-grid">
+            <div class="icon-item">
+              <img src="https://assets.openterface.com/images/feature-icons/icon-plug-and-play.svg#only-light" alt="Plug and Play Icon">
+              <img src="https://assets.openterface.com/images/feature-icons/icon-plug-and-play-d.svg#only-dark" alt="Plug and Play Icon">
+              <p>プラグアンドプレイ</p>
+            </div>
+            <div class="icon-item">
+                <img src="https://assets.openterface.com/images/feature-icons/icon-bios-access.svg#only-light" alt="BIOS Access Icon">
+                <img src="https://assets.openterface.com/images/feature-icons/icon-bios-access-d.svg#only-dark" alt="BIOS Access Icon">
+                <p>BIOSアクセス</p>
+            </div>
+            <div class="icon-item">
+                <img src="https://assets.openterface.com/images/feature-icons/icon-network-free.svg#only-light" alt="Network Free Icon">
+                <img src="https://assets.openterface.com/images/feature-icons/icon-network-free-d.svg#only-dark" alt="Network Free Icon">
+                <p>ネットワーク不要</p>
+            </div>
+            <div class="icon-item">
+                <img src="https://assets.openterface.com/images/feature-icons/icon-text-transfer.svg#only-light" alt="Text Transfer Icon">
+                <img src="https://assets.openterface.com/images/feature-icons/icon-text-transfer-d.svg#only-dark" alt="Text Transfer Icon">
+                <p>テキスト転送</p>
+            </div>
+            <div class="icon-item">
+                <img src="https://assets.openterface.com/images/feature-icons/icon-usb-switch.svg#only-light" alt="USB Switch Icon">
+                <img src="https://assets.openterface.com/images/feature-icons/icon-usb-switch-d.svg#only-dark" alt="USB Switch Icon">
+                <p>USB切り替え</p>
+            </div>
+            <div class="icon-item">
+              <img src="https://assets.openterface.com/images/feature-icons/icon-more.svg#only-light" alt="More Icon">
+              <img src="https://assets.openterface.com/images/feature-icons/icon-more-d.svg#only-dark" alt="More Icon">
+              <p>そして<a href="/product/minikvm/features" style="color: var(--md-primary-fg-color);">その他</a>。</p>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <section class="feature-dev-test" id="feature-dev-test">
+    <div class="container">
+      <h2>一目でわかる特徴</h2>
+      <div class="videos-wrapper">
+        <div class="video-container">
+          <iframe width="560" height="315" loading="lazy" src="https://www.youtube.com/embed/hOSP7je8zSk?si=0-EaGGhkf9oBbO0j" title="Introduction Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-container">
+          <iframe width="560" height="315" loading="lazy" src="https://www.youtube.com/embed/mfUd-YqVJSY?si=JWje9zsy_KFHY4eb" title="Beta App for Windows" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <div class="video-container">
+          <iframe width="560" height="315" loading="lazy" src="https://www.youtube.com/embed/1iTaDp24PBI?si=SdgnIUW52Ks8VhGn" title="Product Review" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <p>そして <a href="/product/minikvm/reviews/" style="color: #e0e0e0;">もっと見る</a>.</p>
+    </div>
+  </section>
+
+  <!-- Gibby Avatar and Dialogue Box -->
+  <div class="gibby-container">
+    <a href="#form_signup" class="gibby-link"><img src="https://assets.openterface.com/images/op-avatar.webp" alt="Gibby Mascot" class="gibby-avatar" draggable="false" aria-label="Gibby Mascot"></a>
+    <div class="gibby-dialogue">
+      <p> <a href="#form_signup" class="gibby-link">今すぐ登録！</a> </p>
+    </div>
+  </div>
+
+  <a rel="me" href="https://mastodon.social/@youyoubilly" style="display:none;">Mastodon</a>
+
+{% endblock %}
+
+{% block content %}{% endblock %}
+
+{% block footer %}
+  {{ super() }}
+{% endblock %}
