@@ -1,7 +1,17 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-  <link rel="stylesheet" href="https://assets.openterface.com/css/custom.min.css">
+  <link href="{{ 'assets/stylesheets/custom.css' | url }}" rel="stylesheet"/>
+<link href="{{ 'assets/stylesheets/signup_form.css' | url }}" rel="stylesheet"/>
+<!-- Gibby Avatar and Dialogue Box -->
+<div class="gibby-container">
+<a class="gibby-link" href="#form_signup"><img alt="Gibby Mascot" aria-label="Gibby Mascot" class="gibby-avatar" draggable="false" src="https://assets.openterface.com/images/op-avatar.webp"/></a>
+<div class="gibby-dialogue">
+<p>
+<a class="gibby-link" data-i18n="main.subscribenow-link" href="#form_signup">今すぐ登録！</a>
+</p>
+</div>
+</div>
 {% endblock %}
 
 {% block scripts %}
