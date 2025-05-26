@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-  <link href="{{ 'assets/stylesheets/custom.css' | url }}" rel="stylesheet"/>
-<link href="{{ 'assets/stylesheets/signup_form.css' | url }}" rel="stylesheet"/>
-<!-- Gibby Avatar and Dialogue Box -->
-<div class="gibby-container">
-<a class="gibby-link" href="#form_signup"><img alt="Gibby Mascot" aria-label="Gibby Mascot" class="gibby-avatar" draggable="false" src="https://assets.openterface.com/images/op-avatar.webp"/></a>
-<div class="gibby-dialogue">
-<p>
-<a class="gibby-link" data-i18n="main.subscribenow-link" href="#form_signup">今すぐ登録！</a>
-</p>
-</div>
-</div>
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/custom.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/signup_form.css' | url }}">
+  <!-- Gibby Avatar and Dialogue Box -->
+  <div class="gibby-container">
+    <a href="#form_signup" class="gibby-link"><img src="https://assets.openterface.com/images/op-avatar.webp" alt="Gibby Mascot" class="gibby-avatar" draggable="false" aria-label="Gibby Mascot"></a>
+    <div class="gibby-dialogue">
+      <p>
+        <a href="#form_signup" class="gibby-link" data-i18n="main.subscribenow-link">Subscribe NOW!</a>
+      </p>
+    </div>
+  </div>
 {% endblock %}
 
 {% block scripts %}

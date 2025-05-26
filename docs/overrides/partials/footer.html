@@ -1,108 +1,113 @@
-<!-- フッター -->
+<!-- Footer -->
 <footer class="md-footer">
 
-    <!-- 前のページまたは次のページへのリンク -->
-    {% if "navigation.footer" in features %}
-      {% if page.previous_page or page.next_page %}
-        {% if page.meta and page.meta.hide %}
-          {% set hidden = "hidden" if "footer" in page.meta.hide %}
+  <!-- Link to previous and/or next page -->
+  {% if "navigation.footer" in features %}
+    {% if page.previous_page or page.next_page %}
+      {% if page.meta and page.meta.hide %}
+        {% if "footer" in page.meta.hide %}
+          <nav class="md-footer__inner md-grid" aria-label="{{ lang.t('footer') }}" hidden>
         {% endif %}
-        <nav
-          class="md-footer__inner md-grid"
-          aria-label="{{ lang.t('footer') }}"
-          {{ hidden }}
-        >
-  
-          <!-- 前のページへのリンク -->
-          {% if page.previous_page %}
-            {% set direction = lang.t("footer.previous") %}
-            <a
-              href="{{ page.previous_page.url | url }}"
-              class="md-footer__link md-footer__link--prev"
-              aria-label="{{ direction }}: {{ page.previous_page.title | e }}"
-            >
-              <div class="md-footer__button md-icon">
-                {% set icon = config.theme.icon.previous or "material/arrow-left" %}
-                {% include ".icons/" ~ icon ~ ".svg" %}
-              </div>
-              <div class="md-footer__title">
-                <span class="md-footer__direction">
-                  {{ direction }}
-                </span>
-                <div class="md-ellipsis">
-                  {{ page.previous_page.title }}
-                </div>
-              </div>
-            </a>
-          {% endif %}
-  
-          <!-- 次のページへのリンク -->
-          {% if page.next_page %}
-            {% set direction = lang.t("footer.next") %}
-            <a
-              href="{{ page.next_page.url | url }}"
-              class="md-footer__link md-footer__link--next"
-              aria-label="{{ direction }}: {{ page.next_page.title | e }}"
-            >
-              <div class="md-footer__title">
-                <span class="md-footer__direction">
-                  {{ direction }}
-                </span>
-                <div class="md-ellipsis">
-                  {{ page.next_page.title }}
-                </div>
-              </div>
-              <div class="md-footer__button md-icon">
-                {% set icon = config.theme.icon.next or "material/arrow-right" %}
-                {% include ".icons/" ~ icon ~ ".svg" %}
-              </div>
-            </a>
-          {% endif %}
-        </nav>
+      {% else %}
+        <nav class="md-footer__inner md-grid" aria-label="{{ lang.t('footer') }}">
       {% endif %}
-    {% endif %}
-  
-    <!-- さらなる情報 -->
-    <div class="md-footer-meta md-typeset">
-      <div class="md-footer-meta__inner md-grid footer-flex-container">
 
-        <!-- サインアップフォーム -->
-        <div class="signup-form-container footer-flex-item">
-          <div id="google_form_signup">
-            <!-- Googleフォームに送信するための修正済みフォーム -->
-            <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSdFc5YUQN74mQpFj6U4NkpNH4TGZGgxur7wVADWSWEsmNezdg/formResponse" 
-                  method="post" 
-                  id="google-form-subscribe-form" 
-                  name="google-form-subscribe-form" 
-                  target="_blank">
-              <div id="google_form_signup_scroll">
-                <div class="gf-field-group">
-                  <input type="text" name="entry.1988135673" class="required" id="google-form-first-name" required="" placeholder="お名前">
-                </div>
-                <div class="gf-field-group">
-                  <input type="email" name="emailAddress" class="required email" id="google-form-email" required="" placeholder="メールアドレス *">
-                  <input type="hidden" name="entry.22394832" value="Openterface-eng">
-                </div>
-                <div class="clear">
-                  <input type="submit" name="submit" id="google-form-submit" class="button" value="✉️ 最新情報を購読する！ 🐝">
-                  <p class="footnote">月に1回以上のメールはありません。いつでも購読解除できます。</p>
-                </div>
+        <!-- Link to previous page -->
+        {% if page.previous_page %}
+          {% set direction = lang.t("footer.previous") %}
+          <a href="{{ page.previous_page.url | url }}" class="md-footer__link md-footer__link--prev" aria-label="{{ direction }}: {{ page.previous_page.title | e }}">
+            <div class="md-footer__button md-icon">
+              {% set icon = config.theme.icon.previous or "material/arrow-left" %}
+              {% include ".icons/" ~ icon ~ ".svg" %}
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">{{ direction }}</span>
+              <div class="md-ellipsis">
+                {{ page.previous_page.title }}
               </div>
-            </form>
-          </div>
-        </div>
-
-        <!-- 著作権情報 -->
-        <div class="footer-flex-item footer-copyright">
-          {% include "partials/copyright.html" %}
-        </div>
-
-        <!-- ソーシャルリンク -->
-        {% if config.extra.social %}
-          <div class="footer-flex-item footer-social">
-            {% include "partials/social.html" %}
-          </div>
+            </div>
+          </a>
         {% endif %}
+
+        <!-- Link to next page -->
+        {% if page.next_page %}
+          {% set direction = lang.t("footer.next") %}
+          <a
+            href="{{ page.next_page.url | url }}"
+            class="md-footer__link md-footer__link--next"
+            aria-label="{{ direction }}: {{ page.next_page.title | e }}"
+          >
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                {{ direction }}
+              </span>
+              <div class="md-ellipsis">
+                {{ page.next_page.title }}
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              {% set icon = config.theme.icon.next or "material/arrow-right" %}
+              {% include ".icons/" ~ icon ~ ".svg" %}
+            </div>
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  {% endif %}
+
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid footer-flex-container">
+
+      <!-- Signup form -->
+      <div class="signup-form-container footer-flex-item">
+        <div id="form_signup">
+          <!-- Modified form to submit via AJAX -->
+          <form id="subscribe-form" name="subscribe-form" class="js-loading">
+            <div id="form_signup_scroll">
+              <div class="gf-field-group">
+                <input type="text" name="name" class="required" id="form-name" required placeholder="お名前">
+              </div>
+              <div class="gf-field-group">
+                <input type="email" name="email" class="required email" id="form-email" required placeholder="メールアドレス *">
+              </div>
+              <div class="clear">
+                <input type="submit" name="submit" id="form-submit" class="button" value="✉️ 最新情報を受け取る！ 🐝" disabled>
+                <p class="footnote">月に1回程度の配信です。いつでも配信解除可能です。<br>お問い合わせは <a href="mailto:info@openterface.com">info@openterface.com</a> まで。</p>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
+
+      <!-- Copyright info -->
+      <div class="footer-flex-item footer-copyright">
+        {% include "partials/copyright.html" %}
+      </div>
+
+      <!-- Social links -->
+      {% if config.extra.social %}
+        <div class="footer-flex-item footer-social">
+          {% include "partials/social.html" %}
+        </div>
+      {% endif %}
     </div>
+  </div>
+
+  <!-- Load subscribe.js directly in footer -->
+  <script>
+    // Load subscribe.js and ensure it works with navigation
+    (function() {
+      var script = document.createElement('script');
+      script.src = "{{ 'assets/javascripts/subscribe.js' | url }}";
+      script.async = false; // Load synchronously to ensure it's available
+      document.body.appendChild(script);
+
+      var langselect = document.createElement('script');
+      langselect.src = "{{ 'assets/javascripts/language-select.js' | url }}";
+      langselect.async = false; // Load synchronously to ensure it's available
+      document.body.appendChild(langselect);
+    })();
+
+  </script>
 </footer>

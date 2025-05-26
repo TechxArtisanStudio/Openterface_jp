@@ -2,13 +2,14 @@
 
 {% block content %}
   <div style="text-align: center; margin-top: 50px;">
-<h1 data-i18n="error.404-title">404 - ページが見つかりません</h1>
-<p data-i18n="error.404-desc">ページが存在しません。ホームページにリダイレクトします...</p>
-<img alt="" draggable="false" src="https://assets.openterface.com/images/cover.webp" style="max-width: 600px; height: auto;"/>
-<script>
+      <h1 data-i18n="error.404-title">404 - ページが見つかりません</h1>
+      <p data-i18n="error.404-desc">ページが存在しません。ホームページにリダイレクトします...</p>
+      <img src="https://assets.openterface.com/images/cover.webp" alt="" style="max-width: 600px; height: auto;" draggable="false">
+
+      <script>
           setTimeout(function() {
               window.location.href = "/";
-          }, 1000); // Redirect after 1 second
+          }, 1000); // 1秒後にリダイレクト
       </script>
-</div>
+  </div>
 {% endblock %}
