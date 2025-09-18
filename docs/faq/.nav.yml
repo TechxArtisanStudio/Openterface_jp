@@ -1,9 +1,0 @@
-title: よくある質問
-nav:
-    - index.md
-    - USB KVMの基本:
-        - USB KVMとは？: usbkvm/kvm-over-usb.md
-        - なぜOpenterface USB KVMなのか？: usbkvm/openterface.md
-    - ミニKVMシリーズ: 
-        - OpenterfaceミニKVM: minikvm/op-minikvm.md
-    - 企業とメディアのよくある質問: business.md
