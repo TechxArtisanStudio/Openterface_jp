@@ -6,7 +6,7 @@ on:
   repository_dispatch:
     types: [trigger-build]
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 jobs:
@@ -14,8 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Prepare redirect files
         run: |
           # Create a simple site structure for GitHub Pages
@@ -24,10 +25,22 @@ jobs:
           cp 404.html docs/
           cp config.json docs/
           cp CNAME docs/
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
+      
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+        run: |
+          # Use git to push to gh-pages branch
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Create or update gh-pages branch
+          git checkout --orphan gh-pages || git checkout gh-pages
+          git rm -rf . || true
+          
+          # Copy files to root of gh-pages branch
+          cp docs/* .
+          cp docs/.CNAME . 2>/dev/null || true
+          
+          # Commit and push
+          git add .
+          git commit -m "Deploy redirect site - $(date)"
+          git push origin gh-pages --force
