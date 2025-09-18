@@ -5,29 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        // Load configuration and perform redirect
-        async function performRedirect() {
-            try {
-                // Load config.json
-                const response = await fetch('./config.json');
-                const config = await response.json();
-                
-                // Get the current path (everything after the domain)
-                const currentPath = window.location.pathname;
-                
-                // Construct the redirect URL: target_domain + /target_lang + currentPath
-                const redirectUrl = config.target_domain + '/' + config.target_lang + currentPath;
-                
-                // Perform permanent redirect (301)
-                window.location.replace(redirectUrl);
-                
-            } catch (error) {
-                console.error('Error loading config:', error);
-                // Fallback redirect
-                const currentPath = window.location.pathname;
-                const redirectUrl = 'https://openterface.com/ro' + currentPath;
-                window.location.replace(redirectUrl);
-            }
+        // Perform redirect immediately without fetching config
+        function performRedirect() {
+            // Get the current path (everything after the domain)
+            const currentPath = window.location.pathname;
+            
+            // Construct the redirect URL: target_domain + /target_lang + currentPath
+            const redirectUrl = 'https://openterface.com/ja' + currentPath;
+            
+            // Perform immediate redirect
+            window.location.href = redirectUrl;
         }
         
         // Execute redirect when page loads
@@ -35,7 +22,7 @@
     </script>
     
     <!-- Fallback for users with JavaScript disabled -->
-    <meta http-equiv="refresh" content="0; url=https://openterface.com/ro/">
+    <meta http-equiv="refresh" content="0; url=https://openterface.com/ja/">
     
     <!-- SEO meta tags -->
     <meta name="robots" content="noindex, nofollow">
@@ -75,7 +62,7 @@
         <h2>Redirecting...</h2>
         <div class="spinner"></div>
         <p>You are being redirected to the new location.</p>
-        <p><small>If you are not redirected automatically, <a href="https://openterface.com/ro/">click here</a>.</small></p>
+        <p><small>If you are not redirected automatically, <a href="https://openterface.com/ja/">click here</a>.</small></p>
     </div>
 </body>
 </html>
