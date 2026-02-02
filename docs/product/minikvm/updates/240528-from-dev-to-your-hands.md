@@ -66,13 +66,13 @@ Here are updates on our open-source Github repo:
 
 #### [**Openterface_MacOS**](https://github.com/TechxArtisanStudio/Openterface_MacOS)
 
-Our Openterface MacOS host app is already officially live on the **Apple App Store**. Just search for 'Openterface' or 'mini-KVM' to find our app page. Even better, we’ve uploaded the full code to our GitHub repo: Openterface_MacOS for the Mini-KVM. You can check out this [basic operation demo](/basic-testing/) on **MacOS**.
+Our Openterface MacOS host app is already officially live on the **Apple App Store**. Just search for 'Openterface' or 'mini-KVM' to find our app page. Even better, we’ve uploaded the full code to our GitHub repo: Openterface_MacOS for the Mini-KVM. You can check out this [basic operation demo](/app) on **MacOS**.
 
 ![openterface-macos-app-store](https://www.crowdsupply.com/img/1c9c/f855deb7-a88e-415b-a826-f360e6d41c9c/openterface-macos-app-store_png_md-xl.jpg)
 
 #### [**Openterface_QT**](https://github.com/TechxArtisanStudio/Openterface_QT)
 
-QT is a versatile framework that we love, so we built our mini-KVM based on it. For the **Windows version**, check out our early demo video [here](/basic-testing/). You can see from the demo that it works great with low latency and a stable connection! You can find and download the early beta app from the github repo there.
+QT is a versatile framework that we love, so we built our mini-KVM based on it. For the **Windows version**, check out our early demo video [here](/app). You can see from the demo that it works great with low latency and a stable connection! You can find and download the early beta app from the github repo there.
 
 ![openterface-win-app-demo-1](https://www.crowdsupply.com/img/fff1/6900b965-207d-4d91-8816-9ab73489fff1/openterface-win-app-demo-1_jpg_gallery-lg.jpg)
   

@@ -16,9 +16,9 @@ If you don't find what you need, **email us at [info@openterface.com](mailto:inf
 ## :material-clipboard-list: Quick Navigation
 
 - [FAQs for Openterface KVM-Go Series](#faqs-for-openterface-kvm-go-series)
-  - [:material-clipboard-list: Quick Navigation](#material-clipboard-list-quick-navigation)
+  - [:material-clipboard-list: Quick Navigation](#quick-navigation)
   - [General](#general)
-  - [MicroSD \& File Transfer](#microsd--file-transfer)
+  - [MicroSD \& File Transfer](#microsd-file-transfer)
   - [Technical](#technical)
   - [Pre-Launch](#pre-launch)
 

@@ -16,11 +16,11 @@ If you don't find what you need, **email us at [support@openterface.com](mailto:
 ## :material-clipboard-list: Quick Navigation
 
 - [FAQs for Openterface KVM Extension for uConsole](#faqs-for-openterface-kvm-extension-for-uconsole)
-  - [:material-clipboard-list: Quick Navigation](#material-clipboard-list-quick-navigation)
-  - [Installation & Hardware](#installation--hardware)
+  - [:material-clipboard-list: Quick Navigation](#quick-navigation)
+  - [Installation & Hardware](#installation-hardware)
   - [Compatibility](#compatibility)
-  - [Control & Features](#control--features)
-  - [Video & Audio](#video--audio)
+  - [Control & Features](#control-features)
+  - [Video & Audio](#video-audio)
   - [Troubleshooting](#troubleshooting)
   - [More](#more)
 

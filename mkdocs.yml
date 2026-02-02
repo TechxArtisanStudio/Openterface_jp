@@ -266,6 +266,7 @@ plugins:
       product.md: product/minikvm/index.md
       whats-in-the-box.md: product/minikvm/whats-in-the-box.md
       quick-start.md: product/minikvm/index.md
+      basic-testing.md: app/overview.md
       basic/usb-switch.md: product/minikvm/usb-switch.md
       product/minikvm-lite/pre-launch.md: product/kvm-go/pre-launch.md
       product/minikvm/reviews/testimonials.md: product/minikvm/reviews/index.md

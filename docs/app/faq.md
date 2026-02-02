@@ -15,7 +15,7 @@ Welcome to the FAQ for our apps. If you don’t find the answer you need, **emai
 
 #### :material-chat-question:{ .faq } Where can I download the host applications? {: #host-app-download }
 
-Visit our [Install Host Application page](/quick-start/#install-host-application) for official downloads to support **MacOS, Windows, Linux and Android**. 
+Visit our [Install Host Application page](/app#download--installation) for official downloads to support **MacOS, Windows, Linux and Android**. 
 
 ??? warning "Privacy & Security: Be cautious when using third-party host app"
     As our project is open source, you may find alternative versions of host applications compatible with our Mini-KVM developed by others. While these can offer additional features, please ensure you review their security and privacy practices. **The Openterface Team cannot guarantee or be responsible for the safety of third-party applications**.

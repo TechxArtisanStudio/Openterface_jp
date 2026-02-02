@@ -15,12 +15,11 @@ If you don’t find what you need, **email us at [info@openterface.com](mailto:i
 
 ## :material-clipboard-list: Quick Navigation
 
--   [USB Port & File Transfer](#usb-port--file-transfer)
+-   [USB Port & File Transfer](#usb-port-file-transfer)
 -   [Technical](#technical)
 -   [Control](#control)
 -   [Video](#video)
 -   [Troubleshooting](#troubleshooting)
--   [More](#more)
 
 ---
 
