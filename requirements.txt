@@ -1,0 +1,11 @@
+mkdocs-material
+mkdocs-glightbox
+mkdocs-redirects
+# mkdocs-awesome-nav
+mkdocs-macros-plugin
+mkdocs-ultralytics-plugin
+mkdocs-git-revision-date-localized-plugin
+mkdocs-markdownextradata-plugin
+
+# Note: Build tools and scripts are now in the openterface-cms submodule.
+# Install CMS dependencies with: pip install -r openterface-cms/requirements.txt
