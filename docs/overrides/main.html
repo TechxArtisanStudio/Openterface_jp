@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/custom.css' | url }}">
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/signup_form.css' | url }}">
+  
+  <!-- Conditionally load slideshow.css only on product pages -->
+  {% if page and page.file and 'product/' in page.file.src_path and '/index.' in page.file.src_path %}
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/slideshow.css' | url }}">
+  {% endif %}
+  
+  <!-- Conditionally load youtube-videos.css on videos pages and product pages (for product video grids) -->
+  {% if page and page.file and ('videos.' in page.file.src_path or 'product/' in page.file.src_path) %}
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/youtube-videos.css' | url }}">
+  {% endif %}
+
+  <!-- Gibby Avatar and Dialogue Box -->
+  <div class="gibby-container">
+    <!-- Default English content (fallback) -->
+    <a href="#" class="gibby-link" id="gibby-avatar-link"><img src="https://assets.openterface.com/images/op-avatar.webp" alt="Gibby Mascot" class="gibby-avatar" draggable="false" aria-label="Gibby Mascot"></a>
+    <div class="gibby-dialogue">
+      <p>
+        <a href="#" class="gibby-link" id="gibby-text-link">Subscribe NOW!</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Set Gibby link href to form signup
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPath = window.location.pathname;
+      const formSignupHref = currentPath + '#form_signup';
+      const avatarLink = document.getElementById('gibby-avatar-link');
+      const textLink = document.getElementById('gibby-text-link');
+      if (avatarLink) avatarLink.href = formSignupHref;
+      if (textLink) textLink.href = formSignupHref;
+    });
+
+    // YouTube Lazy Loading
+    function initYouTubeLazyLoading() {
+      const videoItems = document.querySelectorAll('.youtube-video-item[data-video-id]');
+      
+      videoItems.forEach(item => {
+        const videoId = item.getAttribute('data-video-id');
+        const placeholder = item.querySelector('.youtube-placeholder');
+        
+        if (placeholder) {
+          // Set the thumbnail background
+          placeholder.style.backgroundImage = `url('https://img.youtube.com/vi/${videoId}/maxresdefault.jpg')`;
+          
+          // Add click handler to load video
+          placeholder.addEventListener('click', function() {
+            loadYouTubeVideo(item, videoId);
+          });
+        }
+      });
+    }
+    
+    function loadYouTubeVideo(container, videoId) {
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+      iframe.title = container.querySelector('.youtube-placeholder').getAttribute('data-title') || 'YouTube Video';
+      iframe.allowFullscreen = true;
+      iframe.style.width = '100%';
+      iframe.style.height = '200px';
+      iframe.style.border = 'none';
+      iframe.style.display = 'block';
+      
+      // Replace placeholder with iframe
+      container.innerHTML = '';
+      container.appendChild(iframe);
+    }
+    
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+      initYouTubeLazyLoading();
+    });
+    
+    // Add class to body to identify videos page
+    (function() {
+      function addVideosClass() {
+        const videosPage = document.querySelector('.youtube-videos-page');
+        if (videosPage) {
+          document.body.classList.add('videos-page');
+        }
+      }
+      
+      if (document.body) {
+        addVideosClass();
+      } else {
+        document.addEventListener('DOMContentLoaded', addVideosClass);
+      }
+    })();
+  </script>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+
+  <!-- Load subscribe.js globally (needed for footer and product signup forms) -->
+  <script src="{{ 'assets/javascripts/subscribe.js' | url }}"></script>
+
+  <!-- Conditionally load youtube-videos-controls.js only on videos pages -->
+  {% if page and page.file and 'videos.' in page.file.src_path %}
+  <script src="{{ 'assets/javascripts/youtube-videos-controls.js' | url }}"></script>
+  {% endif %}
+  
+  <!-- Conditionally load slideshow.js only on product pages -->
+  {% if page and page.file and 'product/' in page.file.src_path and '/index.' in page.file.src_path %}
+  <script src="{{ 'assets/javascripts/slideshow.js' | url }}"></script>
+  {% endif %}
+  
+  <!-- Conditionally load home-carousel.js only on homepage -->
+  {% if page and page.meta and page.meta.template and 'home' in page.meta.template %}
+  <script src="{{ 'assets/javascripts/home-carousel.js' | url }}"></script>
+  {% endif %}
+{% endblock %}
