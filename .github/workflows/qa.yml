@@ -1,0 +1,23 @@
+name: QA
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npx playwright install chromium
+      - run: npm run preview -- --port 4321 --host 127.0.0.1 &
+      - run: npx wait-on http://127.0.0.1:4321 --timeout 60000
+      - run: PLAYWRIGHT_BASE_URL=http://127.0.0.1:4321 CI=true npm test

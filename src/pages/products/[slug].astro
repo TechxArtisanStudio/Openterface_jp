@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductLanding from '../../layouts/ProductLanding.astro';
+import { products, productSlugs } from '../../data/products';
+
+export function getStaticPaths() {
+  return productSlugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const product = products[slug!];
+
+if (!product) {
+  return Astro.redirect('/404');
+}
+---
+
+<BaseLayout
+  title={product.title}
+  description={product.seoDescription}
+  keywords={product.keywords}
+  ogImage={product.heroImage}
+  canonicalPath={`/products/${slug}/`}
+>
+  <ProductLanding product={product} />
+</BaseLayout>

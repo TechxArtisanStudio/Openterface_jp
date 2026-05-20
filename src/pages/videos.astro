@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DocLinkBanner from '../components/DocLinkBanner.astro';
+import { legacyPath } from '../config/site';
+---
+
+<BaseLayout
+  title="Videos"
+  description="Openterface product demos, tutorials, and reviews on YouTube."
+  canonicalPath="/videos/"
+>
+  <DocLinkBanner message="The full filterable YouTube video grid is on the legacy site until we port the video pipeline." />
+  <section class="py-16">
+    <div class="mx-auto max-w-3xl px-4 text-center">
+      <h1 class="text-4xl font-bold">Videos</h1>
+      <p class="mt-4 text-lg text-muted">
+        Watch product demos, setup guides, and community reviews for Openterface KVM and KeyMod products.
+      </p>
+      <a href={legacyPath('/videos/')} class="btn btn-primary mt-8" target="_blank" rel="noopener">
+        Browse all videos →
+      </a>
+    </div>
+  </section>
+</BaseLayout>

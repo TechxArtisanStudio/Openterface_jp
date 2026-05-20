@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-dark: #ff6e42;
+  --color-primary: #ff855f;
+  --color-brand: #df4d3f;
+  --color-brand-dark: #c43d30;
+  --color-brand-light: #f5ebe9;
+  --color-surface: #fafafa;
+  --color-ink: #373737;
+  --color-muted: #5c5c5c;
+  --font-sans: "Roboto", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-ink antialiased;
+    font-family: var(--font-sans);
+  }
+
+  a {
+    @apply transition-colors duration-150;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-base font-semibold transition-all duration-150;
+  }
+
+  .btn-primary {
+    @apply border-2 border-transparent text-white shadow-sm;
+    background-color: #ff6e42;
+  }
+
+  .btn-primary:hover {
+    background-color: #ff855f;
+  }
+
+  .btn-secondary {
+    @apply border-2 bg-white;
+    border-color: #ff6e42;
+    color: #ff6e42;
+  }
+
+  .btn-secondary:hover {
+    background-color: #ff6e42;
+    color: #fff;
+  }
+
+  .btn-outline-primary {
+    @apply border-2 bg-white;
+    border-color: #ff6e42;
+    color: #ff6e42;
+  }
+
+  .btn-outline-primary:hover {
+    background-color: #ff6e42;
+    color: #fff;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold tracking-tight text-ink md:text-3xl;
+  }
+
+  .section-subtitle {
+    @apply mt-2 text-lg text-muted;
+  }
+
+  .card {
+    @apply rounded-xl border border-gray-200 bg-white p-6 shadow-sm;
+  }
+
+  .progress-fill-active {
+    background: linear-gradient(90deg, #ff6e42, #ff8c42, #ffa657);
+  }
+}

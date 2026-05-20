@@ -1,0 +1,112 @@
+---
+interface Props {
+  images: string[];
+  alt: string;
+}
+
+const { images, alt } = Astro.props;
+const id = `slideshow-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<div class="product-slideshow mx-auto max-w-2xl" data-slideshow-id={id}>
+  <div class="relative overflow-hidden rounded-xl bg-gray-100">
+    {
+      images.map((src, i) => (
+        <img
+          src={src}
+          alt={`${alt} — image ${i + 1}`}
+          class:list={['slideshow-image w-full object-contain', i === 0 ? 'block' : 'hidden']}
+          data-index={i}
+          loading={i === 0 ? 'eager' : 'lazy'}
+          height="400"
+        />
+      ))
+    }
+    {
+      images.length > 1 && (
+        <>
+          <button
+            type="button"
+            class="slideshow-prev absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+            aria-label="Previous image"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            class="slideshow-next absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+            aria-label="Next image"
+          >
+            ›
+          </button>
+          <div class="absolute bottom-3 left-0 right-0 flex justify-center gap-2">
+            {
+              images.map((_, i) => (
+                <button
+                  type="button"
+                  class:list={['slideshow-dot h-2 w-2 rounded-full', i === 0 ? 'bg-primary-dark' : 'bg-white/60']}
+                  data-dot={i}
+                  aria-label={`Image ${i + 1}`}
+                />
+              ))
+            }
+          </div>
+        </>
+      )
+    }
+  </div>
+</div>
+
+<script>
+  function initSlideshows() {
+    document.querySelectorAll('[data-slideshow-id]').forEach((root) => {
+      if (root.dataset.initialized) return;
+      root.dataset.initialized = 'true';
+
+      const images = Array.from(root.querySelectorAll('.slideshow-image'));
+      const dots = Array.from(root.querySelectorAll('.slideshow-dot'));
+      const prev = root.querySelector('.slideshow-prev');
+      const next = root.querySelector('.slideshow-next');
+      if (images.length <= 1) return;
+
+      let current = 0;
+      let timer;
+
+      function show(index) {
+        current = index;
+        images.forEach((img, i) => img.classList.toggle('hidden', i !== index));
+        images.forEach((img, i) => img.classList.toggle('block', i === index));
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('bg-primary-dark', i === index);
+          dot.classList.toggle('bg-white/60', i !== index);
+        });
+      }
+
+      function advance(delta) {
+        show((current + delta + images.length) % images.length);
+      }
+
+      prev?.addEventListener('click', () => advance(-1));
+      next?.addEventListener('click', () => advance(1));
+      dots.forEach((dot, i) => dot.addEventListener('click', () => show(i)));
+
+      timer = setInterval(() => advance(1), 5000);
+      root.addEventListener('mouseenter', () => clearInterval(timer));
+      root.addEventListener('mouseleave', () => {
+        timer = setInterval(() => advance(1), 5000);
+      });
+    });
+  }
+
+  initSlideshows();
+  document.addEventListener('astro:page-load', initSlideshows);
+</script>
+
+<style>
+  .slideshow-image {
+    max-height: 400px;
+  }
+  .slideshow-image.hidden {
+    display: none;
+  }
+</style>

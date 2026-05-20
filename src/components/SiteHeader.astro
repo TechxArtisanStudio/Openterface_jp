@@ -1,0 +1,80 @@
+---
+import { mainNav } from '../data/navigation';
+import Logo from './Logo.astro';
+---
+
+<header class="sticky top-0 z-50 bg-primary-dark shadow-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
+    <a href="/" class="flex shrink-0 items-center">
+      <Logo variant="onPrimary" />
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+      {
+        mainNav.map((item) =>
+          item.children ? (
+            <div class="group relative">
+              <button
+                type="button"
+                class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white/15"
+                aria-haspopup="true"
+              >
+                {item.label} ▾
+              </button>
+              <div class="invisible absolute left-0 top-full z-50 min-w-[220px] rounded-lg border border-gray-200 bg-white py-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:opacity-100">
+                {
+                  item.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class="block px-4 py-2 text-sm text-ink hover:bg-brand-light hover:text-primary-dark"
+                      target={child.external ? '_blank' : undefined}
+                      rel={child.external ? 'noopener noreferrer' : undefined}
+                    >
+                      {child.label}
+                    </a>
+                  ))
+                }
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white/15"
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+            >
+              {item.label}
+            </a>
+          ),
+        )
+      }
+    </nav>
+
+    <details class="relative lg:hidden">
+      <summary class="cursor-pointer list-none rounded-md border border-white/40 px-3 py-2 text-sm font-medium text-white">
+        Menu
+      </summary>
+      <div class="absolute right-0 mt-2 w-64 rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
+        {
+          mainNav.flatMap((item) =>
+            item.children
+              ? item.children.map((child) => (
+                  <a href={child.href} class="block px-4 py-2 text-sm text-ink hover:bg-brand-light">
+                    {child.label}
+                  </a>
+                ))
+              : [
+                  <a
+                    href={item.href}
+                    class="block px-4 py-2 text-sm text-ink hover:bg-brand-light"
+                    target={item.external ? '_blank' : undefined}
+                  >
+                    {item.label}
+                  </a>,
+                ],
+          )
+        }
+      </div>
+    </details>
+  </div>
+</header>
