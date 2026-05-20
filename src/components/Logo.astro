@@ -1,0 +1,16 @@
+---
+interface Props {
+  variant?: 'default' | 'onPrimary';
+  class?: string;
+}
+
+const { variant = 'default', class: className = '' } = Astro.props;
+---
+
+<img
+  src="/images/openterface.svg"
+  alt="Openterface"
+  class:list={['h-8 w-auto max-w-[180px]', variant === 'onPrimary' && 'brightness-0 invert', className]}
+  width="180"
+  height="27"
+/>

@@ -1,0 +1,41 @@
+---
+import { siteConfig } from '../config/site';
+import Logo from './Logo.astro';
+---
+
+<footer class="border-t border-gray-200 bg-surface">
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <div class="grid gap-8 md:grid-cols-3">
+      <div>
+        <Logo variant="default" class="h-7" />
+        <p class="mt-3 text-sm text-muted">Ultra-compact KVM-over-USB solutions for IT professionals.</p>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold text-ink">Products</h3>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="/products/keymod/" class="text-muted hover:text-primary-dark">KeyMod Series</a></li>
+          <li><a href="/products/kvm-go/" class="text-muted hover:text-primary-dark">KVM-GO Series</a></li>
+          <li><a href="/products/minikvm/" class="text-muted hover:text-primary-dark">Mini-KVM</a></li>
+          <li><a href="/products/accessories/" class="text-muted hover:text-primary-dark">Accessories</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold text-ink">Resources</h3>
+        <ul class="mt-3 space-y-2 text-sm">
+          <li><a href="/videos/" class="text-muted hover:text-primary-dark">Videos</a></li>
+          <li><a href={siteConfig.legacyUrl + '/faq/'} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">FAQs</a></li>
+          <li><a href={siteConfig.legacyUrl + '/app/overview/'} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">Apps</a></li>
+          <li><a href={siteConfig.legacyUrl + '/support/'} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">Support</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-8 border-t border-gray-200 pt-6 text-center text-xs text-muted">
+      <p>© {new Date().getFullYear()} Openterface. Open-source KVM-over-USB.</p>
+      <p class="mt-1">
+        <a href={siteConfig.legacyUrl + '/policy/privacy/'} class="hover:text-primary-dark" target="_blank" rel="noopener">Privacy</a>
+        ·
+        <a href={siteConfig.legacyUrl + '/policy/terms-of-service/'} class="hover:text-primary-dark" target="_blank" rel="noopener">Terms</a>
+      </p>
+    </div>
+  </div>
+</footer>

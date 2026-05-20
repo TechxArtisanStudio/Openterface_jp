@@ -1,0 +1,212 @@
+---
+import type { HomeSlide } from '../data/homeSlides';
+
+interface Props {
+  slides: HomeSlide[];
+}
+
+const { slides } = Astro.props;
+const carouselId = 'home-carousel';
+---
+
+<section class="border-b border-gray-100 bg-surface" aria-label="Featured products">
+  <div class="mx-auto max-w-6xl px-4 py-8 md:min-h-[500px] md:py-12">
+    <div id={carouselId} class="relative" data-autoplay="true" data-interval="6000">
+      {
+        slides.map((slide, index) => (
+          <div
+            class:list={['carousel-slide grid items-center gap-8 md:grid-cols-2', index === 0 ? 'active' : 'hidden']}
+            data-slide-index={slide.id}
+          >
+            <div class="carousel-content">
+              <p class="text-xs font-bold uppercase tracking-widest text-primary-dark">{slide.category}</p>
+              <h1 class="mt-2 text-3xl font-bold leading-tight text-ink md:text-4xl lg:text-[2.5rem] lg:leading-none">
+                {slide.headline}
+              </h1>
+              <p class="mt-4 text-lg leading-relaxed text-muted">{slide.description}</p>
+              <div class="mt-6 flex flex-wrap gap-3">
+                {
+                  slide.primaryCta && (
+                    <a
+                      href={slide.primaryCta.href}
+                      class="btn btn-primary"
+                      target={slide.primaryCta.external ? '_blank' : undefined}
+                      rel={slide.primaryCta.external ? 'noopener noreferrer' : undefined}
+                    >
+                      {slide.primaryCta.label}
+                    </a>
+                  )
+                }
+                {
+                  slide.secondaryCta && (
+                    <a
+                      href={slide.secondaryCta.href}
+                      class="btn btn-outline-primary"
+                      target={slide.secondaryCta.external ? '_blank' : undefined}
+                    >
+                      {slide.secondaryCta.label}
+                    </a>
+                  )
+                }
+              </div>
+              {
+                slide.funding && (
+                  <div class="mt-4 flex flex-wrap gap-2 text-sm text-muted">
+                    <span class="font-semibold text-primary-dark">{slide.funding.amount}</span>
+                    <span>{slide.funding.date}</span>
+                    <span>|</span>
+                    <span>
+                      <strong class="text-ink">{slide.funding.backers}</strong> Backers
+                    </span>
+                  </div>
+                )
+              }
+            </div>
+            <div class="flex justify-center">
+              <img
+                src={slide.image}
+                alt={slide.imageAlt}
+                class="carousel-image max-h-80 w-full rounded-xl object-contain md:max-h-[420px]"
+                data-images={JSON.stringify(slide.images ?? [slide.image])}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchpriority={index === 0 ? 'high' : 'auto'}
+              />
+            </div>
+          </div>
+        ))
+      }
+
+      <!-- Progress tracks: dedicated row guarantees horizontal alignment -->
+      <div class="carousel-progress-nav mt-8">
+        <div class="progress-tracks grid grid-cols-2 gap-3 md:grid-cols-4">
+          {
+            slides.map((slide, index) => (
+              <div
+                class="progress-track h-2 overflow-hidden rounded-full bg-gray-200"
+                data-track-index={index}
+                aria-hidden="true"
+              >
+                <div
+                  class:list={[
+                    'progress-fill h-full rounded-full transition-all duration-300',
+                    index === 0 ? 'w-full progress-fill-active' : 'w-0',
+                  ]}
+                />
+              </div>
+            ))
+          }
+        </div>
+        <div class="progress-labels mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+          {
+            slides.map((slide, index) => (
+              <button
+                type="button"
+                class="carousel-progress group text-left"
+                data-target={slide.id}
+                data-index={index}
+                aria-label={`Go to slide ${slide.id}: ${slide.category}`}
+              >
+                <p class="text-xs font-bold uppercase tracking-wide text-primary-dark/80 group-hover:text-primary-dark">
+                  {slide.progressSmall}
+                </p>
+                <p class="mt-1 hidden min-h-[2.5rem] text-sm font-semibold leading-snug text-ink/85 md:block">
+                  {slide.progressLarge}
+                </p>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ carouselId }}>
+  function initHomeCarousel(id) {
+    const root = document.getElementById(id);
+    if (!root || root.dataset.initialized) return;
+    root.dataset.initialized = 'true';
+
+    const slides = Array.from(root.querySelectorAll('.carousel-slide'));
+    const progressBtns = Array.from(root.querySelectorAll('.carousel-progress'));
+    const progressFills = Array.from(root.querySelectorAll('.progress-track .progress-fill'));
+    const interval = parseInt(root.dataset.interval || '6000', 10);
+    let current = 0;
+    let timer;
+
+    slides.forEach((slide) => {
+      const img = slide.querySelector('.carousel-image');
+      if (!img) return;
+      const options = JSON.parse(img.dataset.images || '[]');
+      if (options.length > 1) {
+        img.src = options[Math.floor(Math.random() * options.length)];
+      }
+    });
+
+    function show(index) {
+      current = index;
+      slides.forEach((s, i) => {
+        s.classList.toggle('hidden', i !== index);
+        s.classList.toggle('active', i === index);
+      });
+      progressFills.forEach((fill, i) => {
+        fill.classList.toggle('w-full', i === index);
+        fill.classList.toggle('w-0', i !== index);
+        fill.classList.toggle('progress-fill-active', i === index);
+      });
+    }
+
+    function next() {
+      show((current + 1) % slides.length);
+    }
+
+    function startAutoplay() {
+      clearInterval(timer);
+      if (root.dataset.autoplay === 'true') {
+        timer = setInterval(next, interval);
+      }
+    }
+
+    progressBtns.forEach((btn, i) => {
+      btn.addEventListener('click', () => {
+        show(i);
+        startAutoplay();
+      });
+    });
+
+    show(0);
+    startAutoplay();
+  }
+
+  initHomeCarousel(carouselId);
+  document.addEventListener('astro:page-load', () => initHomeCarousel(carouselId));
+</script>
+
+<style>
+  .carousel-slide.hidden {
+    display: none;
+  }
+  .carousel-slide.active {
+    display: grid;
+  }
+  .carousel-progress {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    appearance: none;
+  }
+  @media (min-width: 768px) {
+    .carousel-content {
+      animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-30px);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+</style>

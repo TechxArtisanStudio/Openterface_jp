@@ -1,0 +1,195 @@
+---
+import DocLinkBanner from '../components/DocLinkBanner.astro';
+import ProductSlideshow from '../components/ProductSlideshow.astro';
+import type { Product } from '../data/products';
+import { siteConfig } from '../config/site';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<article>
+  <section class="bg-gradient-to-br from-brand-light to-white py-12 md:py-16">
+    <div class="mx-auto max-w-6xl px-4">
+      <ProductSlideshow images={product.heroImages} alt={product.title} />
+      <div class="mt-8 text-center">
+        <h1 class="text-3xl font-bold tracking-tight md:text-4xl">{product.title}</h1>
+        <p class="mt-2 text-xl font-semibold text-primary-dark">{product.slogan}</p>
+        <p class="mt-1 text-muted">{product.subtitle}</p>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={product.buyHref}
+            class="btn btn-primary"
+            target={product.buyHref.startsWith('http') ? '_blank' : undefined}
+            rel={product.buyHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {product.buyLabel}
+          </a>
+          <a href={siteConfig.links.appOverview} class="btn btn-secondary" target="_blank" rel="noopener">
+            Download App
+          </a>
+        </div>
+        {
+          product.funding && (
+            <div class="mt-4 flex flex-wrap items-center justify-center gap-2 text-sm text-muted">
+              <span class="font-semibold text-primary-dark">{product.funding.amount}</span>
+              <span>{product.funding.date}</span>
+              <span>|</span>
+              <span>
+                <strong>{product.funding.backers}</strong> Backers
+              </span>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <DocLinkBanner message="Detailed specs, setup guides, and FAQs are on our documentation site while we complete this migration." />
+
+  <section class="py-12">
+    <div class="mx-auto max-w-6xl px-4">
+      <p class="mx-auto max-w-3xl text-center text-lg leading-relaxed text-muted">{product.description}</p>
+    </div>
+  </section>
+
+  <section class="bg-surface py-12">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="section-title text-center">The Problem</h2>
+      <ul class="mx-auto mt-6 grid max-w-3xl gap-3">
+        {
+          product.painPoints.map((point) => (
+            <li class="flex gap-3 rounded-lg bg-white p-4 shadow-sm">
+              <span class="text-primary-dark" aria-hidden="true">✕</span>
+              <span>{point}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="section-title text-center">The Solution</h2>
+      <ul class="mx-auto mt-6 grid max-w-3xl gap-3">
+        {
+          product.solutions.map((point) => (
+            <li class="flex gap-3 rounded-lg border border-primary-dark/20 bg-brand-light/30 p-4">
+              <span class="text-primary-dark" aria-hidden="true">✓</span>
+              <span>{point}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="bg-surface py-12">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="section-title text-center">Hardware + Software</h2>
+      <p class="section-subtitle text-center">Openterface products work best with our open-source host apps.</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="card">
+          <h3 class="text-lg font-semibold text-primary-dark">Hardware</h3>
+          <ul class="mt-4 space-y-4">
+            {
+              product.hwFeatures.map((f) => (
+                <li>
+                  <strong>{f.title}</strong>
+                  <p class="mt-1 text-sm text-muted">{f.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="text-lg font-semibold text-primary-dark">Software</h3>
+          <ul class="mt-4 space-y-4">
+            {
+              product.swFeatures.length > 0 ? (
+                product.swFeatures.map((f) => (
+                  <li>
+                    <strong>{f.title}</strong>
+                    <p class="mt-1 text-sm text-muted">{f.description}</p>
+                  </li>
+                ))
+              ) : (
+                <li class="text-muted">See TxA Shop for accessory compatibility details.</li>
+              )
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    product.specs.length > 0 && (
+      <section class="py-12">
+        <div class="mx-auto max-w-6xl px-4">
+          <h2 class="section-title text-center">Key Specs</h2>
+          <dl class="mx-auto mt-6 grid max-w-2xl gap-4">
+            {product.specs.map((spec) => (
+              <div class="flex justify-between border-b border-gray-200 pb-2">
+                <dt class="font-medium">{spec.label}</dt>
+                <dd class="text-muted">{spec.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="bg-surface py-12">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="section-title text-center">Use Cases</h2>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        {
+          product.useCases.map((uc) => (
+            <span class="rounded-full bg-white px-4 py-2 text-sm font-medium shadow-sm">{uc}</span>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="section-title text-center">Documentation</h2>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        {
+          product.docLinks.map((link) => (
+            <a href={link.href} class="btn btn-secondary" target="_blank" rel="noopener">
+              {link.label} →
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-dark py-12 text-white">
+    <div class="mx-auto max-w-6xl px-4 text-center">
+      <h2 class="text-2xl font-bold">Ready to get started?</h2>
+      <p class="mt-2 opacity-90">Order hardware and download the Openterface app for your platform.</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        <a
+          href={product.buyHref}
+          class="btn bg-white text-primary-dark hover:bg-gray-100"
+          target={product.buyHref.startsWith('http') ? '_blank' : undefined}
+          rel={product.buyHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
+          {product.buyLabel}
+        </a>
+        <a href={siteConfig.links.appOverview} class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">
+          Download App
+        </a>
+      </div>
+    </div>
+  </section>
+</article>
