@@ -1,9 +1,15 @@
 ---
 import { mainNav } from '../data/navigation';
 import Logo from './Logo.astro';
+
+const productLinks = mainNav.find((item) => item.label === 'Products')?.children ?? [];
+const primaryLinks = mainNav.filter(
+  (item) => item.label !== 'Products' && !item.external && item.href !== '/',
+);
+const externalLinks = mainNav.filter((item) => item.external);
 ---
 
-<header class="sticky top-0 z-50 bg-primary-dark shadow-md">
+<header class="site-header sticky top-0 z-50 bg-primary-dark shadow-md">
   <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3">
     <a href="/" class="flex shrink-0 items-center">
       <Logo variant="onPrimary" />
@@ -50,31 +56,132 @@ import Logo from './Logo.astro';
       }
     </nav>
 
-    <details class="relative lg:hidden">
-      <summary class="cursor-pointer list-none rounded-md border border-white/40 px-3 py-2 text-sm font-medium text-white">
-        Menu
+    <details class="mobile-nav relative lg:hidden">
+      <summary class="mobile-nav-toggle flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-md border border-white/40 text-white hover:bg-white/10">
+        <span class="sr-only">Open menu</span>
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
       </summary>
-      <div class="absolute right-0 mt-2 w-64 rounded-lg border border-gray-200 bg-white py-2 shadow-lg">
-        {
-          mainNav.flatMap((item) =>
-            item.children
-              ? item.children.map((child) => (
-                  <a href={child.href} class="block px-4 py-2 text-sm text-ink hover:bg-brand-light">
+
+      <div class="mobile-nav-backdrop fixed inset-0 top-14 z-40 bg-black/45"></div>
+
+      <nav
+        class="mobile-nav-panel fixed inset-x-0 top-14 z-50 border-b border-gray-200 bg-white shadow-lg"
+        aria-label="Mobile navigation"
+      >
+        <div class="mx-auto max-w-6xl max-h-[min(75vh,36rem)] overflow-y-auto overscroll-contain px-4 py-3">
+          <a href="/" class="mobile-nav-link block rounded-md px-2 py-2.5 text-sm font-semibold text-ink hover:bg-brand-light">
+            Home
+          </a>
+
+          <div class="mt-2 border-t border-gray-100 pt-3">
+            <p class="px-2 text-[0.65rem] font-bold uppercase tracking-widest text-muted">Products</p>
+            <div class="mt-1 grid grid-cols-1 sm:grid-cols-2">
+              {
+                productLinks.map((child) => (
+                  <a href={child.href} class="mobile-nav-link block rounded-md px-2 py-2.5 text-sm text-ink hover:bg-brand-light">
                     {child.label}
                   </a>
                 ))
-              : [
-                  <a
-                    href={item.href}
-                    class="block px-4 py-2 text-sm text-ink hover:bg-brand-light"
-                    target={item.external ? '_blank' : undefined}
-                  >
+              }
+            </div>
+          </div>
+
+          <div class="mt-2 border-t border-gray-100 pt-3">
+            <p class="px-2 text-[0.65rem] font-bold uppercase tracking-widest text-muted">Explore</p>
+            <div class="mt-1 grid grid-cols-2 sm:grid-cols-3">
+              {
+                primaryLinks.map((item) => (
+                  <a href={item.href} class="mobile-nav-link block rounded-md px-2 py-2.5 text-sm text-ink hover:bg-brand-light">
                     {item.label}
-                  </a>,
-                ],
-          )
-        }
-      </div>
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+
+          {
+            externalLinks.length > 0 && (
+              <div class="mt-2 border-t border-gray-100 pt-3 pb-1">
+                <p class="px-2 text-[0.65rem] font-bold uppercase tracking-widest text-muted">Documentation</p>
+                <div class="mt-1 grid grid-cols-2">
+                  {
+                    externalLinks.map((item) => (
+                      <a
+                        href={item.href}
+                        class="mobile-nav-link block rounded-md px-2 py-2.5 text-sm text-ink hover:bg-brand-light"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {item.label}
+                        <span class="ml-1 text-xs text-muted" aria-hidden="true">↗</span>
+                      </a>
+                    ))
+                  }
+                </div>
+              </div>
+            )
+          }
+        </div>
+      </nav>
     </details>
   </div>
 </header>
+
+<script>
+  function initMobileNav() {
+    document.querySelectorAll('.mobile-nav').forEach((details) => {
+      if (details.dataset.initialized) return;
+      details.dataset.initialized = 'true';
+
+      const backdrop = details.querySelector('.mobile-nav-backdrop');
+      const links = details.querySelectorAll('.mobile-nav-link');
+
+      const setOpen = (open) => {
+        if (!(details instanceof HTMLDetailsElement)) return;
+        details.open = open;
+        document.body.classList.toggle('overflow-hidden', open);
+      };
+
+      details.addEventListener('toggle', () => {
+        if (!(details instanceof HTMLDetailsElement)) return;
+        setOpen(details.open);
+      });
+
+      backdrop?.addEventListener('click', () => setOpen(false));
+
+      links.forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && details instanceof HTMLDetailsElement && details.open) {
+          setOpen(false);
+        }
+      });
+    });
+  }
+
+  initMobileNav();
+  document.addEventListener('astro:page-load', initMobileNav);
+</script>
+
+<style>
+  .mobile-nav > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav:not([open]) .mobile-nav-panel,
+  .mobile-nav:not([open]) .mobile-nav-backdrop {
+    display: none;
+  }
+
+  .mobile-nav[open] .mobile-nav-backdrop {
+    display: block;
+  }
+
+  .mobile-nav[open] .mobile-nav-toggle {
+    background-color: rgb(255 255 255 / 0.15);
+  }
+</style>

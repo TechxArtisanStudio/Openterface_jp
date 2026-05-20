@@ -76,42 +76,41 @@ const carouselId = 'home-carousel';
         ))
       }
 
-      <!-- Progress tracks: dedicated row guarantees horizontal alignment -->
-      <div class="carousel-progress-nav mt-8">
-        <div class="progress-tracks grid grid-cols-2 gap-3 md:grid-cols-4">
-          {
-            slides.map((slide, index) => (
-              <div
-                class="progress-track h-2 overflow-hidden rounded-full bg-gray-200"
-                data-track-index={index}
-                aria-hidden="true"
-              >
-                <div
-                  class:list={[
-                    'progress-fill h-full rounded-full transition-all duration-300',
-                    index === 0 ? 'w-full progress-fill-active' : 'w-0',
-                  ]}
-                />
-              </div>
-            ))
-          }
-        </div>
-        <div class="progress-labels mt-4 grid grid-cols-2 gap-3 md:grid-cols-4">
+      <!-- Progress nav: each item stacks bar + label (legacy layout) -->
+      <div class="carousel-progress-nav mt-8 md:mt-10">
+        <div class="progress-grid grid grid-cols-2 gap-x-4 gap-y-5 sm:gap-x-5 md:grid-cols-4 md:gap-6">
           {
             slides.map((slide, index) => (
               <button
                 type="button"
-                class="carousel-progress group text-left"
+                class:list={[
+                  'carousel-progress group flex flex-col gap-2 text-left',
+                  index === 0 ? 'is-active' : '',
+                ]}
                 data-target={slide.id}
                 data-index={index}
                 aria-label={`Go to slide ${slide.id}: ${slide.category}`}
+                aria-current={index === 0 ? 'true' : 'false'}
               >
-                <p class="text-xs font-bold uppercase tracking-wide text-primary-dark/80 group-hover:text-primary-dark">
-                  {slide.progressSmall}
-                </p>
-                <p class="mt-1 hidden min-h-[2.5rem] text-sm font-semibold leading-snug text-ink/85 md:block">
-                  {slide.progressLarge}
-                </p>
+                <div
+                  class="progress-track h-1.5 w-full overflow-hidden rounded-full bg-gray-200 md:h-2"
+                  aria-hidden="true"
+                >
+                  <div
+                    class:list={[
+                      'progress-fill h-full rounded-full transition-all duration-300',
+                      index === 0 ? 'w-full progress-fill-active' : 'w-0',
+                    ]}
+                  />
+                </div>
+                <div>
+                  <p class="progress-label-small text-[0.65rem] font-bold uppercase leading-tight tracking-wide text-primary-dark/75 group-hover:text-primary-dark sm:text-xs">
+                    {slide.progressSmall}
+                  </p>
+                  <p class="mt-0.5 hidden text-sm font-semibold leading-snug text-ink/85 md:block md:min-h-[2.5rem]">
+                    {slide.progressLarge}
+                  </p>
+                </div>
               </button>
             ))
           }
@@ -154,6 +153,10 @@ const carouselId = 'home-carousel';
         fill.classList.toggle('w-0', i !== index);
         fill.classList.toggle('progress-fill-active', i === index);
       });
+      progressBtns.forEach((btn, i) => {
+        btn.classList.toggle('is-active', i === index);
+        btn.setAttribute('aria-current', i === index ? 'true' : 'false');
+      });
     }
 
     function next() {
@@ -195,6 +198,11 @@ const carouselId = 'home-carousel';
     background: transparent;
     cursor: pointer;
     appearance: none;
+  }
+  .carousel-progress.is-active .progress-label-small,
+  .carousel-progress.is-active p:first-of-type {
+    color: var(--color-primary-dark);
+    opacity: 1;
   }
   @media (min-width: 768px) {
     .carousel-content {
