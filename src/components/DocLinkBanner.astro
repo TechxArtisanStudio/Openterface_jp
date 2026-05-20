@@ -9,9 +9,14 @@ const { message = 'Full documentation for this section lives on our docs site wh
 import { siteConfig } from '../config/site';
 ---
 
-<div class="border-y border-brand-light bg-brand-light px-4 py-3 text-center text-sm text-ink" role="status">
-  <span>{message}</span>
-  <a href={siteConfig.legacyUrl} class="ml-2 font-semibold text-ink underline decoration-primary-dark underline-offset-2 hover:text-primary-dark" target="_blank" rel="noopener">
+<div class="border-y border-brand-light bg-brand-light px-4 py-3 text-center md:py-3.5" role="status">
+  <p class="text-sm leading-relaxed text-ink">{message}</p>
+  <a
+    href={siteConfig.legacyUrl}
+    class="mt-2 inline-block text-sm font-semibold text-ink underline decoration-primary-dark underline-offset-2 hover:text-primary-dark"
+    target="_blank"
+    rel="noopener"
+  >
     Open documentation →
   </a>
 </div>

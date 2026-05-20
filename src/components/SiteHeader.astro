@@ -57,10 +57,15 @@ const externalLinks = mainNav.filter((item) => item.external);
     </nav>
 
     <details class="mobile-nav relative lg:hidden">
-      <summary class="mobile-nav-toggle flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-md border border-white/40 text-white hover:bg-white/10">
-        <span class="sr-only">Open menu</span>
-        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <summary
+        class="mobile-nav-toggle flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-md border border-white/40 text-white hover:bg-white/10"
+        aria-label="Open menu"
+      >
+        <svg class="mobile-nav-icon-open h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+        <svg class="mobile-nav-icon-close hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"></path>
         </svg>
       </summary>
 
@@ -70,32 +75,26 @@ const externalLinks = mainNav.filter((item) => item.external);
         class="mobile-nav-panel fixed inset-x-0 top-14 z-50 border-b border-gray-200 bg-white shadow-lg"
         aria-label="Mobile navigation"
       >
-        <div class="mx-auto max-w-6xl max-h-[min(75vh,36rem)] overflow-y-auto overscroll-contain px-4 py-3">
-          <a href="/" class="mobile-nav-link block rounded-md px-2 py-2.5 text-sm font-semibold text-ink hover:bg-brand-light">
-            Home
-          </a>
+        <div class="mx-auto max-h-[min(75vh,36rem)] max-w-6xl overflow-y-auto overscroll-contain px-3 py-2 sm:px-4 sm:py-3">
+          <a href="/" class="mobile-nav-link mobile-nav-link--home">Home</a>
 
-          <div class="mt-2 border-t border-gray-100 pt-3">
-            <p class="px-2 text-[0.65rem] font-bold uppercase tracking-widest text-muted">Products</p>
-            <div class="mt-1 grid grid-cols-1 sm:grid-cols-2">
+          <div class="mobile-nav-section">
+            <p class="mobile-nav-section-label">Products</p>
+            <div class="mobile-nav-section-links">
               {
                 productLinks.map((child) => (
-                  <a href={child.href} class="mobile-nav-link block rounded-md px-2 py-2.5 text-sm text-ink hover:bg-brand-light">
-                    {child.label}
-                  </a>
+                  <a href={child.href} class="mobile-nav-link">{child.label}</a>
                 ))
               }
             </div>
           </div>
 
-          <div class="mt-2 border-t border-gray-100 pt-3">
-            <p class="px-2 text-[0.65rem] font-bold uppercase tracking-widest text-muted">Explore</p>
-            <div class="mt-1 grid grid-cols-2 sm:grid-cols-3">
+          <div class="mobile-nav-section">
+            <p class="mobile-nav-section-label">Explore</p>
+            <div class="mobile-nav-section-links">
               {
                 primaryLinks.map((item) => (
-                  <a href={item.href} class="mobile-nav-link block rounded-md px-2 py-2.5 text-sm text-ink hover:bg-brand-light">
-                    {item.label}
-                  </a>
+                  <a href={item.href} class="mobile-nav-link">{item.label}</a>
                 ))
               }
             </div>
@@ -103,19 +102,19 @@ const externalLinks = mainNav.filter((item) => item.external);
 
           {
             externalLinks.length > 0 && (
-              <div class="mt-2 border-t border-gray-100 pt-3 pb-1">
-                <p class="px-2 text-[0.65rem] font-bold uppercase tracking-widest text-muted">Documentation</p>
-                <div class="mt-1 grid grid-cols-2">
+              <div class="mobile-nav-section pb-1">
+                <p class="mobile-nav-section-label">Documentation</p>
+                <div class="mobile-nav-section-links">
                   {
                     externalLinks.map((item) => (
                       <a
                         href={item.href}
-                        class="mobile-nav-link block rounded-md px-2 py-2.5 text-sm text-ink hover:bg-brand-light"
+                        class="mobile-nav-link mobile-nav-link--external"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         {item.label}
-                        <span class="ml-1 text-xs text-muted" aria-hidden="true">↗</span>
+                        <span class="ml-1.5 text-xs text-muted" aria-hidden="true">↗</span>
                       </a>
                     ))
                   }
@@ -137,11 +136,14 @@ const externalLinks = mainNav.filter((item) => item.external);
 
       const backdrop = details.querySelector('.mobile-nav-backdrop');
       const links = details.querySelectorAll('.mobile-nav-link');
+      const summary = details.querySelector('summary');
 
       const setOpen = (open) => {
         if (!(details instanceof HTMLDetailsElement)) return;
         details.open = open;
         document.body.classList.toggle('overflow-hidden', open);
+        summary?.setAttribute('aria-expanded', open ? 'true' : 'false');
+        summary?.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       };
 
       details.addEventListener('toggle', () => {
@@ -160,6 +162,8 @@ const externalLinks = mainNav.filter((item) => item.external);
           setOpen(false);
         }
       });
+
+      setOpen(details instanceof HTMLDetailsElement && details.open);
     });
   }
 
@@ -183,5 +187,60 @@ const externalLinks = mainNav.filter((item) => item.external);
 
   .mobile-nav[open] .mobile-nav-toggle {
     background-color: rgb(255 255 255 / 0.15);
+  }
+
+  .mobile-nav[open] .mobile-nav-icon-open {
+    display: none;
+  }
+
+  .mobile-nav[open] .mobile-nav-icon-close {
+    display: block;
+  }
+
+  .mobile-nav-section {
+    margin-top: 0.5rem;
+    border-top: 1px solid #f3f4f6;
+    padding-top: 0.75rem;
+  }
+
+  .mobile-nav-section-label {
+    padding: 0 0.5rem;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-muted) 85%, transparent);
+  }
+
+  .mobile-nav-section-links {
+    margin-top: 0.25rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    min-height: 2.75rem;
+    align-items: center;
+    border-radius: 0.375rem;
+    padding: 0.625rem 0.5rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--color-ink);
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link:focus-visible {
+    background-color: var(--color-brand-light);
+  }
+
+  .mobile-nav-link--home {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .mobile-nav-link--external {
+    color: color-mix(in srgb, var(--color-ink) 88%, var(--color-muted));
   }
 </style>
