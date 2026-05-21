@@ -2,10 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Page Not Found" description="The page you requested could not be found." canonicalPath="/404">
-  <section class="flex min-h-[50vh] flex-col items-center justify-center px-4 py-16 text-center">
+<BaseLayout title="ページが見つかりません" description="お探しのページは見つかりませんでした。" canonicalPath="/404">
+  <section class="flex min-h-[60vh] flex-col items-center justify-center px-4 py-20 text-center">
     <h1 class="text-6xl font-bold text-primary-dark">404</h1>
-    <p class="mt-4 text-xl text-muted">Page not found</p>
-    <a href="/" class="btn btn-primary mt-8">Back to Home</a>
+    <h2 class="mt-4 text-2xl font-semibold text-ink">ページが見つかりません</h2>
+    <p class="mt-4 max-w-md text-muted">
+      お探しのページは、削除されたか、名前が変更されたか、一時的に利用できない可能性があります。
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="/" class="btn btn-primary">
+        トップページに戻る
+      </a>
+      <a href="https://openterface.com" class="btn btn-secondary" target="_blank" rel="noopener">
+        ドキュメントサイトを確認
+      </a>
+    </div>
   </section>
 </BaseLayout>

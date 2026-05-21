@@ -29,7 +29,7 @@ const { product } = Astro.props;
             {product.buyLabel}
           </a>
           <a href={siteConfig.links.appOverview} class="btn btn-secondary" target="_blank" rel="noopener">
-            Download App
+            アプリをダウンロード
           </a>
         </div>
         {
@@ -39,7 +39,7 @@ const { product } = Astro.props;
               <span>{product.funding.date}</span>
               <span>|</span>
               <span>
-                <strong>{product.funding.backers}</strong> Backers
+                <strong>{product.funding.backers}</strong> 人の支援者
               </span>
             </div>
           )
@@ -48,7 +48,7 @@ const { product } = Astro.props;
     </div>
   </section>
 
-  <DocLinkBanner message="Detailed specs, setup guides, and FAQs are on our documentation site while we complete this migration." />
+  <DocLinkBanner message="詳細な仕様、セットアップガイド、FAQは、移行が完了するまでドキュメントサイトにあります。" />
 
   <section class="py-12">
     <div class="mx-auto max-w-6xl px-4">
@@ -58,7 +58,7 @@ const { product } = Astro.props;
 
   <section class="bg-surface py-12">
     <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">The Problem</h2>
+      <h2 class="section-title text-center">課題</h2>
       <ul class="mx-auto mt-6 grid max-w-3xl gap-3">
         {
           product.painPoints.map((point) => (
@@ -74,13 +74,13 @@ const { product } = Astro.props;
 
   <section class="py-12">
     <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">The Solution</h2>
+      <h2 class="section-title text-center">解決策</h2>
       <ul class="mx-auto mt-6 grid max-w-3xl gap-3">
         {
           product.solutions.map((point) => (
             <li class="flex gap-3 rounded-lg border border-primary-dark/20 bg-brand-light/30 p-4">
               <span class="text-primary-dark" aria-hidden="true">✓</span>
-              <span>{point}</span>
+              <span class="font-medium">{point}</span>
             </li>
           ))
         }
@@ -88,107 +88,76 @@ const { product } = Astro.props;
     </div>
   </section>
 
-  <section class="bg-surface py-12">
-    <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">Hardware + Software</h2>
-      <p class="section-subtitle text-center">Openterface products work best with our open-source host apps.</p>
-      <div class="mt-8 grid gap-6 md:grid-cols-2">
-        <div class="card">
-          <h3 class="text-lg font-semibold text-primary-dark">Hardware</h3>
-          <ul class="mt-4 space-y-4">
-            {
-              product.hwFeatures.map((f) => (
-                <li>
-                  <strong>{f.title}</strong>
-                  <p class="mt-1 text-sm text-muted">{f.description}</p>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-        <div class="card">
-          <h3 class="text-lg font-semibold text-primary-dark">Software</h3>
-          <ul class="mt-4 space-y-4">
-            {
-              product.swFeatures.length > 0 ? (
-                product.swFeatures.map((f) => (
-                  <li>
-                    <strong>{f.title}</strong>
-                    <p class="mt-1 text-sm text-muted">{f.description}</p>
-                  </li>
-                ))
-              ) : (
-                <li class="text-muted">See TxA Shop for accessory compatibility details.</li>
-              )
-            }
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
   {
-    product.specs.length > 0 && (
-      <section class="py-12">
+    product.hwFeatures.length > 0 && (
+      <section class="bg-surface py-12 md:py-20">
         <div class="mx-auto max-w-6xl px-4">
-          <h2 class="section-title text-center">Key Specs</h2>
-          <dl class="mx-auto mt-6 grid max-w-2xl gap-4">
-            {product.specs.map((spec) => (
-              <div class="flex justify-between border-b border-gray-200 pb-2">
-                <dt class="font-medium">{spec.label}</dt>
-                <dd class="text-muted">{spec.value}</dd>
+          <h2 class="section-title text-center">ハードウェアの特長</h2>
+          <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {product.hwFeatures.map((feature) => (
+              <div class="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
+                <h3 class="font-bold text-ink">{feature.title}</h3>
+                <p class="mt-2 text-sm text-muted leading-relaxed">{feature.description}</p>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </section>
     )
   }
 
-  <section class="bg-surface py-12">
-    <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">Use Cases</h2>
-      <div class="mt-6 flex flex-wrap justify-center gap-3">
-        {
-          product.useCases.map((uc) => (
-            <span class="rounded-full bg-white px-4 py-2 text-sm font-medium shadow-sm">{uc}</span>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  {
+    product.swFeatures.length > 0 && (
+      <section class="py-12 md:py-20">
+        <div class="mx-auto max-w-6xl px-4">
+          <h2 class="section-title text-center">ソフトウェア＆エコシステム</h2>
+          <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {product.swFeatures.map((feature) => (
+              <div class="rounded-xl border border-gray-100 bg-surface p-6 shadow-sm">
+                <h3 class="font-bold text-ink">{feature.title}</h3>
+                <p class="mt-2 text-sm text-muted leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
-  <section class="py-12">
-    <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">Documentation</h2>
-      <div class="mt-6 flex flex-wrap justify-center gap-3">
+  {
+    product.specs.length > 0 && (
+      <section class="bg-ink py-16 text-white">
+        <div class="mx-auto max-w-4xl px-4">
+          <h2 class="text-center text-3xl font-bold mb-10">テクニカルスペック</h2>
+          <div class="grid gap-px overflow-hidden rounded-lg bg-white/10 sm:grid-cols-2">
+            {product.specs.map((spec) => (
+              <div class="bg-ink p-6">
+                <dt class="text-sm font-medium text-white/60">{spec.label}</dt>
+                <dd class="mt-1 text-lg font-semibold">{spec.value}</dd>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="py-16">
+    <div class="mx-auto max-w-4xl px-4 text-center">
+      <h2 class="section-title">リソース</h2>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
         {
           product.docLinks.map((link) => (
-            <a href={link.href} class="btn btn-secondary" target="_blank" rel="noopener">
-              {link.label} →
+            <a
+              href={link.href}
+              class="btn btn-secondary"
+              target={link.href.startsWith('http') ? '_blank' : undefined}
+              rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+            >
+              {link.label}
             </a>
           ))
         }
-      </div>
-    </div>
-  </section>
-
-  <section class="bg-primary-dark py-12 text-white">
-    <div class="mx-auto max-w-6xl px-4 text-center">
-      <h2 class="text-2xl font-bold">Ready to get started?</h2>
-      <p class="mt-2 opacity-90">Order hardware and download the Openterface app for your platform.</p>
-      <div class="mt-6 flex flex-wrap justify-center gap-3">
-        <a
-          href={product.buyHref}
-          class="btn bg-white text-primary-dark hover:bg-gray-100"
-          target={product.buyHref.startsWith('http') ? '_blank' : undefined}
-          rel={product.buyHref.startsWith('http') ? 'noopener noreferrer' : undefined}
-        >
-          {product.buyLabel}
-        </a>
-        <a href={siteConfig.links.appOverview} class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">
-          Download App
-        </a>
       </div>
     </div>
   </section>

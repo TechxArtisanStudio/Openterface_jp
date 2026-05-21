@@ -3,7 +3,7 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://en.openterface.com',
+  site: 'https://jp.openterface.com',
   trailingSlash: 'always',
   vite: {
     plugins: [tailwindcss()],
