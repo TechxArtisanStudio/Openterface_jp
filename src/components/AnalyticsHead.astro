@@ -12,6 +12,7 @@ const { storageKey } = consent;
   function gtag() {
     dataLayer.push(arguments);
   }
+  window.gtag = gtag;
 
   gtag('consent', 'default', {
     analytics_storage: 'denied',
@@ -53,6 +54,12 @@ const { storageKey } = consent;
     },
   };
 
+  gtag('js', new Date());
+  gtag('config', measurementId, {
+    send_page_view: false,
+    linker: { domains: linkerDomains },
+  });
+
   const storedConsent = localStorage.getItem(storageKey);
   if (storedConsent === 'granted') {
     window.__openterfaceAnalytics.grant();
@@ -60,10 +67,3 @@ const { storageKey } = consent;
 </script>
 
 <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
-<script is:inline define:vars={{ measurementId, linkerDomains }}>
-  gtag('js', new Date());
-  gtag('config', measurementId, {
-    send_page_view: false,
-    linker: { domains: linkerDomains },
-  });
-</script>
