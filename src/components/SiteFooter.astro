@@ -35,6 +35,12 @@ import Logo from './Logo.astro';
         <a href={siteConfig.legacyUrl + '/policy/privacy/'} class="hover:text-primary-dark" target="_blank" rel="noopener">プライバシーポリシー</a>
         ·
         <a href={siteConfig.legacyUrl + '/policy/terms-of-service/'} class="hover:text-primary-dark" target="_blank" rel="noopener">利用規約</a>
+        {siteConfig.analytics.enabled && (
+          <>
+            ·
+            <a href="#" id="cookie-settings" class="hover:text-primary-dark">{siteConfig.analytics.consent.cookieLabel}</a>
+          </>
+        )}
       </p>
     </div>
   </div>

@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import AnalyticsHead from '../components/AnalyticsHead.astro';
+import CookieConsent from '../components/CookieConsent.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { siteConfig } from '../config/site';
@@ -51,6 +53,7 @@ const canonical = new URL(canonicalPath, siteConfig.url).href;
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    {siteConfig.analytics.enabled && <AnalyticsHead />}
   </head>
   <body class="flex min-h-screen flex-col">
     <SiteHeader />
@@ -58,5 +61,6 @@ const canonical = new URL(canonicalPath, siteConfig.url).href;
       <slot />
     </main>
     <SiteFooter />
+    {siteConfig.analytics.enabled && <CookieConsent />}
   </body>
 </html>
