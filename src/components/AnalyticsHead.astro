@@ -1,0 +1,69 @@
+---
+import { siteConfig } from '../config/site';
+
+const { google, ahrefs, consent } = siteConfig.analytics;
+const { measurementId, linkerDomains } = google;
+const { dataKey: ahrefsKey } = ahrefs;
+const { storageKey } = consent;
+---
+
+<script is:inline define:vars={{ measurementId, ahrefsKey, linkerDomains, storageKey }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500,
+  });
+
+  let pageViewSent = false;
+
+  function loadAhrefs() {
+    if (document.getElementById('ahrefs-analytics')) return;
+    const script = document.createElement('script');
+    script.id = 'ahrefs-analytics';
+    script.src = 'https://analytics.ahrefs.com/analytics.js';
+    script.dataset.key = ahrefsKey;
+    script.async = true;
+    document.head.appendChild(script);
+  }
+
+  window.__openterfaceAnalytics = {
+    grant() {
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+      if (!pageViewSent) {
+        gtag('config', measurementId, { send_page_view: true });
+        pageViewSent = true;
+      }
+      loadAhrefs();
+    },
+    deny() {
+      gtag('consent', 'update', { analytics_storage: 'denied' });
+    },
+    showBanner() {
+      const banner = document.getElementById('cookie-consent-banner');
+      if (!banner) return;
+      banner.hidden = false;
+      banner.setAttribute('aria-hidden', 'false');
+    },
+  };
+
+  const storedConsent = localStorage.getItem(storageKey);
+  if (storedConsent === 'granted') {
+    window.__openterfaceAnalytics.grant();
+  }
+</script>
+
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+<script is:inline define:vars={{ measurementId, linkerDomains }}>
+  gtag('js', new Date());
+  gtag('config', measurementId, {
+    send_page_view: false,
+    linker: { domains: linkerDomains },
+  });
+</script>
