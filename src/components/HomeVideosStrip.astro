@@ -1,0 +1,195 @@
+---
+import { homeVideos } from '../data/homeVideos';
+
+interface Props {
+  heading?: string;
+  videosLink?: string;
+}
+
+const {
+  heading = 'コミュニティのレビュー・デモ動画',
+  videosLink = '/videos/',
+} = Astro.props;
+
+if (homeVideos.length === 0) {
+  return null;
+}
+
+const uniqueCount = homeVideos.length / 2;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: heading,
+  numberOfItems: uniqueCount,
+  itemListElement: homeVideos.slice(0, uniqueCount).map((video, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'VideoObject',
+      name: video.title,
+      url: video.url,
+      thumbnailUrl: video.thumbnail,
+      uploadDate: video.date || undefined,
+      author: { '@type': 'Person', name: video.author },
+    },
+  })),
+};
+---
+
+<section
+  class="home-videos-strip relative overflow-hidden bg-surface py-7 md:py-9"
+  aria-label="YouTube のコミュニティ動画"
+>
+  <div class="mx-auto mb-5 flex max-w-6xl items-end justify-between gap-4 px-4">
+    <div>
+      <p class="text-xs font-bold uppercase tracking-widest text-primary-dark">YouTube</p>
+      <h2 class="mt-1 text-lg font-bold text-ink md:text-xl">{heading}</h2>
+    </div>
+    <a
+      href={videosLink}
+      class="shrink-0 text-sm font-semibold text-primary-dark underline-offset-2 hover:text-primary hover:underline"
+    >
+      すべての動画 →
+    </a>
+  </div>
+
+  <div class="home-videos-strip__fade relative">
+    <div class="home-videos-strip__viewport overflow-hidden">
+      <div class="home-videos-strip__track flex gap-4 px-4 md:gap-5 md:px-6" id="home-videos-track">
+        {
+          homeVideos.map((video, index) => (
+            <article class="home-videos-strip__card group w-[200px] shrink-0 sm:w-[228px] md:w-[248px]">
+              <a
+                href={video.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block"
+              >
+                <div class="relative aspect-video overflow-hidden rounded-xl bg-gray-200 shadow-sm ring-1 ring-black/5 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md group-hover:ring-primary-dark/30">
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    width={320}
+                    height={180}
+                    class="h-full w-full object-cover"
+                    loading={index < 4 ? 'eager' : 'lazy'}
+                    decoding="async"
+                  />
+                  <span
+                    class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition group-hover:bg-black/15"
+                    aria-hidden="true"
+                  >
+                    <span
+                      class="flex h-10 w-10 scale-90 items-center justify-center rounded-full bg-black/65 text-white opacity-0 shadow-lg transition group-hover:scale-100 group-hover:opacity-100"
+                    >
+                      <svg class="ml-0.5 h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </span>
+                  </span>
+                </div>
+                <div class="mt-2.5">
+                  <h3 class="line-clamp-2 text-sm font-semibold leading-snug text-ink group-hover:text-primary-dark">
+                    {video.title}
+                  </h3>
+                  <div class="mt-1.5 flex items-center gap-2">
+                    {
+                      video.channelAvatar ? (
+                        <img
+                          src={video.channelAvatar}
+                          alt=""
+                          width={20}
+                          height={20}
+                          class="h-5 w-5 shrink-0 rounded-full bg-gray-100 object-cover ring-1 ring-gray-200/80"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      ) : null
+                    }
+                    <span class="min-w-0 truncate text-xs text-muted">{video.author}</span>
+                  </div>
+                  <p class="mt-1 text-xs text-muted/90">
+                    {video.viewsFormatted} 回視聴
+                    {video.date ? ` · ${video.date}` : ''}
+                  </p>
+                </div>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</section>
+
+<style>
+  .home-videos-strip__fade::before,
+  .home-videos-strip__fade::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2.5rem;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .home-videos-strip__fade::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-surface, #fafafa), transparent);
+  }
+
+  .home-videos-strip__fade::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-surface, #fafafa), transparent);
+  }
+
+  .home-videos-strip__track {
+    width: max-content;
+    animation: home-videos-scroll 50s linear infinite;
+    will-change: transform;
+  }
+
+  .home-videos-strip__viewport:hover .home-videos-strip__track,
+  .home-videos-strip__track:focus-within {
+    animation-play-state: paused;
+  }
+
+  @keyframes home-videos-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-videos-strip__track {
+      animation: none;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.5rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .home-videos-strip__card {
+      scroll-snap-align: start;
+    }
+
+    .home-videos-strip__fade::before,
+    .home-videos-strip__fade::after {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const track = document.getElementById('home-videos-track');
+  if (track && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    track.style.animation = 'none';
+  }
+</script>
