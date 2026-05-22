@@ -78,13 +78,10 @@ test('accepting cookies enables GA4 page view tracking', async ({ page }) => {
             e?.[1] === 'update' &&
             e?.[2]?.analytics_storage === 'granted',
         );
-        const pageViewConfig = dl.some(
-          (e: { 0?: string; 1?: string; 2?: { send_page_view?: boolean } }) =>
-            e?.[0] === 'config' &&
-            e?.[1] === measurementId &&
-            e?.[2]?.send_page_view === true,
+        const pageViewEvent = dl.some(
+          (e: { 0?: string; 1?: string }) => e?.[0] === 'event' && e?.[1] === 'page_view',
         );
-        return consentGranted && pageViewConfig;
+        return consentGranted && pageViewEvent;
       }, MEASUREMENT_ID),
     )
     .toBe(true);
