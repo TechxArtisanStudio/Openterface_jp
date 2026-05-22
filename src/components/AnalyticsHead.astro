@@ -38,7 +38,7 @@ const { storageKey } = consent;
     grant() {
       gtag('consent', 'update', { analytics_storage: 'granted' });
       if (!pageViewSent) {
-        gtag('config', measurementId, { send_page_view: true });
+        gtag('event', 'page_view');
         pageViewSent = true;
       }
       loadAhrefs();
