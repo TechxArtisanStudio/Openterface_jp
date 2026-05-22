@@ -7,7 +7,9 @@ test('home page has no critical a11y violations', async ({ page }) => {
   const results = await new AxeBuilder({ page })
     .exclude('header')
     .exclude('.btn')
-    .exclude('.carousel-content')
+    .exclude('.carousel-copy-heading')
+    .exclude('.carousel-copy-description')
+    .exclude('.carousel-copy-actions')
     .exclude('.carousel-progress-nav')
     .analyze();
   const critical = results.violations.filter((v) => v.impact === 'critical' || v.impact === 'serious');
