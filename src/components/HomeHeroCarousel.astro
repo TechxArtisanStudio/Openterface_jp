@@ -15,16 +15,36 @@ const carouselId = 'home-carousel';
       {
         slides.map((slide, index) => (
           <div
-            class:list={['carousel-slide grid items-center gap-5 md:grid-cols-2 md:gap-8', index === 0 ? 'active' : 'hidden']}
+            class:list={[
+              'carousel-slide flex flex-col items-center gap-5 md:grid md:grid-cols-2 md:gap-8',
+              index === 0 ? 'active' : 'hidden',
+            ]}
             data-slide-index={slide.id}
           >
-            <div class="carousel-content">
+            <div class="carousel-copy carousel-copy-heading w-full md:col-start-1 md:row-start-1 md:self-center">
               <p class="text-xs font-bold uppercase tracking-widest text-primary-dark">{slide.category}</p>
               <h1 class="mt-2 text-2xl font-bold leading-tight text-ink sm:text-3xl md:text-4xl lg:text-[2.5rem] lg:leading-none">
                 {slide.headline}
               </h1>
-              <p class="mt-3 text-base leading-relaxed text-muted md:mt-4 md:text-lg">{slide.description}</p>
-              <div class="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-3 md:mt-6">
+            </div>
+
+            <div class="carousel-image-wrap my-2 flex w-full justify-center md:col-start-2 md:row-span-3 md:row-start-1 md:my-0 md:self-center">
+              <img
+                src={slide.image}
+                alt={slide.imageAlt}
+                class="carousel-image max-h-64 w-full rounded-xl object-contain sm:max-h-72 md:max-h-[420px]"
+                data-images={JSON.stringify(slide.images ?? [slide.image])}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                fetchpriority={index === 0 ? 'high' : 'auto'}
+              />
+            </div>
+
+            <p class="carousel-copy-description mt-3 w-full text-base leading-relaxed text-muted md:col-start-1 md:row-start-2 md:mt-4 md:text-lg">
+              {slide.description}
+            </p>
+
+            <div class="carousel-copy carousel-copy-actions w-full md:col-start-1 md:row-start-3">
+              <div class="flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-3 md:mt-6">
                 {
                   slide.primaryCta && (
                     <a
@@ -64,8 +84,11 @@ const carouselId = 'home-carousel';
               }
             </div>
 
-            <!-- Mobile progress: sits between copy and product image -->
-            <div class="carousel-progress-nav carousel-progress-nav--inline md:hidden" aria-hidden={index !== 0 ? 'true' : undefined}>
+            <!-- Mobile progress: below CTAs on mobile -->
+            <div
+              class="carousel-progress-nav carousel-progress-nav--inline w-full md:hidden"
+              aria-hidden={index !== 0 ? 'true' : undefined}
+            >
               <div class="progress-grid grid grid-cols-2 gap-x-3 gap-y-4">
                 {
                   slides.map((progressSlide, progressIndex) => (
@@ -77,8 +100,8 @@ const carouselId = 'home-carousel';
                       ]}
                       data-target={progressSlide.id}
                       data-index={progressIndex}
-                aria-label={`スライド ${progressSlide.id} に移動: ${progressSlide.category}`}
-                {...(progressIndex === index ? { 'aria-current': 'true' } : {})}
+                      aria-label={`スライド ${progressSlide.id}: ${progressSlide.category}`}
+                      {...(progressIndex === index ? { 'aria-current': 'true' } : {})}
                     >
                       <div class="progress-track h-2 w-full overflow-hidden rounded-full bg-gray-200" aria-hidden="true">
                         <div
@@ -100,17 +123,6 @@ const carouselId = 'home-carousel';
                   ))
                 }
               </div>
-            </div>
-
-            <div class="flex justify-center">
-              <img
-                src={slide.image}
-                alt={slide.imageAlt}
-                class="carousel-image max-h-64 w-full rounded-xl object-contain sm:max-h-72 md:max-h-[420px]"
-                data-images={JSON.stringify(slide.images ?? [slide.image])}
-                loading={index === 0 ? 'eager' : 'lazy'}
-                fetchpriority={index === 0 ? 'high' : 'auto'}
-              />
             </div>
           </div>
         ))
@@ -234,7 +246,12 @@ const carouselId = 'home-carousel';
     display: none;
   }
   .carousel-slide.active {
-    display: grid;
+    display: flex;
+  }
+  @media (min-width: 768px) {
+    .carousel-slide.active {
+      display: grid;
+    }
   }
   .carousel-progress {
     padding: 0;
@@ -251,7 +268,7 @@ const carouselId = 'home-carousel';
     color: color-mix(in srgb, var(--color-ink) 92%, transparent);
   }
   @media (min-width: 768px) {
-    .carousel-content {
+    .carousel-copy {
       animation: slideInLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
