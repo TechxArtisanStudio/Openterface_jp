@@ -2,35 +2,39 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DocLinkBanner from '../components/DocLinkBanner.astro';
 import { legacyPath } from '../config/site';
+import { pageOgImages } from '../lib/seo';
 ---
 
 <BaseLayout
-  title="活用事例"
-  description="Openterface KVM-over-USB 製品の実際の活用事例。"
+  title="Use Cases"
+  description="Real-world use cases for Openterface KVM-over-USB products."
+  ogImage={pageOgImages.useCases}
+  ogImageAlt="Openterface Mini-KVM used for headless server and homelab management"
   canonicalPath="/use-cases/"
 >
   <DocLinkBanner />
   <section class="py-16">
     <div class="mx-auto max-w-3xl px-4">
-      <h1 class="text-4xl font-bold">活用事例</h1>
+      <h1 class="text-4xl font-bold">Use Cases</h1>
       <p class="mt-4 text-lg text-muted">
-        Openterfaceツールは、専用のモニターやキーボードなしでヘッドレスまたはアクセスしにくいコンピュータを制御する必要があるときに真価を発揮します。
+        Openterface tools shine whenever you need to control a headless or hard-to-reach computer without a dedicated
+        monitor and keyboard.
       </p>
       <ul class="mt-8 space-y-4">
         {
           [
-            'データセンターやコロケーションの巡回',
-            'ホームラボやNASの管理',
-            '組込みデバイスやSBCの立ち上げ',
-            'キオスク端末やデジタルサイネージのメンテナンス',
-            '現場ITおよびコンサルティング業務',
+            'Data center and colocation walk-throughs',
+            'Homelab and NAS administration',
+            'Embedded device and SBC bring-up',
+            'Kiosk and digital signage maintenance',
+            'Field IT and consulting engagements',
           ].map((item) => (
             <li class="card">{item}</li>
           ))
         }
       </ul>
       <a href={legacyPath('/use-cases/')} class="btn btn-secondary mt-8" target="_blank" rel="noopener">
-        すべての活用事例ギャラリーを表示 →
+        View full use cases gallery →
       </a>
     </div>
   </section>
