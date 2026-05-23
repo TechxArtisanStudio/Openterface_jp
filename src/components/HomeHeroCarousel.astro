@@ -52,6 +52,9 @@ const carouselId = 'home-carousel';
                       class="btn btn-primary w-full sm:w-auto"
                       target={slide.primaryCta.external ? '_blank' : undefined}
                       rel={slide.primaryCta.external ? 'noopener noreferrer' : undefined}
+                      data-analytics-event={slide.primaryCta.analyticsEvent}
+                      data-analytics-product={slide.primaryCta.analyticsProduct}
+                      data-analytics-placement="home_carousel"
                     >
                       {slide.primaryCta.label}
                     </a>

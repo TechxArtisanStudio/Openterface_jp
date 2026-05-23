@@ -1,0 +1,19 @@
+---
+import { siteConfig } from '../config/site';
+
+const siteLocale = siteConfig.locale;
+const storageKey = siteConfig.analytics.consent.storageKey;
+---
+
+<script is:inline define:vars={{ siteLocale, storageKey }}>
+  window.__openterfaceAnalyticsConfig = { siteLocale, storageKey };
+</script>
+
+<script>
+  import { initAnalyticsEvents } from '../lib/analytics';
+
+  const config = window.__openterfaceAnalyticsConfig;
+  if (config) {
+    initAnalyticsEvents(config.siteLocale, config.storageKey);
+  }
+</script>
