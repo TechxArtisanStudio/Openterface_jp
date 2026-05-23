@@ -16,6 +16,14 @@ export const OG_LOCALE_MAP: Record<string, string> = {
 
 export const TWITTER_SITE = '@TechxArtisan';
 
+/** Known share-image dimensions (probed from CDN assets). */
+export const OG_IMAGE_SIZES: Record<string, { width: number; height: number }> = {
+  'https://assets.openterface.com/images/cover/kvm-go-triple.webp': { width: 1280, height: 960 },
+  'https://assets.openterface.com/images/cover/mini-kvm-toolkit.webp': { width: 900, height: 674 },
+  'https://assets.openterface.com/images/cover.webp': { width: 1280, height: 960 },
+  'https://assets2.openterface.com/images/keymod/2in1.webp': { width: 1080, height: 1080 },
+};
+
 /** Avoid duplicate brand suffix when title already includes site name (e.g. home SEO titles). */
 export function buildPageTitle(title: string, siteName: string): string {
   if (title === siteName || title.includes(siteName)) return title;
@@ -30,6 +38,12 @@ export function getOgLocaleAlternates(currentLocale: string): string[] {
   return Object.keys(localeHosts)
     .filter((lang) => lang !== currentLocale)
     .map((lang) => getOgLocale(lang));
+}
+
+export function getOgImageDimensions(
+  url: string,
+): { width: number; height: number } | undefined {
+  return OG_IMAGE_SIZES[url];
 }
 
 /** Per-route share images for pages without product-specific art. */

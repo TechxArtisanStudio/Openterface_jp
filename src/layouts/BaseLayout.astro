@@ -7,7 +7,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { siteConfig } from '../config/site';
 import { getHreflangAlternates, getXDefaultUrl } from '../data/hreflang-manifest';
-import { buildPageTitle, getOgLocale, getOgLocaleAlternates, TWITTER_SITE } from '../lib/seo';
+import { buildPageTitle, getOgImageDimensions, getOgLocale, getOgLocaleAlternates, TWITTER_SITE } from '../lib/seo';
 
 interface Props {
   title?: string;
@@ -38,6 +38,7 @@ const xDefaultHref = getXDefaultUrl(canonicalPath);
 const ogLocale = getOgLocale(siteConfig.locale);
 const ogLocaleAlternates = hreflangAlternates.length > 0 ? getOgLocaleAlternates(siteConfig.locale) : [];
 const resolvedOgImageAlt = ogImageAlt ?? description;
+const ogImageDimensions = getOgImageDimensions(ogImage);
 ---
 
 <!doctype html>
@@ -48,6 +49,7 @@ const resolvedOgImageAlt = ogImageAlt ?? description;
     <meta name="author" content="Openterface" />
     <link rel="icon" type="image/png" href="/images/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -67,6 +69,12 @@ const resolvedOgImageAlt = ogImageAlt ?? description;
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:alt" content={resolvedOgImageAlt} />
+    {ogImageDimensions && (
+      <>
+        <meta property="og:image:width" content={String(ogImageDimensions.width)} />
+        <meta property="og:image:height" content={String(ogImageDimensions.height)} />
+      </>
+    )}
     <meta property="og:locale" content={ogLocale} />
     {ogLocaleAlternates.map((locale) => (
       <meta property="og:locale:alternate" content={locale} />

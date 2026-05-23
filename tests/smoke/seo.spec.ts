@@ -2,6 +2,21 @@ import { test, expect } from '@playwright/test';
 
 const SITE_HOST = process.env.SITE_HOST || 'jp.openterface.com';
 
+const OG_LOCALE_BY_HOST: Record<string, string> = {
+  'en.openterface.com': 'en_US',
+  'de.openterface.com': 'de_DE',
+  'es.openterface.com': 'es_ES',
+  'fr.openterface.com': 'fr_FR',
+  'it.openterface.com': 'it_IT',
+  'jp.openterface.com': 'ja_JP',
+  'ko.openterface.com': 'ko_KR',
+  'pt.openterface.com': 'pt_PT',
+  'ro.openterface.com': 'ro_RO',
+  'zh.openterface.com': 'zh_CN',
+};
+
+const EXPECTED_OG_LOCALE = OG_LOCALE_BY_HOST[SITE_HOST] ?? 'en_US';
+
 const EXPECTED_ROUTES = [
   '/',
   '/about/',
@@ -57,7 +72,7 @@ test('home page title does not duplicate brand suffix', async ({ page }) => {
 
 test('home page has Open Graph and Twitter social meta', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'en_US');
+  await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', EXPECTED_OG_LOCALE);
   await expect(page.locator('meta[property="og:locale:alternate"]')).toHaveCount(9);
   await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /.+/);
   await expect(page.locator('meta[name="twitter:site"]')).toHaveAttribute('content', '@TechxArtisan');
@@ -74,4 +89,24 @@ test('product page has Product JSON-LD and og:type product', async ({ page }) =>
   const productLd = jsonLdScripts.find((text) => text.includes('"@type":"Product"'));
   expect(productLd).toBeTruthy();
   expect(productLd).toContain('Openterface KeyMod Series');
+});
+
+test('home page has Organization and WebSite JSON-LD', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  const jsonLdScripts = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const siteLd = jsonLdScripts.find(
+    (text) => text.includes('"@type":"Organization"') && text.includes('"@type":"WebSite"'),
+  );
+  expect(siteLd).toBeTruthy();
+});
+
+test('home page og:image includes width and height', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute('content', '1280');
+  await expect(page.locator('meta[property="og:image:height"]')).toHaveAttribute('content', '960');
+});
+
+test('home page has apple-touch-icon', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
+  await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute('href', '/images/favicon.png');
 });
