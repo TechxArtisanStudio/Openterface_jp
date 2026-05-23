@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductJsonLd from '../../components/ProductJsonLd.astro';
 import ProductLanding from '../../layouts/ProductLanding.astro';
+import { siteConfig } from '../../config/site';
 import { products, productSlugs } from '../../data/products';
 
 export function getStaticPaths() {
@@ -13,6 +15,9 @@ const product = products[slug!];
 if (!product) {
   return Astro.redirect('/404');
 }
+
+const canonicalPath = `/products/${slug}/`;
+const productUrl = new URL(canonicalPath, siteConfig.url).href;
 ---
 
 <BaseLayout
@@ -20,7 +25,10 @@ if (!product) {
   description={product.seoDescription}
   keywords={product.keywords}
   ogImage={product.heroImage}
-  canonicalPath={`/products/${slug}/`}
+  ogImageAlt={`${product.title} — ${product.slogan}`}
+  ogType="product"
+  canonicalPath={canonicalPath}
 >
+  <ProductJsonLd slot="head" product={product} url={productUrl} />
   <ProductLanding product={product} />
 </BaseLayout>

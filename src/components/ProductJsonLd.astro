@@ -1,0 +1,38 @@
+---
+import type { Product } from '../data/products';
+
+interface Props {
+  product: Product;
+  url: string;
+}
+
+const { product, url } = Astro.props;
+
+const sellerName = product.buyHref.includes('crowdsupply.com')
+  ? 'Crowd Supply'
+  : 'TechxArtisan Shop';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.title,
+  description: product.seoDescription,
+  image: product.heroImages.length > 0 ? product.heroImages : product.heroImage,
+  brand: {
+    '@type': 'Brand',
+    name: 'Openterface',
+  },
+  url,
+  offers: {
+    '@type': 'Offer',
+    url: product.buyHref,
+    availability: 'https://schema.org/InStock',
+    seller: {
+      '@type': 'Organization',
+      name: sellerName,
+    },
+  },
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

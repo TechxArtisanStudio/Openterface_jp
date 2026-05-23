@@ -6,13 +6,18 @@ import CookieConsent from '../components/CookieConsent.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { siteConfig } from '../config/site';
+import { getHreflangAlternates, getXDefaultUrl } from '../data/hreflang-manifest';
+import { buildPageTitle, getOgLocale, getOgLocaleAlternates, TWITTER_SITE } from '../lib/seo';
 
 interface Props {
   title?: string;
   description?: string;
   keywords?: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  ogType?: 'website' | 'product';
   canonicalPath?: string;
+  robots?: string;
 }
 
 const {
@@ -20,18 +25,27 @@ const {
   description = siteConfig.description,
   keywords,
   ogImage = siteConfig.ogImage,
+  ogImageAlt,
+  ogType = 'website',
   canonicalPath = Astro.url.pathname,
+  robots = 'index, follow',
 } = Astro.props;
 
-const pageTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
+const pageTitle = buildPageTitle(title, siteConfig.name);
 const canonical = new URL(canonicalPath, siteConfig.url).href;
+const hreflangAlternates = getHreflangAlternates(canonicalPath);
+const xDefaultHref = getXDefaultUrl(canonicalPath);
+const ogLocale = getOgLocale(siteConfig.locale);
+const ogLocaleAlternates = hreflangAlternates.length > 0 ? getOgLocaleAlternates(siteConfig.locale) : [];
+const resolvedOgImageAlt = ogImageAlt ?? description;
 ---
 
 <!doctype html>
-<html lang="jp">
+<html lang={siteConfig.locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Openterface" />
     <link rel="icon" type="image/png" href="/images/favicon.png" />
     <link rel="shortcut icon" type="image/png" href="/images/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,20 +54,32 @@ const canonical = new URL(canonicalPath, siteConfig.url).href;
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     {keywords && <meta name="keywords" content={keywords} />}
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={canonical} />
-    <meta property="og:type" content="website" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+    {hreflangAlternates.map(({ lang, href }) => (
+      <link rel="alternate" hreflang={lang} href={href} />
+    ))}
+    {xDefaultHref && <link rel="alternate" hreflang="x-default" href={xDefaultHref} />}
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={resolvedOgImageAlt} />
+    <meta property="og:locale" content={ogLocale} />
+    {ogLocaleAlternates.map((locale) => (
+      <meta property="og:locale:alternate" content={locale} />
+    ))}
     <meta property="og:site_name" content={siteConfig.name} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={TWITTER_SITE} />
+    <meta name="twitter:url" content={canonical} />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={resolvedOgImageAlt} />
+    <slot name="head" />
     {siteConfig.analytics.enabled && <AnalyticsHead />}
   </head>
   <body class="flex min-h-screen flex-col">
