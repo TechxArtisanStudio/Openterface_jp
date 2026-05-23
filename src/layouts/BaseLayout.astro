@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import AnalyticsHead from '../components/AnalyticsHead.astro';
+import AnalyticsEvents from '../components/AnalyticsEvents.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -62,5 +63,6 @@ const canonical = new URL(canonicalPath, siteConfig.url).href;
     </main>
     <SiteFooter />
     {siteConfig.analytics.enabled && <CookieConsent />}
+    {siteConfig.analytics.enabled && <AnalyticsEvents />}
   </body>
 </html>

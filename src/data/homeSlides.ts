@@ -8,7 +8,13 @@ export interface HomeSlide {
   image: string;
   imageAlt: string;
   images?: string[];
-  primaryCta?: { label: string; href: string; external?: boolean };
+  primaryCta?: {
+    label: string;
+    href: string;
+    external?: boolean;
+    analyticsEvent?: string;
+    analyticsProduct?: string;
+  };
   secondaryCta?: { label: string; href: string; external?: boolean };
   funding?: { amount: string; date: string; backers: string };
   progressSmall: string;
@@ -29,7 +35,7 @@ export const homeSlides: HomeSlide[] = [
       'https://assets2.openterface.com/images/keymod/keymod.webp',
       'https://assets2.openterface.com/images/keymod/feature.webp',
     ],
-    primaryCta: { label: '今すぐ支援', href: siteConfig.links.keymodCrowdsupply, external: true },
+    primaryCta: { label: '今すぐ支援', href: siteConfig.links.keymodCrowdsupply, external: true, analyticsEvent: 'crowdsupply_click', analyticsProduct: 'keymod' },
     secondaryCta: { label: '製品を見る', href: '/products/keymod/' },
     progressSmall: 'KeyMod シリーズ',
     progressLarge: 'スマートフォンをミニキーボードに',
@@ -46,7 +52,7 @@ export const homeSlides: HomeSlide[] = [
       'https://assets.openterface.com/images/cover/kvm-go-triple.webp',
       'https://assets.openterface.com/images/cover/kvm-go-triple-2.webp',
     ],
-    primaryCta: { label: '今すぐ予約', href: siteConfig.links.kvmgoPurchase, external: true },
+    primaryCta: { label: '今すぐ予約', href: siteConfig.links.kvmgoPurchase, external: true, analyticsEvent: 'crowdsupply_click', analyticsProduct: 'kvm-go' },
     secondaryCta: { label: '製品を見る', href: '/products/kvm-go/' },
     funding: { amount: '$101,548', date: '2025年12月30日に資金調達完了', backers: '478' },
     progressSmall: 'KVM-GO シリーズ',
@@ -64,7 +70,7 @@ export const homeSlides: HomeSlide[] = [
       'https://assets.openterface.com/images/cover/mini-kvm-toolkit.webp',
       'https://assets.openterface.com/images/cover/mini-kvm.webp',
     ],
-    primaryCta: { label: '今すぐ注文', href: siteConfig.links.minikvmPurchase, external: true },
+    primaryCta: { label: '今すぐ注文', href: siteConfig.links.minikvmPurchase, external: true, analyticsEvent: 'crowdsupply_click', analyticsProduct: 'minikvm' },
     secondaryCta: { label: '製品を見る', href: '/products/minikvm/' },
     funding: { amount: '$505,471', date: '2024年6月13日に資金調達完了', backers: '3,775' },
     progressSmall: 'Mini-KVM シリーズ',
@@ -78,7 +84,7 @@ export const homeSlides: HomeSlide[] = [
       'ビデオアダプタ、高速ケーブル、ストレージソリューションなどの必須アクセサリを探索。プロフェッショナル向けに設計された高品質なアクセサリでOpenterfaceの体験を向上させましょう。',
     image: 'https://assets.openterface.com/images/cover.webp',
     imageAlt: 'TxA ショップ アクセサリー',
-    primaryCta: { label: '今すぐ購入', href: siteConfig.links.shop, external: true },
+    primaryCta: { label: '今すぐ購入', href: siteConfig.links.shop, external: true, analyticsEvent: 'shop_click', analyticsProduct: 'accessories' },
     secondaryCta: { label: 'アクセサリーを見る', href: '/products/accessories/' },
     progressSmall: 'TxA ショップ',
     progressLarge: 'プレミアムなアクセサリーでセットアップを完璧に',
