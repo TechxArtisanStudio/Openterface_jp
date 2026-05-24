@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DocLinkBanner from '../../components/DocLinkBanner.astro';
-import { legacyPath } from '../../config/site';
+import { docsPath } from '../../config/site';
 ---
 
 <BaseLayout
@@ -19,13 +19,13 @@ import { legacyPath } from '../../config/site';
         クラウドファンディングで成功を収めたMini-KVMから、キーホルダーサイズのKVM-GO、プログラマブルなKeyModシリーズまで、私たちの使命は、かさばる機材や複雑なネットワークなしでヘッドレスコンピュータの制御を簡素化することです。
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href={legacyPath('/about/about-us/')} class="btn btn-secondary" target="_blank" rel="noopener">
+        <a href={docsPath('/about/about-us/')} class="btn btn-secondary" target="_blank" rel="noopener">
           会社概要の全文 →
         </a>
-        <a href={legacyPath('/about/compliance/')} class="btn btn-secondary" target="_blank" rel="noopener">
+        <a href={docsPath('/about/compliance/')} class="btn btn-secondary" target="_blank" rel="noopener">
           コンプライアンス →
         </a>
-        <a href={legacyPath('/about/community/')} class="btn btn-secondary" target="_blank" rel="noopener">
+        <a href={docsPath('/about/community/')} class="btn btn-secondary" target="_blank" rel="noopener">
           コミュニティ →
         </a>
       </div>

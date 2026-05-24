@@ -3,20 +3,21 @@ interface Props {
   message?: string;
 }
 
-const { message = 'コンテンツの移行中、このセクションの完全なドキュメントはドキュメントサイトにあります。' } =
-  Astro.props;
+const {
+  message = 'Product guides, FAQs, tutorials, and app downloads live on docs.openterface.com.',
+} = Astro.props;
 
-import { siteConfig } from '../config/site';
+import { docsPath } from '../config/site';
 ---
 
 <div class="border-y border-brand-light bg-brand-light px-4 py-3 text-center md:py-3.5" role="status">
   <p class="text-sm leading-relaxed text-ink">{message}</p>
   <a
-    href={siteConfig.legacyUrl}
+    href={docsPath()}
     class="mt-2 inline-block text-sm font-semibold text-ink underline decoration-primary-dark underline-offset-2 hover:text-primary-dark"
     target="_blank"
     rel="noopener"
   >
-    ドキュメントを開く →
+    Open documentation ↗
   </a>
 </div>
