@@ -1,23 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import DocLinkBanner from '../components/DocLinkBanner.astro';
+import VideoCatalog from '../components/VideoCatalog.astro';
+import { siteConfig } from '../config/site';
+import { getVideosStrings } from '../i18n/videos';
 import { pageOgImages } from '../lib/seo';
+
+const strings = getVideosStrings(siteConfig.locale);
 ---
 
 <BaseLayout
-  title="Videos"
-  description="Openterface product demos, tutorials, and reviews on YouTube."
+  title={strings.title}
+  description={strings.subtitle}
   ogImage={pageOgImages.videos}
   ogImageAlt="Openterface KVM product demos and community reviews on YouTube"
   canonicalPath="/videos/"
 >
-  <DocLinkBanner message="Browse product demos and setup guides on our YouTube channel — linked from each product page." />
-  <section class="py-16">
-    <div class="mx-auto max-w-3xl px-4 text-center">
-      <h1 class="text-4xl font-bold">Videos</h1>
-      <p class="mt-4 text-lg text-muted">
-        Watch product demos, setup guides, and community reviews for Openterface KVM and KeyMod products.
-      </p>
-    </div>
-  </section>
+  <VideoCatalog />
 </BaseLayout>

@@ -24,6 +24,48 @@ export type HomeVideo = {
   viewsFormatted: string;
 };
 
+export type CatalogVideo = HomeVideo & {
+  videoId: string;
+  language: string;
+  product: string;
+  zIndex: number;
+};
+
+/** Stable product slugs from youtube.csv → display labels in filter UI. */
+export const PRODUCT_DISPLAY_NAMES: Record<string, string> = {
+  minikvm: 'Mini-KVM',
+  'kvm-go': 'KVM-GO',
+  'uconsole-kvm-extension': 'uConsole KVM Extension',
+  keymod: 'KeyMod Series',
+};
+
+export const KNOWN_PRODUCTS = ['minikvm', 'kvm-go', 'uconsole-kvm-extension', 'keymod'] as const;
+
+export const LANGUAGE_DISPLAY_NAMES: Record<string, string> = {
+  en: 'English',
+  zh: 'Chinese',
+  ja: 'Japanese',
+  ko: 'Korean',
+  fr: 'French',
+  de: 'German',
+  it: 'Italian',
+  es: 'Spanish',
+  pt: 'Portuguese',
+  ro: 'Romanian',
+};
+
+export function languageDisplayName(code: string): string {
+  const c = code?.trim().toLowerCase();
+  if (!c) return '';
+  return LANGUAGE_DISPLAY_NAMES[c] ?? c.toUpperCase();
+}
+
+export function productDisplayName(slug: string): string {
+  const s = slug?.trim();
+  if (!s) return '';
+  return PRODUCT_DISPLAY_NAMES[s] ?? s;
+}
+
 export function extractVideoId(url: string): string {
   const patterns = [
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/,
@@ -111,9 +153,26 @@ export function sortVideos(rows: YouTubeCsvRow[], targetLanguage?: string): YouT
   });
 }
 
+export function rowToCatalogVideo(row: YouTubeCsvRow): CatalogVideo {
+  const base = rowToHomeVideo(row);
+  const url = row.youtube_url?.trim() ?? '';
+  const zRaw = parseInt(row.z_index?.trim() ?? '0', 10);
+  return {
+    ...base,
+    videoId: extractVideoId(url),
+    language: row.language?.trim().toLowerCase() ?? '',
+    product: row.product?.trim() ?? '',
+    zIndex: Number.isNaN(zRaw) ? 0 : zRaw,
+  };
+}
+
 export function pickHomeVideos(rows: YouTubeCsvRow[], locale: string, limit = 10): HomeVideo[] {
   const sorted = sortVideos(rows, locale);
   return sorted.slice(0, limit).map(rowToHomeVideo);
+}
+
+export function pickCatalogVideos(rows: YouTubeCsvRow[], locale: string): CatalogVideo[] {
+  return sortVideos(rows, locale).map(rowToCatalogVideo);
 }
 
 /** Parse CSV text with quoted fields (RFC-style). */
