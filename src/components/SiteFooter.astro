@@ -1,11 +1,12 @@
 ---
 import { docsPath, siteConfig } from '../config/site';
 import Logo from './Logo.astro';
+import FooterNewsletter from './FooterNewsletter.astro';
 ---
 
 <footer class="border-t border-gray-200 bg-surface">
   <div class="mx-auto max-w-6xl px-4 py-10">
-    <div class="grid gap-8 md:grid-cols-3">
+    <div class="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
       <div>
         <Logo variant="default" class="h-7" />
         <p class="mt-3 text-sm text-muted">ITプロフェッショナル向けの超コンパクトなKVM-over-USBソリューション。</p>
@@ -29,6 +30,16 @@ import Logo from './Logo.astro';
         </ul>
       </div>
     </div>
+
+    <FooterNewsletter
+      title="ニュースレター"
+      description="製品、ファームウェア、KVM のヒントに関する月次アップデート。"
+      submitLabel="登録"
+      namePlaceholder="お名前"
+      emailPlaceholder="メール *"
+      footnote="いつでも配信解除できます。"
+    />
+
     <div class="mt-8 border-t border-gray-200 pt-6 text-center text-xs text-muted">
       <p>© {new Date().getFullYear()} Openterface. オープンソース KVM-over-USB。</p>
       <p class="mt-1">

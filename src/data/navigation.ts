@@ -8,7 +8,6 @@ export interface NavItem {
 }
 
 export const mainNav: NavItem[] = [
-  { label: 'ホーム', href: '/' },
   {
     label: '製品',
     href: '#',
