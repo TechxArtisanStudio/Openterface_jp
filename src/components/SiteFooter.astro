@@ -1,5 +1,5 @@
 ---
-import { siteConfig } from '../config/site';
+import { docsPath, siteConfig } from '../config/site';
 import Logo from './Logo.astro';
 ---
 
@@ -23,9 +23,9 @@ import Logo from './Logo.astro';
         <h3 class="text-sm font-semibold text-ink">リソース</h3>
         <ul class="mt-3 space-y-2 text-sm">
           <li><a href="/videos/" class="text-muted hover:text-primary-dark">ビデオ</a></li>
-          <li><a href={siteConfig.legacyUrl + '/faq/'} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">FAQ</a></li>
-          <li><a href={siteConfig.legacyUrl + '/app/overview/'} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">アプリ</a></li>
-          <li><a href={siteConfig.legacyUrl + '/support/'} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">サポート</a></li>
+          <li><a href={docsPath('/faq/')} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">FAQ</a></li>
+          <li><a href={docsPath('/app/overview/')} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">アプリ</a></li>
+          <li><a href={docsPath('/support/')} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">サポート</a></li>
         </ul>
       </div>
     </div>
