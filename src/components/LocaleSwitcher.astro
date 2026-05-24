@@ -1,6 +1,7 @@
 ---
 import { LOCALE_LABELS, SUPPORTED_LOCALES, switchLocaleUrl, type SiteLocale } from '../lib/locale';
 import { siteConfig } from '../config/site';
+import TranslateIcon from './TranslateIcon.astro';
 
 interface Props {
   currentPath: string;
@@ -13,8 +14,11 @@ const locale = siteConfig.locale as SiteLocale;
 ---
 
 <details class:list={['locale-switcher relative', className]}>
-  <summary class="locale-switcher__toggle cursor-pointer list-none rounded-md border border-white/40 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-white/10">
-    {LOCALE_LABELS[locale]}
+  <summary
+    class="locale-switcher__toggle flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-md border border-white/40 text-white hover:bg-white/10"
+    aria-label={`Language: ${LOCALE_LABELS[locale]}`}
+  >
+    <TranslateIcon />
   </summary>
   <ul class="locale-switcher__menu absolute right-0 top-full z-50 mt-1 min-w-[140px] rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
     {
