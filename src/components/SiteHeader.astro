@@ -1,12 +1,18 @@
 ---
 import { mainNav } from '../data/navigation';
 import Logo from './Logo.astro';
+import LocaleSwitcher from './LocaleSwitcher.astro';
+import { siteConfig } from '../config/site';
+import { LOCALE_LABELS, SUPPORTED_LOCALES, switchLocaleUrl, type SiteLocale } from '../lib/locale';
 
 const productLinks = mainNav.find((item) => item.label === 'Products')?.children ?? [];
 const primaryLinks = mainNav.filter(
   (item) => item.label !== 'Products' && !item.external && item.href !== '/',
 );
 const externalLinks = mainNav.filter((item) => item.external);
+const currentPath = Astro.url.pathname;
+const currentSearch = Astro.url.search;
+const locale = siteConfig.locale as SiteLocale;
 ---
 
 <header class="site-header sticky top-0 z-50 bg-primary-dark shadow-md">
@@ -55,8 +61,14 @@ const externalLinks = mainNav.filter((item) => item.external);
         )
       }
     </nav>
+    <div class="flex items-center gap-2">
+      <LocaleSwitcher
+        currentPath={currentPath}
+        currentSearch={currentSearch}
+        class="hidden sm:block"
+      />
 
-    <details class="mobile-nav relative lg:hidden">
+      <details class="mobile-nav relative lg:hidden">
       <summary
         class="mobile-nav-toggle flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-md border border-white/40 text-white hover:bg-white/10"
         aria-label="Open menu"
@@ -122,9 +134,29 @@ const externalLinks = mainNav.filter((item) => item.external);
               </div>
             )
           }
+
+          <div class="mobile-nav-section pb-1 sm:hidden">
+            <p class="mobile-nav-section-label">Language</p>
+            <div class="mobile-nav-section-links">
+              {
+                SUPPORTED_LOCALES.map((loc) => (
+                  <a
+                    href={switchLocaleUrl(currentPath, loc, currentSearch)}
+                    class:list={[
+                      'mobile-nav-link',
+                      loc === locale ? 'font-semibold text-primary-dark' : '',
+                    ]}
+                  >
+                    {LOCALE_LABELS[loc]}
+                  </a>
+                ))
+              }
+            </div>
+          </div>
         </div>
       </nav>
     </details>
+    </div>
   </div>
 </header>
 
