@@ -1,3 +1,5 @@
+import { surfaceDocsBase, surfaceNewsBase } from './surface-urls';
+
 export const siteConfig = {
   name: 'Openterface',
   locale: 'ja',
@@ -64,7 +66,7 @@ export function docsPath(subpath = ''): string {
   const normalized = subpath.startsWith('/') ? subpath : subpath ? `/${subpath}` : '';
   const suffix = normalized && !normalized.endsWith('/') ? `${normalized}/` : normalized || '/';
   const { locale } = siteConfig;
-  const base = siteConfig.links.docs;
+  const base = surfaceDocsBase();
   if (locale === 'en') {
     return suffix === '/' ? `${base}/` : `${base}${suffix}`;
   }
@@ -75,7 +77,7 @@ export function docsPath(subpath = ''): string {
 export function newsPath(subpath = ''): string {
   const normalized = subpath.replace(/^\/+|\/+$/g, '');
   const { locale } = siteConfig;
-  const base = siteConfig.links.news;
+  const base = surfaceNewsBase();
   if (locale === 'en') {
     return normalized ? `${base}/${normalized}/` : `${base}/`;
   }

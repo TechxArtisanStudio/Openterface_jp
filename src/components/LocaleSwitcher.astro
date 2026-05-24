@@ -1,0 +1,56 @@
+---
+import { LOCALE_LABELS, SUPPORTED_LOCALES, switchLocaleUrl, type SiteLocale } from '../lib/locale';
+import { siteConfig } from '../config/site';
+
+interface Props {
+  currentPath: string;
+  currentSearch?: string;
+  class?: string;
+}
+
+const { currentPath, currentSearch = '', class: className = '' } = Astro.props;
+const locale = siteConfig.locale as SiteLocale;
+---
+
+<details class:list={['locale-switcher relative', className]}>
+  <summary class="locale-switcher__toggle cursor-pointer list-none rounded-md border border-white/40 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-white/10">
+    {LOCALE_LABELS[locale]}
+  </summary>
+  <ul class="locale-switcher__menu absolute right-0 top-full z-50 mt-1 min-w-[140px] rounded-lg border border-gray-200 bg-white py-1 shadow-lg">
+    {
+      SUPPORTED_LOCALES.map((loc) => (
+        <li>
+          <a
+            href={switchLocaleUrl(currentPath, loc, currentSearch)}
+            data-locale-switch
+            class:list={[
+              'block px-3 py-2 text-sm hover:bg-brand-light hover:text-primary-dark',
+              loc === locale ? 'font-semibold text-primary-dark' : 'text-ink',
+            ]}
+          >
+            {LOCALE_LABELS[loc]}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</details>
+
+<style>
+  .locale-switcher summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
+
+<script>
+  (function () {
+    var search = window.location.search;
+    if (!search) return;
+    document.querySelectorAll('a[data-locale-switch]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (href && href.indexOf('?') === -1) {
+        a.setAttribute('href', href + search);
+      }
+    });
+  })();
+</script>
