@@ -1,0 +1,36 @@
+---
+interface ChildLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+interface Props {
+  label: string;
+  children: ChildLink[];
+}
+
+const { label, children } = Astro.props;
+---
+
+<details class="nav-dropdown relative">
+  <summary class="site-header__nav-link list-none cursor-pointer" aria-haspopup="true">
+    {label}
+    <span class="nav-dropdown__chevron nav-dropdown__chevron--down ml-0.5" aria-hidden="true">▾</span>
+    <span class="nav-dropdown__chevron nav-dropdown__chevron--up ml-0.5" aria-hidden="true">▴</span>
+  </summary>
+  <div class="nav-dropdown__panel">
+    {
+      children.map((child) => (
+        <a
+          href={child.href}
+          class="block px-4 py-2 text-sm text-ink hover:bg-brand-light hover:text-primary-dark"
+          target={child.external ? '_blank' : undefined}
+          rel={child.external ? 'noopener noreferrer' : undefined}
+        >
+          {child.label}
+        </a>
+      ))
+    }
+  </div>
+</details>
