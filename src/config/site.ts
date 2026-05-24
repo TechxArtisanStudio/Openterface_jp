@@ -12,7 +12,8 @@ export const siteConfig = {
     kvmgoPurchase: 'https://www.crowdsupply.com/techxartisan/openterface-kvm-go',
     keymodCrowdsupply: 'https://www.crowdsupply.com/techxartisan/openterface-keymod',
     shop: 'https://shop.techxartisan.com/',
-    appOverview: 'https://openterface.com/app/overview/',
+    docs: 'https://docs.openterface.com',
+    appOverview: 'https://docs.openterface.com/ja/app/overview/',
     subscribe: 'https://subscribe.openterface.com/api/subscribe/',
     news: 'https://news.openterface.com',
   },
@@ -34,6 +35,7 @@ export const siteConfig = {
         'ro.openterface.com',
         'cn.openterface.com',
         'news.openterface.com',
+        'docs.openterface.com',
       ],
     },
     ahrefs: {
@@ -51,10 +53,18 @@ export const siteConfig = {
   },
 } as const;
 
-/** Build a legacy openterface.com URL for doc-heavy pages not yet migrated. */
+/** Build a legacy openterface.com URL (marketing-only paths during cutover). */
 export function legacyPath(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;
   return `${siteConfig.legacyUrl}${normalized}`;
+}
+
+/** Build a docs.openterface.com URL for this site's locale (English uses /en/ prefix). */
+export function docsPath(subpath = ''): string {
+  const { locale } = siteConfig;
+  const normalized = subpath.startsWith('/') ? subpath : subpath ? `/${subpath}` : '';
+  const suffix = normalized && !normalized.endsWith('/') ? `${normalized}/` : normalized || '/';
+  return `${siteConfig.links.docs}/${locale}${suffix === '/' ? '/' : suffix}`;
 }
 
 /** News hub URL — English is unprefixed at news.openterface.com/ */

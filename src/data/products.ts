@@ -1,4 +1,4 @@
-import { legacyPath, siteConfig } from '../config/site';
+import { docsPath, siteConfig } from '../config/site';
 
 export interface ProductDocLink {
   label: string;
@@ -74,11 +74,11 @@ export const products: Record<string, Product> = {
     ],
     useCases: ['スマートTV＆キオスク入力', 'モバイルワークフローのマクロ', 'ゲーミング＆アクセシビリティ設定'],
     docLinks: [
-      { label: '機能', href: legacyPath('/product/keymod/features/') },
-      { label: '同梱物', href: legacyPath('/product/keymod/whats-in-the-box/') },
-      { label: '接続方法', href: legacyPath('/product/keymod/how-to-connect/') },
-      { label: 'FAQ', href: legacyPath('/product/keymod/faq/') },
-      { label: 'KeyModアプリをダウンロード', href: legacyPath('/app/overview/') },
+      { label: '機能', href: docsPath('/product/keymod/features/') },
+      { label: '同梱物', href: docsPath('/product/keymod/whats-in-the-box/') },
+      { label: '接続方法', href: docsPath('/product/keymod/how-to-connect/') },
+      { label: 'FAQ', href: docsPath('/product/keymod/faq/') },
+      { label: 'KeyModアプリをダウンロード', href: docsPath('/app/overview/') },
     ],
     legacyBase: '/product/keymod/',
   },
@@ -127,11 +127,11 @@ export const products: Record<string, Product> = {
     ],
     useCases: ['データセンターの巡回', 'ヘッドレスデバイスのセットアップ', '現場ITおよびホームラボのレスキュー'],
     docLinks: [
-      { label: '機能', href: legacyPath('/product/kvm-go/features/') },
-      { label: 'ベータ版クイックスタート', href: legacyPath('/product/kvm-go/beta-quick-start/') },
-      { label: '接続方法', href: legacyPath('/product/kvm-go/how-to-connect/') },
-      { label: 'FAQ', href: legacyPath('/product/kvm-go/faq/') },
-      { label: 'アプリをダウンロード', href: legacyPath('/app/overview/') },
+      { label: '機能', href: docsPath('/product/kvm-go/features/') },
+      { label: 'ベータ版クイックスタート', href: docsPath('/product/kvm-go/beta-quick-start/') },
+      { label: '接続方法', href: docsPath('/product/kvm-go/how-to-connect/') },
+      { label: 'FAQ', href: docsPath('/product/kvm-go/faq/') },
+      { label: 'アプリをダウンロード', href: docsPath('/app/overview/') },
     ],
     legacyBase: '/product/kvm-go/',
   },
@@ -180,11 +180,11 @@ export const products: Record<string, Product> = {
     ],
     useCases: ['ホームラボ管理', '開発者用ワークステーションの並列制御', 'ITベンチのトラブルシューティング'],
     docLinks: [
-      { label: '機能', href: legacyPath('/product/minikvm/features/') },
-      { label: 'USBスイッチ', href: legacyPath('/product/minikvm/usb-switch/') },
-      { label: 'テクニカルサポート', href: legacyPath('/product/minikvm/support/') },
-      { label: 'FAQ', href: legacyPath('/product/minikvm/faq/') },
-      { label: 'アプリをダウンロード', href: legacyPath('/app/overview/') },
+      { label: '機能', href: docsPath('/product/minikvm/features/') },
+      { label: 'USBスイッチ', href: docsPath('/product/minikvm/usb-switch/') },
+      { label: 'テクニカルサポート', href: docsPath('/product/minikvm/support/') },
+      { label: 'FAQ', href: docsPath('/product/minikvm/faq/') },
+      { label: 'アプリをダウンロード', href: docsPath('/app/overview/') },
     ],
     legacyBase: '/product/minikvm/',
   },
@@ -203,7 +203,7 @@ export const products: Record<string, Product> = {
       'https://assets.openterface.com/images/uconsole-kvm-extension/uconsole-kvm-extension-1.webp',
     ],
     buyLabel: '詳しくはこちら',
-    buyHref: legacyPath('/product/uconsole-kvm-extension/'),
+    buyHref: docsPath('/product/uconsole-kvm-extension/'),
     painPoints: [
       'ポータブルコンソールにヘッドレス機器用の統合KVM機能がない',
       '現場技術者は1つのデバイスですべてをこなしたい',
@@ -226,10 +226,10 @@ export const products: Record<string, Product> = {
     ],
     useCases: ['ポータブルデータセンターツール', '外出先でのメイカー＆ホームラボ'],
     docLinks: [
-      { label: 'ハードウェアインストール', href: legacyPath('/product/uconsole-kvm-extension/hardware-installation/') },
-      { label: 'ソフトウェアセットアップ', href: legacyPath('/product/uconsole-kvm-extension/software-setup/') },
-      { label: '接続方法', href: legacyPath('/product/uconsole-kvm-extension/connect-to-target/') },
-      { label: 'FAQ', href: legacyPath('/product/uconsole-kvm-extension/faq/') },
+      { label: 'ハードウェアインストール', href: docsPath('/product/uconsole-kvm-extension/hardware-installation/') },
+      { label: 'ソフトウェアセットアップ', href: docsPath('/product/uconsole-kvm-extension/software-setup/') },
+      { label: '接続方法', href: docsPath('/product/uconsole-kvm-extension/connect-to-target/') },
+      { label: 'FAQ', href: docsPath('/product/uconsole-kvm-extension/faq/') },
     ],
     legacyBase: '/product/uconsole-kvm-extension/',
   },
@@ -257,7 +257,7 @@ export const products: Record<string, Product> = {
     specs: [],
     useCases: ['フィールドキットの整理', 'ビデオ形式の変換', 'IT用予備ケーブル'],
     docLinks: [
-      { label: 'すべての製品', href: legacyPath('/product/accessories/') },
+      { label: 'すべての製品', href: docsPath('/product/accessories/') },
       { label: 'TxA ショップ', href: siteConfig.links.shop },
     ],
     legacyBase: '/product/accessories/',

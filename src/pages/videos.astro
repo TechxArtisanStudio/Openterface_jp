@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DocLinkBanner from '../components/DocLinkBanner.astro';
-import { legacyPath } from '../config/site';
 import { pageOgImages } from '../lib/seo';
 ---
 
@@ -9,19 +8,16 @@ import { pageOgImages } from '../lib/seo';
   title="Videos"
   description="Openterface product demos, tutorials, and reviews on YouTube."
   ogImage={pageOgImages.videos}
-  ogImageAlt="YouTube 上の Openterface KVM 製品デモとコミュニティレビュー"
+  ogImageAlt="Openterface KVM product demos and community reviews on YouTube"
   canonicalPath="/videos/"
 >
-  <DocLinkBanner message="The full filterable YouTube video grid is on the legacy site until we port the video pipeline." />
+  <DocLinkBanner message="Browse product demos and setup guides on our YouTube channel — linked from each product page." />
   <section class="py-16">
     <div class="mx-auto max-w-3xl px-4 text-center">
       <h1 class="text-4xl font-bold">Videos</h1>
       <p class="mt-4 text-lg text-muted">
         Watch product demos, setup guides, and community reviews for Openterface KVM and KeyMod products.
       </p>
-      <a href={legacyPath('/videos/')} class="btn btn-primary mt-8" target="_blank" rel="noopener">
-        Browse all videos →
-      </a>
     </div>
   </section>
 </BaseLayout>
