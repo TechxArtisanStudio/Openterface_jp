@@ -14,6 +14,7 @@ export const siteConfig = {
     shop: 'https://shop.techxartisan.com/',
     appOverview: 'https://openterface.com/app/overview/',
     subscribe: 'https://subscribe.openterface.com/api/subscribe/',
+    news: 'https://news.openterface.com',
   },
   analytics: {
     enabled: import.meta.env.PROD,
@@ -32,6 +33,7 @@ export const siteConfig = {
         'pt.openterface.com',
         'ro.openterface.com',
         'cn.openterface.com',
+        'news.openterface.com',
       ],
     },
     ahrefs: {
@@ -53,4 +55,15 @@ export const siteConfig = {
 export function legacyPath(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;
   return `${siteConfig.legacyUrl}${normalized}`;
+}
+
+/** News hub URL — English is unprefixed at news.openterface.com/ */
+export function newsPath(subpath = ''): string {
+  const normalized = subpath.replace(/^\/+|\/+$/g, '');
+  const { locale } = siteConfig;
+  const base = siteConfig.links.news;
+  if (locale === 'en') {
+    return normalized ? `${base}/${normalized}/` : `${base}/`;
+  }
+  return normalized ? `${base}/${locale}/${normalized}/` : `${base}/${locale}/`;
 }
