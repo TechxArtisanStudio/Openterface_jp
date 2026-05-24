@@ -2,12 +2,14 @@
 import { mainNav } from '../data/navigation';
 import Logo from './Logo.astro';
 import LocaleSwitcher from './LocaleSwitcher.astro';
+import NavDropdown from './NavDropdown.astro';
 import { siteConfig } from '../config/site';
 import { LOCALE_LABELS, SUPPORTED_LOCALES, switchLocaleUrl, type SiteLocale } from '../lib/locale';
 
-const productLinks = mainNav.find((item) => item.label === 'Products')?.children ?? [];
+const productItem = mainNav.find((item) => item.children);
+const productLinks = productItem?.children ?? [];
 const primaryLinks = mainNav.filter(
-  (item) => item.label !== 'Products' && !item.external && item.href !== '/',
+  (item) => !item.children && !item.external && item.href !== '/',
 );
 const externalLinks = mainNav.filter((item) => item.external);
 const currentPath = Astro.url.pathname;
@@ -16,151 +18,165 @@ const locale = siteConfig.locale as SiteLocale;
 ---
 
 <header class="site-header sticky top-0 z-50 bg-primary-dark shadow-md">
-  <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:gap-4">
-    <a href="/" class="flex shrink-0 items-center">
+  <div class="site-header__inner">
+    <a href="/" class="site-header__brand">
       <Logo variant="onPrimary" />
     </a>
 
-    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+    <nav class="site-header__nav" aria-label="Main navigation">
       {
         mainNav.map((item) =>
           item.children ? (
-            <div class="group relative">
-              <button
-                type="button"
-                class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white/15"
-                aria-haspopup="true"
-              >
-                {item.label} ▾
-              </button>
-              <div class="invisible absolute left-0 top-full z-50 min-w-[220px] rounded-lg border border-gray-200 bg-white py-2 opacity-0 shadow-lg transition-all group-hover:visible group-hover:opacity-100">
-                {
-                  item.children.map((child) => (
-                    <a
-                      href={child.href}
-                      class="block px-4 py-2 text-sm text-ink hover:bg-brand-light hover:text-primary-dark"
-                      target={child.external ? '_blank' : undefined}
-                      rel={child.external ? 'noopener noreferrer' : undefined}
-                    >
-                      {child.label}
-                    </a>
-                  ))
-                }
-              </div>
-            </div>
+            <NavDropdown label={item.label} children={item.children} />
           ) : (
             <a
               href={item.href}
-              class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white/15"
+              class="site-header__nav-link"
               target={item.external ? '_blank' : undefined}
               rel={item.external ? 'noopener noreferrer' : undefined}
             >
-              {item.label}
+              {item.label}{item.external ? ' ↗' : ''}
             </a>
           ),
         )
       }
     </nav>
-    <div class="flex items-center gap-2">
+
+    <div class="site-header__toolbar">
       <LocaleSwitcher
         currentPath={currentPath}
         currentSearch={currentSearch}
         class="hidden sm:block"
       />
 
-      <details class="mobile-nav relative lg:hidden">
-      <summary
-        class="mobile-nav-toggle flex h-11 w-11 cursor-pointer list-none items-center justify-center rounded-md border border-white/40 text-white hover:bg-white/10"
-        aria-label="Open menu"
-      >
-        <svg class="mobile-nav-icon-open h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"></path>
-        </svg>
-        <svg class="mobile-nav-icon-close hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-          <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"></path>
-        </svg>
-      </summary>
+      <details class="mobile-nav relative xl:hidden">
+        <summary
+          class="site-header__icon-btn mobile-nav-toggle"
+          aria-label="Open menu"
+        >
+          <svg class="mobile-nav-icon-open h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"></path>
+          </svg>
+          <svg class="mobile-nav-icon-close hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"></path>
+          </svg>
+        </summary>
 
-      <div class="mobile-nav-backdrop fixed inset-0 top-14 z-40 bg-black/45"></div>
+        <div class="mobile-nav-backdrop fixed inset-0 top-[var(--site-header-height)] z-40 bg-black/45"></div>
 
-      <nav
-        class="mobile-nav-panel fixed inset-x-0 top-14 z-50 border-b border-gray-200 bg-white shadow-lg"
-        aria-label="Mobile navigation"
-      >
-        <div class="mx-auto max-h-[min(75vh,36rem)] max-w-6xl overflow-y-auto overscroll-contain px-3 py-2 sm:px-4 sm:py-3">
-          <a href="/" class="mobile-nav-link mobile-nav-link--home">Home</a>
+        <nav
+          class="mobile-nav-panel fixed inset-x-0 top-[var(--site-header-height)] z-50 border-b border-gray-200 bg-white shadow-lg"
+          aria-label="Mobile navigation"
+        >
+          <div class="mx-auto max-h-[min(75vh,36rem)] max-w-7xl overflow-y-auto overscroll-contain px-3 py-2 sm:px-4 sm:py-3">
+            <a href="/" class="mobile-nav-link mobile-nav-link--home">{mainNav[0]?.label ?? 'Home'}</a>
 
-          <div class="mobile-nav-section">
-            <p class="mobile-nav-section-label">Products</p>
-            <div class="mobile-nav-section-links">
-              {
-                productLinks.map((child) => (
-                  <a href={child.href} class="mobile-nav-link">{child.label}</a>
-                ))
-              }
-            </div>
-          </div>
-
-          <div class="mobile-nav-section">
-            <p class="mobile-nav-section-label">Explore</p>
-            <div class="mobile-nav-section-links">
-              {
-                primaryLinks.map((item) => (
-                  <a href={item.href} class="mobile-nav-link">{item.label}</a>
-                ))
-              }
-            </div>
-          </div>
-
-          {
-            externalLinks.length > 0 && (
-              <div class="mobile-nav-section pb-1">
-                <p class="mobile-nav-section-label">Documentation</p>
-                <div class="mobile-nav-section-links">
-                  {
-                    externalLinks.map((item) => (
-                      <a
-                        href={item.href}
-                        class="mobile-nav-link mobile-nav-link--external"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {item.label}
-                        <span class="ml-1.5 text-xs text-muted" aria-hidden="true">↗</span>
-                      </a>
-                    ))
-                  }
+            {
+              productItem && (
+                <div class="mobile-nav-section">
+                  <p class="mobile-nav-section-label">{productItem.label}</p>
+                  <div class="mobile-nav-section-links">
+                    {
+                      productLinks.map((child) => (
+                        <a href={child.href} class="mobile-nav-link">{child.label}</a>
+                      ))
+                    }
+                  </div>
                 </div>
-              </div>
-            )
-          }
+              )
+            }
 
-          <div class="mobile-nav-section pb-1 sm:hidden">
-            <p class="mobile-nav-section-label">Language</p>
-            <div class="mobile-nav-section-links">
-              {
-                SUPPORTED_LOCALES.map((loc) => (
-                  <a
-                    href={switchLocaleUrl(currentPath, loc, currentSearch)}
-                    class:list={[
-                      'mobile-nav-link',
-                      loc === locale ? 'font-semibold text-primary-dark' : '',
-                    ]}
-                  >
-                    {LOCALE_LABELS[loc]}
-                  </a>
-                ))
-              }
+            <div class="mobile-nav-section">
+              <p class="mobile-nav-section-label">Explore</p>
+              <div class="mobile-nav-section-links">
+                {
+                  primaryLinks.map((item) => (
+                    <a href={item.href} class="mobile-nav-link">{item.label}</a>
+                  ))
+                }
+              </div>
+            </div>
+
+            {
+              externalLinks.length > 0 && (
+                <div class="mobile-nav-section pb-1">
+                  <p class="mobile-nav-section-label">Documentation</p>
+                  <div class="mobile-nav-section-links">
+                    {
+                      externalLinks.map((item) => (
+                        <a
+                          href={item.href}
+                          class="mobile-nav-link mobile-nav-link--external"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item.label}
+                          <span class="ml-1.5 text-xs text-muted" aria-hidden="true">↗</span>
+                        </a>
+                      ))
+                    }
+                  </div>
+                </div>
+              )
+            }
+
+            <div class="mobile-nav-section pb-1 sm:hidden">
+              <p class="mobile-nav-section-label">Language</p>
+              <div class="mobile-nav-section-links">
+                {
+                  SUPPORTED_LOCALES.map((loc) => (
+                    <a
+                      href={switchLocaleUrl(currentPath, loc, currentSearch)}
+                      class:list={[
+                        'mobile-nav-link',
+                        loc === locale ? 'font-semibold text-primary-dark' : '',
+                      ]}
+                    >
+                      {LOCALE_LABELS[loc]}
+                    </a>
+                  ))
+                }
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
-    </details>
+        </nav>
+      </details>
     </div>
   </div>
 </header>
 
 <script>
+  function initNavDropdowns() {
+    document.querySelectorAll('.nav-dropdown').forEach((dropdown) => {
+      if (dropdown.dataset.initialized) return;
+      dropdown.dataset.initialized = 'true';
+
+      dropdown.addEventListener('toggle', () => {
+        if (!(dropdown instanceof HTMLDetailsElement) || !dropdown.open) return;
+        document.querySelectorAll('.nav-dropdown[open]').forEach((other) => {
+          if (other !== dropdown && other instanceof HTMLDetailsElement) other.open = false;
+        });
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      document.querySelectorAll('.nav-dropdown[open]').forEach((dropdown) => {
+        if (dropdown instanceof HTMLDetailsElement && !dropdown.contains(target)) {
+          dropdown.open = false;
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      document.querySelectorAll('.nav-dropdown[open]').forEach((dropdown) => {
+        if (dropdown instanceof HTMLDetailsElement) dropdown.open = false;
+      });
+    });
+  }
+
   function initMobileNav() {
     document.querySelectorAll('.mobile-nav').forEach((details) => {
       if (details.dataset.initialized) return;
@@ -170,7 +186,7 @@ const locale = siteConfig.locale as SiteLocale;
       const links = details.querySelectorAll('.mobile-nav-link');
       const summary = details.querySelector('summary');
 
-      const setOpen = (open) => {
+      const setOpen = (open: boolean) => {
         if (!(details instanceof HTMLDetailsElement)) return;
         details.open = open;
         document.body.classList.toggle('overflow-hidden', open);
@@ -199,8 +215,12 @@ const locale = siteConfig.locale as SiteLocale;
     });
   }
 
+  initNavDropdowns();
   initMobileNav();
-  document.addEventListener('astro:page-load', initMobileNav);
+  document.addEventListener('astro:page-load', () => {
+    initNavDropdowns();
+    initMobileNav();
+  });
 </script>
 
 <style>
