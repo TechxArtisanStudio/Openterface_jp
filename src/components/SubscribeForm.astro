@@ -1,0 +1,326 @@
+---
+import { siteConfig } from '../config/site';
+
+interface Props {
+  formId: string;
+  /** compact = footer; default = homepage card */
+  variant?: 'default' | 'compact';
+  submitLabel?: string;
+  namePlaceholder?: string;
+  emailPlaceholder?: string;
+  footnote?: string;
+  analyticsPlacement?: string;
+}
+
+const {
+  formId,
+  variant = 'default',
+  submitLabel = 'Subscribe for updates',
+  namePlaceholder = 'Your name (optional)',
+  emailPlaceholder = 'Work email *',
+  footnote = 'At most one email per month. Unsubscribe anytime. Questions? info@openterface.com',
+  analyticsPlacement = 'subscribe_form',
+} = Astro.props;
+
+const isCompact = variant === 'compact';
+---
+
+<form
+  id={formId}
+  class:list={[
+    'subscribe-form',
+    isCompact ? 'subscribe-form--compact' : 'subscribe-form--default',
+  ]}
+  data-subscribe-endpoint={siteConfig.links.subscribe}
+  data-analytics-placement={analyticsPlacement}
+  novalidate
+>
+  <div class="subscribe-fields">
+    <div class="subscribe-inputs">
+      <label class="sr-only" for={`${formId}-name`}>Name</label>
+      <input
+        type="text"
+        id={`${formId}-name`}
+        name="name"
+        autocomplete="name"
+        placeholder={namePlaceholder}
+        class="subscribe-input"
+      />
+      <label class="sr-only" for={`${formId}-email`}>Email</label>
+      <input
+        type="email"
+        id={`${formId}-email`}
+        name="email"
+        required
+        autocomplete="email"
+        placeholder={emailPlaceholder}
+        class="subscribe-input"
+      />
+    </div>
+    <button
+      type="submit"
+      class="subscribe-submit btn btn-primary"
+      data-default-label={submitLabel}
+    >
+      {submitLabel}
+    </button>
+  </div>
+  <p class="subscribe-footnote" data-footnote>{footnote}</p>
+  <p class="subscribe-status hidden text-sm font-medium" role="status" aria-live="polite" data-status></p>
+</form>
+
+<style>
+  .subscribe-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .subscribe-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .subscribe-input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    border-radius: 0.375rem;
+    border: 1px solid #e5e7eb;
+    background-color: #fff;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: #373737;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+
+  .subscribe-input:focus {
+    border-color: #ff6e42;
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(255 110 66 / 0.2);
+  }
+
+  /* Homepage card: centered CTA + footnote; inputs stay full width of card */
+  .subscribe-form--default .subscribe-fields {
+    align-items: center;
+  }
+
+  .subscribe-form--default .subscribe-inputs {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .subscribe-form--default .subscribe-footnote,
+  .subscribe-form--default .subscribe-status {
+    width: 100%;
+    max-width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .subscribe-form--default .subscribe-submit {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  @container subscribe-card (min-width: 20rem) {
+    .subscribe-form--default .subscribe-inputs {
+      display: grid;
+      grid-template-columns: minmax(5rem, 0.38fr) minmax(9rem, 0.62fr);
+      gap: 0.625rem;
+    }
+  }
+
+  @container subscribe-card (min-width: 28rem) {
+    .subscribe-form--default .subscribe-inputs {
+      grid-template-columns: minmax(5.5rem, 0.34fr) minmax(11rem, 0.66fr);
+      gap: 0.75rem;
+    }
+  }
+
+  @media (min-width: 30.0625rem) {
+    @container subscribe-card (min-width: 20rem) {
+      .subscribe-form--default .subscribe-submit {
+        width: auto;
+        align-self: center;
+      }
+    }
+  }
+
+  /* Phone: stack fields — overrides side-by-side grid on narrow viewports */
+  @media (max-width: 30rem) {
+    .subscribe-form--default .subscribe-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+
+  /* Footer: horizontal row on wider viewports */
+  .subscribe-form--compact .subscribe-fields {
+    gap: 0.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .subscribe-form--compact .subscribe-fields {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+    }
+
+    .subscribe-form--compact .subscribe-inputs {
+      display: grid;
+      flex: 1 1 auto;
+      grid-template-columns: minmax(4.5rem, 0.36fr) minmax(8rem, 0.64fr);
+      gap: 0.5rem;
+      min-width: 0;
+    }
+
+    .subscribe-form--compact .subscribe-input {
+      width: 100%;
+    }
+
+    .subscribe-form--compact .subscribe-submit {
+      flex: 0 0 auto;
+      align-self: stretch;
+      white-space: nowrap;
+    }
+  }
+
+  .subscribe-footnote {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: #5c5c5c;
+  }
+
+  .subscribe-form--compact .subscribe-footnote {
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  @media (min-width: 640px) {
+    .subscribe-form--compact .subscribe-footnote {
+      text-align: left;
+    }
+  }
+
+  .subscribe-status[data-state='success'] {
+    color: #15803d;
+  }
+
+  .subscribe-status[data-state='error'] {
+    color: #df4d3f;
+  }
+
+  .subscribe-submit[data-state='success'] {
+    background-color: #2e4e1f;
+  }
+
+  .subscribe-submit[data-state='error'] {
+    background-color: #c43d30;
+  }
+</style>
+
+<style is:global>
+  .subscribe-card {
+    container-type: inline-size;
+    container-name: subscribe-card;
+  }
+</style>
+
+<script>
+  function initSubscribeForm(form: HTMLFormElement) {
+    if (form.dataset.subscribeBound === 'true') return;
+    form.dataset.subscribeBound = 'true';
+
+    const endpoint = form.dataset.subscribeEndpoint;
+    const submitBtn = form.querySelector<HTMLButtonElement>('.subscribe-submit');
+    const statusEl = form.querySelector<HTMLElement>('[data-status]');
+    const footnoteEl = form.querySelector<HTMLElement>('[data-footnote]');
+    if (!endpoint || !submitBtn) return;
+
+    const defaultLabel = submitBtn.dataset.defaultLabel ?? submitBtn.textContent ?? 'Subscribe';
+
+    const messages = {
+      processing: 'Processing…',
+      success: 'Subscribed — thank you!',
+      failed: 'Subscription failed. Please try again.',
+      error: 'Something went wrong. Please try again.',
+    };
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const email = String(data.get('email') ?? '').trim();
+      const name = String(data.get('name') ?? '').trim();
+
+      if (!email) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = messages.processing;
+      submitBtn.removeAttribute('data-state');
+      statusEl?.classList.add('hidden');
+      footnoteEl?.classList.remove('hidden');
+
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name }),
+        });
+        const result = await response.json();
+
+        if (result?.success) {
+          window.__openterfaceAnalytics?.track?.('newsletter_subscribe', {
+            placement: form.dataset.analyticsPlacement ?? 'subscribe_form',
+          });
+          submitBtn.textContent = messages.success;
+          submitBtn.dataset.state = 'success';
+          form.reset();
+          if (statusEl) {
+            statusEl.textContent = messages.success;
+            statusEl.dataset.state = 'success';
+            statusEl.classList.remove('hidden');
+          }
+          footnoteEl?.classList.add('hidden');
+          window.setTimeout(() => {
+            submitBtn.textContent = defaultLabel;
+            submitBtn.disabled = false;
+            submitBtn.removeAttribute('data-state');
+            statusEl?.classList.add('hidden');
+            footnoteEl?.classList.remove('hidden');
+          }, 4000);
+        } else {
+          throw new Error('failed');
+        }
+      } catch {
+        submitBtn.textContent = messages.error;
+        submitBtn.dataset.state = 'error';
+        submitBtn.disabled = false;
+        if (statusEl) {
+          statusEl.textContent = messages.error;
+          statusEl.dataset.state = 'error';
+          statusEl.classList.remove('hidden');
+        }
+        window.setTimeout(() => {
+          submitBtn.textContent = defaultLabel;
+          submitBtn.removeAttribute('data-state');
+          statusEl?.classList.add('hidden');
+        }, 4000);
+      }
+    });
+  }
+
+  document.querySelectorAll<HTMLFormElement>('form.subscribe-form').forEach(initSubscribeForm);
+  document.addEventListener('astro:page-load', () => {
+    document.querySelectorAll<HTMLFormElement>('form.subscribe-form').forEach(initSubscribeForm);
+  });
+</script>

@@ -1,0 +1,39 @@
+---
+import SubscribeForm from './SubscribeForm.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  submitLabel: string;
+  namePlaceholder: string;
+  emailPlaceholder: string;
+  footnote: string;
+  formId?: string;
+}
+
+const {
+  title,
+  description,
+  submitLabel,
+  namePlaceholder,
+  emailPlaceholder,
+  footnote,
+  formId = 'footer-subscribe-form',
+} = Astro.props;
+---
+
+<div id="newsletter" class="footer-newsletter">
+  <h3 class="text-sm font-semibold text-ink">{title}</h3>
+  <p class="mt-1 text-sm text-muted">{description}</p>
+  <div class="mt-4">
+    <SubscribeForm
+      formId={formId}
+      variant="compact"
+      submitLabel={submitLabel}
+      namePlaceholder={namePlaceholder}
+      emailPlaceholder={emailPlaceholder}
+      footnote={footnote}
+      analyticsPlacement="footer"
+    />
+  </div>
+</div>

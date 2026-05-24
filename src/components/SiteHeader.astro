@@ -19,9 +19,13 @@ const locale = siteConfig.locale as SiteLocale;
 
 <header class="site-header sticky top-0 z-50 bg-primary-dark shadow-md">
   <div class="site-header__inner">
-    <a href="/" class="site-header__brand">
-      <Logo variant="onPrimary" />
-    </a>
+    <div class="site-header__start">
+      <a href="/" class="site-header__brand">
+        <Logo variant="onPrimary" class="site-header__logo" />
+      </a>
+      <span class="site-header__suffix" aria-hidden="true"></span>
+      <span class="site-header__lead" aria-hidden="true"></span>
+    </div>
 
     <nav class="site-header__nav" aria-label="Main navigation">
       {
@@ -69,8 +73,6 @@ const locale = siteConfig.locale as SiteLocale;
           aria-label="Mobile navigation"
         >
           <div class="mx-auto max-h-[min(75vh,36rem)] max-w-7xl overflow-y-auto overscroll-contain px-3 py-2 sm:px-4 sm:py-3">
-            <a href="/" class="mobile-nav-link mobile-nav-link--home">{mainNav[0]?.label ?? 'Home'}</a>
-
             {
               productItem && (
                 <div class="mobile-nav-section">

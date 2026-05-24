@@ -82,15 +82,56 @@
 
   .site-header {
     --site-header-height: 4.25rem;
+    --site-header-logo-max: 7.25rem;
+    --site-header-suffix-width: 2.75rem;
+    --site-header-lead-gap: 0.75rem;
+    --site-header-brand-gap: 0.5rem;
+    --site-header-start-width: calc(
+      var(--site-header-logo-max) + var(--site-header-brand-gap) + var(--site-header-suffix-width) +
+        var(--site-header-lead-gap)
+    );
   }
 
   .site-header__inner {
-    @apply mx-auto grid min-h-[var(--site-header-height)] max-w-7xl grid-cols-[11rem_1fr_auto] items-center gap-4 px-4 py-3;
+    @apply mx-auto grid min-h-[var(--site-header-height)] max-w-7xl items-center gap-4 px-4 py-3;
+    grid-template-columns: var(--site-header-start-width) 1fr auto;
+  }
+
+  .site-header__start {
+    display: flex;
+    align-items: center;
+    width: var(--site-header-start-width);
+    max-width: var(--site-header-start-width);
+    flex-shrink: 0;
   }
 
   .site-header__brand {
-    @apply flex min-w-0 items-center gap-2;
+    @apply flex shrink-0 items-center;
   }
+
+  .site-header__brand img,
+  .site-header__logo {
+    display: block;
+    height: 2rem;
+    width: auto;
+    max-width: var(--site-header-logo-max) !important;
+  }
+
+  .site-header__suffix {
+    @apply shrink-0 text-sm font-medium whitespace-nowrap text-white/90;
+    flex: 0 0 var(--site-header-suffix-width);
+    margin-left: var(--site-header-brand-gap);
+  }
+
+  .site-header__suffix:empty {
+    visibility: hidden;
+  }
+
+  .site-header__lead {
+    flex: 1 1 var(--site-header-lead-gap);
+    min-width: var(--site-header-lead-gap);
+  }
+
 
   .site-header__nav {
     @apply hidden min-w-0 items-center justify-start gap-0.5 xl:flex;
@@ -127,4 +168,13 @@
   .nav-dropdown__panel {
     @apply absolute left-0 top-full z-50 min-w-[220px] rounded-lg border border-gray-200 bg-white py-2 shadow-lg;
   }
+  .footer-newsletter {
+    @apply mt-10 rounded-xl border border-gray-200 bg-white p-6 transition-[border-color,box-shadow] duration-200;
+  }
+
+  .footer-newsletter:hover {
+    border-color: var(--color-primary-dark);
+    box-shadow: 0 0 0 1px var(--color-primary-dark);
+  }
+
 }
