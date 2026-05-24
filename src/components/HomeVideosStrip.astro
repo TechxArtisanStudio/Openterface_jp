@@ -6,10 +6,7 @@ interface Props {
   videosLink?: string;
 }
 
-const {
-  heading = 'コミュニティのレビュー・デモ動画',
-  videosLink = '/videos/',
-} = Astro.props;
+const { heading = 'コミュニティレビューとデモ', videosLink = '/videos/' } = Astro.props;
 
 if (homeVideos.length === 0) {
   return null;
@@ -38,7 +35,7 @@ const jsonLd = {
 
 <section
   class="home-videos-strip relative overflow-hidden bg-surface py-7 md:py-9"
-  aria-label="YouTube のコミュニティ動画"
+  aria-label="YouTube コミュニティ動画"
 >
   <div class="mx-auto mb-5 flex max-w-6xl items-end justify-between gap-4 px-4">
     <div>
