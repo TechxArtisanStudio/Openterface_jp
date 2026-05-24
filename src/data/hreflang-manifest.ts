@@ -6,10 +6,10 @@ export const localeHosts: Record<string, string> = {
   fr: 'https://fr.openterface.com',
   it: 'https://it.openterface.com',
   ja: 'https://jp.openterface.com',
-  ko: 'https://ko.openterface.com',
+  ko: 'https://kr.openterface.com',
   pt: 'https://pt.openterface.com',
   ro: 'https://ro.openterface.com',
-  zh: 'https://zh.openterface.com',
+  zh: 'https://cn.openterface.com',
 };
 
 export const marketingPaths = [

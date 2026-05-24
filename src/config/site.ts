@@ -28,10 +28,10 @@ export const siteConfig = {
         'fr.openterface.com',
         'it.openterface.com',
         'jp.openterface.com',
-        'ko.openterface.com',
+        'kr.openterface.com',
         'pt.openterface.com',
         'ro.openterface.com',
-        'zh.openterface.com',
+        'cn.openterface.com',
       ],
     },
     ahrefs: {
