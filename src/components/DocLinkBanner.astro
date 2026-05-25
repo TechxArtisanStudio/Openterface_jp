@@ -1,23 +1,33 @@
 ---
+import { ui } from '../i18n/ui';
+import { docsPath } from '../config/site';
+
 interface Props {
+  /** about | home | product — selects default banner copy from ui.ts */
+  variant?: 'about' | 'home' | 'product';
   message?: string;
+  linkLabel?: string;
 }
 
-const {
-  message = 'Product guides, FAQs, tutorials, and app downloads live on docs.openterface.com.',
-} = Astro.props;
-
-import { docsPath } from '../config/site';
+const { variant = 'about', message, linkLabel } = Astro.props;
+const text =
+  message ??
+  (variant === 'home'
+    ? ui.docLinkBanner.homeMessage
+    : variant === 'product'
+      ? ui.docLinkBanner.productMessage
+      : ui.docLinkBanner.aboutMessage);
+const cta = linkLabel ?? ui.docLinkBanner.linkLabel;
 ---
 
 <div class="border-y border-brand-light bg-brand-light px-4 py-3 text-center md:py-3.5" role="status">
-  <p class="text-sm leading-relaxed text-ink">{message}</p>
+  <p class="text-sm leading-relaxed text-ink">{text}</p>
   <a
     href={docsPath()}
     class="mt-2 inline-block text-sm font-semibold text-ink underline decoration-primary-dark underline-offset-2 hover:text-primary-dark"
     target="_blank"
     rel="noopener"
   >
-    Open documentation ↗
+    {cta}
   </a>
 </div>

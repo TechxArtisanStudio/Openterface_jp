@@ -39,10 +39,11 @@ const ogLocale = getOgLocale(siteConfig.locale);
 const ogLocaleAlternates = hreflangAlternates.length > 0 ? getOgLocaleAlternates(siteConfig.locale) : [];
 const resolvedOgImageAlt = ogImageAlt ?? description;
 const ogImageDimensions = getOgImageDimensions(ogImage);
+const textDir = siteConfig.locale === 'ar' ? 'rtl' : 'ltr';
 ---
 
 <!doctype html>
-<html lang={siteConfig.locale}>
+<html lang={siteConfig.locale} dir={textDir}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
