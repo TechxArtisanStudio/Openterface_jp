@@ -3,12 +3,14 @@ import DocLinkBanner from '../components/DocLinkBanner.astro';
 import ProductSlideshow from '../components/ProductSlideshow.astro';
 import type { Product } from '../data/products';
 import { siteConfig } from '../config/site';
+import { ui } from '../i18n/ui';
 
 interface Props {
   product: Product;
 }
 
 const { product } = Astro.props;
+const p = ui.productLanding;
 
 const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
   ? 'shop_click'
@@ -36,7 +38,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
             {product.buyLabel}
           </a>
           <a href={siteConfig.links.appOverview} class="btn btn-secondary" target="_blank" rel="noopener">
-            Download App
+            {p.downloadApp}
           </a>
         </div>
         {
@@ -46,7 +48,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
               <span>{product.funding.date}</span>
               <span>|</span>
               <span>
-                <strong>{product.funding.backers}</strong> Backers
+                <strong>{product.funding.backers}</strong> {p.backers}
               </span>
             </div>
           )
@@ -65,7 +67,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
 
   <section class="bg-surface py-12">
     <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">The Problem</h2>
+      <h2 class="section-title text-center">{p.theProblem}</h2>
       <ul class="mx-auto mt-6 grid max-w-3xl gap-3">
         {
           product.painPoints.map((point) => (
@@ -81,7 +83,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
 
   <section class="py-12">
     <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">The Solution</h2>
+      <h2 class="section-title text-center">{p.theSolution}</h2>
       <ul class="mx-auto mt-6 grid max-w-3xl gap-3">
         {
           product.solutions.map((point) => (
@@ -97,11 +99,11 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
 
   <section class="bg-surface py-12">
     <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">Hardware + Software</h2>
-      <p class="section-subtitle text-center">Openterface products work best with our open-source host apps.</p>
+      <h2 class="section-title text-center">{p.hwSoftwareTitle}</h2>
+      <p class="section-subtitle text-center">{p.hwSoftwareSubtitle}</p>
       <div class="mt-8 grid gap-6 md:grid-cols-2">
         <div class="card">
-          <h3 class="text-lg font-semibold text-primary-dark">Hardware</h3>
+          <h3 class="text-lg font-semibold text-primary-dark">{p.hardware}</h3>
           <ul class="mt-4 space-y-4">
             {
               product.hwFeatures.map((f) => (
@@ -114,7 +116,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
           </ul>
         </div>
         <div class="card">
-          <h3 class="text-lg font-semibold text-primary-dark">Software</h3>
+          <h3 class="text-lg font-semibold text-primary-dark">{p.software}</h3>
           <ul class="mt-4 space-y-4">
             {
               product.swFeatures.length > 0 ? (
@@ -125,7 +127,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
                   </li>
                 ))
               ) : (
-                <li class="text-muted">See TxA Shop for accessory compatibility details.</li>
+                <li class="text-muted">{p.swFallback}</li>
               )
             }
           </ul>
@@ -138,7 +140,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
     product.specs.length > 0 && (
       <section class="py-12">
         <div class="mx-auto max-w-6xl px-4">
-          <h2 class="section-title text-center">Key Specs</h2>
+          <h2 class="section-title text-center">{p.keySpecs}</h2>
           <dl class="mx-auto mt-6 grid max-w-2xl gap-4">
             {product.specs.map((spec) => (
               <div class="flex justify-between border-b border-gray-200 pb-2">
@@ -154,7 +156,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
 
   <section class="bg-surface py-12">
     <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">Use Cases</h2>
+      <h2 class="section-title text-center">{p.useCases}</h2>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         {
           product.useCases.map((uc) => (
@@ -167,7 +169,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
 
   <section class="py-12">
     <div class="mx-auto max-w-6xl px-4">
-      <h2 class="section-title text-center">Documentation</h2>
+      <h2 class="section-title text-center">{p.documentation}</h2>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         {
           product.docLinks.map((link) => (
@@ -182,8 +184,8 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
 
   <section class="bg-primary-dark py-12 text-white">
     <div class="mx-auto max-w-6xl px-4 text-center">
-      <h2 class="text-2xl font-bold">Ready to get started?</h2>
-      <p class="mt-2 opacity-90">Order hardware and download the Openterface app for your platform.</p>
+      <h2 class="text-2xl font-bold">{p.ctaTitle}</h2>
+      <p class="mt-2 opacity-90">{p.ctaSubtitle}</p>
       <div class="mt-6 flex flex-wrap justify-center gap-3">
         <a
           href={product.buyHref}
@@ -197,7 +199,7 @@ const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
           {product.buyLabel}
         </a>
         <a href={siteConfig.links.appOverview} class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">
-          Download App
+          {p.downloadApp}
         </a>
       </div>
     </div>
