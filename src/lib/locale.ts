@@ -15,6 +15,7 @@ export const SUPPORTED_LOCALES = [
   'hk',
   'tw',
   'ru',
+  'ar',
 ] as const;
 
 export type SiteLocale = (typeof SUPPORTED_LOCALES)[number];
@@ -33,6 +34,7 @@ export const LOCALE_LABELS: Record<SiteLocale, string> = {
   hk: '繁體中文（香港）',
   tw: '繁體中文（台灣）',
   ru: 'Русский',
+  ar: 'العربية',
 };
 
 export function isSiteLocale(value: string): value is SiteLocale {
