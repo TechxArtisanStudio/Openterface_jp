@@ -88,7 +88,10 @@ test('product page has Product JSON-LD and og:type product', async ({ page }) =>
   const jsonLdScripts = await page.locator('script[type="application/ld+json"]').allTextContents();
   const productLd = jsonLdScripts.find((text) => text.includes('"@type":"Product"'));
   expect(productLd).toBeTruthy();
-  expect(productLd).toContain('Openterface KeyMod Series');
+  const product = JSON.parse(productLd!);
+  expect(product['@type']).toBe('Product');
+  expect(String(product.name)).toMatch(/KeyMod/i);
+  expect(String(product.url)).toContain('/products/keymod/');
 });
 
 test('home page has Organization and WebSite JSON-LD', async ({ page }) => {

@@ -8,7 +8,7 @@ test('home page loads and has carousel', async ({ page }) => {
 
 test('home page has YouTube video strip with external links', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
-  const strip = page.getByRole('region', { name: 'YouTube のコミュニティ動画' });
+  const strip = page.getByRole('region', { name: 'YouTube コミュニティ動画' });
   await expect(strip).toBeVisible({ timeout: 10000 });
   const youtubeLinks = strip.locator('a[href*="youtube.com/watch"]');
   await expect(youtubeLinks.first()).toBeVisible();
