@@ -16,6 +16,7 @@ const DEV_MARKETING: Partial<Record<SiteLocale, string | undefined>> = {
   pt: import.meta.env.PUBLIC_OP_DEV_MARKETING_PT,
   ro: import.meta.env.PUBLIC_OP_DEV_MARKETING_RO,
   zh: import.meta.env.PUBLIC_OP_DEV_MARKETING_ZH,
+  hk: import.meta.env.PUBLIC_OP_DEV_MARKETING_HK,
 };
 
 export function surfaceDocsBase(): string {
