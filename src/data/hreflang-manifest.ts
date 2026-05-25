@@ -11,6 +11,7 @@ export const localeHosts: Record<string, string> = {
   ro: 'https://ro.openterface.com',
   zh: 'https://cn.openterface.com',
   hk: 'https://hk.openterface.com',
+  tw: 'https://tw.openterface.com',
 };
 
 export const marketingPaths = [
