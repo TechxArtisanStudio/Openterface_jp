@@ -1,5 +1,6 @@
 ---
 import { LOCALE_LABELS, SUPPORTED_LOCALES, switchLocaleUrl, type SiteLocale } from '../lib/locale';
+import { preserveQueryForLocaleSwitch } from '../lib/preserve-query';
 import { siteConfig } from '../config/site';
 import TranslateIcon from './TranslateIcon.astro';
 
@@ -11,6 +12,7 @@ interface Props {
 
 const { currentPath, currentSearch = '', class: className = '' } = Astro.props;
 const locale = siteConfig.locale as SiteLocale;
+const preservedSearch = preserveQueryForLocaleSwitch(currentSearch);
 ---
 
 <details class:list={['locale-switcher relative', className]}>
@@ -25,7 +27,7 @@ const locale = siteConfig.locale as SiteLocale;
       SUPPORTED_LOCALES.map((loc) => (
         <li>
           <a
-            href={switchLocaleUrl(currentPath, loc, currentSearch)}
+            href={switchLocaleUrl(currentPath, loc, preservedSearch)}
             data-locale-switch
             class:list={[
               'block px-3 py-2 text-sm hover:bg-brand-light hover:text-primary-dark',
@@ -47,14 +49,7 @@ const locale = siteConfig.locale as SiteLocale;
 </style>
 
 <script>
-  (function () {
-    var search = window.location.search;
-    if (!search) return;
-    document.querySelectorAll('a[data-locale-switch]').forEach(function (a) {
-      var href = a.getAttribute('href');
-      if (href && href.indexOf('?') === -1) {
-        a.setAttribute('href', href + search);
-      }
-    });
-  })();
+  import { applyPreservedQueryToLocaleLinks } from '../lib/preserve-query';
+
+  applyPreservedQueryToLocaleLinks();
 </script>
