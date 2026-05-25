@@ -14,6 +14,7 @@ export const OG_LOCALE_MAP: Record<string, string> = {
   zh: 'zh_CN',
   hk: 'zh_HK',
   tw: 'zh_TW',
+  ru: 'ru_RU',
 };
 
 export const TWITTER_SITE = '@TechxArtisan';
