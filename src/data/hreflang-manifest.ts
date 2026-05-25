@@ -14,6 +14,7 @@ export const localeHosts: Record<string, string> = {
   tw: 'https://tw.openterface.com',
   ru: 'https://ru.openterface.com',
   ar: 'https://ar.openterface.com',
+  tr: 'https://tr.openterface.com',
 };
 
 export const marketingPaths = [
