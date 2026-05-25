@@ -37,6 +37,7 @@ export const siteConfig = {
         'ro.openterface.com',
         'cn.openterface.com',
         'hk.openterface.com',
+        'tw.openterface.com',
         'news.openterface.com',
         'docs.openterface.com',
       ],
