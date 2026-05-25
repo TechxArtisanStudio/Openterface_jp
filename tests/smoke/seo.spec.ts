@@ -17,6 +17,7 @@ const OG_LOCALE_BY_HOST: Record<string, string> = {
   'tw.openterface.com': 'zh_TW',
   'ru.openterface.com': 'ru_RU',
   'ar.openterface.com': 'ar_SA',
+  'tr.openterface.com': 'tr_TR',
 };
 
 const EXPECTED_OG_LOCALE = OG_LOCALE_BY_HOST[SITE_HOST] ?? 'en_US';
