@@ -1,4 +1,4 @@
-/** Cross-subdomain hreflang cluster for Astro marketing pages (all 10 locales). */
+/** Cross-subdomain hreflang cluster for Astro marketing pages (all marketing locales). */
 export const localeHosts: Record<string, string> = {
   en: 'https://en.openterface.com',
   de: 'https://de.openterface.com',
@@ -10,6 +10,7 @@ export const localeHosts: Record<string, string> = {
   pt: 'https://pt.openterface.com',
   ro: 'https://ro.openterface.com',
   zh: 'https://cn.openterface.com',
+  hk: 'https://hk.openterface.com',
 };
 
 export const marketingPaths = [
