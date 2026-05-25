@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeHeroCarousel from '../components/HomeHeroCarousel.astro';
 import HomeVideosStrip from '../components/HomeVideosStrip.astro';
 import DocLinkBanner from '../components/DocLinkBanner.astro';
+import HomeSubscribeSection from '../components/HomeSubscribeSection.astro';
 import SiteJsonLd from '../components/SiteJsonLd.astro';
 import { homeSlides, homeSeo } from '../data/homeSlides';
 import { siteConfig } from '../config/site';
@@ -19,7 +20,7 @@ import { siteConfig } from '../config/site';
 
   <HomeVideosStrip />
 
-  <DocLinkBanner message="Tutorials, FAQs, app downloads, and product guides are on docs.openterface.com." />
+  <DocLinkBanner variant="home" />
 
   <section class="py-10 md:py-16">
     <div class="mx-auto max-w-6xl px-4 text-center">
@@ -50,4 +51,5 @@ import { siteConfig } from '../config/site';
       </a>
     </div>
   </section>
+  <HomeSubscribeSection />
 </BaseLayout>
