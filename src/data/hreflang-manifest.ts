@@ -1,6 +1,6 @@
-/** Cross-subdomain hreflang cluster for Astro marketing pages (all marketing locales). */
+/** Cross-subdomain hreflang cluster for Astro marketing pages (Wave 1 live locales). */
 export const localeHosts: Record<string, string> = {
-  en: 'https://en.openterface.com',
+  en: 'https://openterface.com',
   de: 'https://de.openterface.com',
   es: 'https://es.openterface.com',
   fr: 'https://fr.openterface.com',
@@ -10,14 +10,16 @@ export const localeHosts: Record<string, string> = {
   pt: 'https://pt.openterface.com',
   ro: 'https://ro.openterface.com',
   zh: 'https://cn.openterface.com',
-  hk: 'https://hk.openterface.com',
-  tw: 'https://tw.openterface.com',
-  ru: 'https://ru.openterface.com',
-  ar: 'https://ar.openterface.com',
-  tr: 'https://tr.openterface.com',
-  pl: 'https://pl.openterface.com',
-  nl: 'https://nl.openterface.com',
 };
+
+/** Wave 2 locales — scaffold content; excluded from hreflang until translation QA. */
+export const WAVE2_LOCALE_CODES = ['hk', 'tw', 'ru', 'ar', 'tr', 'pl', 'nl'] as const;
+
+export type Wave2LocaleCode = (typeof WAVE2_LOCALE_CODES)[number];
+
+export function isWave2Locale(code: string): code is Wave2LocaleCode {
+  return (WAVE2_LOCALE_CODES as readonly string[]).includes(code);
+}
 
 export const marketingPaths = [
   '/',

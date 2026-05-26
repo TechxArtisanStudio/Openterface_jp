@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
 
-const SITE_HOST = process.env.SITE_HOST || 'jp.openterface.com';
+const SITE_HOST = process.env.SITE_HOST || 'openterface.com';
 
 const OG_LOCALE_BY_HOST: Record<string, string> = {
+  'openterface.com': 'en_US',
   'en.openterface.com': 'en_US',
   'de.openterface.com': 'de_DE',
   'es.openterface.com': 'es_ES',
@@ -64,10 +65,10 @@ test('sitemap-0.xml lists marketing routes and excludes 404', async ({ request }
 test('home page has cross-locale hreflang alternates', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
   const hreflangLinks = page.locator('link[rel="alternate"][hreflang]');
-  expect(await hreflangLinks.count()).toBeGreaterThanOrEqual(11);
+  expect(await hreflangLinks.count()).toBeGreaterThanOrEqual(10);
   await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveAttribute(
     'href',
-    'https://en.openterface.com/',
+    'https://openterface.com/',
   );
 });
 
@@ -80,7 +81,7 @@ test('home page title does not duplicate brand suffix', async ({ page }) => {
 test('home page has Open Graph and Twitter social meta', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', EXPECTED_OG_LOCALE);
-  await expect(page.locator('meta[property="og:locale:alternate"]')).toHaveCount(9);
+  await expect(page.locator('meta[property="og:locale:alternate"]')).toHaveCount(16);
   await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /.+/);
   await expect(page.locator('meta[name="twitter:site"]')).toHaveAttribute('content', '@TechxArtisan');
   await expect(page.locator('meta[name="twitter:url"]')).toHaveAttribute(
