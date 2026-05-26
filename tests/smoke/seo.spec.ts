@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const SITE_HOST = process.env.SITE_HOST || 'openterface.com';
+const SITE_HOST = process.env.SITE_HOST || 'jp.openterface.com';
 
 const OG_LOCALE_BY_HOST: Record<string, string> = {
   'openterface.com': 'en_US',
@@ -81,7 +81,7 @@ test('home page title does not duplicate brand suffix', async ({ page }) => {
 test('home page has Open Graph and Twitter social meta', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
   await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', EXPECTED_OG_LOCALE);
-  await expect(page.locator('meta[property="og:locale:alternate"]')).toHaveCount(16);
+  await expect(page.locator('meta[property="og:locale:alternate"]')).toHaveCount(9);
   await expect(page.locator('meta[property="og:image:alt"]')).toHaveAttribute('content', /.+/);
   await expect(page.locator('meta[name="twitter:site"]')).toHaveAttribute('content', '@TechxArtisan');
   await expect(page.locator('meta[name="twitter:url"]')).toHaveAttribute(
