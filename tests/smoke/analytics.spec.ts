@@ -95,3 +95,77 @@ test('accepting cookies enables GA4 page view tracking', async ({ page }) => {
     ).toBe(true);
   }
 });
+
+test('crowdsupply_click fires after consent when clicking carousel CTA', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await page.locator('#cookie-consent-accept').click();
+  await page.waitForFunction(() => typeof window.__openterfaceAnalytics?.track === 'function');
+
+  await expect(page.locator('[data-analytics-event="crowdsupply_click"]').first()).toBeVisible();
+  await page.locator('[data-analytics-event="crowdsupply_click"]').first().click({ modifiers: ['Meta'] });
+
+  await expect
+    .poll(async () =>
+      page.evaluate(() => {
+        const dl = window.dataLayer || [];
+        return dl.some(
+          (e: { 0?: string; 1?: string; 2?: { product?: string } }) =>
+            e?.[0] === 'event' &&
+            e?.[1] === 'crowdsupply_click' &&
+            Boolean(e?.[2]?.product),
+        );
+      }),
+    )
+    .toBe(true);
+});
+
+test('crowdsupply_click includes landing UTM params', async ({ page }) => {
+  await page.goto(
+    '/?utm_source=test_instagram&utm_medium=social&utm_campaign=p0_test&utm_content=story',
+    { waitUntil: 'domcontentloaded' },
+  );
+  await page.locator('#cookie-consent-accept').click();
+  await expect(page.locator('[data-analytics-event="crowdsupply_click"]').first()).toBeVisible();
+  await page.locator('[data-analytics-event="crowdsupply_click"]').first().click({ modifiers: ['Meta'] });
+
+  await expect
+    .poll(async () =>
+      page.evaluate(() => {
+        const dl = window.dataLayer || [];
+        const hit = dl.find(
+          (e: { 0?: string; 1?: string; 2?: Record<string, string> }) =>
+            e?.[0] === 'event' && e?.[1] === 'crowdsupply_click',
+        );
+        return hit?.[2]?.utm_source === 'test_instagram' && hit?.[2]?.utm_campaign === 'p0_test';
+      }),
+    )
+    .toBe(true);
+});
+
+test('analytics events do not fire before consent', async ({ page }) => {
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-analytics-event="crowdsupply_click"]').first().click();
+
+  const hasClickEvent = await page.evaluate(() => {
+    const dl = window.dataLayer || [];
+    return dl.some(
+      (e: { 0?: string; 1?: string }) => e?.[0] === 'event' && e?.[1] === 'crowdsupply_click',
+    );
+  });
+  expect(hasClickEvent).toBe(false);
+});
+
+test('locale switch href preserves landing UTMs without _gl', async ({ page }) => {
+  await page.goto(
+    '/?utm_source=test_instagram&utm_campaign=p0_test&_gl=1*linker*noise',
+    { waitUntil: 'domcontentloaded' },
+  );
+
+  const deLink = page.locator('a[data-locale-switch][href*="de.openterface.com"]').first();
+  await expect(deLink).not.toHaveCount(0);
+
+  const href = await deLink.getAttribute('href');
+  expect(href).toContain('utm_source=test_instagram');
+  expect(href).toContain('utm_campaign=p0_test');
+  expect(href).not.toContain('_gl=');
+});
