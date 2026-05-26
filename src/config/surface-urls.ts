@@ -1,4 +1,4 @@
-import { localeHosts as prodLocaleHosts } from '../data/hreflang-manifest';
+import { marketingLocaleHosts as prodLocaleHosts } from '../data/hreflang-manifest';
 import type { SiteLocale } from '../lib/locale';
 
 const PROD_DOCS = 'https://docs.openterface.com';
