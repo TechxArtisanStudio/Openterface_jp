@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('home page loads and has carousel', async ({ page }) => {
   await page.goto('/', { waitUntil: 'commit', timeout: 15000 });
-  await expect(page.getByRole('region', { name: 'Featured products' })).toBeVisible({ timeout: 10000 });
+  await expect(page.locator('#home-carousel .carousel-slide').first()).toBeVisible({ timeout: 10000 });
   await expect(page.locator('h1').first()).toBeVisible();
 });
 
