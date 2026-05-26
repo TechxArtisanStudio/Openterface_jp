@@ -42,4 +42,4 @@ src/
 └── pages/          # Astro routes
 ```
 
-Parent plan: `.cursor/plans/openterface_website_unified_32a8c7df.plan.md`
+Internal locale rollout tooling: private **web-dev-tool** repo.

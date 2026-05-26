@@ -31,3 +31,11 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# --- internal dev (do not commit) ---
+.cursor/
+.env
+.env.*
+!.env.example
+*.log
+translate-missing*
