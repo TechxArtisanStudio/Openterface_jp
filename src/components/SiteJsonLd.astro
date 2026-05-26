@@ -1,6 +1,12 @@
 ---
 import { siteConfig } from '../config/site';
 
+interface Props {
+  description?: string;
+}
+
+const { description = siteConfig.description } = Astro.props;
+
 const siteUrl = siteConfig.url;
 const logoUrl = new URL('/images/favicon.png', siteUrl).href;
 
@@ -28,7 +34,7 @@ const jsonLd = {
       '@id': `${siteUrl}/#website`,
       name: siteConfig.name,
       url: siteUrl,
-      description: siteConfig.description,
+      description,
       inLanguage: siteConfig.locale,
       publisher: { '@id': `${siteUrl}/#organization` },
     },

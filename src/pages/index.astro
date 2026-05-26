@@ -15,7 +15,7 @@ import { siteConfig } from '../config/site';
   keywords={homeSeo.keywords}
   canonicalPath="/"
 >
-  <SiteJsonLd slot="head" />
+  <SiteJsonLd slot="head" description={homeSeo.description} />
   <HomeHeroCarousel slides={homeSlides} />
 
   <HomeVideosStrip />
