@@ -1,0 +1,56 @@
+#!/bin/sh
+# Openterface public repo pre-commit — blocks internal paths and dev artifacts.
+# Install: from web-dev-tool run  npm run install-public-pre-commit
+set -eu
+
+blocked_path() {
+  echo "pre-commit: blocked path: $1" >&2
+  echo "  See web-dev-tool analytics/public-repo-disclosure.md" >&2
+  exit 1
+}
+
+blocked_content() {
+  echo "pre-commit: $1" >&2
+  exit 1
+}
+
+STAGED=$(git diff --cached --name-only --diff-filter=ACM || true)
+[ -z "$STAGED" ] && exit 0
+
+for f in $STAGED; do
+  case "$f" in
+    .cursor|.cursor/*|*/.cursor|*/.cursor/*)
+      blocked_path "$f"
+      ;;
+    *.log|translate-missing*|translate-missing-pages*)
+      blocked_path "$f"
+      ;;
+    .env|.env.*)
+      case "$f" in
+        .env.example) ;;
+        *) blocked_path "$f" ;;
+      esac
+      ;;
+  esac
+
+  # Content scan on staged blob only (text files)
+  case "$f" in
+    *.md|*.mdx|*.mjs|*.js|*.ts|*.tsx|*.astro|*.json|*.yml|*.yaml|*.sh|*.py|*.toml|*.html|*.css|*.txt|.gitignore)
+      content=$(git show ":$f" 2>/dev/null || true)
+      if printf '%s' "$content" | grep -qE '/Users/[^[:space:]]'; then
+        blocked_content "home directory path in $f"
+      fi
+      if printf '%s' "$content" | grep -qE 'file:///Users/'; then
+        blocked_content "file:// user path in $f"
+      fi
+      if printf '%s' "$content" | grep -qE 'web-dev-tool/\.secrets'; then
+        blocked_content "web-dev-tool secrets path in $f"
+      fi
+      if printf '%s' "$content" | grep -qE 'ghp_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,}|glpat-[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16}'; then
+        blocked_content "possible API token in $f"
+      fi
+      ;;
+  esac
+done
+
+exit 0
