@@ -70,7 +70,6 @@ const textDir = siteConfig.locale === 'ar' ? 'rtl' : 'ltr';
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:alt" content={resolvedOgImageAlt} />
     {ogImageDimensions && (
@@ -88,7 +87,6 @@ const textDir = siteConfig.locale === 'ar' ? 'rtl' : 'ltr';
     <meta name="twitter:site" content={TWITTER_SITE} />
     <meta name="twitter:url" content={canonical} />
     <meta name="twitter:title" content={pageTitle} />
-    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={resolvedOgImageAlt} />
     <slot name="head" />
