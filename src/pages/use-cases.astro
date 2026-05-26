@@ -1,36 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import DocLinkBanner from '../components/DocLinkBanner.astro';
+import { siteConfig } from '../config/site';
+import { getUseCasesStrings } from '../i18n/use-cases';
 import { pageOgImages } from '../lib/seo';
+
+const strings = getUseCasesStrings(siteConfig.locale);
 ---
 
 <BaseLayout
-  title="Use Cases"
-  description="Real-world use cases for Openterface KVM-over-USB products."
+  title={strings.title}
+  description={strings.description}
   ogImage={pageOgImages.useCases}
-  ogImageAlt="ヘッドレスサーバーと homelab 管理用 Openterface Mini-KVM"
+  ogImageAlt={strings.ogImageAlt}
   canonicalPath="/use-cases/"
 >
   <DocLinkBanner />
   <section class="py-16">
     <div class="mx-auto max-w-3xl px-4">
-      <h1 class="text-4xl font-bold">Use Cases</h1>
-      <p class="mt-4 text-lg text-muted">
-        Openterface tools shine whenever you need to control a headless or hard-to-reach computer without a dedicated
-        monitor and keyboard.
-      </p>
+      <h1 class="text-4xl font-bold">{strings.title}</h1>
+      <p class="mt-4 text-lg text-muted">{strings.intro}</p>
       <ul class="mt-8 space-y-4">
-        {
-          [
-            'Data center and colocation walk-throughs',
-            'Homelab and NAS administration',
-            'Embedded device and SBC bring-up',
-            'Kiosk and digital signage maintenance',
-            'Field IT and consulting engagements',
-          ].map((item) => (
-            <li class="card">{item}</li>
-          ))
-        }
+        {strings.items.map((item) => (
+          <li class="card">{item}</li>
+        ))}
       </ul>
     </div>
   </section>
