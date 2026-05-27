@@ -1,0 +1,50 @@
+---
+interface UseCaseCard {
+  title: string;
+  description?: string;
+  href?: string;
+}
+
+interface Props {
+  title: string;
+  items: UseCaseCard[];
+  docsHref?: string;
+  docsLabel?: string;
+}
+
+const { title, items, docsHref, docsLabel = 'See all use cases on docs →' } = Astro.props;
+---
+
+<section class="product-section bg-surface" aria-labelledby="use-case-strip-title">
+  <div class="product-section__inner">
+    <h2 id="use-case-strip-title" class="section-title text-center">{title}</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((item) => {
+          const inner = (
+            <>
+              <h3 class="font-semibold text-ink">{item.title}</h3>
+              {item.description && <p class="mt-2 text-sm text-muted">{item.description}</p>}
+            </>
+          );
+          return item.href ? (
+            <a href={item.href} class="card block transition hover:border-primary-dark/40" target="_blank" rel="noopener">
+              {inner}
+            </a>
+          ) : (
+            <div class="card">{inner}</div>
+          );
+        })
+      }
+    </div>
+    {
+      docsHref && (
+        <p class="mt-6 text-center">
+          <a href={docsHref} class="text-sm font-semibold text-accent-on-light hover:underline" target="_blank" rel="noopener">
+            {docsLabel}
+          </a>
+        </p>
+      )
+    }
+  </div>
+</section>

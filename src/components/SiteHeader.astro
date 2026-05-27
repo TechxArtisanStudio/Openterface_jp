@@ -6,8 +6,7 @@ import NavDropdown from './NavDropdown.astro';
 import { siteConfig } from '../config/site';
 import { LOCALE_LABELS, SUPPORTED_LOCALES, switchLocaleUrl, type SiteLocale } from '../lib/locale';
 
-const productItem = mainNav.find((item) => item.children);
-const productLinks = productItem?.children ?? [];
+const dropdownSections = mainNav.filter((item) => item.children);
 const primaryLinks = mainNav.filter(
   (item) => !item.children && !item.external && item.href !== '/',
 );
@@ -74,18 +73,18 @@ const locale = siteConfig.locale as SiteLocale;
         >
           <div class="mx-auto max-h-[min(75vh,36rem)] max-w-7xl overflow-y-auto overscroll-contain px-3 py-2 sm:px-4 sm:py-3">
             {
-              productItem && (
+              dropdownSections.map((section) => (
                 <div class="mobile-nav-section">
-                  <p class="mobile-nav-section-label">{productItem.label}</p>
+                  <p class="mobile-nav-section-label">{section.label}</p>
                   <div class="mobile-nav-section-links">
                     {
-                      productLinks.map((child) => (
+                      section.children?.map((child) => (
                         <a href={child.href} class="mobile-nav-link">{child.label}</a>
                       ))
                     }
                   </div>
                 </div>
-              )
+              ))
             }
 
             <div class="mobile-nav-section">

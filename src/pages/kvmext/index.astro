@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductJsonLd from '../../components/ProductJsonLd.astro';
+import ProductLandingV2 from '../../layouts/ProductLandingV2.astro';
+import { docsPath, siteConfig } from '../../config/site';
+import { kvmextProduct as product } from '../../data/products/kvmext';
+
+const canonicalPath = '/kvmext/';
+const productUrl = new URL(canonicalPath, siteConfig.url).href;
+
+const OSHWA_CERT = 'https://certification.oshwa.org/cn000021.html';
+
+const setupDocs = [
+  {
+    title: 'Hardware Installation',
+    description: 'Install the extension board in the uConsole 4G/LTE expansion slot.',
+    href: docsPath('/products/kvmext/hardware-installation/'),
+  },
+  {
+    title: 'Software Setup',
+    description: 'Configure the Openterface host app on your uConsole.',
+    href: docsPath('/products/kvmext/software-setup/'),
+  },
+  {
+    title: 'Connect to Target',
+    description: 'HDMI + USB wiring to your headless device.',
+    href: docsPath('/products/kvmext/connect-to-target/'),
+  },
+  {
+    title: 'FAQs',
+    description: 'Compatibility, troubleshooting, and common questions.',
+    href: docsPath('/products/kvmext/faq/'),
+  },
+];
+---
+
+<BaseLayout
+  title={product.title}
+  description={product.seoDescription}
+  keywords={product.keywords}
+  ogImage={product.heroImage}
+  ogImageAlt={`${product.title} — ${product.slogan}`}
+  ogType="product"
+  canonicalPath={canonicalPath}
+>
+  <ProductJsonLd slot="head" product={product} url={productUrl} />
+  <ProductLandingV2 product={product} />
+
+  <section class="product-section" aria-label="OSHWA certification">
+    <div class="product-section__inner">
+      <div class="mx-auto flex max-w-3xl flex-col items-center gap-4 rounded-xl border border-gray-200 bg-white p-6 text-center md:flex-row md:text-left">
+        <a href={OSHWA_CERT} target="_blank" rel="noopener" class="shrink-0">
+          <img
+            src="https://assets2.openterface.com/images/kvm-go/kvm-go-oshwa-certification-cn000022.webp"
+            alt="OSHWA Open Source Hardware certification badge"
+            class="h-24 w-auto"
+            loading="lazy"
+            width="200"
+            height="200"
+          />
+        </a>
+        <div>
+          <p class="text-sm font-semibold text-primary-dark">OSHWA certified open hardware</p>
+          <p class="mt-2 text-sm text-muted">
+            Certification UID <strong>CN000021</strong> — schematics, firmware, and documentation published under
+            open licenses. Verified by the Open Source Hardware Association.
+          </p>
+          <a
+            href={OSHWA_CERT}
+            target="_blank"
+            rel="noopener"
+            class="mt-3 inline-block text-sm font-medium text-primary-dark hover:underline"
+          >
+            View certificate on OSHWA →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section bg-surface" aria-label="uConsole compatibility">
+    <div class="product-section__inner">
+      <div class="mx-auto max-w-3xl text-center">
+        <span class="inline-block rounded-full bg-brand-light px-3 py-1 text-xs font-bold text-primary-dark">
+          Clockwork uConsole
+        </span>
+        <h2 class="section-title mt-4">Built for the uConsole expansion slot</h2>
+        <p class="section-subtitle mx-auto mt-3 max-w-2xl">
+          Replaces the original 4G/LTE modem module — same 37 × 77 mm footprint, slimmer 1.0 mm PCB. Your uConsole
+          becomes a self-contained KVM terminal with built-in screen, keyboard, and trackball.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section" aria-label="Portable KVM terminal narrative">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Before & after: your pocket KVM terminal</h2>
+      <div class="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-2">
+        <div class="card border-gray-200">
+          <p class="text-xs font-bold uppercase tracking-wide text-muted">Before</p>
+          <h3 class="mt-2 text-lg font-semibold">Separate gear for every site visit</h3>
+          <ul class="mt-3 space-y-2 text-sm text-muted">
+            <li>External monitor or crash-cart KVM</li>
+            <li>USB keyboard and mouse in the bag</li>
+            <li>Network KVM when IP is available — useless when it is not</li>
+          </ul>
+        </div>
+        <div class="card border-primary-dark/30 bg-brand-light/30">
+          <p class="text-xs font-bold uppercase tracking-wide text-primary-dark">After</p>
+          <h3 class="mt-2 text-lg font-semibold">uConsole + KVM Extension</h3>
+          <ul class="mt-3 space-y-2 text-sm text-muted">
+            <li>HDMI into the target — screen and controls on the uConsole</li>
+            <li>USB HID to the target — BIOS-level access, no target software</li>
+            <li>One pocketable device for datacenter walks and homelab rescue</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
+        <img
+          src="https://assets.openterface.com/images/product/openterface-kvm-uconsole-extension.webp"
+          alt="Openterface KVM Extension PCB front"
+          class="w-full rounded-xl border border-gray-200 shadow-sm"
+          loading="lazy"
+          width="640"
+          height="480"
+        />
+        <img
+          src="https://assets.openterface.com/images/product/openterface-kvm-uconsole-extension-back.webp"
+          alt="Openterface KVM Extension PCB back"
+          class="w-full rounded-xl border border-gray-200 shadow-sm"
+          loading="lazy"
+          width="640"
+          height="480"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <section class="product-section bg-surface" aria-label="Setup documentation">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Setup on docs — start here</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        Installation and configuration are documented step-by-step. Deep specs and FAQs live on docs.openterface.com.
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {
+          setupDocs.map((doc) => (
+            <a href={doc.href} target="_blank" rel="noopener" class="card hover:border-primary-dark hover:shadow-md">
+              <h3 class="text-lg font-semibold text-primary-dark">{doc.title} →</h3>
+              <p class="mt-2 text-sm text-muted">{doc.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

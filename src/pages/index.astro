@@ -2,11 +2,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomeHeroCarousel from '../components/HomeHeroCarousel.astro';
 import HomeVideosStrip from '../components/HomeVideosStrip.astro';
-import DocLinkBanner from '../components/DocLinkBanner.astro';
 import HomeSubscribeSection from '../components/HomeSubscribeSection.astro';
+import DocLinkBanner from '../components/DocLinkBanner.astro';
 import SiteJsonLd from '../components/SiteJsonLd.astro';
 import { homeSlides, homeSeo } from '../data/homeSlides';
-import { siteConfig } from '../config/site';
 ---
 
 <BaseLayout
@@ -24,32 +23,39 @@ import { siteConfig } from '../config/site';
 
   <section class="py-10 md:py-16">
     <div class="mx-auto max-w-6xl px-4 text-center">
-      <h2 class="section-title">ITプロフェッショナル向けのKVM-over-USB</h2>
+      <h2 class="section-title">KVM-over-USB for IT Professionals</h2>
       <p class="section-subtitle mx-auto max-w-2xl text-base md:text-lg">
-        オープンソースで超コンパクトなハードウェアとクロスプラットフォーム対応アプリ。いつも持ち歩いているデバイスからヘッドレスマシンを制御できます。
+        Open-source, ultra-compact hardware with cross-platform apps. Control headless machines from the device you
+        already carry.
       </p>
-      <div class="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-        <a href="/products/keymod/" class="card hover:border-primary-dark hover:shadow-md">
+      <div class="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <a href="/keymod/" class="card hover:border-primary-dark hover:shadow-md">
           <h3 class="font-semibold">KeyMod</h3>
-          <p class="mt-2 text-sm text-muted">スマホがキーボード＆トラックパッドに</p>
+          <p class="mt-2 text-sm text-muted">Phone as keyboard & trackpad</p>
         </a>
-        <a href="/products/kvm-go/" class="card hover:border-primary-dark hover:shadow-md">
+        <a href="/kvmgo/" class="card hover:border-primary-dark hover:shadow-md">
           <h3 class="font-semibold">KVM-GO</h3>
-          <p class="mt-2 text-sm text-muted">キーホルダーサイズのKVM</p>
+          <p class="mt-2 text-sm text-muted">Keychain-sized KVM</p>
         </a>
-        <a href="/products/minikvm/" class="card hover:border-primary-dark hover:shadow-md">
+        <a href="/minikvm/" class="card hover:border-primary-dark hover:shadow-md">
           <h3 class="font-semibold">Mini-KVM</h3>
-          <p class="mt-2 text-sm text-muted">ノートPCがKVMコンソールに</p>
+          <p class="mt-2 text-sm text-muted">Laptop as KVM console</p>
         </a>
-        <a href="/products/accessories/" class="card hover:border-primary-dark hover:shadow-md">
-          <h3 class="font-semibold">アクセサリー</h3>
-          <p class="mt-2 text-sm text-muted">ケーブル＆ツールキット</p>
+        <a href="/kvmext/" class="card hover:border-primary-dark hover:shadow-md">
+          <h3 class="font-semibold">KVM Extension</h3>
+          <p class="mt-2 text-sm text-muted">uConsole KVM board</p>
+        </a>
+        <a href="/accessories/" class="card hover:border-primary-dark hover:shadow-md">
+          <h3 class="font-semibold">Accessories</h3>
+          <p class="mt-2 text-sm text-muted">Cables & toolkit</p>
         </a>
       </div>
-      <a href={siteConfig.links.appOverview} class="btn btn-primary mt-8" target="_blank" rel="noopener">
-        Openterface アプリをダウンロード
-      </a>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/products/" class="btn btn-secondary">View all products</a>
+        <a href="/app/" class="btn btn-primary">Download Openterface App</a>
+      </div>
     </div>
   </section>
+
   <HomeSubscribeSection />
 </BaseLayout>

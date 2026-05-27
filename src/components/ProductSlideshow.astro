@@ -14,7 +14,7 @@ const id = `slideshow-${Math.random().toString(36).slice(2, 9)}`;
       images.map((src, i) => (
         <img
           src={src}
-          alt={`${alt} — 画像 ${i + 1}`}
+          alt={`${alt} — image ${i + 1}`}
           class:list={['slideshow-image w-full object-contain', i === 0 ? 'block' : 'hidden']}
           data-index={i}
           loading={i === 0 ? 'eager' : 'lazy'}
@@ -28,7 +28,7 @@ const id = `slideshow-${Math.random().toString(36).slice(2, 9)}`;
           <button
             type="button"
             class="slideshow-arrow slideshow-prev"
-            aria-label="前の画像"
+            aria-label="Previous image"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 6l-6 6 6 6"></path>
@@ -37,7 +37,7 @@ const id = `slideshow-${Math.random().toString(36).slice(2, 9)}`;
           <button
             type="button"
             class="slideshow-arrow slideshow-next"
-            aria-label="次の画像"
+            aria-label="Next image"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"></path>
@@ -50,7 +50,7 @@ const id = `slideshow-${Math.random().toString(36).slice(2, 9)}`;
                   type="button"
                   class:list={['slideshow-dot h-2 w-2 rounded-full', i === 0 ? 'is-active' : '']}
                   data-dot={i}
-                  aria-label={`画像 ${i + 1}`}
+                  aria-label={`Image ${i + 1}`}
                 />
               ))
             }

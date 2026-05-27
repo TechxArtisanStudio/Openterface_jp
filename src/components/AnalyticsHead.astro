@@ -8,12 +8,27 @@ const { storageKey } = consent;
 ---
 
 <script is:inline define:vars={{ measurementId, ahrefsKey, linkerDomains, storageKey }}>
+  const NON_PRODUCTION_HOSTS = /^(localhost|127\.0\.0\.1|\[::1\])$/i;
+  const isProductionHost = !NON_PRODUCTION_HOSTS.test(location.hostname);
+
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     dataLayer.push(arguments);
   }
   window.gtag = gtag;
 
+  if (!isProductionHost) {
+    window.__openterfaceAnalytics = {
+      grant() {},
+      deny() {},
+      showBanner() {
+        const banner = document.getElementById('cookie-consent-banner');
+        if (!banner) return;
+        banner.hidden = false;
+        banner.setAttribute('aria-hidden', 'false');
+      },
+    };
+  } else {
   gtag('consent', 'default', {
     analytics_storage: 'denied',
     ad_storage: 'denied',
@@ -71,6 +86,10 @@ const { storageKey } = consent;
   if (storedConsent === 'granted') {
     window.__openterfaceAnalytics.grant();
   }
-</script>
 
-<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
+  const gtagScript = document.createElement('script');
+  gtagScript.async = true;
+  gtagScript.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+  document.head.appendChild(gtagScript);
+  }
+</script>

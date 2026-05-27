@@ -1,0 +1,40 @@
+---
+interface Quote {
+  quote: string;
+  author: string;
+  href?: string;
+}
+
+interface Props {
+  title: string;
+  quotes: Quote[];
+}
+
+const { title, quotes } = Astro.props;
+
+if (quotes.length === 0) return null;
+---
+
+<section class="product-section" aria-labelledby="social-proof-title">
+  <div class="product-section__inner">
+    <h2 id="social-proof-title" class="section-title text-center">{title}</h2>
+    <div class="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {
+        quotes.map((item) => (
+          <figure class="card">
+            <blockquote class="text-muted">&ldquo;{item.quote}&rdquo;</blockquote>
+            <figcaption class="mt-3 text-sm font-semibold text-ink">
+              {item.href ? (
+                <a href={item.href} class="hover:text-primary-dark" target="_blank" rel="noopener">
+                  {item.author}
+                </a>
+              ) : (
+                item.author
+              )}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

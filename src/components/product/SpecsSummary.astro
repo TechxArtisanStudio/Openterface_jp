@@ -1,0 +1,42 @@
+---
+interface Spec {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  title: string;
+  specs: Spec[];
+  docsHref?: string;
+  docsLabel?: string;
+}
+
+const { title, specs, docsHref, docsLabel = 'Full specs on docs →' } = Astro.props;
+
+if (specs.length === 0) return null;
+---
+
+<section class="product-section" aria-labelledby="specs-summary-title">
+  <div class="product-section__inner">
+    <h2 id="specs-summary-title" class="section-title text-center">{title}</h2>
+    <dl class="mx-auto mt-6 grid max-w-2xl gap-4">
+      {
+        specs.map((spec) => (
+          <div class="flex justify-between border-b border-gray-200 pb-2">
+            <dt class="font-medium">{spec.label}</dt>
+            <dd class="text-muted">{spec.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    {
+      docsHref && (
+        <p class="mt-6 text-center">
+          <a href={docsHref} class="text-sm font-semibold text-accent-on-light hover:underline" target="_blank" rel="noopener">
+            {docsLabel}
+          </a>
+        </p>
+      )
+    }
+  </div>
+</section>

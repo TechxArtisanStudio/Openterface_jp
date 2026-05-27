@@ -17,10 +17,11 @@ const f = ui.siteFooter;
       <div>
         <h3 class="text-sm font-semibold text-ink">{f.productsHeading}</h3>
         <ul class="mt-3 space-y-2 text-sm">
-          <li><a href="/products/keymod/" class="text-muted hover:text-primary-dark">{f.keymodSeries}</a></li>
-          <li><a href="/products/kvm-go/" class="text-muted hover:text-primary-dark">{f.kvmGoSeries}</a></li>
-          <li><a href="/products/minikvm/" class="text-muted hover:text-primary-dark">{f.miniKvm}</a></li>
-          <li><a href="/products/accessories/" class="text-muted hover:text-primary-dark">{f.accessories}</a></li>
+          <li><a href="/keymod/" class="text-muted hover:text-primary-dark">{f.keymodSeries}</a></li>
+          <li><a href="/kvmgo/" class="text-muted hover:text-primary-dark">{f.kvmGoSeries}</a></li>
+          <li><a href="/minikvm/" class="text-muted hover:text-primary-dark">{f.miniKvm}</a></li>
+          <li><a href="/kvmext/" class="text-muted hover:text-primary-dark">KVM Extension</a></li>
+          <li><a href="/accessories/" class="text-muted hover:text-primary-dark">{f.accessories}</a></li>
         </ul>
       </div>
       <div>
@@ -28,7 +29,7 @@ const f = ui.siteFooter;
         <ul class="mt-3 space-y-2 text-sm">
           <li><a href="/videos/" class="text-muted hover:text-primary-dark">{f.videos}</a></li>
           <li><a href={docsPath('/faq/')} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">{f.faqs}</a></li>
-          <li><a href={docsPath('/app/overview/')} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">{f.apps}</a></li>
+          <li><a href="/app/" class="text-muted hover:text-primary-dark">{f.apps}</a></li>
           <li><a href={docsPath('/support/')} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">{f.support}</a></li>
         </ul>
       </div>
@@ -46,9 +47,9 @@ const f = ui.siteFooter;
     <div class="mt-8 border-t border-gray-200 pt-6 text-center text-xs text-muted">
       <p>© {new Date().getFullYear()} {f.copyright}</p>
       <p class="mt-1">
-        <a href={siteConfig.legacyUrl + '/policy/privacy/'} class="hover:text-primary-dark" target="_blank" rel="noopener">{f.privacy}</a>
+        <a href={docsPath('/policy/privacy/')} class="hover:text-primary-dark" target="_blank" rel="noopener">{f.privacy}</a>
         ·
-        <a href={siteConfig.legacyUrl + '/policy/terms-of-service/'} class="hover:text-primary-dark" target="_blank" rel="noopener">{f.terms}</a>
+        <a href={docsPath('/policy/terms-of-service/')} class="hover:text-primary-dark" target="_blank" rel="noopener">{f.terms}</a>
         {siteConfig.analytics.enabled && (
           <>
             ·

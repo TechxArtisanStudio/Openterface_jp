@@ -1,19 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import VideoCatalog from '../components/VideoCatalog.astro';
+import MediaCatalog from '../components/MediaCatalog.astro';
 import { siteConfig } from '../config/site';
-import { getVideosStrings } from '../i18n/videos';
+import { getMediaStrings } from '../i18n/media';
 import { pageOgImages } from '../lib/seo';
 
-const strings = getVideosStrings(siteConfig.locale);
+const strings = getMediaStrings(siteConfig.locale);
 ---
 
 <BaseLayout
   title={strings.title}
   description={strings.subtitle}
   ogImage={pageOgImages.videos}
-  ogImageAlt="YouTube 上の Openterface KVM 製品デモとコミュニティレビュー"
+  ogImageAlt="Openterface community media — reviews, demos, and social posts"
   canonicalPath="/videos/"
 >
-  <VideoCatalog />
+  <MediaCatalog />
 </BaseLayout>

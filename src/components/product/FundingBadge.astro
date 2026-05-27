@@ -1,0 +1,19 @@
+---
+interface Props {
+  amount: string;
+  date: string;
+  backers: string;
+  backersLabel: string;
+}
+
+const { amount, date, backers, backersLabel } = Astro.props;
+---
+
+<div class="funding-badge mt-4 flex flex-wrap items-center justify-center gap-2 text-sm text-muted">
+  <span class="font-semibold text-primary-dark">{amount}</span>
+  <span>{date}</span>
+  <span aria-hidden="true">|</span>
+  <span>
+    <strong>{backers}</strong> {backersLabel}
+  </span>
+</div>

@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { products } from '../../data/products';
+import { productFlatPath, productsHubOrder, productsHubSeo } from '../../data/productPaths';
+---
+
+<BaseLayout
+  title={productsHubSeo.title}
+  description={productsHubSeo.description}
+  keywords={productsHubSeo.keywords}
+  ogImageAlt="Openterface KVM-over-USB product lineup"
+  canonicalPath="/products/"
+>
+  <section class="py-10 md:py-16">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="max-w-3xl">
+        <h1 class="text-4xl font-bold">Products</h1>
+        <p class="mt-4 text-lg text-muted">
+          Ultra-compact KVM-over-USB hardware and open-source host apps for IT professionals, developers, and makers.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          productsHubOrder.map((slug) => {
+            const product = products[slug];
+            if (!product) return null;
+            return (
+              <a
+                href={productFlatPath(slug)}
+                class="card group flex flex-col overflow-hidden hover:border-primary-dark hover:shadow-md"
+              >
+                <img
+                  src={product.heroImage}
+                  alt={product.title}
+                  class="aspect-[4/3] w-full object-cover"
+                  loading="lazy"
+                  width="640"
+                  height="480"
+                />
+                <div class="flex flex-1 flex-col p-5">
+                  <h2 class="text-lg font-semibold group-hover:text-primary-dark">{product.title}</h2>
+                  <p class="mt-2 text-sm text-primary-dark">{product.slogan}</p>
+                  <p class="mt-3 flex-1 text-sm text-muted">{product.subtitle}</p>
+                  <span class="mt-4 text-sm font-semibold text-primary-dark">View product →</span>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+
+      <div class="mt-12 rounded-2xl border border-gray-200 bg-surface p-6 md:p-8">
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <h2 class="text-2xl font-bold">Openterface Apps</h2>
+            <p class="mt-2 max-w-2xl text-muted">
+              Cross-platform host apps for KVM control and KeyCmd shortcuts. Open source on GitHub — download for
+              macOS, Windows, Linux, and Android.
+            </p>
+          </div>
+          <a href="/app/" class="btn btn-primary shrink-0">Explore apps →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

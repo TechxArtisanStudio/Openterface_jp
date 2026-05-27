@@ -15,7 +15,8 @@ export const siteConfig = {
     keymodCrowdsupply: 'https://www.crowdsupply.com/techxartisan/openterface-keymod',
     shop: 'https://shop.techxartisan.com/',
     docs: 'https://docs.openterface.com',
-    appOverview: 'https://docs.openterface.com/ja/app/overview/',
+    keycmdAndroidApk: 'https://assets2.openterface.com/data/KeyCmd-release-0.19.apk',
+    appOverview: 'https://docs.openterface.com/ja/app/kvm/',
     subscribe: 'https://subscribe.openterface.com/api/subscribe/',
     news: 'https://news.openterface.com',
   },
@@ -24,7 +25,7 @@ export const siteConfig = {
     google: {
       provider: 'google' as const,
       measurementId: 'G-EKZEH6QYWT',
-            linkerDomains: ['openterface.com', 'forum.openterface.com']
+                  linkerDomains: ['openterface.com', 'forum.openterface.com']
     },
     ahrefs: {
       dataKey: 'b3G5nUND8OglcZwfjfwixQ',

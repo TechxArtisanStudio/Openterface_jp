@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductJsonLd from '../../components/ProductJsonLd.astro';
+import ProductLandingV2 from '../../layouts/ProductLandingV2.astro';
+import { siteConfig } from '../../config/site';
+import { kvmgoProduct as product } from '../../data/products/kvmgo';
+
+const canonicalPath = '/kvmgo/';
+const productUrl = new URL(canonicalPath, siteConfig.url).href;
+
+const modelVariants = [
+  {
+    title: 'KVM-GO HDMI',
+    badge: 'HDMI',
+    description: 'Built-in HDMI male connector for modern servers, SBCs, and displays.',
+  },
+  {
+    title: 'KVM-GO DisplayPort',
+    badge: 'DisplayPort',
+    description: 'High-performance DisplayPort male — ideal for workstations and lab gear.',
+  },
+  {
+    title: 'KVM-GO VGA',
+    badge: 'VGA',
+    description: 'Legacy VGA male connector for older racks and industrial systems.',
+    status: 'Coming soon',
+  },
+];
+
+const sizeComparison = [
+  { label: 'KVM-GO', size: '18 × 18 × 55 mm', weight: '~25 g', note: 'Keychain EDC' },
+  { label: 'Mini-KVM', size: '61 × 53 × 13.5 mm', weight: '~48 g', note: 'Laptop toolkit' },
+];
+
+const highlightCallouts = [
+  {
+    title: '4K @ 60 Hz capture',
+    description:
+      'Massive upgrade from Mini-KVM — up to 4096×2160 input. Default 1080p@60 for stability; 4K available as experimental mode.',
+    href: 'https://docs.openterface.com/products/kvmgo/features/',
+  },
+  {
+    title: 'MicroSD switching',
+    description:
+      'Share one MicroSD between host and target for OS images and field file transfer — hardware + software switch with LED status.',
+    href: 'https://docs.openterface.com/products/kvmgo/microsd-switch/',
+  },
+];
+---
+
+<BaseLayout
+  title={product.title}
+  description={product.seoDescription}
+  keywords={product.keywords}
+  ogImage={product.heroImage}
+  ogImageAlt={`${product.title} — ${product.slogan}`}
+  ogType="product"
+  canonicalPath={canonicalPath}
+>
+  <ProductJsonLd slot="head" product={product} url={productUrl} />
+  <ProductLandingV2 product={product} />
+
+  <section class="product-section bg-surface" aria-label="Keychain size comparison">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Keychain-sized vs laptop toolkit</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        KVM-GO is the smallest Openterface KVM — built for everyday carry, not bench bags.
+      </p>
+      <div class="mx-auto mt-8 grid max-w-2xl gap-4 sm:grid-cols-2">
+        {
+          sizeComparison.map((row) => (
+            <div class="card text-center">
+              <p class="text-xs font-bold uppercase tracking-wide text-primary-dark">{row.label}</p>
+              <p class="mt-2 text-lg font-semibold">{row.size}</p>
+              <p class="mt-1 text-sm text-muted">{row.weight}</p>
+              <p class="mt-2 text-sm text-muted">{row.note}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section" aria-label="Built-in video connectors">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Built-in connectors — no loose cables</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        Male HDMI, DisplayPort, or VGA plugs directly into the target — the cable hunt ends here.
+      </p>
+      <figure class="mx-auto mt-8 max-w-3xl">
+        <img
+          src="https://assets.openterface.com/images/kvm-go/kvm-go-hdmi-vga-dp-group-1.webp"
+          alt="KVM-GO HDMI, DisplayPort, and VGA connector variants"
+          class="w-full rounded-xl border border-gray-200 shadow-sm"
+          loading="lazy"
+          width="1200"
+          height="800"
+        />
+        <figcaption class="mt-3 text-center text-sm text-muted">
+          Three connector options share the same ultra-compact aluminum body.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="product-section bg-surface" aria-label="4K and MicroSD highlights">
+    <div class="product-section__inner">
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          highlightCallouts.map((item) => (
+            <a href={item.href} class="card hover:border-primary-dark hover:shadow-md" target="_blank" rel="noopener">
+              <h3 class="text-lg font-semibold text-primary-dark">{item.title}</h3>
+              <p class="mt-2 text-sm text-muted">{item.description}</p>
+              <span class="mt-4 inline-block text-sm font-semibold text-primary-dark">Learn more on docs →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section" aria-label="KVM-GO model variants">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Choose your connector</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        Built-in male connectors eliminate loose video cables — pick HDMI, DisplayPort, or VGA for your environment.
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        {
+          modelVariants.map((variant) => (
+            <div class="card text-center">
+              <span class="inline-block rounded-full bg-brand-light px-3 py-1 text-xs font-bold text-primary-dark">
+                {variant.badge}
+              </span>
+              {variant.status && (
+                <p class="mt-2 text-xs font-bold uppercase tracking-wide text-muted">{variant.status}</p>
+              )}
+              <h3 class="mt-2 text-lg font-semibold">{variant.title}</h3>
+              <p class="mt-2 text-sm text-muted">{variant.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductJsonLd from '../../components/ProductJsonLd.astro';
+import ProductLandingV2 from '../../layouts/ProductLandingV2.astro';
+import { siteConfig } from '../../config/site';
+import { accessorySkus, accessoriesProduct as product } from '../../data/products/accessories';
+
+const canonicalPath = '/accessories/';
+const productUrl = new URL(canonicalPath, siteConfig.url).href;
+---
+
+<BaseLayout
+  title={product.title}
+  description={product.seoDescription}
+  keywords={product.keywords}
+  ogImage={product.heroImage}
+  ogImageAlt={`${product.title} — ${product.slogan}`}
+  ogType="product"
+  canonicalPath={canonicalPath}
+>
+  <ProductJsonLd slot="head" product={product} url={productUrl} />
+  <ProductLandingV2 product={product} />
+
+  <section class="product-section bg-surface" aria-label="Complete your kit">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Complete your kit</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        Openterface KVM hardware works best with the right cables in your go-bag — not whatever was left in the server
+        room drawer. Mix host, target, and video adapters to match your daily targets.
+      </p>
+    </div>
+  </section>
+
+  <section class="product-section" aria-label="Accessory SKU catalog">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Shop by SKU</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        Six curated accessories with full specs on docs. Order from TxA Shop or read the setup guides first.
+      </p>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          accessorySkus.map((sku) => (
+            <article class="card flex flex-col overflow-hidden p-0">
+              <img
+                src={sku.image}
+                alt={sku.title}
+                class="aspect-[4/3] w-full object-contain bg-white p-4"
+                loading="lazy"
+                width="480"
+                height="360"
+              />
+              <div class="flex flex-1 flex-col p-5">
+                {
+                  sku.badge && (
+                    <span class="inline-block w-fit rounded-full bg-brand-light px-2.5 py-0.5 text-xs font-bold text-primary-dark">
+                      {sku.badge}
+                    </span>
+                  )
+                }
+                <h3 class="mt-2 text-lg font-semibold text-primary-dark">{sku.title}</h3>
+                <p class="mt-2 flex-1 text-sm text-muted">{sku.description}</p>
+                <div class="mt-4 flex flex-wrap gap-2">
+                  <a
+                    href={sku.shopHref}
+                    class="btn btn-primary text-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-analytics-event="shop_click"
+                    data-analytics-product={product.slug}
+                    data-analytics-placement="accessories_sku"
+                  >
+                    Shop
+                  </a>
+                  <a
+                    href={sku.docsHref}
+                    class="btn btn-secondary text-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Specs on docs
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+      <p class="mt-8 text-center">
+        <a
+          href={siteConfig.links.shop}
+          class="btn btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="shop_click"
+          data-analytics-product={product.slug}
+          data-analytics-placement="accessories_catalog"
+        >
+          Browse all on TxA Shop →
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

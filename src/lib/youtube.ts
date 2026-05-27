@@ -24,11 +24,59 @@ export type HomeVideo = {
   viewsFormatted: string;
 };
 
+export type MediaFormat = 'long' | 'short' | 'post' | 'testimonial';
+
+export type MediaApp = 'kvm' | 'keycmd';
+
+export type SocialPlatform = 'x' | 'threads' | 'instagram';
+
 export type CatalogVideo = HomeVideo & {
   videoId: string;
   language: string;
   product: string;
   zIndex: number;
+  /** YouTube long-form vs Shorts; defaults to `long` when omitted in legacy data. */
+  format: 'long' | 'short';
+  app?: MediaApp;
+};
+
+export type MediaPostEntry = {
+  id: string;
+  format: 'post' | 'testimonial';
+  title: string;
+  excerpt: string;
+  author: string;
+  platform: SocialPlatform;
+  externalUrl: string;
+  date: string;
+  product?: string;
+  language?: string;
+  app?: MediaApp;
+  /** Sample placeholder until real social posts are curated. */
+  sample?: boolean;
+};
+
+/** Unified catalog row for /videos/ Media hub (YouTube + link-out posts). */
+export type MediaCatalogEntry = {
+  id: string;
+  format: MediaFormat;
+  title: string;
+  author: string;
+  date: string;
+  product?: string;
+  language?: string;
+  app?: MediaApp;
+  url?: string;
+  videoId?: string;
+  thumbnail?: string;
+  channelAvatar?: string;
+  views?: number;
+  viewsFormatted?: string;
+  zIndex?: number;
+  excerpt?: string;
+  platform?: SocialPlatform;
+  externalUrl?: string;
+  sample?: boolean;
 };
 
 /** Stable product slugs from youtube.csv → display labels in filter UI. */
@@ -40,6 +88,56 @@ export const PRODUCT_DISPLAY_NAMES: Record<string, string> = {
 };
 
 export const KNOWN_PRODUCTS = ['minikvm', 'kvm-go', 'uconsole-kvm-extension', 'keymod'] as const;
+
+export const KNOWN_APPS: MediaApp[] = ['kvm', 'keycmd'];
+
+export const APP_DISPLAY_NAMES: Record<MediaApp, string> = {
+  kvm: 'KVM Control',
+  keycmd: 'KeyCmd',
+};
+
+export function inferVideoFormat(url: string): 'long' | 'short' {
+  const u = url.toLowerCase();
+  if (u.includes('/shorts/') || u.includes('youtube.com/shorts')) return 'short';
+  return 'long';
+}
+
+export function catalogVideoToMediaEntry(video: CatalogVideo): MediaCatalogEntry {
+  return {
+    id: video.videoId || video.url,
+    format: video.format ?? 'long',
+    title: video.title,
+    author: video.author,
+    date: video.date,
+    product: video.product || undefined,
+    language: video.language || undefined,
+    app: video.app,
+    url: video.url,
+    videoId: video.videoId,
+    thumbnail: video.thumbnail,
+    channelAvatar: video.channelAvatar,
+    views: video.views,
+    viewsFormatted: video.viewsFormatted,
+    zIndex: video.zIndex,
+  };
+}
+
+export function mediaPostToCatalogEntry(post: MediaPostEntry): MediaCatalogEntry {
+  return {
+    id: post.id,
+    format: post.format,
+    title: post.title,
+    author: post.author,
+    date: post.date,
+    product: post.product,
+    language: post.language,
+    app: post.app,
+    excerpt: post.excerpt,
+    platform: post.platform,
+    externalUrl: post.externalUrl,
+    sample: post.sample,
+  };
+}
 
 export const LANGUAGE_DISPLAY_NAMES: Record<string, string> = {
   en: 'English',
@@ -163,6 +261,7 @@ export function rowToCatalogVideo(row: YouTubeCsvRow): CatalogVideo {
     language: row.language?.trim().toLowerCase() ?? '',
     product: row.product?.trim() ?? '',
     zIndex: Number.isNaN(zRaw) ? 0 : zRaw,
+    format: inferVideoFormat(url),
   };
 }
 
