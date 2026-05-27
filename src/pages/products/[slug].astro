@@ -6,7 +6,16 @@ import { siteConfig } from '../../config/site';
 import { products, productSlugs } from '../../data/products';
 
 export function getStaticPaths() {
-  return productSlugs.map((slug) => ({ params: { slug } }));
+  return productSlugs
+    .filter(
+      (slug) =>
+        slug !== 'minikvm' &&
+        slug !== 'kvm-go' &&
+        slug !== 'keymod' &&
+        slug !== 'uconsole-kvm-extension' &&
+        slug !== 'accessories',
+    )
+    .map((slug) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;

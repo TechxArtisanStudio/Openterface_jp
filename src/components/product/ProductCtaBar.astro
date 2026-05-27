@@ -1,0 +1,62 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  buyLabel: string;
+  buyHref: string;
+  buyAnalyticsEvent: string;
+  productSlug: string;
+  placement: string;
+  appLabel: string;
+  appHref: string;
+  docsLabel?: string;
+  docsHref?: string;
+}
+
+const {
+  title,
+  subtitle,
+  buyLabel,
+  buyHref,
+  buyAnalyticsEvent,
+  productSlug,
+  placement,
+  appLabel,
+  appHref,
+  docsLabel,
+  docsHref,
+} = Astro.props;
+
+const buyTarget = buyHref.startsWith('http') ? '_blank' : undefined;
+const buyRel = buyHref.startsWith('http') ? 'noopener noreferrer' : undefined;
+---
+
+<section class="product-cta-bar bg-primary-dark py-12 text-white">
+  <div class="product-section__inner text-center">
+    <h2 class="text-2xl font-bold">{title}</h2>
+    <p class="mt-2 opacity-90">{subtitle}</p>
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
+      <a
+        href={buyHref}
+        class="btn bg-white text-primary-dark hover:bg-gray-100"
+        target={buyTarget}
+        rel={buyRel}
+        data-analytics-event={buyAnalyticsEvent}
+        data-analytics-product={productSlug}
+        data-analytics-placement={placement}
+      >
+        {buyLabel}
+      </a>
+      <a href={appHref} class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">
+        {appLabel}
+      </a>
+      {
+        docsHref && docsLabel && (
+          <a href={docsHref} class="btn border border-white/40 hover:bg-white/10" target="_blank" rel="noopener">
+            {docsLabel}
+          </a>
+        )
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,141 @@
+---
+interface Feature {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  hardwareLabel: string;
+  softwareLabel: string;
+  swFallback: string;
+  hwFeatures: Feature[];
+  swFeatures: Feature[];
+}
+
+const { title, subtitle, hardwareLabel, softwareLabel, swFallback, hwFeatures, swFeatures } =
+  Astro.props;
+const id = `feature-grid-${Math.random().toString(36).slice(2, 9)}`;
+---
+
+<section class="product-section bg-surface" aria-labelledby={`${id}-title`}>
+  <div class="product-section__inner">
+    <h2 id={`${id}-title`} class="section-title text-center">{title}</h2>
+    <p class="section-subtitle text-center">{subtitle}</p>
+
+    <div class="feature-grid mt-8" data-feature-grid={id}>
+      <div class="feature-grid__tabs flex justify-center gap-2" role="tablist" aria-label={title}>
+        <button
+          type="button"
+          class="feature-grid__tab is-active"
+          role="tab"
+          aria-selected="true"
+          aria-controls={`${id}-hw`}
+          data-tab="hw"
+        >
+          {hardwareLabel}
+        </button>
+        <button
+          type="button"
+          class="feature-grid__tab"
+          role="tab"
+          aria-selected="false"
+          aria-controls={`${id}-sw`}
+          data-tab="sw"
+        >
+          {softwareLabel}
+        </button>
+      </div>
+
+      <div id={`${id}-hw`} class="feature-grid__panel mt-6" role="tabpanel">
+        <ul class="grid gap-4 md:grid-cols-3">
+          {
+            hwFeatures.map((f) => (
+              <li class="card">
+                <strong>{f.title}</strong>
+                <p class="mt-2 text-sm text-muted">{f.description}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div id={`${id}-sw`} class="feature-grid__panel mt-6 hidden" role="tabpanel" hidden>
+        {
+          swFeatures.length > 0 ? (
+            <ul class="grid gap-4 md:grid-cols-3">
+              {swFeatures.map((f) => (
+                <li class="card">
+                  <strong>{f.title}</strong>
+                  <p class="mt-2 text-sm text-muted">{f.description}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="text-center text-muted">{swFallback}</p>
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFeatureGrids() {
+    document.querySelectorAll('[data-feature-grid]').forEach((root) => {
+      if (root.dataset.initialized) return;
+      root.dataset.initialized = 'true';
+
+      const tabs = Array.from(root.querySelectorAll('.feature-grid__tab'));
+      const panels = Array.from(root.querySelectorAll('.feature-grid__panel'));
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const target = tab.getAttribute('data-tab');
+          tabs.forEach((t) => {
+            const active = t.getAttribute('data-tab') === target;
+            t.classList.toggle('is-active', active);
+            t.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          panels.forEach((panel, i) => {
+            const show = (target === 'hw' && i === 0) || (target === 'sw' && i === 1);
+            panel.classList.toggle('hidden', !show);
+            panel.toggleAttribute('hidden', !show);
+          });
+        });
+      });
+    });
+  }
+
+  initFeatureGrids();
+  document.addEventListener('astro:page-load', initFeatureGrids);
+</script>
+
+<style>
+  .feature-grid__tab {
+    border-radius: 9999px;
+    border: 2px solid var(--color-primary-dark);
+    background: #fff;
+    color: var(--color-primary-dark);
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  .feature-grid__tab.is-active,
+  .feature-grid__tab:hover {
+    background: var(--color-primary-dark);
+    color: #fff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .feature-grid__tab {
+      transition: none;
+    }
+  }
+</style>

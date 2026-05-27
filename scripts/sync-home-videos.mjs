@@ -155,12 +155,15 @@ function rowToCatalogVideo(row) {
   const base = rowToHomeVideo(row);
   const url = row.youtube_url?.trim() ?? '';
   const zRaw = parseInt(row.z_index?.trim() ?? '0', 10);
+  const lower = url.toLowerCase();
+  const format = lower.includes('/shorts/') || lower.includes('youtube.com/shorts') ? 'short' : 'long';
   return {
     ...base,
     videoId: extractVideoId(url),
     language: row.language?.trim().toLowerCase() ?? '',
     product: row.product?.trim() ?? '',
     zIndex: Number.isNaN(zRaw) ? 0 : zRaw,
+    format,
   };
 }
 

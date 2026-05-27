@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductJsonLd from '../../components/ProductJsonLd.astro';
+import ProductLandingV2 from '../../layouts/ProductLandingV2.astro';
+import { siteConfig } from '../../config/site';
+import { products } from '../../data/products';
+
+/** Design-system preview — not linked from production nav. */
+const product = products.minikvm;
+const canonicalPath = '/preview/product-landing-v2/';
+const productUrl = new URL(canonicalPath, siteConfig.url).href;
+---
+
+<BaseLayout
+  title={`[Preview] ${product.title}`}
+  description={product.seoDescription}
+  keywords={product.keywords}
+  ogImage={product.heroImage}
+  ogImageAlt={`${product.title} — ${product.slogan}`}
+  ogType="product"
+  canonicalPath={canonicalPath}
+  robots="noindex, nofollow"
+>
+  <ProductJsonLd slot="head" product={product} url={productUrl} />
+  <ProductLandingV2 product={product} />
+</BaseLayout>

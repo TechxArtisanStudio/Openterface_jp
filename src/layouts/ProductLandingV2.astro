@@ -1,0 +1,219 @@
+---
+import DocLinkBanner from '../components/DocLinkBanner.astro';
+import FeatureGrid from '../components/product/FeatureGrid.astro';
+import FundingBadge from '../components/product/FundingBadge.astro';
+import HeroCarousel from '../components/product/HeroCarousel.astro';
+import ProductCtaBar from '../components/product/ProductCtaBar.astro';
+import ProductVideoGrid from '../components/product/ProductVideoGrid.astro';
+import SocialProof from '../components/product/SocialProof.astro';
+import SpecsSummary from '../components/product/SpecsSummary.astro';
+import UseCaseStrip from '../components/product/UseCaseStrip.astro';
+import type { Product } from '../data/products';
+import { siteConfig } from '../config/site';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const p = ui.productLanding;
+
+const buyAnalyticsEvent = product.buyHref.includes('shop.techxartisan.com')
+  ? 'shop_click'
+  : 'crowdsupply_click';
+
+const statusLabels: Record<NonNullable<Product['status']>, string> = {
+  shipping: 'Shipping now',
+  'pre-order': 'Pre-order open',
+  'pre-launch': 'Pre-launch',
+  oshwa: 'OSHWA certified',
+};
+
+const useCaseCards =
+  product.useCaseCards ??
+  product.useCases.map((title) => ({
+    title,
+  }));
+
+const docsOverviewHref = product.docsOverviewHref ?? `${siteConfig.links.docs}${product.legacyBase}`;
+const videoProductSlug = product.videoProductSlug ?? product.slug;
+---
+
+<article class="product-landing-v2">
+  <section class="product-section product-section--hero bg-gradient-to-br from-brand-light to-white">
+    <div class="product-section__inner">
+      {
+        product.status && (
+          <p class="mb-4 text-center">
+            <span class="product-status-badge">{statusLabels[product.status]}</span>
+          </p>
+        )
+      }
+      <HeroCarousel images={product.heroImages} alt={product.title} videoEmbedUrl={product.heroVideoEmbedUrl} />
+      <div class="mt-8 text-center">
+        <h1 class="product-display-title">{product.title}</h1>
+        <p class="product-lead mt-2">{product.slogan}</p>
+        <p class="mt-1 text-muted">{product.subtitle}</p>
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={product.buyHref}
+            class="btn btn-primary"
+            target={product.buyHref.startsWith('http') ? '_blank' : undefined}
+            rel={product.buyHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+            data-analytics-event={buyAnalyticsEvent}
+            data-analytics-product={product.slug}
+            data-analytics-placement="product_hero"
+          >
+            {product.buyLabel}
+          </a>
+          <a href={siteConfig.links.appOverview} class="btn btn-secondary" target="_blank" rel="noopener">
+            {p.downloadApp}
+          </a>
+        </div>
+        {
+          product.funding && (
+            <FundingBadge
+              amount={product.funding.amount}
+              date={product.funding.date}
+              backers={product.funding.backers}
+              backersLabel={p.backers}
+            />
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <DocLinkBanner variant="product" />
+
+  <section class="product-section">
+    <div class="product-section__inner">
+      <p class="product-body mx-auto max-w-3xl text-center">{product.description}</p>
+    </div>
+  </section>
+
+  <section class="product-section bg-surface">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">{p.theProblem}</h2>
+      <ul class="mx-auto mt-6 grid max-w-3xl gap-3">
+        {
+          product.painPoints.map((point) => (
+            <li class="flex gap-3 rounded-lg bg-white p-4 shadow-sm">
+              <span class="text-primary-dark" aria-hidden="true">✕</span>
+              <span>{point}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="product-section">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">{p.theSolution}</h2>
+      <ul class="mx-auto mt-6 grid max-w-3xl gap-3">
+        {
+          product.solutions.map((point) => (
+            <li class="flex gap-3 rounded-lg border border-primary-dark/20 bg-brand-light/30 p-4">
+              <span class="text-primary-dark" aria-hidden="true">✓</span>
+              <span>{point}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <FeatureGrid
+    title={p.hwSoftwareTitle}
+    subtitle={p.hwSoftwareSubtitle}
+    hardwareLabel={p.hardware}
+    softwareLabel={p.software}
+    swFallback={p.swFallback}
+    hwFeatures={product.hwFeatures}
+    swFeatures={product.swFeatures}
+  />
+
+  <UseCaseStrip
+    title={p.useCases}
+    items={useCaseCards}
+    docsHref={product.useCasesDocsHref ?? docsOverviewHref}
+  />
+
+  <SpecsSummary
+    title={p.keySpecs}
+    specs={product.specs}
+    docsHref={product.specsDocsHref ?? `${docsOverviewHref}features/`}
+  />
+
+  {
+    product.socialProof && product.socialProof.length > 0 && (
+      <SocialProof title={product.socialProofTitle ?? 'What reviewers say'} quotes={product.socialProof} />
+    )
+  }
+
+  <ProductVideoGrid
+    title={product.videoSectionTitle ?? 'Community reviews & demos'}
+    productSlug={videoProductSlug}
+    videosLink={`/videos/?product=${encodeURIComponent(videoProductSlug)}`}
+  />
+
+  {
+    product.latestNewsHref && (
+      <section class="product-section">
+        <div class="product-section__inner text-center">
+          <h2 class="section-title">{product.latestNewsTitle ?? 'Latest updates'}</h2>
+          <p class="section-subtitle">{product.latestNewsSubtitle ?? 'Product news and firmware releases.'}</p>
+          <a href={product.latestNewsHref} class="btn btn-secondary mt-6">
+            {product.latestNewsLabel ?? 'Read on Openterface News →'}
+          </a>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="product-section bg-surface">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">{p.documentation}</h2>
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+        {
+          product.docLinks.map((link) => (
+            <a href={link.href} class="btn btn-secondary" target="_blank" rel="noopener">
+              {link.label} →
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <ProductCtaBar
+    title={p.ctaTitle}
+    subtitle={p.ctaSubtitle}
+    buyLabel={product.buyLabel}
+    buyHref={product.buyHref}
+    buyAnalyticsEvent={buyAnalyticsEvent}
+    productSlug={product.slug}
+    placement="product_footer"
+    appLabel={p.downloadApp}
+    appHref={siteConfig.links.appOverview}
+    docsLabel={p.documentation}
+    docsHref={docsOverviewHref}
+  />
+</article>
+
+<style>
+  .product-status-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    background: rgb(255 110 66 / 0.12);
+    color: var(--color-accent-on-light);
+    padding: 0.35rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+</style>

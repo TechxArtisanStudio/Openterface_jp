@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductJsonLd from '../../components/ProductJsonLd.astro';
+import ProductLandingV2 from '../../layouts/ProductLandingV2.astro';
+import { siteConfig } from '../../config/site';
+import { keymodProduct as product } from '../../data/products/keymod';
+
+const canonicalPath = '/keymod/';
+const productUrl = new URL(canonicalPath, siteConfig.url).href;
+
+const appModes = [
+  {
+    title: 'Basic',
+    description: 'Full-screen keyboard with long-press repeat, key preview, and numpad.',
+  },
+  {
+    title: 'Pro',
+    description: 'Composite layout with Shortcut Hub strips, split keyboard, and IME support.',
+  },
+  {
+    title: 'Gamepad',
+    description: 'Virtual controller with customizable preset layouts and multi-touchpad support.',
+  },
+  {
+    title: 'Presentation',
+    description: 'Slide remote control with timer for Google Slides and other presentation apps.',
+  },
+  {
+    title: 'Voice',
+    description: 'Speech-to-keyboard input powered by Whisper API — hands-free typing.',
+  },
+];
+
+const hardwareVariants = [
+  {
+    badge: '2-in-1',
+    title: '2-in-1 Connector',
+    description: 'Combined USB A + USB C plug for broad compatibility with laptops, tablets, and phones.',
+  },
+  {
+    badge: 'USB-C',
+    title: 'USB C Version',
+    description: 'Dedicated USB C plug for modern devices and clean cable management.',
+  },
+];
+---
+
+<BaseLayout
+  title={product.title}
+  description={product.seoDescription}
+  keywords={product.keywords}
+  ogImage={product.heroImage}
+  ogImageAlt={`${product.title} — ${product.slogan}`}
+  ogType="product"
+  canonicalPath={canonicalPath}
+>
+  <ProductJsonLd slot="head" product={product} url={productUrl} />
+  <ProductLandingV2 product={product} />
+
+  <section class="product-section" aria-label="Pre-launch disclaimer">
+    <div class="product-section__inner">
+      <div class="mx-auto max-w-3xl rounded-xl border border-amber-200 bg-amber-50 p-5 text-center md:p-6">
+        <p class="text-sm font-semibold text-amber-900">Pre-launch — specifications subject to change</p>
+        <p class="mt-2 text-sm text-amber-800/90">
+          KeyMod is in active development with a public Android beta. Features, industrial design, and specs may
+          evolve before Crowd Supply fulfillment.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section bg-surface" aria-label="Phone as keyboard">
+    <div class="product-section__inner">
+      <div class="grid items-center gap-8 md:grid-cols-2">
+        <div>
+          <h2 class="section-title">Your phone is the keyboard</h2>
+          <p class="mt-4 text-muted">
+            KeyMod turns the device you already carry into a full keyboard and trackpad console. Plug into kiosks,
+            smart TVs, signage players, and headless PCs — start typing in seconds with no software on the target.
+          </p>
+          <p class="mt-3 text-muted">
+            Built for practical everyday local control, not remote desktop — faster than hunting for a spare keyboard
+            on every site visit.
+          </p>
+        </div>
+        <figure>
+          <img
+            src="https://assets2.openterface.com/images/keymod/2in1.webp"
+            alt="Openterface KeyMod 2-in-1 connector with phone as keyboard concept"
+            class="w-full rounded-xl border border-gray-200 shadow-sm"
+            loading="lazy"
+            width="800"
+            height="800"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section" aria-label="USB and Bluetooth dual connection">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">USB + Bluetooth — pick your link</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        Wired USB for rock-solid latency, or Bluetooth LE when you want a cable-free pocket setup.
+      </p>
+      <figure class="mx-auto mt-8 max-w-3xl">
+        <img
+          src="https://assets2.openterface.com/images/keymod/feature.webp"
+          alt="KeyMod USB and Bluetooth connection diagram — phone, KeyMod, and target device"
+          class="w-full rounded-xl border border-gray-200 shadow-sm"
+          loading="lazy"
+          width="1200"
+          height="800"
+        />
+        <figcaption class="mt-3 text-center text-sm text-muted">
+          Phone → KeyMod → target: hardware HID with no target-side drivers.
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="product-section bg-surface" aria-label="KeyCmd app modes">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">KeyCmd app modes</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        One open-source app — five ways to control. Profiles, macros, and Shortcut Hub for creative and dev workflows.
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          appModes.map((mode) => (
+            <div class="card">
+              <h3 class="text-lg font-semibold text-primary-dark">{mode.title}</h3>
+              <p class="mt-2 text-sm text-muted">{mode.description}</p>
+            </div>
+          ))
+        }
+        <a
+          href="/keycmd/"
+          class="card flex flex-col justify-center border-primary-dark/30 bg-brand-light/40 hover:border-primary-dark hover:shadow-md"
+        >
+          <h3 class="text-lg font-semibold text-primary-dark">KeyCmd app hub →</h3>
+          <p class="mt-2 text-sm text-muted">
+            Explore the KeyCmd marketing page — Android & iPadOS beta, desktop expansion coming.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="product-section" aria-label="KeyMod hardware variants">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Planned hardware variants</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        Same HID core and app stack — choose the connector that fits your kit.
+      </p>
+      <figure class="mx-auto mt-6 max-w-xl">
+        <img
+          src="https://assets2.openterface.com/images/keymod/keymod.webp"
+          alt="Openterface KeyMod Series hardware variants"
+          class="w-full rounded-xl border border-gray-200 shadow-sm"
+          loading="lazy"
+          width="800"
+          height="600"
+        />
+      </figure>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+        {
+          hardwareVariants.map((variant) => (
+            <div class="card text-center">
+              <span class="inline-block rounded-full bg-brand-light px-3 py-1 text-xs font-bold text-primary-dark">
+                {variant.badge}
+              </span>
+              <h3 class="mt-3 text-lg font-semibold">{variant.title}</h3>
+              <p class="mt-2 text-sm text-muted">{variant.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

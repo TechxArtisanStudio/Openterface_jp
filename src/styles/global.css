@@ -177,4 +177,73 @@
     box-shadow: 0 0 0 1px var(--color-primary-dark);
   }
 
+  /* Product landing v2 design tokens */
+  .product-landing-v2 {
+    --product-type-display: clamp(1.875rem, 4vw, 2.25rem);
+    --product-type-lead: clamp(1.125rem, 2.5vw, 1.25rem);
+    --product-type-eyebrow: 0.75rem;
+    --product-type-body: 1.125rem;
+    --product-motion-duration: 200ms;
+    --product-motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .product-section {
+    --product-section-y: 3rem;
+    padding-block: var(--product-section-y);
+  }
+
+  @media (min-width: 768px) {
+    .product-section {
+      --product-section-y: 3.5rem;
+    }
+  }
+
+  .product-section--hero {
+    --product-section-y: 3rem;
+  }
+
+  .product-section__inner {
+    @apply mx-auto max-w-6xl px-4;
+  }
+
+  .product-display-title {
+    font-size: var(--product-type-display);
+    @apply font-bold tracking-tight;
+  }
+
+  .product-lead {
+    font-size: var(--product-type-lead);
+    @apply font-semibold text-primary-dark;
+  }
+
+  .product-eyebrow {
+    font-size: var(--product-type-eyebrow);
+    @apply font-bold uppercase tracking-widest text-accent-on-light;
+  }
+
+  .product-body {
+    font-size: var(--product-type-body);
+    @apply leading-relaxed text-muted;
+  }
+
+  .product-landing-v2 .card {
+    @apply motion-safe:transition-shadow;
+    transition-duration: var(--product-motion-duration);
+    transition-timing-function: var(--product-motion-ease);
+  }
+
+  .product-landing-v2 .card:hover {
+    @apply motion-safe:shadow-md;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .product-landing-v2 .card {
+    transition: none !important;
+  }
 }

@@ -1,0 +1,72 @@
+---
+import { catalogVideos } from '../../data/catalogVideos';
+import type { CatalogVideo } from '../../lib/youtube';
+
+interface Props {
+  title: string;
+  productSlug: string;
+  limit?: number;
+  videosLink?: string;
+  allVideosLabel?: string;
+}
+
+const {
+  title,
+  productSlug,
+  limit = 6,
+  videosLink = '/videos/',
+  allVideosLabel = 'All videos →',
+} = Astro.props;
+
+const videos: CatalogVideo[] = catalogVideos
+  .filter((v) => v.product === productSlug && (v.format === 'long' || v.format === 'short' || !v.format))
+  .slice(0, limit);
+
+if (videos.length === 0) return null;
+---
+
+<section class="product-section bg-surface" aria-labelledby="product-video-grid-title">
+  <div class="product-section__inner">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-widest text-accent-on-light">YouTube</p>
+        <h2 id="product-video-grid-title" class="section-title mt-1">{title}</h2>
+      </div>
+      <a
+        href={videosLink}
+        class="text-sm font-semibold text-accent-on-light underline-offset-2 hover:underline"
+      >
+        {allVideosLabel}
+      </a>
+    </div>
+
+    <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        videos.map((video) => (
+          <article class="group overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-black/5">
+            <a href={video.url} target="_blank" rel="noopener noreferrer" class="block">
+              <div class="relative aspect-video overflow-hidden bg-gray-200">
+                <img
+                  src={video.thumbnail}
+                  alt={video.title}
+                  width={320}
+                  height={180}
+                  class="h-full w-full object-cover transition duration-300 group-hover:scale-[1.02]"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="p-4">
+                <h3 class="line-clamp-2 text-sm font-semibold text-ink">{video.title}</h3>
+                <p class="mt-1 text-xs text-muted">
+                  {video.author}
+                  {video.viewsFormatted ? ` · ${video.viewsFormatted} views` : ''}
+                </p>
+              </div>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

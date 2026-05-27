@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProductJsonLd from '../../components/ProductJsonLd.astro';
+import ProductLandingV2 from '../../layouts/ProductLandingV2.astro';
+import { siteConfig } from '../../config/site';
+import { minikvmProduct as product } from '../../data/products/minikvm';
+
+const canonicalPath = '/minikvm/';
+const productUrl = new URL(canonicalPath, siteConfig.url).href;
+---
+
+<!--
+  TODO(phase-1c-v2): Add hero lifestyle video embed when new footage ships.
+  v1 uses CDN carousel images only (mini-kvm-toolkit.webp, mini-kvm.webp).
+-->
+
+<BaseLayout
+  title={product.title}
+  description={product.seoDescription}
+  keywords={product.keywords}
+  ogImage={product.heroImage}
+  ogImageAlt={`${product.title} — ${product.slogan}`}
+  ogType="product"
+  canonicalPath={canonicalPath}
+>
+  <ProductJsonLd slot="head" product={product} url={productUrl} />
+  <ProductLandingV2 product={product} />
+</BaseLayout>

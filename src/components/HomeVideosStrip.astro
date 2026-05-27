@@ -6,7 +6,7 @@ interface Props {
   videosLink?: string;
 }
 
-const { heading = 'コミュニティレビューとデモ', videosLink = '/videos/' } = Astro.props;
+const { heading = 'Community reviews & demos', videosLink = '/videos/' } = Astro.props;
 
 if (homeVideos.length === 0) {
   return null;
@@ -35,7 +35,7 @@ const jsonLd = {
 
 <section
   class="home-videos-strip relative overflow-hidden bg-surface py-7 md:py-9"
-  aria-label="YouTube コミュニティ動画"
+  aria-label="Community videos on YouTube"
 >
   <div class="mx-auto mb-5 flex max-w-6xl items-end justify-between gap-4 px-4">
     <div>
@@ -46,7 +46,7 @@ const jsonLd = {
       href={videosLink}
       class="shrink-0 text-sm font-semibold text-accent-on-light underline-offset-2 hover:text-brand-dark hover:underline"
     >
-      すべての動画 →
+      All videos →
     </a>
   </div>
 
@@ -106,7 +106,7 @@ const jsonLd = {
                     <span class="min-w-0 truncate text-xs text-muted">{video.author}</span>
                   </div>
                   <p class="mt-1 text-xs text-muted/90">
-                    {video.viewsFormatted} 回視聴
+                    {video.viewsFormatted} views
                     {video.date ? ` · ${video.date}` : ''}
                   </p>
                 </div>
