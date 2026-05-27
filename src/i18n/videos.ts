@@ -23,7 +23,8 @@ export type VideosStrings = {
 
 const en: VideosStrings = {
   title: 'YouTube Videos',
-  subtitle: 'Openterface product reviews, demos, and updates from our community',
+  subtitle:
+    'Watch Openterface Mini-KVM, KVM-GO, and KeyMod reviews, setup demos, and firmware updates from creators and our community — filter by product and language.',
   totalVideos: 'Total videos',
   languages: 'Languages',
   products: 'Products',
@@ -47,7 +48,8 @@ const translations: Record<string, VideosStrings> = {
   de: {
     ...en,
     title: 'YouTube Videos',
-    subtitle: 'Openterface Produktbewertungen, Demos und Updates aus unserer Community',
+    subtitle:
+      'Openterface Mini-KVM, KVM-GO und KeyMod: Bewertungen, Setup-Demos und Firmware-Updates von Creators und der Community — nach Produkt und Sprache filtern.',
     totalVideos: 'Videos gesamt',
     languages: 'Sprachen',
     products: 'Produkte',
@@ -68,7 +70,8 @@ const translations: Record<string, VideosStrings> = {
   es: {
     ...en,
     title: 'Videos de YouTube',
-    subtitle: 'Reseñas, demos y actualizaciones de productos Openterface de nuestra comunidad',
+    subtitle:
+      'Reseñas, demos de configuración y actualizaciones de Mini-KVM, KVM-GO y KeyMod de Openterface — filtra por producto e idioma en nuestro catálogo de YouTube.',
     totalVideos: 'Total de videos',
     languages: 'Idiomas',
     products: 'Productos',
@@ -89,7 +92,8 @@ const translations: Record<string, VideosStrings> = {
   fr: {
     ...en,
     title: 'Vidéos YouTube',
-    subtitle: 'Avis, démos et mises à jour Openterface de notre communauté',
+    subtitle:
+      'Avis, démos d’installation et mises à jour Mini-KVM, KVM-GO et KeyMod Openterface — filtrez par produit et langue dans notre catalogue YouTube communautaire.',
     totalVideos: 'Total des vidéos',
     languages: 'Langues',
     products: 'Produits',
@@ -110,7 +114,8 @@ const translations: Record<string, VideosStrings> = {
   it: {
     ...en,
     title: 'Video YouTube',
-    subtitle: 'Recensioni, demo e aggiornamenti Openterface dalla nostra community',
+    subtitle:
+      'Recensioni, demo di setup e aggiornamenti su Mini-KVM, KVM-GO e KeyMod Openterface — filtra per prodotto e lingua nel catalogo YouTube della community.',
     totalVideos: 'Totale video',
     languages: 'Lingue',
     products: 'Prodotti',
@@ -131,7 +136,8 @@ const translations: Record<string, VideosStrings> = {
   ko: {
     ...en,
     title: 'YouTube 동영상',
-    subtitle: '커뮤니티의 Openterface 제품 리뷰, 데모 및 업데이트',
+    subtitle:
+      'Openterface Mini-KVM, KVM-GO, KeyMod 리뷰·설정 데모·펌웨어 업데이트 영상 — 제품·언어별로 필터링하는 YouTube 카탈로그.',
     totalVideos: '동영상 총수',
     languages: '언어',
     products: '제품',
@@ -152,7 +158,8 @@ const translations: Record<string, VideosStrings> = {
   pt: {
     ...en,
     title: 'Vídeos do YouTube',
-    subtitle: 'Avaliações, demos e atualizações Openterface da nossa comunidade',
+    subtitle:
+      'Avaliações, demos de configuração e atualizações do Mini-KVM, KVM-GO e KeyMod Openterface — filtre por produto e idioma no catálogo YouTube da comunidade.',
     totalVideos: 'Total de vídeos',
     languages: 'Idiomas',
     products: 'Produtos',
@@ -173,7 +180,8 @@ const translations: Record<string, VideosStrings> = {
   ro: {
     ...en,
     title: 'Videoclipuri YouTube',
-    subtitle: 'Recenzii, demo-uri și actualizări Openterface din comunitatea noastră',
+    subtitle:
+      'Recenzii, demo-uri de configurare și actualizări Mini-KVM, KVM-GO și KeyMod Openterface — filtrați după produs și limbă în catalogul YouTube al comunității.',
     totalVideos: 'Total videoclipuri',
     languages: 'Limbi',
     products: 'Produse',
@@ -194,7 +202,8 @@ const translations: Record<string, VideosStrings> = {
   zh: {
     ...en,
     title: 'YouTube 视频',
-    subtitle: '来自社区的 Openterface 产品评测、演示与更新',
+    subtitle:
+      '观看 Openterface Mini-KVM、KVM-GO、KeyMod 评测、安装演示与固件更新，支持按产品与语言筛选的 YouTube 视频库。',
     totalVideos: '视频总数',
     languages: '语言',
     products: '产品',
@@ -215,7 +224,8 @@ const translations: Record<string, VideosStrings> = {
   ja: {
     ...en,
     title: 'YouTube 動画',
-    subtitle: 'コミュニティによる Openterface 製品レビュー、デモ、アップデート',
+    subtitle:
+      'Openterface Mini-KVM・KVM-GO・KeyMod のレビュー、セットアップデモ、ファームウェア更新動画 — 製品と言語で絞り込める YouTube カタログ。',
     totalVideos: '動画総数',
     languages: '言語',
     products: '製品',
