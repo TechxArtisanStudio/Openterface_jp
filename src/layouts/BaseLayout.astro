@@ -6,7 +6,7 @@ import CookieConsent from '../components/CookieConsent.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { siteConfig } from '../config/site';
-import { getHreflangAlternates, getXDefaultUrl, isWave2Locale } from '../data/hreflang-manifest';
+import { getHreflangAlternates, getXDefaultUrl } from '../data/hreflang-manifest';
 import { buildPageTitle, getOgImageDimensions, getOgLocale, getOgLocaleAlternates, TWITTER_SITE } from '../lib/seo';
 
 interface Props {
@@ -31,8 +31,7 @@ const {
   robots: robotsProp,
 } = Astro.props;
 
-const robots =
-  robotsProp ?? (isWave2Locale(siteConfig.locale) ? 'noindex, follow' : 'index, follow');
+const robots = robotsProp ?? 'index, follow';
 
 const pageTitle = buildPageTitle(title, siteConfig.name);
 const canonical = new URL(canonicalPath, siteConfig.url).href;

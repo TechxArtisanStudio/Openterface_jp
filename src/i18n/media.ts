@@ -70,6 +70,13 @@ const en: MediaStrings = {
 };
 
 const translations: Record<string, MediaStrings> = {
+  nl: { ...en, title: "Media", controlsAria: "Media-catalogusfilters", emptyResults: "Geen media komt overeen met de huidige filters." },
+  pl: { ...en, title: "Media", controlsAria: "Filtry katalogu mediów", emptyResults: "Brak mediów pasujących do filtrów." },
+  tr: { ...en, title: "Medya", controlsAria: "Medya kataloğu filtreleri", emptyResults: "Mevcut filtrelerle eşleşen medya yok." },
+  ar: { ...en, title: "الوسائط", controlsAria: "مرشحات كatalog الوسائط", emptyResults: "لا توجد وسائط تطابق المرشحات الحالية." },
+  ru: { ...en, title: "Медиа", controlsAria: "Фильтры медиакаталога", emptyResults: "Нет медиа по текущим фильтрам." },
+  tw: { ...en, title: "媒體", controlsAria: "媒體目錄篩選", emptyResults: "沒有符合目前篩選的媒體。" },
+  hk: { ...en, title: "媒體", controlsAria: "媒體目錄篩選", emptyResults: "沒有符合目前篩選的媒體。" },
   en,
   de: { ...en, title: 'Medien', controlsAria: 'Medienkatalog-Filter', emptyResults: 'Keine Medien entsprechen den Filtern.' },
   es: { ...en, title: 'Medios', controlsAria: 'Filtros del catálogo de medios' },
