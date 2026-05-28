@@ -9,29 +9,29 @@ export interface NavItem {
 
 export const mainNav: NavItem[] = [
   {
-    label: 'Products',
+    label: "製品",
     href: '/products/',
     children: [
-      { label: 'All Products', href: '/products/' },
+      { label: "すべての製品", href: '/products/' },
       { label: 'KeyMod Series', href: '/keymod/' },
       { label: 'KVM-GO Series', href: '/kvmgo/' },
       { label: 'Mini-KVM', href: '/minikvm/' },
       { label: 'uConsole KVM Extension', href: '/kvmext/' },
-      { label: 'Accessories', href: '/accessories/' },
+      { label: "アクセサリー", href: '/accessories/' },
     ],
   },
   {
-    label: 'Apps',
+    label: "アプリ",
     href: '/app/',
     children: [
-      { label: 'All Apps', href: '/app/' },
-      { label: 'KVM Control', href: '/kvm/' },
+      { label: "すべてのアプリ", href: '/app/' },
+      { label: "KVM コントロール", href: '/kvm/' },
       { label: 'KeyCmd', href: '/keycmd/' },
     ],
   },
-  { label: 'Media', href: '/videos/' },
-  { label: 'About', href: '/about/' },
-  { label: 'Docs', href: docsPath(), external: true },
-  { label: 'News', href: newsPath(), external: true },
-  { label: 'Shop', href: siteConfig.links.shop, external: true },
+  { label: "メディア", href: '/videos/' },
+  { label: "会社概要", href: '/about/' },
+  { label: "ドキュメント", href: docsPath(), external: true },
+  { label: "ニュース", href: newsPath(), external: true },
+  { label: "ショップ", href: siteConfig.links.shop, external: true },
 ];
