@@ -45,14 +45,15 @@ export function isWave2Locale(_code: string): _code is Wave2LocaleCode {
 export const marketingPaths = [
   '/',
   '/about/',
-  '/videos/',
+  '/media/',
+  '/community/',
   '/products/',
   '/keymod/',
   '/kvmgo/',
   '/minikvm/',
   '/kvmext/',
   '/accessories/',
-  '/app/',
+  '/apps/',
   '/kvm/',
   '/keycmd/',
 ] as const;

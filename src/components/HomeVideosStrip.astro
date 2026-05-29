@@ -6,7 +6,7 @@ interface Props {
   videosLink?: string;
 }
 
-const { heading = 'Community reviews & demos', videosLink = '/videos/' } = Astro.props;
+const { heading = 'Community reviews & demos', videosLink = '/media/' } = Astro.props;
 
 if (homeVideos.length === 0) {
   return null;

@@ -12,6 +12,8 @@ export default defineConfig({
     '/products/uconsole-kvm-extension/': '/kvmext/',
     '/products/accessories/': '/accessories/',
     '/use-cases/': '/products/',
+    '/app/': '/apps/',
+    '/videos/': '/media/',
   },
     // site-refactor-redirects:end
   site: 'https://jp.openterface.com',

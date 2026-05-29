@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { communityLinks } from '../../data/community-links';
+---
+
+<BaseLayout
+  title="Openterface Community"
+  description="Join the Openterface community on Discord, Reddit, forum, and social channels."
+  ogImageAlt="Openterface community — Discord, Reddit, and social channels"
+  canonicalPath="/community/"
+>
+  <section class="product-section product-section--hero bg-gradient-to-br from-brand-light to-white">
+    <div class="product-section__inner text-center">
+      <h1 class="product-display-title">Community</h1>
+      <p class="product-lead mt-2">Connect with the team and other Openterface users</p>
+      <p class="mx-auto mt-3 max-w-2xl text-muted">
+        Get support, share projects, and stay updated across chat, social, and open-source channels.
+      </p>
+    </div>
+  </section>
+
+  <section class="product-section" aria-label="Community links">
+    <div class="product-section__inner">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          communityLinks.map((link) => (
+            <a
+              href={link.href}
+              class="card group flex flex-col hover:border-primary-dark hover:shadow-md"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h2 class="text-xl font-bold text-primary-dark group-hover:text-accent-on-light">{link.name}</h2>
+              <p class="mt-2 flex-1 text-sm text-muted">{link.description}</p>
+              <span class="mt-4 text-sm font-semibold text-primary-dark">Visit →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
