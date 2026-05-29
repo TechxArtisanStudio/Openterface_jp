@@ -17,6 +17,6 @@ test('home page has no critical a11y violations', async ({ page }) => {
 });
 
 test('product landing has accessible headings', async ({ page }) => {
-  await page.goto('/products/minikvm/');
+  await page.goto('/minikvm/');
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
 });
