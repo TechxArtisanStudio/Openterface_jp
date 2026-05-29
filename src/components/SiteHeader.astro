@@ -3,14 +3,12 @@ import { mainNav } from '../data/navigation';
 import Logo from './Logo.astro';
 import LocaleSwitcher from './LocaleSwitcher.astro';
 import NavDropdown from './NavDropdown.astro';
+import { enNavMobile } from '../i18n/nav';
 import { siteConfig } from '../config/site';
 import { LOCALE_LABELS, SUPPORTED_LOCALES, switchLocaleUrl, type SiteLocale } from '../lib/locale';
 
 const dropdownSections = mainNav.filter((item) => item.children);
-const primaryLinks = mainNav.filter(
-  (item) => !item.children && !item.external && item.href !== '/',
-);
-const externalLinks = mainNav.filter((item) => item.external);
+const ecosystemLinks = mainNav.filter((item) => !item.children);
 const currentPath = Astro.url.pathname;
 const currentSearch = Astro.url.search;
 const locale = siteConfig.locale as SiteLocale;
@@ -35,10 +33,8 @@ const locale = siteConfig.locale as SiteLocale;
             <a
               href={item.href}
               class="site-header__nav-link"
-              target={item.external ? '_blank' : undefined}
-              rel={item.external ? 'noopener noreferrer' : undefined}
             >
-              {item.label}{item.external ? ' ↗' : ''}
+              {item.label}
             </a>
           ),
         )
@@ -88,38 +84,15 @@ const locale = siteConfig.locale as SiteLocale;
             }
 
             <div class="mobile-nav-section">
-              <p class="mobile-nav-section-label">Explore</p>
+              <p class="mobile-nav-section-label">{enNavMobile.ecosystem}</p>
               <div class="mobile-nav-section-links">
                 {
-                  primaryLinks.map((item) => (
+                  ecosystemLinks.map((item) => (
                     <a href={item.href} class="mobile-nav-link">{item.label}</a>
                   ))
                 }
               </div>
             </div>
-
-            {
-              externalLinks.length > 0 && (
-                <div class="mobile-nav-section pb-1">
-                  <p class="mobile-nav-section-label">Documentation</p>
-                  <div class="mobile-nav-section-links">
-                    {
-                      externalLinks.map((item) => (
-                        <a
-                          href={item.href}
-                          class="mobile-nav-link mobile-nav-link--external"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {item.label}
-                          <span class="ml-1.5 text-xs text-muted" aria-hidden="true">↗</span>
-                        </a>
-                      ))
-                    }
-                  </div>
-                </div>
-              )
-            }
 
             <div class="mobile-nav-section pb-1 sm:hidden">
               <p class="mobile-nav-section-label">Language</p>
