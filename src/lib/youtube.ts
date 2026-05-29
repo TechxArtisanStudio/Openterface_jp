@@ -24,11 +24,33 @@ export type HomeVideo = {
   viewsFormatted: string;
 };
 
-export type MediaFormat = 'long' | 'short' | 'post' | 'testimonial';
+export type MediaFormat = 'long' | 'short' | 'post' | 'testimonial' | 'coverage';
 
 export type MediaApp = 'kvm' | 'keycmd';
 
-export type SocialPlatform = 'x' | 'threads' | 'instagram';
+export type SocialPlatform =
+  | 'x'
+  | 'threads'
+  | 'instagram'
+  | 'bluesky'
+  | 'reddit'
+  | 'blog'
+  | 'linkedin'
+  | 'github'
+  | 'other';
+
+export type MediaCoverageEntry = {
+  id: string;
+  outlet: string;
+  outletUrl: string;
+  logoUrl?: string;
+  author: string;
+  quote: string;
+  articleUrl: string;
+  date?: string;
+  product?: string;
+  language?: string;
+};
 
 export type CatalogVideo = HomeVideo & {
   videoId: string;
@@ -46,8 +68,8 @@ export type MediaPostEntry = {
   title: string;
   excerpt: string;
   author: string;
-  platform: SocialPlatform;
-  externalUrl: string;
+  platform?: SocialPlatform;
+  externalUrl?: string;
   date: string;
   product?: string;
   language?: string;
@@ -77,6 +99,10 @@ export type MediaCatalogEntry = {
   platform?: SocialPlatform;
   externalUrl?: string;
   sample?: boolean;
+  outlet?: string;
+  outletUrl?: string;
+  logoUrl?: string;
+  quote?: string;
 };
 
 /** Stable product slugs from youtube.csv → display labels in filter UI. */
@@ -139,6 +165,24 @@ export function mediaPostToCatalogEntry(post: MediaPostEntry): MediaCatalogEntry
   };
 }
 
+export function mediaCoverageToCatalogEntry(entry: MediaCoverageEntry): MediaCatalogEntry {
+  return {
+    id: entry.id,
+    format: 'coverage',
+    title: entry.outlet,
+    author: entry.author,
+    date: entry.date ?? '',
+    product: entry.product,
+    language: entry.language,
+    excerpt: entry.quote,
+    quote: entry.quote,
+    externalUrl: entry.articleUrl,
+    outlet: entry.outlet,
+    outletUrl: entry.outletUrl,
+    logoUrl: entry.logoUrl,
+  };
+}
+
 export const LANGUAGE_DISPLAY_NAMES: Record<string, string> = {
   en: 'English',
   zh: 'Chinese',
@@ -150,6 +194,20 @@ export const LANGUAGE_DISPLAY_NAMES: Record<string, string> = {
   es: 'Spanish',
   pt: 'Portuguese',
   ro: 'Romanian',
+  nl: 'Dutch',
+  no: 'Norwegian',
+};
+
+export const PLATFORM_DISPLAY_NAMES: Record<SocialPlatform, string> = {
+  x: 'X',
+  threads: 'Threads',
+  instagram: 'Instagram',
+  bluesky: 'Bluesky',
+  reddit: 'Reddit',
+  blog: 'Blog',
+  linkedin: 'LinkedIn',
+  github: 'GitHub',
+  other: 'Web',
 };
 
 export function languageDisplayName(code: string): string {
