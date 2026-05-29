@@ -7,7 +7,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import { siteConfig } from '../config/site';
 import { getHreflangAlternates, getXDefaultUrl } from '../data/hreflang-manifest';
-import { buildPageTitle, getOgImageDimensions, getOgLocale, getOgLocaleAlternates, TWITTER_SITE } from '../lib/seo';
+import { buildPageTitle, getHtmlLang, getOgImageDimensions, getOgLocale, getOgLocaleAlternates, TWITTER_SITE } from '../lib/seo';
 
 interface Props {
   title?: string;
@@ -42,10 +42,11 @@ const ogLocaleAlternates = hreflangAlternates.length > 0 ? getOgLocaleAlternates
 const resolvedOgImageAlt = ogImageAlt ?? description;
 const ogImageDimensions = getOgImageDimensions(ogImage);
 const textDir = siteConfig.locale === 'ar' ? 'rtl' : 'ltr';
+const htmlLang = getHtmlLang(siteConfig.locale);
 ---
 
 <!doctype html>
-<html lang={siteConfig.locale} dir={textDir}>
+<html lang={htmlLang} dir={textDir}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

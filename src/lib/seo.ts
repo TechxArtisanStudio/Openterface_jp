@@ -21,6 +21,27 @@ export const OG_LOCALE_MAP: Record<string, string> = {
   nl: 'nl_NL',
 };
 
+/** BCP 47 tags for `<html lang>` (internal locale codes → valid language tags). */
+export const HTML_LANG_MAP: Record<string, string> = {
+  en: 'en',
+  de: 'de',
+  es: 'es',
+  fr: 'fr',
+  it: 'it',
+  ja: 'ja',
+  ko: 'ko',
+  pt: 'pt',
+  ro: 'ro',
+  zh: 'zh-Hans',
+  hk: 'zh-HK',
+  tw: 'zh-TW',
+  ru: 'ru',
+  ar: 'ar',
+  tr: 'tr',
+  pl: 'pl',
+  nl: 'nl',
+};
+
 export const TWITTER_SITE = '@TechxArtisan';
 
 /** Known share-image dimensions (probed from CDN assets). */
@@ -39,6 +60,10 @@ export function buildPageTitle(title: string, siteName: string): string {
 
 export function getOgLocale(locale: string): string {
   return OG_LOCALE_MAP[locale] ?? locale;
+}
+
+export function getHtmlLang(locale: string): string {
+  return HTML_LANG_MAP[locale] ?? locale;
 }
 
 export function getOgLocaleAlternates(currentLocale: string): string[] {
