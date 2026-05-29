@@ -17,6 +17,12 @@ const { storageKey } = consent;
   }
   window.gtag = gtag;
 
+  if (location.search.includes('_gl=')) {
+    const url = new URL(location.href);
+    url.searchParams.delete('_gl');
+    history.replaceState(null, '', url.pathname + url.search + url.hash);
+  }
+
   if (!isProductionHost) {
     window.__openterfaceAnalytics = {
       grant() {},
@@ -75,12 +81,6 @@ const { storageKey } = consent;
     cookie_domain: '.openterface.com',
     linker: { domains: linkerDomains },
   });
-
-  if (location.search.includes('_gl=')) {
-    const url = new URL(location.href);
-    url.searchParams.delete('_gl');
-    history.replaceState(null, '', url.pathname + url.search + url.hash);
-  }
 
   const storedConsent = localStorage.getItem(storageKey);
   if (storedConsent === 'granted') {

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-const SITE_HOST = process.env.SITE_HOST || 'openterface.com';
+const SITE_HOST = process.env.SITE_HOST || 'jp.openterface.com';
 
 const OG_LOCALE_BY_HOST: Record<string, string> = {
   'openterface.com': 'en_US',
