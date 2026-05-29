@@ -1,6 +1,6 @@
 /** Client-side sort/filter for the /videos/ Media hub. */
 
-type MediaFormat = 'long' | 'short' | 'post' | 'testimonial';
+type MediaFormat = 'long' | 'short' | 'post' | 'testimonial' | 'coverage';
 
 type MediaCatalogEntry = {
   id: string;
@@ -19,9 +19,13 @@ type MediaCatalogEntry = {
   viewsFormatted?: string;
   zIndex?: number;
   excerpt?: string;
-  platform?: 'x' | 'threads' | 'instagram';
+  platform?: string;
   externalUrl?: string;
   sample?: boolean;
+  outlet?: string;
+  outletUrl?: string;
+  logoUrl?: string;
+  quote?: string;
 };
 
 type MediaCatalogConfig = {
@@ -35,6 +39,7 @@ type MediaCatalogConfig = {
   emptyResults: string;
   sampleBadge: string;
   readOriginal: string;
+  readArticle: string;
   platformLabels: Record<string, string>;
 };
 
@@ -206,6 +211,41 @@ function renderVideoCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): 
   return article;
 }
 
+function renderCoverageCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): HTMLElement {
+  const article = document.createElement('article');
+  article.className = 'media-catalog-card media-catalog-card--coverage group';
+  article.dataset.entryId = entry.id;
+  article.dataset.format = entry.format;
+  article.dataset.date = entry.date;
+  article.dataset.product = entry.product ?? '';
+  article.dataset.language = entry.language ?? '';
+  article.dataset.app = entry.app ?? '';
+
+  const logo = entry.logoUrl
+    ? `<img src="${escapeHtml(entry.logoUrl)}" alt="" width="28" height="28" class="h-7 w-7 shrink-0 rounded-full bg-gray-100 object-cover ring-1 ring-gray-200/80" loading="lazy" decoding="async" />`
+    : '';
+  const productLabel = entry.product
+    ? `<span class="media-catalog-tag media-catalog-tag--product">${escapeHtml(config.productLabels[entry.product] ?? entry.product)}</span>`
+    : '';
+  const quote = escapeHtml(entry.quote ?? entry.excerpt ?? '');
+
+  article.innerHTML = `
+    <a href="${escapeHtml(entry.externalUrl ?? '#')}" target="_blank" rel="noopener noreferrer" class="card block h-full hover:border-primary-dark hover:shadow-md">
+      <div class="flex items-start gap-3">${logo}
+        <div class="min-w-0 flex-1">
+          <p class="text-sm font-semibold text-ink">${escapeHtml(entry.outlet ?? entry.title)}</p>
+          <p class="text-xs text-muted">${escapeHtml(entry.author)}</p>
+        </div>
+      </div>
+      <p class="mt-3 line-clamp-4 text-sm text-muted italic">"${quote}"</p>
+      <div class="mt-3 flex flex-wrap gap-1.5">${productLabel}</div>
+      <p class="mt-3 text-sm font-semibold text-primary-dark">${escapeHtml(config.readArticle)}</p>
+    </a>
+  `;
+
+  return article;
+}
+
 function renderPostCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): HTMLElement {
   const article = document.createElement('article');
   article.className = 'media-catalog-card media-catalog-card--post group';
@@ -216,26 +256,36 @@ function renderPostCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): H
   article.dataset.language = entry.language ?? '';
   article.dataset.app = entry.app ?? '';
 
-  const platform = entry.platform ? config.platformLabels[entry.platform] ?? entry.platform : 'Social';
-  const sampleBadge = entry.sample
-    ? `<span class="media-catalog-tag media-catalog-tag--sample">${escapeHtml(config.sampleBadge)}</span>`
-    : '';
+  const platform = entry.platform
+    ? config.platformLabels[entry.platform] ?? entry.platform
+    : entry.format === 'testimonial'
+      ? 'Testimonial'
+      : 'Social';
   const productLabel = entry.product
     ? `<span class="media-catalog-tag media-catalog-tag--product">${escapeHtml(config.productLabels[entry.product] ?? entry.product)}</span>`
     : '';
+  const cta = entry.externalUrl
+    ? `<p class="mt-3 text-sm font-semibold text-primary-dark">${escapeHtml(config.readOriginal)}</p>`
+    : '';
+  const wrapperOpen = entry.externalUrl
+    ? `<a href="${escapeHtml(entry.externalUrl)}" target="_blank" rel="noopener noreferrer" class="card block h-full hover:border-primary-dark hover:shadow-md">`
+    : '<div class="card block h-full">';
+  const wrapperClose = entry.externalUrl ? '</a>' : '</div>';
+  const titleClass = entry.externalUrl
+    ? 'mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark'
+    : 'mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink';
 
   article.innerHTML = `
-    <a href="${escapeHtml(entry.externalUrl ?? '#')}" target="_blank" rel="noopener noreferrer" class="card block h-full hover:border-primary-dark hover:shadow-md">
+    ${wrapperOpen}
       <div class="flex items-start justify-between gap-2">
         <span class="text-xs font-bold uppercase tracking-wide text-muted">${escapeHtml(platform)}</span>
-        ${sampleBadge}
       </div>
-      <h2 class="mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark">${escapeHtml(entry.title)}</h2>
+      <h2 class="${titleClass}">${escapeHtml(entry.title)}</h2>
       <p class="mt-2 line-clamp-3 text-sm text-muted">${escapeHtml(entry.excerpt ?? '')}</p>
       <div class="mt-3 flex flex-wrap gap-1.5">${productLabel}</div>
       <p class="mt-3 text-sm text-muted">${escapeHtml(entry.author)}${entry.date ? ` · ${escapeHtml(entry.date)}` : ''}</p>
-      <p class="mt-3 text-sm font-semibold text-primary-dark">${escapeHtml(config.readOriginal)}</p>
-    </a>
+      ${cta}
+    ${wrapperClose}
   `;
 
   return article;
@@ -243,6 +293,7 @@ function renderPostCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): H
 
 function renderEntry(entry: MediaCatalogEntry, config: MediaCatalogConfig): HTMLElement {
   if (VIDEO_FORMATS.has(entry.format)) return renderVideoCard(entry, config);
+  if (entry.format === 'coverage') return renderCoverageCard(entry, config);
   return renderPostCard(entry, config);
 }
 

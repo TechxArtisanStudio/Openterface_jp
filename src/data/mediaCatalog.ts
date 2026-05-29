@@ -1,13 +1,18 @@
 import { catalogVideos } from './catalogVideos';
-import { mediaSampleEntries } from './mediaSamples';
+import { mediaCoverage } from './mediaCoverage';
+import { mediaPosts } from './mediaPosts';
+import { mediaTestimonials } from './mediaTestimonials';
 import {
   catalogVideoToMediaEntry,
+  mediaCoverageToCatalogEntry,
   mediaPostToCatalogEntry,
   type MediaCatalogEntry,
 } from '../lib/youtube';
 
-/** Full Media hub catalog: YouTube entries + curated social posts. */
+/** Full Media hub catalog: YouTube + press + social posts + testimonials. */
 export const mediaCatalog: MediaCatalogEntry[] = [
   ...catalogVideos.map(catalogVideoToMediaEntry),
-  ...mediaSampleEntries.map(mediaPostToCatalogEntry),
+  ...mediaCoverage.map(mediaCoverageToCatalogEntry),
+  ...mediaPosts.map(mediaPostToCatalogEntry),
+  ...mediaTestimonials.map(mediaPostToCatalogEntry),
 ];

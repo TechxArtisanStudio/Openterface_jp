@@ -1,5 +1,6 @@
 ---
 import { mediaCatalog } from '../data/mediaCatalog';
+import { mediaCoverage } from '../data/mediaCoverage';
 import { siteConfig } from '../config/site';
 import { getMediaStrings } from '../i18n/media';
 import {
@@ -7,6 +8,7 @@ import {
   KNOWN_APPS,
   KNOWN_PRODUCTS,
   LANGUAGE_DISPLAY_NAMES,
+  PLATFORM_DISPLAY_NAMES,
   PRODUCT_DISPLAY_NAMES,
   productDisplayName,
   languageDisplayName,
@@ -25,6 +27,7 @@ const formatFilters: { value: string; label: string }[] = [
   { value: 'short', label: strings.formatShorts },
   { value: 'post', label: strings.formatPosts },
   { value: 'testimonial', label: strings.formatTestimonials },
+  { value: 'coverage', label: strings.formatCoverage },
 ];
 
 const jsonLd = {
@@ -72,19 +75,27 @@ const catalogConfig = {
   emptyResults: strings.emptyResults,
   sampleBadge: strings.sampleBadge,
   readOriginal: strings.readOriginal,
+  readArticle: strings.readArticle,
   platformLabels: {
     x: strings.platformX,
     threads: strings.platformThreads,
     instagram: strings.platformInstagram,
+    bluesky: strings.platformBluesky,
+    reddit: strings.platformReddit,
+    blog: strings.platformBlog,
+    linkedin: strings.platformLinkedin,
+    github: strings.platformGithub,
+    other: 'Web',
   },
 };
 
 function platformLabel(entry: MediaCatalogEntry): string {
-  if (!entry.platform) return 'Social';
-  return catalogConfig.platformLabels[entry.platform] ?? entry.platform;
+  if (!entry.platform) return entry.format === 'testimonial' ? 'Testimonial' : 'Social';
+  return catalogConfig.platformLabels[entry.platform] ?? PLATFORM_DISPLAY_NAMES[entry.platform] ?? entry.platform;
 }
 
 const isVideo = (entry: MediaCatalogEntry) => entry.format === 'long' || entry.format === 'short';
+const isCoverage = (entry: MediaCatalogEntry) => entry.format === 'coverage';
 ---
 
 <section class="media-catalog bg-surface pb-16 pt-10 md:pb-20 md:pt-12" aria-labelledby="media-catalog-title">
@@ -114,6 +125,44 @@ const isVideo = (entry: MediaCatalogEntry) => entry.format === 'long' || entry.f
         ))
       }
     </div>
+
+    <section class="mt-8" aria-labelledby="media-press-heading">
+      <h2 id="media-press-heading" class="text-center text-sm font-bold uppercase tracking-widest text-muted">
+        {strings.pressHeading}
+      </h2>
+      <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          mediaCoverage.map((item) => (
+            <a
+              href={item.articleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="media-coverage-card card flex gap-3 hover:border-primary-dark hover:shadow-md"
+            >
+              {
+                item.logoUrl ? (
+                  <img
+                    src={item.logoUrl}
+                    alt=""
+                    width={28}
+                    height={28}
+                    class="h-7 w-7 shrink-0 rounded-full bg-gray-100 object-cover ring-1 ring-gray-200/80"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : null
+              }
+              <div class="min-w-0 flex-1">
+                <p class="text-sm font-semibold text-ink">{item.outlet}</p>
+                <p class="text-xs text-muted">{item.author}</p>
+                <p class="mt-2 line-clamp-3 text-sm text-muted italic">"{item.quote}"</p>
+                <p class="mt-2 text-sm font-semibold text-primary-dark">{strings.readArticle}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
 
     <div class="media-catalog-toolbar mt-8 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm md:p-5">
       <div class="flex flex-wrap gap-2 md:gap-3">
@@ -276,7 +325,55 @@ const isVideo = (entry: MediaCatalogEntry) => entry.format === 'long' || entry.f
                 </div>
               </a>
             </article>
-          ) : (
+          ) : isCoverage(entry) ? (
+            <article
+              class="media-catalog-card media-catalog-card--coverage group"
+              data-entry-id={entry.id}
+              data-format={entry.format}
+              data-date={entry.date}
+              data-product={entry.product ?? ''}
+              data-language={entry.language ?? ''}
+              data-app={entry.app ?? ''}
+            >
+              <a
+                href={entry.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="card block h-full hover:border-primary-dark hover:shadow-md"
+              >
+                <div class="flex items-start gap-3">
+                  {
+                    entry.logoUrl ? (
+                      <img
+                        src={entry.logoUrl}
+                        alt=""
+                        width={28}
+                        height={28}
+                        class="h-7 w-7 shrink-0 rounded-full bg-gray-100 object-cover ring-1 ring-gray-200/80"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : null
+                  }
+                  <div class="min-w-0 flex-1">
+                    <p class="text-sm font-semibold text-ink">{entry.outlet ?? entry.title}</p>
+                    <p class="text-xs text-muted">{entry.author}</p>
+                  </div>
+                </div>
+                <p class="mt-3 line-clamp-4 text-sm text-muted italic">"{entry.quote ?? entry.excerpt}"</p>
+                {
+                  entry.product ? (
+                    <div class="mt-3 flex flex-wrap gap-1.5">
+                      <span class="media-catalog-tag media-catalog-tag--product">
+                        {productDisplayName(entry.product)}
+                      </span>
+                    </div>
+                  ) : null
+                }
+                <p class="mt-3 text-sm font-semibold text-primary-dark">{strings.readArticle}</p>
+              </a>
+            </article>
+          ) : entry.externalUrl ? (
             <article
               class="media-catalog-card media-catalog-card--post group"
               data-entry-id={entry.id}
@@ -294,9 +391,6 @@ const isVideo = (entry: MediaCatalogEntry) => entry.format === 'long' || entry.f
               >
                 <div class="flex items-start justify-between gap-2">
                   <span class="text-xs font-bold uppercase tracking-wide text-muted">{platformLabel(entry)}</span>
-                  {entry.sample ? (
-                    <span class="media-catalog-tag media-catalog-tag--sample">{strings.sampleBadge}</span>
-                  ) : null}
                 </div>
                 <h2 class="mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark">
                   {entry.title}
@@ -317,6 +411,39 @@ const isVideo = (entry: MediaCatalogEntry) => entry.format === 'long' || entry.f
                 </p>
                 <p class="mt-3 text-sm font-semibold text-primary-dark">{strings.readOriginal}</p>
               </a>
+            </article>
+          ) : (
+            <article
+              class="media-catalog-card media-catalog-card--post group"
+              data-entry-id={entry.id}
+              data-format={entry.format}
+              data-date={entry.date}
+              data-product={entry.product ?? ''}
+              data-language={entry.language ?? ''}
+              data-app={entry.app ?? ''}
+            >
+              <div class="card block h-full">
+                <div class="flex items-start justify-between gap-2">
+                  <span class="text-xs font-bold uppercase tracking-wide text-muted">{platformLabel(entry)}</span>
+                </div>
+                <h2 class="mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink">
+                  {entry.title}
+                </h2>
+                <p class="mt-2 line-clamp-3 text-sm text-muted">{entry.excerpt}</p>
+                {
+                  entry.product ? (
+                    <div class="mt-3 flex flex-wrap gap-1.5">
+                      <span class="media-catalog-tag media-catalog-tag--product">
+                        {productDisplayName(entry.product)}
+                      </span>
+                    </div>
+                  ) : null
+                }
+                <p class="mt-3 text-sm text-muted">
+                  {entry.author}
+                  {entry.date ? ` · ${entry.date}` : ''}
+                </p>
+              </div>
             </article>
           ),
         )

@@ -1,0 +1,95 @@
+import type { MediaPostEntry } from '../lib/youtube';
+
+/** Curated social posts — migrated from legacy social-posts.html (link-out cards). */
+export const mediaPosts: MediaPostEntry[] = [
+  {
+    id: 'post-bluesky-isa-freeman',
+    format: 'post',
+    title: 'Definitely can recommend the #openterface for a USB KVM',
+    excerpt:
+      "Definitely can recommend the #openterface for a USB KVM. It's affordable, it does lack some features but it works really well. Plus it's OSS! Used it to recover a few machines the other day after they stopped responding.",
+    author: 'Isa Freeman (@isa.rattleroar.dev)',
+    platform: 'bluesky',
+    externalUrl:
+      'https://bsky.app/profile/did:plc:hqzak33sft3uec37owhqhy6a/post/3ljjqt4ak222z',
+    date: '2025-03-04',
+    product: 'minikvm',
+    language: 'en',
+  },
+  {
+    id: 'post-x-veulx-vga',
+    format: 'post',
+    title: 'mini-KVMのVGA用のケーブルが届いたので試してみた',
+    excerpt:
+      'mini-KVMのVGA用のケーブルが届いたので試してみた〜 パソコンに接続しただけで使えるのはとてもいい製品！遅延もなく操作しやすい',
+    author: 'Veulx (@DORA_0907)',
+    platform: 'x',
+    externalUrl: 'https://twitter.com/DORA_0907/status/1848736698647351337',
+    date: '2024-10-22',
+    product: 'minikvm',
+    language: 'ja',
+  },
+  {
+    id: 'post-x-nemanja',
+    format: 'post',
+    title: 'New toy, from @TechxArtisan',
+    excerpt: 'New toy, from @TechxArtisan 😍',
+    author: 'Nemanja (@nemanjan00)',
+    platform: 'x',
+    externalUrl: 'https://twitter.com/nemanjan00/status/1872243307839103175',
+    date: '2024-12-26',
+    product: 'minikvm',
+    language: 'en',
+  },
+  {
+    id: 'post-x-tsukkkkkun-usage',
+    format: 'post',
+    title: 'openterface mini-kvmの正しい使用方法',
+    excerpt: 'openterface mini-kvmの正しい使用方法',
+    author: 'うんちゃま (@tsukkkkkun)',
+    platform: 'x',
+    externalUrl: 'https://twitter.com/tsukkkkkun/status/1885503399095132621',
+    date: '2025-02-01',
+    product: 'minikvm',
+    language: 'ja',
+  },
+  {
+    id: 'post-x-matsuu-switch',
+    format: 'post',
+    title: 'Openterface Mini-KVMはゲームもいける',
+    excerpt:
+      'Openterface Mini-KVMは「最大1920x1080@30Hzのビデオ出力をサポートし、遅延は140ミリ秒未満」なのでゲームもいける。Nintendo Switchに接続してみたが体感的にも遅延を感じないレベル。音も出ます。USB接続のHDMIキャプチャとしても優秀。',
+    author: 'matsuu (@matsuu)',
+    platform: 'x',
+    externalUrl: 'https://twitter.com/matsuu/status/1842440088229478435',
+    date: '2024-10-05',
+    product: 'minikvm',
+    language: 'ja',
+  },
+  {
+    id: 'post-x-tsukkkkkun-unexpected',
+    format: 'post',
+    title: '想定外の使われ方にドン引きしているOpenterface Mini-KVMくん',
+    excerpt:
+      'これは恐らく想定外の使われ方にドン引きしていると思われるOpenterface Mini-KVMくん',
+    author: 'うんちゃま (@tsukkkkkun)',
+    platform: 'x',
+    externalUrl: 'https://twitter.com/tsukkkkkun/status/1836702683845341553',
+    date: '2024-09-19',
+    product: 'minikvm',
+    language: 'ja',
+  },
+  {
+    id: 'post-x-openterface-reply',
+    format: 'post',
+    title: 'Veulxさんの素晴らしいツイートのおかげで',
+    excerpt:
+      '本当にありがとうございます！🙏✨ Veulxさんの素晴らしいツイートのおかげで、私たちの製品が多くの方に届くことを心から嬉しく思います。',
+    author: 'Gibbyの冒険 (@Openterface)',
+    platform: 'x',
+    externalUrl: 'https://twitter.com/Openterface/status/1832027435254346206',
+    date: '2024-09-06',
+    product: 'minikvm',
+    language: 'ja',
+  },
+];
