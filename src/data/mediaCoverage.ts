@@ -84,4 +84,60 @@ export const mediaCoverage: MediaCoverageEntry[] = [
     product: 'minikvm',
     language: 'en',
   },
+  {
+    id: 'press-kvmgo-cnx-software',
+    outlet: 'CNX Software',
+    outletUrl: 'https://www.cnx-software.com/',
+    logoUrl:
+      'https://www.cnx-software.com/wp-content/uploads/2021/04/cropped-CNX-Software-Square-Logo-Light-Grey-100x100.png.webp',
+    author: 'Jean-Luc Aufranc (CNXSoft)',
+    quote:
+      'Small enough to fit on a keychain, Openterface KVM-GO is a tiny, open-source hardware KVM-over-USB gadget available with an HDMI, DisplayPort (DP), or VGA connector and is designed for headless device troubleshooting and remote server monitoring.',
+    articleUrl:
+      'https://www.cnx-software.com/2026/01/05/openterface-kvm-go-an-ultra-compact-kvm-over-usb-solution-with-hdmi-dp-or-vga-video-input/',
+    date: '2026-01-05',
+    product: 'kvm-go',
+    language: 'en',
+  },
+  {
+    id: 'press-kvmgo-hackster-keychain',
+    outlet: 'Hackster News',
+    outletUrl: 'https://www.hackster.io/',
+    logoUrl: 'https://pbs.twimg.com/profile_images/1637085399511179266/wR1jSJJ5_200x200.jpg',
+    author: 'Hackster News',
+    quote:
+      "Openterface's KVM-GO is a pocket-sized, open source tool for hardware-level access to headless computers.",
+    articleUrl: 'https://www.hackster.io/news/a-kvm-that-fits-on-your-keychain-e2adb39f7a2b',
+    date: '2026-01-02',
+    product: 'kvm-go',
+    language: 'en',
+  },
+  {
+    id: 'press-kvmgo-notebookcheck',
+    outlet: 'Notebookcheck',
+    outletUrl: 'https://www.notebookcheck.net/',
+    logoUrl: 'https://www.notebookcheck.net/fileadmin/NotebookCheck/images/logo/notebookcheck_logo.png',
+    author: 'Notebookcheck',
+    quote:
+      'Following the nearly half-million dollar crowdfunding success of the Mini-KVM, Openterface is back with the KVM-GO, a tiny KVM that reduces cable clutter by including all the hardware in the display connector.',
+    articleUrl:
+      'https://www.notebookcheck.net/KVM-GO-Openterface-is-back-with-a-more-compact-and-refined-KVM.1196402.0.html',
+    date: '2026-01-04',
+    product: 'kvm-go',
+    language: 'en',
+  },
+  {
+    id: 'press-kvmgo-hackster-powerful',
+    outlet: 'Hackster News',
+    outletUrl: 'https://www.hackster.io/',
+    logoUrl: 'https://pbs.twimg.com/profile_images/1637085399511179266/wR1jSJJ5_200x200.jpg',
+    author: 'Hackster News',
+    quote:
+      'Keychain-friendly KVM-over-USB gadget comes in a smaller form factor but with upgraded 4k60-capable internals.',
+    articleUrl:
+      'https://www.hackster.io/news/techxartisan-is-back-with-a-smaller-yet-more-powerful-openterface-the-openterface-kvm-go-26174b2d11c0',
+    date: '2026-01-05',
+    product: 'kvm-go',
+    language: 'en',
+  },
 ];
