@@ -1,4 +1,6 @@
-/** Client-side sort/filter for the /videos/ Media hub. */
+/** Client-side sort/filter for the /media/ hub — multi-section layout. */
+
+import { MEDIA_SECTIONS } from '../lib/media-sections';
 
 type MediaFormat = 'long' | 'short' | 'post' | 'testimonial' | 'coverage';
 
@@ -116,6 +118,7 @@ function syncUrlFromState(state: {
   window.history.replaceState(null, '', `${url.pathname}${qs ? `?${qs}` : ''}${url.hash}`);
 }
 
+/** Sort within a single section bucket (views sort applies to videos only). */
 function compareEntries(
   a: MediaCatalogEntry,
   b: MediaCatalogEntry,
@@ -197,7 +200,7 @@ function renderVideoCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): 
         </span>
       </div>
       <div class="mt-3 flex flex-col gap-2">
-        <h2 class="line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark">${escapeHtml(entry.title)}</h2>
+        <h3 class="line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark">${escapeHtml(entry.title)}</h3>
         <div class="flex flex-wrap gap-1.5">${productLabel}${appLabel}${langLabel}</div>
         <div class="flex items-center gap-2">${avatar}<span class="min-w-0 truncate text-sm text-muted">${escapeHtml(entry.author)}</span></div>
         ${viewsLine}
@@ -225,21 +228,20 @@ function renderCoverageCard(entry: MediaCatalogEntry, config: MediaCatalogConfig
     ? `<img src="${escapeHtml(entry.logoUrl)}" alt="" width="28" height="28" class="h-7 w-7 shrink-0 rounded-full bg-gray-100 object-cover ring-1 ring-gray-200/80" loading="lazy" decoding="async" />`
     : '';
   const productLabel = entry.product
-    ? `<span class="media-catalog-tag media-catalog-tag--product">${escapeHtml(config.productLabels[entry.product] ?? entry.product)}</span>`
+    ? `<div class="mt-2 flex flex-wrap gap-1.5"><span class="media-catalog-tag media-catalog-tag--product">${escapeHtml(config.productLabels[entry.product] ?? entry.product)}</span></div>`
     : '';
   const quote = escapeHtml(entry.quote ?? entry.excerpt ?? '');
 
   article.innerHTML = `
-    <a href="${escapeHtml(entry.externalUrl ?? '#')}" target="_blank" rel="noopener noreferrer" class="card block h-full hover:border-primary-dark hover:shadow-md">
-      <div class="flex items-start gap-3">${logo}
-        <div class="min-w-0 flex-1">
-          <p class="text-sm font-semibold text-ink">${escapeHtml(entry.outlet ?? entry.title)}</p>
-          <p class="text-xs text-muted">${escapeHtml(entry.author)}</p>
-        </div>
+    <a href="${escapeHtml(entry.externalUrl ?? '#')}" target="_blank" rel="noopener noreferrer" class="media-coverage-card card flex h-full gap-3 hover:border-primary-dark hover:shadow-md">
+      ${logo}
+      <div class="min-w-0 flex-1">
+        <p class="text-sm font-semibold text-ink">${escapeHtml(entry.outlet ?? entry.title)}</p>
+        <p class="text-xs text-muted">${escapeHtml(entry.author)}</p>
+        <p class="mt-2 line-clamp-3 text-sm text-muted italic">"${quote}"</p>
+        ${productLabel}
+        <p class="mt-2 text-sm font-semibold text-primary-dark">${escapeHtml(config.readArticle)}</p>
       </div>
-      <p class="mt-3 line-clamp-4 text-sm text-muted italic">"${quote}"</p>
-      <div class="mt-3 flex flex-wrap gap-1.5">${productLabel}</div>
-      <p class="mt-3 text-sm font-semibold text-primary-dark">${escapeHtml(config.readArticle)}</p>
     </a>
   `;
 
@@ -280,7 +282,7 @@ function renderPostCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): H
       <div class="flex items-start justify-between gap-2">
         <span class="text-xs font-bold uppercase tracking-wide text-muted">${escapeHtml(platform)}</span>
       </div>
-      <h2 class="${titleClass}">${escapeHtml(entry.title)}</h2>
+      <h3 class="${titleClass}">${escapeHtml(entry.title)}</h3>
       <p class="mt-2 line-clamp-3 text-sm text-muted">${escapeHtml(entry.excerpt ?? '')}</p>
       <div class="mt-3 flex flex-wrap gap-1.5">${productLabel}</div>
       <p class="mt-3 text-sm text-muted">${escapeHtml(entry.author)}${entry.date ? ` · ${escapeHtml(entry.date)}` : ''}</p>
@@ -302,7 +304,6 @@ export function initMediaCatalog(
   entries: MediaCatalogEntry[],
   config: MediaCatalogConfig,
 ): void {
-  const grid = root.querySelector<HTMLElement>('[data-media-grid]');
   const sortEl = root.querySelector<HTMLSelectElement>('[data-sort]');
   const productEl = root.querySelector<HTMLSelectElement>('[data-filter-product]');
   const appEl = root.querySelector<HTMLSelectElement>('[data-filter-app]');
@@ -314,8 +315,6 @@ export function initMediaCatalog(
   const statTotal = root.querySelector('[data-stat-total]');
   const statLangs = root.querySelector('[data-stat-languages]');
   const statProducts = root.querySelector('[data-stat-products]');
-
-  if (!grid) return;
 
   const allEntries = [...entries];
   const locale = config.locale;
@@ -391,17 +390,32 @@ export function initMediaCatalog(
       return true;
     });
 
-    filtered = [...filtered].sort((a, b) =>
-      compareEntries(a, b, state.sort, locale, prioritizeLocale),
-    );
+    let visibleCount = 0;
 
-    grid.innerHTML = '';
-    const frag = document.createDocumentFragment();
-    for (const entry of filtered) frag.appendChild(renderEntry(entry, config));
-    grid.appendChild(frag);
+    for (const { format } of MEDIA_SECTIONS) {
+      const sectionEl = root.querySelector<HTMLElement>(`[data-media-section="${format}"]`);
+      const gridEl = sectionEl?.querySelector<HTMLElement>(`[data-media-grid="${format}"]`);
+      if (!sectionEl || !gridEl) continue;
 
-    if (visibleEl) visibleEl.textContent = String(filtered.length);
-    if (emptyEl) emptyEl.hidden = filtered.length > 0;
+      const bucket = filtered
+        .filter((e) => e.format === format)
+        .sort((a, b) => compareEntries(a, b, state.sort, locale, prioritizeLocale));
+
+      const showSection =
+        bucket.length > 0 && (!state.format || state.format === format);
+      sectionEl.hidden = !showSection;
+
+      gridEl.innerHTML = '';
+      if (showSection) {
+        const frag = document.createDocumentFragment();
+        for (const entry of bucket) frag.appendChild(renderEntry(entry, config));
+        gridEl.appendChild(frag);
+        visibleCount += bucket.length;
+      }
+    }
+
+    if (visibleEl) visibleEl.textContent = String(visibleCount);
+    if (emptyEl) emptyEl.hidden = visibleCount > 0;
   }
 
   function applyAndSync(): void {
