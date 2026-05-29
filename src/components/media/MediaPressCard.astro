@@ -1,0 +1,56 @@
+---
+import { productDisplayName, type MediaCatalogEntry } from '../../lib/youtube';
+
+interface Props {
+  entry: MediaCatalogEntry;
+  readArticle: string;
+}
+
+const { entry, readArticle } = Astro.props;
+---
+
+<article
+  class="media-catalog-card media-catalog-card--coverage group"
+  data-entry-id={entry.id}
+  data-format={entry.format}
+  data-date={entry.date}
+  data-product={entry.product ?? ''}
+  data-language={entry.language ?? ''}
+  data-app={entry.app ?? ''}
+>
+  <a
+    href={entry.externalUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="media-coverage-card card flex h-full gap-3 hover:border-primary-dark hover:shadow-md"
+  >
+    {
+      entry.logoUrl ? (
+        <img
+          src={entry.logoUrl}
+          alt=""
+          width={28}
+          height={28}
+          class="h-7 w-7 shrink-0 rounded-full bg-gray-100 object-cover ring-1 ring-gray-200/80"
+          loading="lazy"
+          decoding="async"
+        />
+      ) : null
+    }
+    <div class="min-w-0 flex-1">
+      <p class="text-sm font-semibold text-ink">{entry.outlet ?? entry.title}</p>
+      <p class="text-xs text-muted">{entry.author}</p>
+      <p class="mt-2 line-clamp-3 text-sm text-muted italic">"{entry.quote ?? entry.excerpt}"</p>
+      {
+        entry.product ? (
+          <div class="mt-2 flex flex-wrap gap-1.5">
+            <span class="media-catalog-tag media-catalog-tag--product">
+              {productDisplayName(entry.product)}
+            </span>
+          </div>
+        ) : null
+      }
+      <p class="mt-2 text-sm font-semibold text-primary-dark">{readArticle}</p>
+    </div>
+  </a>
+</article>

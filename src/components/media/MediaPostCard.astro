@@ -1,0 +1,80 @@
+---
+import { PLATFORM_DISPLAY_NAMES, productDisplayName, type MediaCatalogEntry } from '../../lib/youtube';
+
+interface Props {
+  entry: MediaCatalogEntry;
+  readOriginal: string;
+  platformLabels: Record<string, string>;
+}
+
+const { entry, readOriginal, platformLabels } = Astro.props;
+
+function platformLabel(entry: MediaCatalogEntry): string {
+  if (!entry.platform) return entry.format === 'testimonial' ? 'Testimonial' : 'Social';
+  return platformLabels[entry.platform] ?? PLATFORM_DISPLAY_NAMES[entry.platform] ?? entry.platform;
+}
+---
+
+<article
+  class="media-catalog-card media-catalog-card--post group"
+  data-entry-id={entry.id}
+  data-format={entry.format}
+  data-date={entry.date}
+  data-product={entry.product ?? ''}
+  data-language={entry.language ?? ''}
+  data-app={entry.app ?? ''}
+>
+  {
+    entry.externalUrl ? (
+      <a
+        href={entry.externalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="card block h-full hover:border-primary-dark hover:shadow-md"
+      >
+        <div class="flex items-start justify-between gap-2">
+          <span class="text-xs font-bold uppercase tracking-wide text-muted">{platformLabel(entry)}</span>
+        </div>
+        <h3 class="mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark">
+          {entry.title}
+        </h3>
+        <p class="mt-2 line-clamp-3 text-sm text-muted">{entry.excerpt}</p>
+        {
+          entry.product ? (
+            <div class="mt-3 flex flex-wrap gap-1.5">
+              <span class="media-catalog-tag media-catalog-tag--product">
+                {productDisplayName(entry.product)}
+              </span>
+            </div>
+          ) : null
+        }
+        <p class="mt-3 text-sm text-muted">
+          {entry.author}
+          {entry.date ? ` · ${entry.date}` : ''}
+        </p>
+        <p class="mt-3 text-sm font-semibold text-primary-dark">{readOriginal}</p>
+      </a>
+    ) : (
+      <div class="card block h-full">
+        <div class="flex items-start justify-between gap-2">
+          <span class="text-xs font-bold uppercase tracking-wide text-muted">{platformLabel(entry)}</span>
+        </div>
+        <h3 class="mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink">{entry.title}</h3>
+        <p class="mt-2 line-clamp-3 text-sm text-muted">{entry.excerpt}</p>
+        {
+          entry.product ? (
+            <div class="mt-3 flex flex-wrap gap-1.5">
+              <span class="media-catalog-tag media-catalog-tag--product">
+                {productDisplayName(entry.product)}
+              </span>
+            </div>
+          ) : null
+        }
+        <p class="mt-3 text-sm text-muted">
+          {entry.author}
+          {entry.date ? ` · ${entry.date}` : ''}
+        </p>
+      </div>
+    )
+  }
+</article>

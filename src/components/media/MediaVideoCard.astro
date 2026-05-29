@@ -1,0 +1,108 @@
+---
+import {
+  APP_DISPLAY_NAMES,
+  languageDisplayName,
+  productDisplayName,
+  type MediaCatalogEntry,
+} from '../../lib/youtube';
+
+interface Props {
+  entry: MediaCatalogEntry;
+  viewsLabel: string;
+}
+
+const { entry, viewsLabel } = Astro.props;
+const isShort = entry.format === 'short';
+---
+
+<article
+  class="media-catalog-card media-catalog-card--video group"
+  data-entry-id={entry.id}
+  data-format={entry.format}
+  data-date={entry.date}
+  data-views={entry.views ?? 0}
+  data-product={entry.product ?? ''}
+  data-language={entry.language ?? ''}
+  data-app={entry.app ?? ''}
+>
+  <a href={entry.url} target="_blank" rel="noopener noreferrer" class="block h-full">
+    <div
+      class:list={[
+        'media-catalog-thumb relative overflow-hidden rounded-xl bg-gray-200 shadow-sm ring-1 ring-black/5 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md group-hover:ring-primary-dark/30',
+        isShort ? 'aspect-[9/16] max-h-80 mx-auto' : 'aspect-video',
+      ]}
+    >
+      <img
+        src={entry.thumbnail}
+        alt={entry.title}
+        width={480}
+        height={270}
+        class="h-full w-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+      <span
+        class="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition group-hover:bg-black/15"
+        aria-hidden="true"
+      >
+        <span
+          class="flex h-11 w-11 scale-90 items-center justify-center rounded-full bg-black/65 text-white opacity-0 shadow-lg transition group-hover:scale-100 group-hover:opacity-100"
+        >
+          <svg class="ml-0.5 h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5v14l11-7z"></path>
+          </svg>
+        </span>
+      </span>
+    </div>
+    <div class="mt-3 flex flex-col gap-2">
+      <h3 class="line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark">
+        {entry.title}
+      </h3>
+      {
+        entry.product || entry.language || entry.app ? (
+          <div class="flex flex-wrap gap-1.5">
+            {
+              entry.product ? (
+                <span class="media-catalog-tag media-catalog-tag--product">
+                  {productDisplayName(entry.product)}
+                </span>
+              ) : null
+            }
+            {
+              entry.app ? (
+                <span class="media-catalog-tag media-catalog-tag--app">{APP_DISPLAY_NAMES[entry.app]}</span>
+              ) : null
+            }
+            {
+              entry.language ? (
+                <span class="media-catalog-tag media-catalog-tag--lang">
+                  {languageDisplayName(entry.language)}
+                </span>
+              ) : null
+            }
+          </div>
+        ) : null
+      }
+      <div class="flex items-center gap-2">
+        {
+          entry.channelAvatar ? (
+            <img
+              src={entry.channelAvatar}
+              alt=""
+              width={22}
+              height={22}
+              class="h-[22px] w-[22px] shrink-0 rounded-full bg-gray-100 object-cover ring-1 ring-gray-200/80"
+              loading="lazy"
+              decoding="async"
+            />
+          ) : null
+        }
+        <span class="min-w-0 truncate text-sm text-muted">{entry.author}</span>
+      </div>
+      <p class="text-xs text-muted/90">
+        {entry.viewsFormatted} {viewsLabel}
+        {entry.date ? ` · ${entry.date}` : ''}
+      </p>
+    </div>
+  </a>
+</article>
