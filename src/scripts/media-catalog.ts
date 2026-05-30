@@ -276,16 +276,31 @@ function renderPostCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): H
   const titleClass = entry.externalUrl
     ? 'mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark'
     : 'mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink';
+  const excerptClass =
+    entry.format === 'testimonial'
+      ? 'mt-2 line-clamp-3 text-sm italic text-muted'
+      : 'mt-2 line-clamp-3 text-sm text-muted';
+  const platformHeader = entry.thumbnail
+    ? ''
+    : `<div class="flex items-start justify-between gap-2"><span class="text-xs font-bold uppercase tracking-wide text-muted">${escapeHtml(platform)}</span></div>`;
+  const thumb = entry.thumbnail
+    ? `<div class="media-catalog-thumb relative aspect-video overflow-hidden rounded-xl bg-gray-200 shadow-sm ring-1 ring-black/5 transition duration-300 group-hover:-translate-y-0.5 group-hover:shadow-md group-hover:ring-primary-dark/30">
+        <img src="${escapeHtml(entry.thumbnail)}" alt="${escapeHtml(entry.title)}" width="480" height="270" class="h-full w-full object-cover" loading="lazy" decoding="async" />
+        <span class="pointer-events-none absolute left-2 top-2 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">${escapeHtml(platform)}</span>
+      </div>`
+    : '';
+  const avatar = entry.channelAvatar
+    ? `<img src="${escapeHtml(entry.channelAvatar)}" alt="" width="22" height="22" class="h-[22px] w-[22px] shrink-0 rounded-full bg-gray-100 object-cover ring-1 ring-gray-200/80" loading="lazy" decoding="async" />`
+    : '';
 
   article.innerHTML = `
     ${wrapperOpen}
-      <div class="flex items-start justify-between gap-2">
-        <span class="text-xs font-bold uppercase tracking-wide text-muted">${escapeHtml(platform)}</span>
-      </div>
+      ${thumb}
+      ${platformHeader}
       <h3 class="${titleClass}">${escapeHtml(entry.title)}</h3>
-      <p class="mt-2 line-clamp-3 text-sm text-muted">${escapeHtml(entry.excerpt ?? '')}</p>
+      <p class="${excerptClass}">${escapeHtml(entry.excerpt ?? '')}</p>
       <div class="mt-3 flex flex-wrap gap-1.5">${productLabel}</div>
-      <p class="mt-3 text-sm text-muted">${escapeHtml(entry.author)}${entry.date ? ` · ${escapeHtml(entry.date)}` : ''}</p>
+      <div class="mt-3 flex items-center gap-2">${avatar}<p class="min-w-0 text-sm text-muted">${escapeHtml(entry.author)}${entry.date ? ` · ${escapeHtml(entry.date)}` : ''}</p></div>
       ${cta}
     ${wrapperClose}
   `;

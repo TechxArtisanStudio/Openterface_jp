@@ -70,6 +70,7 @@ const jsonLd = {
         url: entry.externalUrl,
         datePublished: entry.date || undefined,
         author: { '@type': 'Person', name: entry.author },
+        ...(entry.thumbnail ? { image: entry.thumbnail } : {}),
       },
     };
   }),
