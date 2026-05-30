@@ -10,12 +10,11 @@ interface Props {
 const { entry, readOriginal, platformLabels } = Astro.props;
 
 function platformLabel(entry: MediaCatalogEntry): string {
-  if (!entry.platform) return entry.format === 'testimonial' ? 'Testimonial' : 'Social';
+  if (!entry.platform) return 'Social';
   return platformLabels[entry.platform] ?? PLATFORM_DISPLAY_NAMES[entry.platform] ?? entry.platform;
 }
 
-const excerptClass =
-  entry.format === 'testimonial' ? 'mt-2 line-clamp-3 text-sm italic text-muted' : 'mt-2 line-clamp-3 text-sm text-muted';
+const excerptClass = 'mt-2 line-clamp-3 text-sm text-muted';
 ---
 
 <article

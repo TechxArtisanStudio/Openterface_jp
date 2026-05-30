@@ -2,7 +2,7 @@
 
 import { MEDIA_SECTIONS } from '../lib/media-sections';
 
-type MediaFormat = 'long' | 'short' | 'post' | 'testimonial' | 'coverage';
+type MediaFormat = 'long' | 'short' | 'post' | 'coverage';
 
 type MediaCatalogEntry = {
   id: string;
@@ -81,11 +81,12 @@ function populateSelect(
 
 function readUrlState(): { product: string; language: string; sort: string; format: string; app: string } {
   const sp = new URLSearchParams(window.location.search);
+  const format = sp.get('format') ?? '';
   return {
     product: sp.get('product') ?? sp.get('p') ?? '',
     language: sp.get('l') ?? '',
     sort: sp.get('s') ?? 'newest',
-    format: sp.get('format') ?? '',
+    format: format === 'testimonial' ? 'post' : format,
     app: sp.get('app') ?? '',
   };
 }

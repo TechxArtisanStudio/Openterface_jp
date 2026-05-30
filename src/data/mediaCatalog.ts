@@ -9,7 +9,7 @@ import {
   type MediaCatalogEntry,
 } from '../lib/youtube';
 
-/** Full Media hub catalog: YouTube + press + social posts + testimonials. */
+/** Full Media hub catalog: YouTube + press + social posts (incl. quote reviews). */
 export const mediaCatalog: MediaCatalogEntry[] = [
   ...catalogVideos.map(catalogVideoToMediaEntry),
   ...mediaCoverage.map(mediaCoverageToCatalogEntry),
