@@ -12,6 +12,7 @@ export const mediaPosts: MediaPostEntry[] = [
     platform: 'bluesky',
     externalUrl:
       'https://bsky.app/profile/did:plc:hqzak33sft3uec37owhqhy6a/post/3ljjqt4ak222z',
+    thumbnail: 'https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:hqzak33sft3uec37owhqhy6a/bafkreicpoplzg4k5cm3ccp3uzeztfyhyli55hlrjob2eno6bim3nx5dala',
     date: '2025-03-04',
     product: 'minikvm',
     language: 'en',
@@ -93,6 +94,7 @@ export const mediaPosts: MediaPostEntry[] = [
     author: 'Gibbyの冒険 (@Openterface)',
     platform: 'x',
     externalUrl: 'https://twitter.com/Openterface/status/1832027435254346206',
+    thumbnail: 'https://pbs.twimg.com/media/GVqryuKWcAAqoal?format=jpg&name=medium',
     date: '2024-09-06',
     product: 'minikvm',
     language: 'ja',
@@ -120,6 +122,7 @@ export const mediaPosts: MediaPostEntry[] = [
     author: 'Hackster.io (@Hacksterio)',
     platform: 'x',
     externalUrl: 'https://twitter.com/Hacksterio/status/2007197837713649869',
+    thumbnail: 'https://pbs.twimg.com/card_img/2060318126026510336/yC4lohuc?format=jpg&name=600x314',
     date: '2026-01-02',
     product: 'kvm-go',
     language: 'en',
