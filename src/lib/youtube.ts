@@ -74,6 +74,10 @@ export type MediaPostEntry = {
   product?: string;
   language?: string;
   app?: MediaApp;
+  /** Card preview image (prefer assets.openterface.com CDN). */
+  thumbnail?: string;
+  /** Optional author avatar shown in the meta row. */
+  channelAvatar?: string;
   /** Sample placeholder until real social posts are curated. */
   sample?: boolean;
 };
@@ -161,6 +165,8 @@ export function mediaPostToCatalogEntry(post: MediaPostEntry): MediaCatalogEntry
     excerpt: post.excerpt,
     platform: post.platform,
     externalUrl: post.externalUrl,
+    thumbnail: post.thumbnail,
+    channelAvatar: post.channelAvatar,
     sample: post.sample,
   };
 }
