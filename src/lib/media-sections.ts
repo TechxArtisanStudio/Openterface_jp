@@ -1,17 +1,11 @@
 import type { MediaFormat } from './youtube';
 import type { MediaStrings } from '../i18n/media';
 
-export type MediaSectionFormat = Extract<
-  MediaFormat,
-  'long' | 'short' | 'coverage' | 'post' | 'testimonial'
->;
+export type MediaSectionFormat = Extract<MediaFormat, 'long' | 'short' | 'coverage' | 'post'>;
 
 export type MediaSectionConfig = {
   format: MediaSectionFormat;
-  headingKey: keyof Pick<
-    MediaStrings,
-    'formatVideos' | 'formatShorts' | 'pressHeading' | 'formatPosts' | 'formatTestimonials'
-  >;
+  headingKey: keyof Pick<MediaStrings, 'formatVideos' | 'formatShorts' | 'pressHeading' | 'formatPosts'>;
   gridClass: string;
 };
 
@@ -25,7 +19,6 @@ export const MEDIA_SECTIONS: readonly MediaSectionConfig[] = [
   },
   { format: 'coverage', headingKey: 'pressHeading', gridClass: 'media-press-grid' },
   { format: 'post', headingKey: 'formatPosts', gridClass: 'media-posts-grid' },
-  { format: 'testimonial', headingKey: 'formatTestimonials', gridClass: 'media-testimonials-grid' },
 ] as const;
 
 export function sectionHeading(strings: MediaStrings, headingKey: MediaSectionConfig['headingKey']): string {

@@ -24,7 +24,7 @@ export type HomeVideo = {
   viewsFormatted: string;
 };
 
-export type MediaFormat = 'long' | 'short' | 'post' | 'testimonial' | 'coverage';
+export type MediaFormat = 'long' | 'short' | 'post' | 'coverage';
 
 export type MediaApp = 'kvm' | 'keycmd';
 
@@ -64,7 +64,7 @@ export type CatalogVideo = HomeVideo & {
 
 export type MediaPostEntry = {
   id: string;
-  format: 'post' | 'testimonial';
+  format: 'post';
   title: string;
   excerpt: string;
   author: string;

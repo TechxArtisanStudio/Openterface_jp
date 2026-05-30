@@ -25,7 +25,6 @@ export type MediaStrings = {
   formatVideos: string;
   formatShorts: string;
   formatPosts: string;
-  formatTestimonials: string;
   formatCoverage: string;
   formatChipsAria: string;
   sampleBadge: string;
@@ -68,7 +67,6 @@ const en: MediaStrings = {
   formatVideos: 'Videos',
   formatShorts: 'Shorts',
   formatPosts: 'Posts',
-  formatTestimonials: 'Testimonials',
   formatCoverage: 'Press',
   formatChipsAria: 'Filter by media format',
   sampleBadge: 'Sample',
