@@ -14,8 +14,8 @@ export const communityLinks: CommunityLink[] = [
   },
   {
     name: 'Reddit',
-    description: 'Discussions, questions, and user support on r/TechxArtisan.',
-    href: 'https://www.reddit.com/r/TechxArtisan/',
+    description: 'Discussions, questions, and user support on r/Openterface_miniKVM.',
+    href: 'https://www.reddit.com/r/Openterface_miniKVM/',
     group: 'chat',
   },
   {
