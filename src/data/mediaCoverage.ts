@@ -116,7 +116,7 @@ export const mediaCoverage: MediaCoverageEntry[] = [
     id: 'press-kvmgo-notebookcheck',
     outlet: 'Notebookcheck',
     outletUrl: 'https://www.notebookcheck.net/',
-    logoUrl: 'https://www.notebookcheck.net/fileadmin/NotebookCheck/images/logo/notebookcheck_logo.png',
+    logoUrl: 'https://www.notebookcheck.net/fileadmin/templates/nbc_v5/images/logo_alone_header.svg',
     author: 'Notebookcheck',
     quote:
       'Following the nearly half-million dollar crowdfunding success of the Mini-KVM, Openterface is back with the KVM-GO, a tiny KVM that reduces cable clutter by including all the hardware in the display connector.',
