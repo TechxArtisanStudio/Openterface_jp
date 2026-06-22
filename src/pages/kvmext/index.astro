@@ -7,28 +7,40 @@ import { kvmextProduct as product } from '../../data/products/kvmext';
 
 const canonicalPath = '/kvmext/';
 const productUrl = new URL(canonicalPath, siteConfig.url).href;
+const shopUrl = siteConfig.links.kvmextPurchase;
 
 const OSHWA_CERT = 'https://certification.oshwa.org/cn000021.html';
+const OSHWA_BADGE = 'https://assets.openterface.com/images/trademark/open-source-hardware.svg';
 
 const setupDocs = [
   {
     title: 'Hardware Installation',
-    description: 'Install the extension board in the uConsole 4G/LTE expansion slot.',
+    description: 'Seat Extension Module v2 in the uConsole expansion slot and choose your Ethernet card.',
     href: docsPath('/products/kvmext/hardware-installation/'),
   },
   {
+    title: 'Ethernet Guide',
+    description: '100M vs 1000M card selection and Upgrade Kit requirements.',
+    href: docsPath('/products/kvmext/ethernet/'),
+  },
+  {
     title: 'Software Setup',
-    description: 'Configure the Openterface host app on your uConsole.',
+    description: 'Install Openterface QT on your uConsole for KVM, SD, and USB switching.',
     href: docsPath('/products/kvmext/software-setup/'),
   },
   {
+    title: 'SD Card Guide',
+    description: 'Image flashing and file transfer between uConsole and target.',
+    href: docsPath('/products/kvmext/sd-card/'),
+  },
+  {
     title: 'Connect to Target',
-    description: 'HDMI + USB wiring to your headless device.',
+    description: 'HDMI + USB wiring and optional Ethernet debug.',
     href: docsPath('/products/kvmext/connect-to-target/'),
   },
   {
     title: 'FAQs',
-    description: 'Compatibility, troubleshooting, and common questions.',
+    description: 'Compatibility, purchase options, and troubleshooting.',
     href: docsPath('/products/kvmext/faq/'),
   },
 ];
@@ -46,13 +58,80 @@ const setupDocs = [
   <ProductJsonLd slot="head" product={product} url={productUrl} />
   <ProductLandingV2 product={product} />
 
+  <section class="product-section" aria-label="Purchase options">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Choose your purchase option</h2>
+      <p class="section-subtitle mx-auto max-w-2xl text-center">
+        Every box includes <strong>both</strong> 100M and 1000M Ethernet cards. Pick the bundle if you need gigabit
+        and don't already have the HackerGadgets Upgrade Kit.
+      </p>
+      <div class="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-2">
+        <div class="card border-gray-200">
+          <p class="text-xs font-bold uppercase tracking-wide text-muted">Option 1</p>
+          <h3 class="mt-2 text-lg font-semibold">Extension v2 Only</h3>
+          <ul class="mt-3 space-y-2 text-sm text-muted">
+            <li>Extension Module v2 + both network cards</li>
+            <li>100M ready on all uConsole base boards</li>
+            <li>Best if you already have the Upgrade Kit</li>
+          </ul>
+          <a href={shopUrl} target="_blank" rel="noopener" class="btn-primary mt-4 inline-block text-sm">
+            Order Extension v2 →
+          </a>
+        </div>
+        <div class="card border-primary-dark/30 bg-brand-light/30">
+          <p class="text-xs font-bold uppercase tracking-wide text-primary-dark">Option 2</p>
+          <h3 class="mt-2 text-lg font-semibold">Extension v2 + Upgrade Kit Bundle</h3>
+          <ul class="mt-3 space-y-2 text-sm text-muted">
+            <li>Everything in Option 1</li>
+            <li>Includes HackerGadgets uConsole Upgrade Kit</li>
+            <li>Gigabit-ready out of the box</li>
+          </ul>
+          <a href={shopUrl} target="_blank" rel="noopener" class="btn-primary mt-4 inline-block text-sm">
+            Order Bundle →
+          </a>
+        </div>
+      </div>
+      <p class="mx-auto mt-6 max-w-2xl text-center text-sm text-muted">
+        <a href={docsPath('/products/kvmext/purchase-options/')} class="font-medium text-primary-dark hover:underline">
+          Compare options on docs →
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <section class="product-section bg-surface" aria-label="Ethernet cards">
+    <div class="product-section__inner">
+      <h2 class="section-title text-center">Dual network cards — one SKU</h2>
+      <div class="mx-auto mt-8 grid max-w-4xl gap-4 md:grid-cols-2">
+        <div class="card border-gray-200">
+          <h3 class="text-lg font-semibold">100M Ethernet</h3>
+          <p class="mt-2 text-sm text-muted">
+            Works with <strong>all</strong> uConsole base boards. Use for SSH, web UI, and log capture alongside KVM.
+          </p>
+        </div>
+        <div class="card border-gray-200">
+          <h3 class="text-lg font-semibold">1000M Ethernet</h3>
+          <p class="mt-2 text-sm text-muted">
+            Included in every box. Requires the <strong>HackerGadgets uConsole Upgrade Kit</strong> for gigabit
+            operation — included in the bundle option.
+          </p>
+        </div>
+      </div>
+      <p class="mx-auto mt-6 max-w-2xl text-center text-sm text-muted">
+        <a href={docsPath('/products/kvmext/ethernet/')} class="font-medium text-primary-dark hover:underline">
+          Ethernet setup guide →
+        </a>
+      </p>
+    </div>
+  </section>
+
   <section class="product-section" aria-label="OSHWA certification">
     <div class="product-section__inner">
       <div class="mx-auto flex max-w-3xl flex-col items-center gap-4 rounded-xl border border-gray-200 bg-white p-6 text-center md:flex-row md:text-left">
         <a href={OSHWA_CERT} target="_blank" rel="noopener" class="shrink-0">
           <img
-            src="https://assets2.openterface.com/images/kvm-go/kvm-go-oshwa-certification-cn000022.webp"
-            alt="OSHWA Open Source Hardware certification badge"
+            src={OSHWA_BADGE}
+            alt="Open Source Hardware certification badge"
             class="h-24 w-auto"
             loading="lazy"
             width="200"
@@ -60,10 +139,10 @@ const setupDocs = [
           />
         </a>
         <div>
-          <p class="text-sm font-semibold text-primary-dark">OSHWA certified open hardware</p>
+          <p class="text-sm font-semibold text-primary-dark">OSHWA certified open hardware line</p>
           <p class="mt-2 text-sm text-muted">
             Certification UID <strong>CN000021</strong> — schematics, firmware, and documentation published under
-            open licenses. Verified by the Open Source Hardware Association.
+            open licenses. Extension Module v2 builds on this open KVM platform.
           </p>
           <a
             href={OSHWA_CERT}
@@ -86,8 +165,8 @@ const setupDocs = [
         </span>
         <h2 class="section-title mt-4">Built for the uConsole expansion slot</h2>
         <p class="section-subtitle mx-auto mt-3 max-w-2xl">
-          Replaces the original 4G/LTE modem module — same 37 × 77 mm footprint, slimmer 1.0 mm PCB. Your uConsole
-          becomes a self-contained KVM terminal with built-in screen, keyboard, and trackball.
+          Extension Module v2 (77.3 × 34.7 mm) fits the expansion slot — KVM, Ethernet, and SD in one board. Cannot be
+          used with the 4G/LTE module at the same time. Your uConsole becomes a self-contained KVM and network terminal.
         </p>
       </div>
     </div>
@@ -102,32 +181,32 @@ const setupDocs = [
           <h3 class="mt-2 text-lg font-semibold">Separate gear for every site visit</h3>
           <ul class="mt-3 space-y-2 text-sm text-muted">
             <li>External monitor or crash-cart KVM</li>
-            <li>USB keyboard and mouse in the bag</li>
-            <li>Network KVM when IP is available — useless when it is not</li>
+            <li>USB keyboard and SD card reader in the bag</li>
+            <li>Network cable when SSH is an option</li>
           </ul>
         </div>
         <div class="card border-primary-dark/30 bg-brand-light/30">
           <p class="text-xs font-bold uppercase tracking-wide text-primary-dark">After</p>
-          <h3 class="mt-2 text-lg font-semibold">uConsole + KVM Extension</h3>
+          <h3 class="mt-2 text-lg font-semibold">uConsole + Extension Module v2</h3>
           <ul class="mt-3 space-y-2 text-sm text-muted">
-            <li>HDMI into the target — screen and controls on the uConsole</li>
-            <li>USB HID to the target — BIOS-level access, no target software</li>
-            <li>One pocketable device for datacenter walks and homelab rescue</li>
+            <li>HDMI KVM — BIOS access with built-in screen and controls</li>
+            <li>Ethernet for SSH and web management on the same device</li>
+            <li>SD card imaging without an external reader</li>
           </ul>
         </div>
       </div>
       <figure class="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
         <img
-          src="https://assets.openterface.com/images/product/openterface-kvm-uconsole-extension.webp"
-          alt="Openterface KVM Extension PCB front"
+          src="https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-pcb-front.webp"
+          alt="Openterface KVM Extension Module v2 PCB front"
           class="w-full rounded-xl border border-gray-200 shadow-sm"
           loading="lazy"
           width="640"
           height="480"
         />
         <img
-          src="https://assets.openterface.com/images/product/openterface-kvm-uconsole-extension-back.webp"
-          alt="Openterface KVM Extension PCB back"
+          src="https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-use-case-2.webp"
+          alt="Openterface KVM Extension Module v2 in use with uConsole"
           class="w-full rounded-xl border border-gray-200 shadow-sm"
           loading="lazy"
           width="640"
@@ -141,9 +220,10 @@ const setupDocs = [
     <div class="product-section__inner">
       <h2 class="section-title text-center">Setup on docs — start here</h2>
       <p class="section-subtitle mx-auto max-w-2xl text-center">
-        Installation and configuration are documented step-by-step. Deep specs and FAQs live on docs.openterface.com.
+        Installation and configuration are documented step-by-step. First-generation (v1) docs are archived for legacy
+        owners.
       </p>
-      <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {
           setupDocs.map((doc) => (
             <a href={doc.href} target="_blank" rel="noopener" class="card hover:border-primary-dark hover:shadow-md">
