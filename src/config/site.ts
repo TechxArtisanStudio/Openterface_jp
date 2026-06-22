@@ -12,6 +12,8 @@ export const siteConfig = {
   links: {
     minikvmPurchase: 'https://www.crowdsupply.com/techxartisan/openterface-mini-kvm',
     kvmgoPurchase: 'https://www.crowdsupply.com/techxartisan/openterface-kvm-go',
+    kvmextPurchase:
+      'https://shop.techxartisan.com/products/openterface-kvm-ext-for-uconsole',
     keymodCrowdsupply: 'https://www.crowdsupply.com/techxartisan/openterface-keymod',
     shop: 'https://shop.techxartisan.com/',
     docs: 'https://docs.openterface.com',
