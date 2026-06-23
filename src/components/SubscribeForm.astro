@@ -10,6 +10,8 @@ interface Props {
   emailPlaceholder?: string;
   footnote?: string;
   analyticsPlacement?: string;
+  /** When false, hide the optional name field (footer compact). */
+  showNameField?: boolean;
 }
 
 const {
@@ -20,6 +22,7 @@ const {
   emailPlaceholder = 'Work email *',
   footnote = 'At most one email per month. Unsubscribe anytime. Questions? info@openterface.com',
   analyticsPlacement = 'subscribe_form',
+  showNameField = true,
 } = Astro.props;
 
 const isCompact = variant === 'compact';
@@ -30,6 +33,7 @@ const isCompact = variant === 'compact';
   class:list={[
     'subscribe-form',
     isCompact ? 'subscribe-form--compact' : 'subscribe-form--default',
+    isCompact && !showNameField ? 'subscribe-form--email-only' : '',
   ]}
   data-subscribe-endpoint={siteConfig.links.subscribe}
   data-analytics-placement={analyticsPlacement}
@@ -37,15 +41,21 @@ const isCompact = variant === 'compact';
 >
   <div class="subscribe-fields">
     <div class="subscribe-inputs">
-      <label class="sr-only" for={`${formId}-name`}>Name</label>
-      <input
-        type="text"
-        id={`${formId}-name`}
-        name="name"
-        autocomplete="name"
-        placeholder={namePlaceholder}
-        class="subscribe-input"
-      />
+      {
+        showNameField && (
+          <>
+            <label class="sr-only" for={`${formId}-name`}>Name</label>
+            <input
+              type="text"
+              id={`${formId}-name`}
+              name="name"
+              autocomplete="name"
+              placeholder={namePlaceholder}
+              class="subscribe-input"
+            />
+          </>
+        )
+      }
       <label class="sr-only" for={`${formId}-email`}>Email</label>
       <input
         type="email"
@@ -166,6 +176,28 @@ const isCompact = variant === 'compact';
   /* Footer: horizontal row on wider viewports */
   .subscribe-form--compact .subscribe-fields {
     gap: 0.5rem;
+  }
+
+  .subscribe-form--compact.subscribe-form--email-only .subscribe-inputs {
+    display: block;
+  }
+
+  @media (min-width: 640px) {
+    .subscribe-form--compact.subscribe-form--email-only .subscribe-fields {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: stretch;
+    }
+
+    .subscribe-form--compact.subscribe-form--email-only .subscribe-inputs {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    .subscribe-form--compact.subscribe-form--email-only .subscribe-submit {
+      flex: 0 0 auto;
+      align-self: stretch;
+    }
   }
 
   @media (min-width: 640px) {

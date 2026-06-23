@@ -22,13 +22,14 @@ const {
 } = Astro.props;
 ---
 
-<div id="newsletter" class="footer-newsletter">
-  <h3 class="text-sm font-semibold text-ink">{title}</h3>
-  <p class="mt-1 text-sm text-muted">{description}</p>
-  <div class="mt-4">
+<div id="newsletter" class="footer-newsletter mt-10 rounded-2xl border border-brand-light/80 bg-brand-light/40 px-5 py-6 sm:px-8 sm:py-7">
+  <h3 class="text-base font-semibold text-ink">{title}</h3>
+  <p class="mt-2 max-w-2xl text-sm leading-relaxed text-muted">{description}</p>
+  <div class="mt-5 max-w-xl">
     <SubscribeForm
       formId={formId}
       variant="compact"
+      showNameField={false}
       submitLabel={submitLabel}
       namePlaceholder={namePlaceholder}
       emailPlaceholder={emailPlaceholder}
