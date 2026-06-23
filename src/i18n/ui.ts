@@ -17,6 +17,18 @@ export interface MarketingUi {
     emailPlaceholder: string;
     footnote: string;
   };
+  productSubscribe: {
+    kicker: string;
+    heading: string;
+    description: string;
+    benefitCrowdfunding: string;
+    benefitGuides: string;
+    benefitUnsubscribe: string;
+    submitLabel: string;
+    namePlaceholder: string;
+    emailPlaceholder: string;
+    footnote: string;
+  };
   siteFooter: {
     tagline: string;
     productsHeading: string;
@@ -29,6 +41,7 @@ export interface MarketingUi {
     faqs: string;
     apps: string;
     support: string;
+    newsletterLink: string;
     newsletterTitle: string;
     newsletterDescription: string;
     newsletterSubmit: string;
@@ -89,14 +102,15 @@ export const ui: MarketingUi = {
     "apps": "アプリ",
     "support": "サポート",
     "newsletterTitle": "ニュースレター",
-    "newsletterDescription": "製品、ファームウェア、KVM のヒントに関する月次アップデート。",
+    "newsletterDescription": "製品発売、毎月のファームウェア更新、KVMのヒントをいち早く — 月1通まで。",
     "newsletterSubmit": "登録",
     "newsletterNamePlaceholder": "お名前",
     "newsletterEmailPlaceholder": "メール *",
     "newsletterFootnote": "いつでも配信解除できます。",
     "copyright": "Openterface. オープンソース KVM-over-USB。",
     "privacy": "プライバシーポリシー",
-    "terms": "利用規約"
+    "terms": "利用規約",
+    "newsletterLink": "ニュースレター"
   },
   "productLanding": {
     "downloadApp": "アプリをダウンロード",
@@ -113,5 +127,17 @@ export const ui: MarketingUi = {
     "documentation": "ドキュメント",
     "ctaTitle": "始める準備はできましたか？",
     "ctaSubtitle": "ハードウェアを注文し、お使いのプラットフォーム向け Openterface アプリをダウンロード。"
+  },
+  "productSubscribe": {
+    "kicker": "最新情報をキャッチ",
+    "heading": "{product} の発売・ファームウェア情報を受け取る",
+    "description": "この製品の予約販売、ファームウェア、セットアップのヒントをいち早く — 月1通まで。",
+    "benefitCrowdfunding": "クラウドファンディングと予約販売への早期アクセス",
+    "benefitGuides": "セットアップガイドとアプリリリースノート",
+    "benefitUnsubscribe": "ワンクリックでいつでも配信解除",
+    "submitLabel": "更新情報を購読",
+    "namePlaceholder": "お名前（任意）",
+    "emailPlaceholder": "メールアドレス *",
+    "footnote": "月に最大 1 通。いつでも配信解除可能。お問い合わせ：info@openterface.com"
   }
 };

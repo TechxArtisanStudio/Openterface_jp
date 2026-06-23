@@ -1,5 +1,6 @@
 ---
 import DocLinkBanner from '../components/DocLinkBanner.astro';
+import ProductSubscribeSection from '../components/ProductSubscribeSection.astro';
 import FeatureGrid from '../components/product/FeatureGrid.astro';
 import FundingBadge from '../components/product/FundingBadge.astro';
 import HeroCarousel from '../components/product/HeroCarousel.astro';
@@ -86,6 +87,8 @@ const videoProductSlug = product.videoProductSlug ?? product.slug;
   </section>
 
   <DocLinkBanner variant="product" />
+
+  <ProductSubscribeSection productTitle={product.title} productSlug={product.slug} />
 
   <section class="product-section">
     <div class="product-section__inner">
