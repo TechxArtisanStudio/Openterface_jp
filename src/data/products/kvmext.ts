@@ -21,7 +21,7 @@ export const kvmextProduct: Product = {
   heroImages: [
     'https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-hero-1.webp',
     'https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-use-case-1.webp',
-    'https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-pcb-front.webp',
+    'https://assets.openterface.com/images/product/kvmext-v2/kvmext-v2-pcb-detail.webp',
   ],
   buyLabel: 'Order NOW',
   buyHref: siteConfig.links.kvmextPurchase,
@@ -126,7 +126,7 @@ export const kvmextProduct: Product = {
   docsOverviewHref: docsPath('/products/kvmext/'),
   videoProductSlug: 'uconsole-kvm-extension',
   videoSectionTitle: 'Installation & community demos',
-  latestNewsHref: `${siteConfig.links.news}/products/kvmext/2026-06-22-extension-module-v2-launch/`,
+  latestNewsHref: `${siteConfig.links.news}/product/uconsole-kvm-extension/2026-06-22-extension-module-v2-launch/`,
   latestNewsTitle: 'Extension Module v2 now shipping',
   latestNewsSubtitle:
     'Dual Ethernet, SD card, 60 Hz output — the next-generation uConsole KVM expansion is available now.',
