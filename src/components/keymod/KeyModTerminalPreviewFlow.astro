@@ -1,0 +1,89 @@
+---
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+import { TERMINAL_DEMO_HOST, TERMINAL_DEMO_HEADER_HTML } from '../../data/keymodTerminalDemo';
+
+interface Props {
+  terminal: KeymodLandingStrings['modesTheater']['opsZone']['terminal'];
+}
+
+const { terminal } = Astro.props;
+const demo = terminal.demo;
+---
+
+<div
+  class="km-terminal-flow"
+  data-km-terminal-flow
+  data-host={TERMINAL_DEMO_HOST}
+  data-status-disconnected={demo.statusDisconnected}
+  data-status-connecting={demo.statusConnecting}
+  data-status-connected={demo.statusConnected}
+  data-transport-ble={demo.transportBle}
+  data-transport-usb={demo.transportUsb}
+  role="region"
+  aria-label="Terminal Preview interactive demo"
+>
+  <div class="km-terminal-flow__demo-col">
+    <p class="km-terminal-flow__demo-label">{demo.interactiveDemoLabel}</p>
+
+    <div class="km-terminal-flow__stage">
+      <div class="km-terminal-flow__phone">
+        <div class="km-terminal-flow__phone-bezel">
+        <div class="km-terminal-flow__phone-notch" aria-hidden="true"></div>
+        <div class="km-terminal-flow__phone-screen">
+          <header class="km-terminal-flow__toolbar">
+            <div class="km-terminal-flow__toolbar-row">
+              <span class="km-terminal-flow__status" data-km-terminal-status>{demo.statusDisconnected}</span>
+              <span class="km-terminal-flow__transport-badge" data-km-terminal-badge hidden>
+                <img class="km-terminal-flow__transport-icon" data-km-terminal-badge-icon alt="" width="14" height="14" />
+                <span data-km-terminal-badge-label></span>
+              </span>
+            </div>
+            <span class="km-terminal-flow__host" data-km-terminal-host hidden>{TERMINAL_DEMO_HOST}</span>
+          </header>
+
+          <div class="km-terminal-flow__screen-stack">
+            <pre class="km-terminal-flow__header" data-km-terminal-header hidden set:html={TERMINAL_DEMO_HEADER_HTML}></pre>
+            <pre class="km-terminal-flow__output" aria-hidden="true"><code data-km-terminal-output></code><span class="km-terminal-flow__cursor" data-km-terminal-cursor aria-hidden="true" hidden></span></pre>
+
+            <div class="km-terminal-flow__overlay" data-km-terminal-overlay>
+              <img
+                class="km-terminal-flow__overlay-icon"
+                src="/keymod/icons/terminal/ic-terminal.svg"
+                alt=""
+                width="40"
+                height="40"
+              />
+              <p class="km-terminal-flow__overlay-title">{demo.title}</p>
+              <p class="km-terminal-flow__overlay-summary">{demo.summary}</p>
+              <div class="km-terminal-flow__overlay-actions">
+                <button type="button" class="km-terminal-flow__demo-btn km-terminal-flow__demo-btn--ble" data-km-terminal-demo-ble>
+                  <img src="/keymod/icons/compose/ic-bluetooth-connected.svg" alt="" width="16" height="16" />
+                  {demo.demoBleLabel}
+                </button>
+                <button type="button" class="km-terminal-flow__demo-btn km-terminal-flow__demo-btn--usb" data-km-terminal-demo-usb>
+                  <img src="/keymod/icons/terminal/ic-usb.svg" alt="" width="16" height="16" />
+                  {demo.demoUsbLabel}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <footer class="km-terminal-flow__bottom-bar" aria-hidden="true">
+            <span>{demo.ctrlLabel}</span>
+            <span>{demo.escLabel}</span>
+            <span>{demo.tabLabel}</span>
+          </footer>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="km-terminal-flow__fidelity-note">{demo.uiFidelityNote}</p>
+  </div>
+
+  <p class="km-terminal-flow__sr" data-km-terminal-live aria-live="polite"></p>
+</div>
+
+<script>
+  import '../../scripts/keymod-terminal-preview-flow';
+</script>

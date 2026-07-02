@@ -1,0 +1,59 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import SubscribeForm from '../SubscribeForm.astro';
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['subscribe'];
+}
+
+const { copy } = Astro.props;
+---
+
+<KeyModSection
+  id="updates"
+  eyebrow={copy.eyebrow}
+  title={copy.title}
+  subtitle={copy.description}
+  variant="elevated"
+  centered
+>
+  <div class="km-launch-cta">
+    <ul class="km-launch-cta__benefits">
+      {
+        copy.benefits.map((benefit) => (
+          <li class="km-launch-cta__benefit">
+            <span class="km-launch-cta__check" aria-hidden="true">✓</span>
+            {benefit}
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="km-launch-cta__form-card subscribe-card">
+      <SubscribeForm
+        formId="keymod-launch-subscribe-form"
+        submitLabel={copy.submitLabel}
+        namePlaceholder={copy.namePlaceholder}
+        emailPlaceholder={copy.emailPlaceholder}
+        footnote={copy.footnote}
+        analyticsPlacement="keymod_landing"
+      />
+    </div>
+
+    <p class="km-launch-cta__crowd">
+      {copy.crowdSupplyPrompt}
+      <a
+        href={keymodLinks.crowdSupply}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="crowdsupply_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_subscribe_crowd"
+      >
+        {copy.crowdSupplyLink}
+      </a>
+    </p>
+  </div>
+</KeyModSection>

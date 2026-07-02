@@ -1,0 +1,49 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import { appDocsLinks } from '../../data/apps';
+import { docsPath } from '../../config/site';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['faq'];
+}
+
+const { copy } = Astro.props;
+const keymodProductFaq = docsPath('/products/keymod/faq/');
+---
+
+<KeyModSection id="faq" eyebrow={copy.eyebrow} title={copy.title} narrow>
+  <div class="km-faq">
+    {
+      copy.items.map((item) => (
+        <details>
+          <summary>{item.q}</summary>
+          <p class="km-faq__answer">{item.a}</p>
+        </details>
+      ))
+    }
+  </div>
+  <p class="km-faq__footer">
+    <a
+      href={appDocsLinks.keycmdFaq}
+      target="_blank"
+      rel="noopener"
+      data-analytics-event="docs_click"
+      data-analytics-product="keymod"
+      data-analytics-placement="keymod_faq_keycmd"
+    >
+      KeyCmd app FAQ →
+    </a>
+    {' · '}
+    <a
+      href={keymodProductFaq}
+      target="_blank"
+      rel="noopener"
+      data-analytics-event="docs_click"
+      data-analytics-product="keymod"
+      data-analytics-placement="keymod_faq_product"
+    >
+      KeyMod product FAQ →
+    </a>
+  </p>
+</KeyModSection>

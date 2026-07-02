@@ -1,0 +1,31 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModMedia from './KeyModMedia.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['scenarios'];
+}
+
+const { copy } = Astro.props;
+
+const scenarioSlots = ['rack', 'kiosk', 'edc'] as const;
+---
+
+<KeyModSection id="scenarios" eyebrow={copy.eyebrow} title={copy.title} variant="elevated">
+  {
+    copy.items.map((item, i) => (
+      <div class={`km-split${i % 2 === 1 ? ' km-split--reverse' : ''}`} style="margin-bottom: 3rem;">
+        <div>
+          <h3 class="km-card__title">{item.title}</h3>
+          <p class="km-body">{item.body}</p>
+        </div>
+        <KeyModMedia
+          section="scenarios"
+          slot={scenarioSlots[i]}
+          fallbackLabel={item.imageLabel}
+        />
+      </div>
+    ))
+  }
+</KeyModSection>

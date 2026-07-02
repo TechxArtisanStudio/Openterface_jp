@@ -1,16 +1,18 @@
 ---
 interface Props {
-  variant?: 'default' | 'onPrimary';
+  variant?: 'default' | 'onPrimary' | 'nav';
   class?: string;
 }
 
 const { variant = 'default', class: className = '' } = Astro.props;
+const sizeClass =
+  variant === 'nav' ? 'km-nav__openterface-logo' : 'h-8 w-auto max-w-[180px]';
 ---
 
 <img
-  src="/images/openterface.svg"
+  src="/keymod/logo/openterface-wordmark.svg"
   alt="Openterface"
-  class:list={['h-8 w-auto max-w-[180px]', variant === 'onPrimary' && 'brightness-0 invert', className]}
+  class:list={[sizeClass, variant === 'onPrimary' && 'brightness-0 invert', className]}
   width="180"
   height="27"
 />

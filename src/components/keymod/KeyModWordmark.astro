@@ -1,0 +1,22 @@
+---
+import { keymodWordmarkInlineStyle } from '../../data/keymodBrand';
+
+type WordmarkSize = 'nav' | 'hero' | 'section' | 'inline' | 'footer';
+
+interface Props {
+  class?: string;
+  size?: WordmarkSize;
+  decorative?: boolean;
+}
+
+const { class: className = '', size = 'inline', decorative = false } = Astro.props;
+const sizeClass = size === 'inline' ? 'km-wordmark--inline' : `km-wordmark--${size}`;
+const inlineStyle = size === 'inline' ? keymodWordmarkInlineStyle('keymod') : undefined;
+---
+
+<span
+  class:list={['km-wordmark km-wordmark--keymod', sizeClass, className]}
+  style={inlineStyle}
+  role={decorative ? 'presentation' : 'img'}
+  aria-label={decorative ? undefined : 'KeyMod'}
+></span>

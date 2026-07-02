@@ -1,0 +1,60 @@
+---
+interface Props {
+  id: string;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  variant?: 'default' | 'matrix' | 'elevated';
+  centered?: boolean;
+  narrow?: boolean;
+}
+
+const {
+  id,
+  eyebrow,
+  title,
+  subtitle,
+  variant = 'default',
+  centered = false,
+  narrow = false,
+} = Astro.props;
+
+const sectionClass =
+  variant === 'matrix'
+    ? 'km-section km-section--matrix'
+    : variant === 'elevated'
+      ? 'km-section km-section--elevated'
+      : 'km-section';
+
+const innerClass = narrow ? 'km-section__inner km-section__inner--narrow' : 'km-section__inner';
+const headerClass = centered ? 'km-section__header km-section__header--center' : 'km-section__header';
+---
+
+<section id={id} class={sectionClass} aria-labelledby={`${id}-title`}>
+  <div class={innerClass}>
+    {
+      (eyebrow || title || subtitle || Astro.slots.has('eyebrow')) && (
+        <header class={headerClass}>
+          {Astro.slots.has('eyebrow') ? (
+            <div class="km-eyebrow-row">
+              <slot name="eyebrow" />
+            </div>
+          ) : (
+            eyebrow && <p class="km-eyebrow">{eyebrow}</p>
+          )}
+          {title && (
+            <h2 id={`${id}-title`} class="km-title">
+              {title}
+            </h2>
+          )}
+          {Astro.slots.has('subtitle') ? (
+            <slot name="subtitle" />
+          ) : (
+            subtitle && <p class="km-subtitle">{subtitle}</p>
+          )}
+        </header>
+      )
+    }
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,18 @@
+---
+interface Props {
+  label: string;
+  variant?: 'default' | 'video' | 'portrait';
+}
+
+const { label, variant = 'default' } = Astro.props;
+const className =
+  variant === 'video'
+    ? 'km-media-placeholder km-media-placeholder--video'
+    : variant === 'portrait'
+      ? 'km-media-placeholder km-media-placeholder--portrait'
+      : 'km-media-placeholder';
+---
+
+<div class={className} aria-hidden="true">
+  <span class="km-media-placeholder__label">[ {label} ]</span>
+</div>

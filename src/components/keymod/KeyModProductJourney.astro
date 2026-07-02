@@ -1,0 +1,22 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModProductTimeline from './KeyModProductTimeline.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['productJourney'];
+}
+
+const { copy } = Astro.props;
+---
+
+<KeyModSection
+  id="product-journey"
+  eyebrow={copy.eyebrow}
+  title={copy.title}
+  subtitle={copy.subtitle}
+  centered
+  variant="elevated"
+>
+  <KeyModProductTimeline copy={copy} />
+</KeyModSection>

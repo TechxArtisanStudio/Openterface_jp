@@ -1,0 +1,25 @@
+<button type="button" class="km-back-to-top" data-km-zone-theme="default" aria-label="Back to top" hidden>
+  <svg
+    class="km-back-to-top__icon"
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path
+      d="M8 3.5L3.5 8M8 3.5L12.5 8M8 3.5V12.5"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+</button>
+
+<script>
+  import { initKeymodBackToTop } from '../../scripts/keymod-back-to-top';
+
+  initKeymodBackToTop();
+  document.addEventListener('astro:page-load', initKeymodBackToTop);
+</script>

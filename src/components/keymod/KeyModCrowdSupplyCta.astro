@@ -1,0 +1,77 @@
+---
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  variant: 'campaign' | 'opensource';
+  copy: KeymodLandingStrings['crowdSupplyCampaign'] | KeymodLandingStrings['crowdSupplyOpensource'];
+  analyticsPlacement?: string;
+}
+
+const { variant, copy, analyticsPlacement = 'keymod_crowd_block' } = Astro.props;
+const isOpensource = variant === 'opensource';
+const opensourceCopy = isOpensource
+  ? (copy as KeymodLandingStrings['crowdSupplyOpensource'])
+  : null;
+---
+
+<aside
+  class:list={['km-crowd-cta', isOpensource && 'km-crowd-cta--opensource']}
+  aria-labelledby={`crowd-supply-${variant}-title`}
+>
+  <div class="km-crowd-cta__inner">
+    <div class="km-crowd-cta__copy">
+      <p class="km-eyebrow">{copy.eyebrow}</p>
+      <h2 id={`crowd-supply-${variant}-title`} class="km-crowd-cta__title">
+        {copy.title}
+      </h2>
+      <p class="km-crowd-cta__body">{copy.body}</p>
+      {
+        isOpensource && opensourceCopy ? (
+          <div class="km-crowd-cta__badges" aria-label={opensourceCopy.badgesLabel}>
+            <img
+              class="km-crowd-cta__badge"
+              src={keymodLinks.openSourceInitiative}
+              alt={opensourceCopy.osiAlt}
+              width="120"
+              height="120"
+              loading="lazy"
+              decoding="async"
+            />
+            <img
+              class="km-crowd-cta__badge"
+              src={keymodLinks.openSourceHardware}
+              alt={opensourceCopy.oshAlt}
+              width="120"
+              height="100"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ) : null
+      }
+    </div>
+
+    <a
+      href={keymodLinks.crowdSupply}
+      class="km-btn km-btn--primary km-crowd-cta__btn"
+      target="_blank"
+      rel="noopener noreferrer"
+      data-analytics-event="crowdsupply_click"
+      data-analytics-product="keymod"
+      data-analytics-placement={analyticsPlacement}
+    >
+      {copy.cta}
+      <img
+        class="km-btn__icon"
+        src={keymodLinks.crowdSupplyIcon}
+        alt=""
+        width="20"
+        height="20"
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+    </a>
+  </div>
+</aside>

@@ -1,0 +1,66 @@
+---
+import KeyCmdWordmark from './KeyCmdWordmark.astro';
+import KeyModSection from './KeyModSection.astro';
+import { getKeymodAsset } from '../../data/keymodAssets';
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['keycmdBridge'];
+}
+
+const { copy } = Astro.props;
+const portrait = getKeymodAsset('keycmdBridge', 'ui');
+const landscape = getKeymodAsset('keycmdBridge', 'ui-landscape');
+---
+
+<KeyModSection id="keycmd" title={copy.title} variant="elevated">
+  <div slot="eyebrow" class="km-eyebrow-lockup">
+    <KeyCmdWordmark size="section" />
+    <span class="km-eyebrow km-eyebrow-lockup__text">{copy.eyebrow.replace(/^KeyCmd\s*/i, '')}</span>
+  </div>
+  <div class="km-split km-split--keycmd-bridge">
+    <div class="km-keycmd-bridge__copy">
+      <p class="km-body">{copy.body}</p>
+      <a href={keymodLinks.keycmd} class="km-btn km-btn--primary km-keycmd-bridge__cta">
+        {copy.cta} →
+      </a>
+    </div>
+    <div class="km-keycmd-bridge__media">
+      {
+        portrait?.src ? (
+          <figure class="km-media km-keycmd-bridge__figure km-keycmd-bridge__figure--portrait">
+            <img
+              class="km-media__img"
+              src={portrait.src}
+              alt={portrait.alt}
+              loading="lazy"
+              decoding="async"
+              width="688"
+              height="1529"
+            />
+          </figure>
+        ) : (
+          <p class="km-media-placeholder km-media-placeholder--portrait">
+            <span class="km-media-placeholder__label">[ {copy.mediaLabel} ]</span>
+          </p>
+        )
+      }
+      {
+        landscape?.src ? (
+          <figure class="km-media km-keycmd-bridge__figure km-keycmd-bridge__figure--landscape">
+            <img
+              class="km-media__img"
+              src={landscape.src}
+              alt={landscape.alt}
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="540"
+            />
+          </figure>
+        ) : null
+      }
+    </div>
+  </div>
+</KeyModSection>

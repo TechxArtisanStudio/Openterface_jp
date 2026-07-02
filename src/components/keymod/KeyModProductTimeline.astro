@@ -1,0 +1,146 @@
+---
+import type { KeymodProductJourney } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: Pick<KeymodProductJourney, 'nowLabel' | 'nowSublabel' | 'scrollHint' | 'milestones'>;
+}
+
+const { copy } = Astro.props;
+
+const RECENT_PAST_VISIBLE = 2;
+
+const pastEndIndex = copy.milestones.findLastIndex(
+  (m) => m.status === 'done' || m.status === 'pivot',
+);
+const pastMilestones = pastEndIndex >= 0 ? copy.milestones.slice(0, pastEndIndex + 1) : [];
+const upcomingMilestones = pastEndIndex >= 0 ? copy.milestones.slice(pastEndIndex + 1) : copy.milestones;
+
+const scrollAnchorIndex =
+  pastMilestones.length > RECENT_PAST_VISIBLE
+    ? pastMilestones.length - RECENT_PAST_VISIBLE
+    : 0;
+
+function isExternalHref(href: string) {
+  return href.startsWith('http://') || href.startsWith('https://');
+}
+---
+
+<section class="km-journey" data-km-journey aria-label="KeyMod product journey timeline">
+  <p class="km-journey__scroll-hint" data-km-journey-hint hidden>
+    {copy.scrollHint}
+  </p>
+
+  <div class="km-journey__viewport" data-km-journey-viewport tabindex="0">
+    <div class="km-journey__track" data-km-journey-track>
+      {
+        pastMilestones.map((milestone, index) => {
+          const isRecent = index >= pastMilestones.length - RECENT_PAST_VISIBLE;
+          const isScrollAnchor = index === scrollAnchorIndex;
+
+          return (
+            <article
+              class:list={[
+                'km-journey__node',
+                'km-journey__node--past',
+                isRecent && 'km-journey__node--recent',
+                !isRecent && 'km-journey__node--archived',
+                milestone.status === 'pivot' && 'km-journey__node--pivot',
+              ]}
+              data-km-journey-node
+              data-km-journey-phase="past"
+              {...(isScrollAnchor ? { 'data-km-journey-scroll-anchor': true } : {})}
+            >
+              <div class="km-journey__spine" aria-hidden="true">
+                <span class="km-journey__dot" />
+              </div>
+              <div class="km-journey__card">
+                {
+                  milestone.href ? (
+                    <a
+                      class="km-journey__title km-journey__title--link"
+                      href={milestone.href}
+                      {...(isExternalHref(milestone.href)
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {})}
+                    >
+                      {milestone.title}
+                      {isExternalHref(milestone.href) ? ' ↗' : null}
+                    </a>
+                  ) : (
+                    <p class="km-journey__title">{milestone.title}</p>
+                  )
+                }
+                {milestone.lead && isRecent ? <p class="km-journey__lead">{milestone.lead}</p> : null}
+              </div>
+            </article>
+          );
+        })
+      }
+
+      <article
+        class="km-journey__node km-journey__node--now"
+        data-km-journey-node
+        data-km-journey-phase="now"
+        role="status"
+      >
+        <div class="km-journey__spine" aria-hidden="true">
+          <span class="km-journey__dot km-journey__dot--now" />
+        </div>
+        <div class="km-journey__card km-journey__card--now">
+          <p class="km-journey__now-label">{copy.nowLabel}</p>
+          <p class="km-journey__now-sublabel">{copy.nowSublabel}</p>
+        </div>
+      </article>
+
+      {
+        upcomingMilestones.map((milestone) => (
+          <article
+            class:list={[
+              'km-journey__node',
+              'km-journey__node--future',
+              milestone.variant === 'beta' && 'km-journey__node--beta',
+            ]}
+            data-km-journey-node
+            data-km-journey-phase="future"
+          >
+            <div class="km-journey__spine" aria-hidden="true">
+              <span class="km-journey__dot km-journey__dot--future" />
+            </div>
+            <div class="km-journey__card km-journey__card--future">
+              <div class="km-journey__meta">
+                {milestone.badge ? <span class="km-journey__badge">{milestone.badge}</span> : null}
+                {milestone.timingLabel ? (
+                  <span class="km-journey__timing">{milestone.timingLabel}</span>
+                ) : null}
+              </div>
+              {
+                milestone.href ? (
+                  <a
+                    class="km-journey__title km-journey__title--link km-journey__title--future"
+                    href={milestone.href}
+                    {...(isExternalHref(milestone.href)
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                  >
+                    {milestone.title}
+                    {isExternalHref(milestone.href) ? ' ↗' : null}
+                  </a>
+                ) : (
+                  <p class="km-journey__title km-journey__title--future">{milestone.title}</p>
+                )
+              }
+              {milestone.lead ? <p class="km-journey__lead km-journey__lead--future">{milestone.lead}</p> : null}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initKeymodProductJourney } from '../../scripts/keymod-product-journey';
+
+  initKeymodProductJourney();
+  document.addEventListener('astro:page-load', initKeymodProductJourney);
+</script>

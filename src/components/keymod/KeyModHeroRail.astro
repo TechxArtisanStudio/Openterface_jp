@@ -1,0 +1,60 @@
+---
+import { heroModeRailStations } from '../../data/heroModeRail';
+
+const first = heroModeRailStations[0];
+const firstTease = first?.tease ?? '';
+---
+
+<div class="km-hero-rail" data-km-hero-rail data-drawn="false" data-active-index="0">
+  <div class="km-hero-rail__stage">
+    <div class="km-hero-rail__track-outer">
+      <div class="km-hero-rail__line" aria-hidden="true">
+        <span class="km-hero-rail__line-bar"></span>
+        <span class="km-hero-rail__line-fill"></span>
+        <span class="km-hero-rail__line-spot"></span>
+      </div>
+      <div class="km-hero-rail__fade km-hero-rail__fade--left" aria-hidden="true"></div>
+      <div class="km-hero-rail__track-scroll" data-km-rail-scroll>
+        <div class="km-hero-rail__track" role="list" aria-label="Wireless tools from KeyMod and your phone">
+          {
+            heroModeRailStations.map((station, index) => (
+              <div
+                class="km-hero-rail__station"
+                role="listitem"
+                data-km-rail-station
+                data-km-rail-id={station.id}
+                data-km-tease={station.tease}
+                data-km-rail-label={station.label}
+                data-km-rail-icon={station.iconSrc}
+                data-active={index === 0 ? 'true' : 'false'}
+                style={{ '--km-station-i': index }}
+              >
+                <span class="km-hero-rail__halo" aria-hidden="true"></span>
+                <div class="km-hero-rail__icon-wrap">
+                  <img
+                    class="km-hero-rail__icon"
+                    src={station.iconSrc}
+                    alt=""
+                    width="128"
+                    height="128"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <span class="km-hero-rail__label">{station.label}</span>
+                <span class="sr-only">{station.iconAlt}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="km-hero-rail__fade km-hero-rail__fade--right" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <p class="km-hero-rail__tease" data-km-rail-caption aria-live="polite">{firstTease}</p>
+</div>
+
+<script>
+  import '../../scripts/keymod-hero-spotlight';
+</script>

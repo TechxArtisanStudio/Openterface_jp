@@ -1,0 +1,38 @@
+---
+import type { KeymodCommunityCard } from '../../data/keymodCommunityMedia';
+
+interface Props {
+  card: KeymodCommunityCard;
+  viewLabel: string;
+}
+
+const { card, viewLabel } = Astro.props;
+
+const formatLabel = card.format === 'reel' ? 'Reel' : card.format === 'post' ? 'Post' : null;
+---
+
+<a
+  href={card.externalUrl}
+  class="km-social-proof-link"
+  target="_blank"
+  rel="noopener noreferrer"
+  data-analytics-event="community_click"
+  data-analytics-product="keymod"
+  data-analytics-placement={`keymod_social_${card.id}`}
+>
+  <div class="km-social-proof-link__head">
+    <span class="km-social-proof-link__author">{card.author}</span>
+    {card.scenarioTag ? <span class="km-social-proof-link__tag">{card.scenarioTag}</span> : null}
+    {formatLabel ? <span class="km-social-proof-link__format">{formatLabel}</span> : null}
+  </div>
+  {
+    card.excerpt ? (
+      <p class="km-social-proof-link__excerpt">&ldquo;{card.excerpt}&rdquo;</p>
+    ) : (
+      <p class="km-social-proof-link__excerpt km-social-proof-link__excerpt--muted">
+        Community setup on Instagram
+      </p>
+    )
+  }
+  <span class="km-social-proof-link__cta">{viewLabel}</span>
+</a>

@@ -1,0 +1,46 @@
+---
+import KeyModExperimentalIcon from './KeyModExperimentalIcon.astro';
+import KeyModAgentPreviewFlow from './KeyModAgentPreviewFlow.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  agentZone: KeymodLandingStrings['modesTheater']['agentZone'];
+}
+
+const { agentZone } = Astro.props;
+const { agent } = agentZone;
+---
+
+<div class="km-agent-showcase">
+  <header class="km-agent-showcase__intro">
+    <h3 class="km-agent-showcase__title">{agentZone.intro.title}</h3>
+    <p class="km-agent-showcase__body">{agentZone.intro.body}</p>
+  </header>
+
+  <section class="km-agent-showcase__block" aria-labelledby="agent-mode-title">
+    <span class="km-agent-showcase__badge">{agent.badge}</span>
+    <h3 id="agent-mode-title" class="km-agent-showcase__title km-agent-showcase__title-lockup">
+      {agent.title}
+      <KeyModExperimentalIcon
+        class="km-agent-showcase__title-icon km-agent-showcase__title-icon--experimental"
+        title="Experimental preview. Connect your LLM API key in KeyCmd for live Agent chat."
+      />
+    </h3>
+    <p class="km-agent-showcase__body">{agent.body}</p>
+
+    <KeyModAgentPreviewFlow agent={agent} />
+
+    <ul class="km-agent-showcase__bullets">
+      {
+        agent.capabilities.map((cap) => (
+          <li class="km-agent-showcase__bullet">
+            <strong class="km-agent-showcase__bullet-label">{cap.label}</strong>
+            <span class="km-agent-showcase__bullet-body">{cap.body}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="km-agent-showcase__notice">{agent.notice}</p>
+  </section>
+</div>

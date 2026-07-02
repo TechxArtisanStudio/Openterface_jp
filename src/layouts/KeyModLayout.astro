@@ -1,0 +1,110 @@
+---
+import '../styles/global.css';
+import '../styles/keymod-landing.css';
+import AnalyticsHead from '../components/AnalyticsHead.astro';
+import AnalyticsEvents from '../components/AnalyticsEvents.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import { siteConfig } from '../config/site';
+import { getKeymodShareImageAlt, getKeymodShareImageUrl } from '../data/keymodAssets';
+import { getHreflangAlternates, getXDefaultUrl } from '../data/hreflang-manifest';
+import {
+  buildPageTitle,
+  getHtmlLang,
+  getOgImageDimensions,
+  getOgLocale,
+  getOgLocaleAlternates,
+  TWITTER_SITE,
+} from '../lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  ogImage?: string;
+  ogImageAlt?: string;
+  canonicalPath: string;
+  robots?: string;
+  showPreviewBanner?: boolean;
+  previewBannerText?: string;
+}
+
+const {
+  title,
+  description,
+  keywords,
+  ogImage = getKeymodShareImageUrl(siteConfig.url),
+  ogImageAlt = getKeymodShareImageAlt(),
+  canonicalPath,
+  robots = 'index, follow',
+  showPreviewBanner = false,
+  previewBannerText,
+} = Astro.props;
+
+const pageTitle = buildPageTitle(title, siteConfig.name);
+const canonical = new URL(canonicalPath, siteConfig.url).href;
+const hreflangAlternates = getHreflangAlternates(canonicalPath);
+const xDefaultHref = getXDefaultUrl(canonicalPath);
+const ogLocale = getOgLocale(siteConfig.locale);
+const ogLocaleAlternates = hreflangAlternates.length > 0 ? getOgLocaleAlternates(siteConfig.locale) : [];
+const resolvedOgImageAlt = ogImageAlt ?? description;
+const ogImageDimensions = getOgImageDimensions(ogImage);
+const textDir = siteConfig.locale === 'ar' ? 'rtl' : 'ltr';
+const htmlLang = getHtmlLang(siteConfig.locale);
+---
+
+<!doctype html>
+<html lang={htmlLang} dir={textDir}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Openterface" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=JetBrains+Mono:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="robots" content={robots} />
+    <link rel="canonical" href={canonical} />
+    {hreflangAlternates.map(({ lang, href }) => (
+      <link rel="alternate" hreflang={lang} href={href} />
+    ))}
+    {xDefaultHref && <link rel="alternate" hreflang="x-default" href={xDefaultHref} />}
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={resolvedOgImageAlt} />
+    {ogImageDimensions && (
+      <>
+        <meta property="og:image:width" content={String(ogImageDimensions.width)} />
+        <meta property="og:image:height" content={String(ogImageDimensions.height)} />
+      </>
+    )}
+    <meta property="og:locale" content={ogLocale} />
+    {ogLocaleAlternates.map((locale) => (
+      <meta property="og:locale:alternate" content={locale} />
+    ))}
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={TWITTER_SITE} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <slot name="head" />
+    {siteConfig.analytics.enabled && <AnalyticsHead />}
+  </head>
+  <body class="keymod-landing">
+    {showPreviewBanner && previewBannerText && (
+      <div class="km-preview-banner" role="status">{previewBannerText}</div>
+    )}
+    <slot />
+    {siteConfig.analytics.enabled && <CookieConsent />}
+    {siteConfig.analytics.enabled && <AnalyticsEvents />}
+  </body>
+</html>

@@ -1,0 +1,55 @@
+---
+import KeyModMediaPlaceholder from './KeyModMediaPlaceholder.astro';
+import { getKeymodAsset, type KeymodAssetSlot } from '../../data/keymodAssets';
+
+interface Props {
+  section?: string;
+  slot?: string;
+  asset?: KeymodAssetSlot;
+  fallbackLabel: string;
+  variant?: 'default' | 'video' | 'portrait';
+  class?: string;
+}
+
+const { section, slot, asset: assetProp, fallbackLabel, variant = 'default', class: className = '' } =
+  Astro.props;
+
+const asset = assetProp ?? (section && slot ? getKeymodAsset(section, slot) : undefined);
+const mediaSrc = asset?.src;
+const isVideo = asset?.kind === 'video' && mediaSrc;
+const figureClass = [
+  'km-media',
+  variant === 'video' || isVideo ? 'km-media--video' : '',
+  variant === 'portrait' ? 'km-media--portrait' : '',
+  className,
+]
+  .filter(Boolean)
+  .join(' ');
+---
+
+{
+  mediaSrc && isVideo ? (
+    <figure class={figureClass}>
+      <video
+        class="km-media__video"
+        src={mediaSrc}
+        controls
+        playsinline
+        preload="metadata"
+        aria-label={asset.alt}
+      />
+    </figure>
+  ) : mediaSrc ? (
+    <figure class={figureClass}>
+      <img
+        class="km-media__img"
+        src={mediaSrc}
+        alt={asset.alt}
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
+  ) : (
+    <KeyModMediaPlaceholder label={fallbackLabel} variant={variant} />
+  )
+}

@@ -1,0 +1,52 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import { getKeymodAsset } from '../../data/keymodAssets';
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['productLine'];
+}
+
+const { copy } = Astro.props;
+const familyAsset = getKeymodAsset('productLine', 'kvm-go-use-case');
+---
+
+<KeyModSection id="product-line" eyebrow={copy.eyebrow} title={copy.title} variant="elevated" centered narrow>
+  <p class="km-body km-product-line__body">{copy.body}</p>
+  <div class="km-product-line__actions">
+    <a
+      href={keymodLinks.minikvm}
+      class="km-btn km-btn--ghost"
+      data-analytics-event="internal_click"
+      data-analytics-product="keymod"
+      data-analytics-placement="keymod_product_line_minikvm"
+    >
+      {copy.minikvmCta}
+    </a>
+    <a
+      href={keymodLinks.kvmgo}
+      class="km-btn km-btn--ghost"
+      data-analytics-event="internal_click"
+      data-analytics-product="keymod"
+      data-analytics-placement="keymod_product_line_kvmgo"
+    >
+      {copy.kvmgoCta}
+    </a>
+  </div>
+  {
+    familyAsset?.src ? (
+      <figure class="km-product-line__figure">
+        <img
+          class="km-product-line__img"
+          src={familyAsset.src}
+          alt={familyAsset.alt}
+          loading="lazy"
+          decoding="async"
+          width="1600"
+          height="864"
+        />
+      </figure>
+    ) : null
+  }
+</KeyModSection>

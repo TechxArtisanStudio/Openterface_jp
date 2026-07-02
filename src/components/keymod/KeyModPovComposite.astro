@@ -1,0 +1,84 @@
+---
+import {
+  KEYMOD_POV_PC_SRC,
+  keymodPovScenes,
+  povArtboardCssVars,
+  type KeymodPovSceneId,
+} from '../../data/keymodPovScenes';
+
+interface Props {
+  activeSceneId: KeymodPovSceneId;
+}
+
+const { activeSceneId } = Astro.props;
+const artboardVars = povArtboardCssVars();
+---
+
+<div class="km-pov-stage__artboard" style={artboardVars}>
+  {
+    keymodPovScenes.map((scene) => {
+      const isActive = scene.id === activeSceneId;
+      return (
+        <div
+          class:list={[
+            'km-pov-stage__layer',
+            'km-pov-stage__layer--monitor',
+            isActive && 'km-pov-stage__layer--active',
+          ]}
+          data-pov-layer="monitor"
+          data-pov-scene={scene.id}
+        >
+          <img
+            class="km-pov-stage__layer-img"
+            src={scene.monitorSrc}
+            alt=""
+            decoding="async"
+            loading="lazy"
+            width={1024}
+            height={572}
+          />
+        </div>
+      );
+    })
+  }
+
+  <img
+    class="km-pov-stage__frame km-pov-stage__pc"
+    src={KEYMOD_POV_PC_SRC}
+    alt=""
+    decoding="async"
+    loading="lazy"
+    width={578}
+    height={298}
+  />
+
+  {
+    keymodPovScenes.map((scene) => {
+      const isActive = scene.id === activeSceneId;
+      const isPortrait = scene.phoneLayout === 'portrait';
+      return (
+        <div
+          class:list={[
+            'km-pov-stage__layer',
+            'km-pov-stage__layer--phone',
+            isPortrait && 'km-pov-stage__layer--phone-portrait',
+            isActive && 'km-pov-stage__layer--active',
+          ]}
+          data-pov-layer="phone"
+          data-pov-scene={scene.id}
+          data-phone-layout={scene.phoneLayout}
+        >
+          <img
+            class="km-pov-stage__layer-img"
+            src={scene.phoneSrc}
+            alt=""
+            decoding="async"
+            loading="lazy"
+            width={isPortrait ? 969 : 969}
+            height={isPortrait ? 1147 : 399}
+          />
+        </div>
+      );
+    })
+  }
+</div>

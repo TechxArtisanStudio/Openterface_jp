@@ -261,9 +261,7 @@ function renderPostCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): H
 
   const platform = entry.platform
     ? config.platformLabels[entry.platform] ?? entry.platform
-    : entry.format === 'testimonial'
-      ? 'Testimonial'
-      : 'Social';
+    : 'Social';
   const productLabel = entry.product
     ? `<span class="media-catalog-tag media-catalog-tag--product">${escapeHtml(config.productLabels[entry.product] ?? entry.product)}</span>`
     : '';
@@ -277,10 +275,7 @@ function renderPostCard(entry: MediaCatalogEntry, config: MediaCatalogConfig): H
   const titleClass = entry.externalUrl
     ? 'mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink group-hover:text-primary-dark'
     : 'mt-3 line-clamp-2 text-base font-semibold leading-snug text-ink';
-  const excerptClass =
-    entry.format === 'testimonial'
-      ? 'mt-2 line-clamp-3 text-sm italic text-muted'
-      : 'mt-2 line-clamp-3 text-sm text-muted';
+  const excerptClass = 'mt-2 line-clamp-3 text-sm text-muted';
   const platformHeader = entry.thumbnail
     ? ''
     : `<div class="flex items-start justify-between gap-2"><span class="text-xs font-bold uppercase tracking-wide text-muted">${escapeHtml(platform)}</span></div>`;

@@ -1,0 +1,88 @@
+---
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+import { AGENT_DEMO_SCRIPTS } from '../../data/keymodAgentDemo';
+
+interface Props {
+  agent: KeymodLandingStrings['modesTheater']['agentZone']['agent'];
+}
+
+const { agent } = Astro.props;
+const demo = agent.demo;
+---
+
+<div
+  class="km-agent-flow"
+  data-km-agent-flow
+  data-plan-label={demo.planLabel}
+  data-act-prompt={demo.actPrompt}
+  data-approve-label={demo.approveLabel}
+  data-edit-plan-label={demo.editPlanLabel}
+  data-cancel-label={demo.cancelLabel}
+  data-terminal-label={demo.terminalExecutingLabel}
+  data-macro-label={demo.macroExecutingLabel}
+  role="region"
+  aria-label="Agent Preview interactive demo"
+>
+  <div class="km-agent-flow__demo-col">
+    <p class="km-agent-flow__demo-label">{demo.interactiveDemoLabel}</p>
+
+    <div class="km-agent-flow__stage">
+      <div class="km-agent-flow__phone" data-km-agent-phone>
+        <div class="km-agent-flow__phone-bezel">
+          <div class="km-agent-flow__phone-notch" aria-hidden="true"></div>
+          <div class="km-agent-flow__phone-screen">
+            <header class="km-agent-flow__session-bar">
+              <p class="km-agent-flow__session-subtitle">{demo.sessionSubtitle}</p>
+              <span class="km-agent-flow__connection-pill">{demo.connectionReady}</span>
+            </header>
+
+            <div class="km-agent-flow__screen-stack">
+              <div class="km-agent-flow__transcript" data-km-agent-transcript hidden></div>
+
+              <div class="km-agent-flow__overlay" data-km-agent-overlay>
+                <img
+                  class="km-agent-flow__overlay-icon"
+                  src="/keymod/rebirth/mascot/gibby-ai-chat.webp"
+                  alt=""
+                  width="48"
+                  height="48"
+                />
+                <p class="km-agent-flow__overlay-title">{demo.overlayTitle}</p>
+                <p class="km-agent-flow__overlay-summary">{demo.overlaySummary}</p>
+                <p class="km-agent-flow__picker-hint">{demo.pickerHint}</p>
+                <div class="km-agent-flow__picker" role="listbox" aria-label="Agent demo scripts">
+                  {
+                    AGENT_DEMO_SCRIPTS.map((script) => (
+                      <button
+                        type="button"
+                        class="km-agent-flow__picker-card"
+                        role="option"
+                        data-km-agent-script={script.id}
+                      >
+                        <span class="km-agent-flow__picker-card-title">{script.pickerTitle}</span>
+                        <span class="km-agent-flow__picker-card-tagline">{script.pickerTagline}</span>
+                      </button>
+                    ))
+                  }
+                </div>
+              </div>
+            </div>
+
+            <footer class="km-agent-flow__input-bar" aria-hidden="true">
+              <span class="km-agent-flow__input-placeholder">Try a demo above. Free chat coming soon.</span>
+              <span class="km-agent-flow__send-btn" aria-hidden="true">↑</span>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="km-agent-flow__fidelity-note">{demo.uiFidelityNote}</p>
+  </div>
+
+  <p class="km-agent-flow__sr" data-km-agent-live aria-live="polite"></p>
+</div>
+
+<script>
+  import '../../scripts/keymod-agent-preview-flow';
+</script>

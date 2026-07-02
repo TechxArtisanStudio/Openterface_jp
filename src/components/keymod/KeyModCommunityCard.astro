@@ -1,0 +1,60 @@
+---
+import { PLATFORM_DISPLAY_NAMES, type SocialPlatform } from '../../lib/youtube';
+import type { KeymodCommunityCard } from '../../data/keymodCommunityMedia';
+
+interface Props {
+  card: KeymodCommunityCard;
+}
+
+const { card } = Astro.props;
+
+const isVideo =
+  card.platform === 'youtube' || card.format === 'short' || card.format === 'reel';
+
+const thumbClass =
+  card.format === 'long'
+    ? 'km-community-card__thumb--landscape'
+    : card.format === 'short' || card.format === 'reel'
+      ? 'km-community-card__thumb--portrait'
+      : 'km-community-card__thumb--post';
+
+function platformLabel(platform: SocialPlatform | 'youtube'): string {
+  if (platform === 'youtube') return 'YouTube';
+  return PLATFORM_DISPLAY_NAMES[platform] ?? platform;
+}
+
+const thumbAlt =
+  card.title ?? card.excerpt ?? `${platformLabel(card.platform)} post by ${card.author}`;
+---
+
+<a
+  href={card.externalUrl}
+  class="km-community-card"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <figure class:list={['km-community-card__thumb', thumbClass]}>
+    <img
+      src={card.thumbnail}
+      alt={thumbAlt}
+      loading="lazy"
+      decoding="async"
+    />
+    <span class="km-community-card__platform">{platformLabel(card.platform)}</span>
+    {
+      isVideo ? (
+        <span class="km-community-card__play" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </span>
+      ) : null
+    }
+  </figure>
+  <div class="km-community-card__body">
+    {card.scenarioTag ? <p class="km-community-card__tag">{card.scenarioTag}</p> : null}
+    <p class="km-community-card__author">{card.author}</p>
+    {card.title ? <p class="km-community-card__title">{card.title}</p> : null}
+    {card.excerpt ? <p class="km-community-card__excerpt">&ldquo;{card.excerpt}&rdquo;</p> : null}
+  </div>
+</a>

@@ -1,0 +1,114 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModPovStage from './KeyModPovStage.astro';
+import KeyModGameZoneShowcase from './KeyModGameZoneShowcase.astro';
+import KeyModOpsZoneShowcase from './KeyModOpsZoneShowcase.astro';
+import KeyModAgentZoneShowcase from './KeyModAgentZoneShowcase.astro';
+import KeyModCrowdSupplyCta from './KeyModCrowdSupplyCta.astro';
+import { keymodPovVisibleTabScenes } from '../../data/keymodPovScenes';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['modesTheater'];
+  povTabs: KeymodLandingStrings['povTabs'];
+  crowdSupplyCampaign: KeymodLandingStrings['crowdSupplyCampaign'];
+}
+
+const { copy, povTabs, crowdSupplyCampaign } = Astro.props;
+const m = copy;
+
+const povStageSceneDefs = [
+  {
+    id: 'keyboard' as const,
+    status: m.basic.badge,
+    title: m.basic.title,
+    lead: m.basic.lead,
+    demoLinks: m.basic.demoLinks,
+  },
+  {
+    id: 'touchpad' as const,
+    status: m.touchpad.badge,
+    title: m.touchpad.title,
+    lead: m.touchpad.lead,
+    demoLinks: m.touchpad.demoLinks,
+  },
+  {
+    id: 'km-pro' as const,
+    status: m.kmPro.badge,
+    title: m.kmPro.title,
+    lead: m.kmPro.lead,
+  },
+  {
+    id: 'compose-send' as const,
+    status: m.composeSend.badge,
+    title: m.composeSend.title,
+    lead: m.composeSend.lead,
+    demoLinks: m.composeSend.demoLinks,
+  },
+  {
+    id: 'gamepad' as const,
+    status: m.gamepad.badge,
+    title: m.gamepad.title,
+    lead: m.gamepad.lead,
+    demoLinks: m.gamepad.demoLinks,
+  },
+  {
+    id: 'presentation' as const,
+    status: m.presentation.badge,
+    title: m.presentation.title,
+    lead: m.presentation.lead,
+    demoLinks: m.presentation.demoLinks,
+  },
+  {
+    id: 'terminal' as const,
+    status: m.proTerminal.badge,
+    title: m.proTerminal.title,
+    lead: m.proTerminal.lead,
+  },
+  { id: 'ai-chat' as const, status: m.aiChat.badge, title: m.aiChat.title, lead: m.aiChat.lead },
+];
+
+const visiblePovIds = new Set(keymodPovVisibleTabScenes.map((s) => s.id));
+const povStageScenes = povStageSceneDefs.filter((s) => visiblePovIds.has(s.id));
+---
+
+<KeyModSection id="modes-theater" title={copy.title} centered>
+  <div slot="subtitle" class="km-subtitle-stack">
+    <p class="km-subtitle">{copy.subtitleLines[0]}</p>
+    <p class="km-subtitle">{copy.subtitleLines[1]}</p>
+  </div>
+  <div slot="eyebrow" class="km-eyebrow-lockup">
+    <span class="km-eyebrow km-eyebrow-lockup__text">{copy.eyebrow}</span>
+  </div>
+
+  <div data-km-zone="pov">
+    <KeyModPovStage scenes={povStageScenes} tabLabels={povTabs} defaultSceneId="keyboard" />
+  </div>
+
+  <div class="km-theater-crowd-cta">
+    <KeyModCrowdSupplyCta variant="campaign" copy={crowdSupplyCampaign} analyticsPlacement="keymod_theater_crowd" />
+  </div>
+
+  <div class="km-theater-scroll">
+    <div class="km-theater-zone km-theater-zone--ops km-zone-matrix" data-km-zone="ops">
+      <div class="km-theater-zone__inner km-zone-matrix__inner">
+        <p class="km-theater-zone__eyebrow km-eyebrow">{m.opsZone.eyebrow}</p>
+        <KeyModOpsZoneShowcase opsZone={m.opsZone} />
+      </div>
+    </div>
+
+    <div class="km-theater-zone km-theater-zone--agent km-zone-agent" data-km-zone="agent">
+      <div class="km-theater-zone__inner km-zone-agent__inner">
+        <p class="km-theater-zone__eyebrow km-eyebrow">{m.agentZone.eyebrow}</p>
+        <KeyModAgentZoneShowcase agentZone={m.agentZone} />
+      </div>
+    </div>
+
+    <div class="km-theater-zone km-theater-zone--game km-zone-game" data-km-zone="game">
+      <div class="km-theater-zone__inner km-zone-game__inner">
+        <p class="km-theater-zone__eyebrow km-eyebrow">{m.gameZone.eyebrow}</p>
+        <KeyModGameZoneShowcase gameZone={m.gameZone} gamepad={m.gamepad} />
+      </div>
+    </div>
+  </div>
+</KeyModSection>

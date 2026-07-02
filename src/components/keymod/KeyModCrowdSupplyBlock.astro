@@ -1,0 +1,41 @@
+---
+import KeyModCrowdSupplyCta from './KeyModCrowdSupplyCta.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  variant: 'campaign' | 'opensource';
+  copy:
+    | KeymodLandingStrings['crowdSupplyCampaign']
+    | KeymodLandingStrings['crowdSupplySupport']
+    | KeymodLandingStrings['crowdSupplyOpensource'];
+  id?: string;
+  elevated?: boolean;
+  analyticsPlacement?: string;
+}
+
+const { variant, copy, id, elevated = true, analyticsPlacement } = Astro.props;
+const crowdPlacement =
+  analyticsPlacement ??
+  (id === 'back-the-project'
+    ? 'keymod_back_project'
+    : variant === 'opensource'
+      ? 'keymod_opensource_crowd'
+      : 'keymod_crowd_block');
+const sectionId = id ?? (variant === 'campaign' ? 'crowd-supply' : 'open-source');
+const ariaLabel =
+  variant === 'campaign'
+    ? id === 'back-the-project'
+      ? 'Back KeyMod on Crowd Supply'
+      : 'Crowd Supply pre-launch'
+    : 'Open hardware and community design';
+---
+
+<section
+  class:list={['km-section', 'km-crowd-cta-section', elevated && 'km-section--elevated']}
+  id={sectionId}
+  aria-label={ariaLabel}
+>
+  <div class="km-section__inner km-section__inner--narrow">
+    <KeyModCrowdSupplyCta variant={variant} copy={copy} analyticsPlacement={crowdPlacement} />
+  </div>
+</section>

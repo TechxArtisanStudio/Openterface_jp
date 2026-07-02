@@ -1,0 +1,71 @@
+---
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  layouts: KeymodLandingStrings['modesTheater']['gameZone']['presets']['layouts'];
+  id?: string;
+}
+
+const { layouts, id = 'gamepad-preset-rotator' } = Astro.props;
+const imageWidth = 2400;
+const imageHeight = 1080;
+const firstLabel = layouts[0]?.label ?? '';
+---
+
+<div
+  class="km-preset-rotator"
+  id={id}
+  data-km-preset-rotator
+  role="region"
+  aria-roledescription="carousel"
+  aria-label="Gamepad preset layouts"
+  tabindex="0"
+  data-active-index="0"
+>
+  <figure class="km-media km-preset-rotator__figure">
+    <div class="km-preset-rotator__stack">
+      {
+        layouts.map((layout, index) => (
+          <img
+            class:list={['km-media__img', 'km-preset-rotator__slide', index === 0 && 'km-preset-rotator__slide--active']}
+            src={layout.imageSrc}
+            alt={layout.imageAlt}
+            width={imageWidth}
+            height={imageHeight}
+            loading={index === 0 ? 'eager' : 'lazy'}
+            decoding="async"
+            data-km-preset-slide
+            data-slide-index={index}
+            data-label={layout.label}
+          />
+        ))
+      }
+    </div>
+  </figure>
+
+  <div class="km-preset-rotator__footer">
+    <p class="km-preset-rotator__label km-game-showcase__caption" data-km-preset-label aria-live="polite">
+      {firstLabel}
+    </p>
+    <div class="km-preset-rotator__thumbs" role="tablist" aria-label="Preset layout thumbnails">
+      {
+        layouts.map((layout, index) => (
+          <button
+            type="button"
+            class:list={['km-preset-rotator__thumb', index === 0 && 'km-preset-rotator__thumb--active']}
+            data-km-preset-thumb={index}
+            role="tab"
+            aria-label={layout.label}
+            aria-selected={index === 0 ? 'true' : 'false'}
+          >
+            <img src={layout.imageSrc} alt="" width={imageWidth} height={imageHeight} loading="lazy" decoding="async" />
+          </button>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  import '../../scripts/keymod-gamepad-preset-rotator';
+</script>

@@ -1,0 +1,53 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModNewBadge from './KeyModNewBadge.astro';
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['firmwareRoadmap'];
+}
+
+const { copy } = Astro.props;
+---
+
+<KeyModSection
+  id="firmware-roadmap"
+  eyebrow={copy.eyebrow}
+  title={copy.title}
+  subtitle={copy.subtitle}
+  centered
+  narrow
+  variant="elevated"
+>
+  <div class="km-firmware-roadmap">
+    <div class="km-firmware-roadmap__panel">
+      <p class="km-firmware-roadmap__label">{copy.chipsLabel}</p>
+      <ul class="km-firmware-roadmap__chips" aria-label={copy.chipsLabel}>
+        {
+          copy.chips.map((chip) => (
+            <li>
+              <span class="km-firmware-roadmap__chip">{chip}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <aside class="km-firmware-roadmap__forum">
+      <p class="km-firmware-roadmap__forum-text">{copy.forumPrompt}</p>
+      <a
+        class="km-btn km-btn--ghost km-firmware-roadmap__forum-cta km-btn--has-new-badge"
+        href={keymodLinks.forum}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="forum_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_roadmap_forum"
+      >
+        {copy.forumCta}
+        <KeyModNewBadge label={copy.forumNewBadge} />
+      </a>
+    </aside>
+  </div>
+</KeyModSection>

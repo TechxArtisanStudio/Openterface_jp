@@ -1,0 +1,293 @@
+---
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  compose: KeymodLandingStrings['modesTheater']['opsZone']['compose'];
+}
+
+const { compose } = Astro.props;
+
+function previewLine(content: string, maxLen = 72): string {
+  const flat = content.replace(/\s+/g, ' ').trim();
+  return flat.length > maxLen ? `${flat.slice(0, maxLen)}…` : flat;
+}
+---
+
+<div
+  class="km-compose-flow"
+  data-km-compose-flow
+  data-demo-text={compose.demoText}
+  data-terminal-prompt={compose.terminalPrompt}
+  data-send-label={compose.sendLabel}
+  data-stop-label={compose.stopLabel}
+  data-auto-hint={compose.autoSendHint}
+  data-progress-suffix={compose.progressRemainingLabel}
+  data-load-label={compose.loadLabel}
+  data-send-selected-label={compose.sendSelectedLabel}
+  data-select-first-hint={compose.selectFirstHint}
+  data-library-hint={compose.libraryHint}
+  data-templates={JSON.stringify(compose.templates)}
+  role="region"
+  aria-label="Compose and Send interactive demo"
+>
+  <p class="km-compose-flow__demo-label">{compose.interactiveDemoLabel}</p>
+
+  <div class="km-compose-flow__stage">
+    <div class="km-compose-flow__phone-col">
+      <div class="km-compose-flow__phone">
+        <div class="km-compose-flow__phone-bezel">
+        <div class="km-compose-flow__phone-notch" aria-hidden="true"></div>
+        <div class="km-compose-flow__phone-screen">
+          <div class="km-compose-flow__status-bar" aria-hidden="true"></div>
+
+          <div class="km-compose-flow__panel-stack">
+            <div class="km-compose-flow__panel km-compose-flow__panel--compose" data-km-compose-panel="compose">
+              <header class="km-compose-flow__header">
+                <span class="km-compose-flow__header-icon" aria-hidden="true">
+                  <img src="/keymod/icons/compose/ic-menu.svg" alt="" width="18" height="18" />
+                </span>
+
+                <div class="km-compose-flow__tabs" aria-hidden="true">
+                  <span class="km-compose-flow__tab">
+                    <img src="/keymod/icons/compose/ic-submode-keyboard.svg" alt="" width="18" height="18" />
+                  </span>
+                  <span class="km-compose-flow__tab km-compose-flow__tab--active">
+                    <img src="/keymod/icons/compose/ic-submode-compose.svg" alt="" width="18" height="18" />
+                  </span>
+                  <span class="km-compose-flow__tab">
+                    <img src="/keymod/icons/compose/ic-submode-numpad.svg" alt="" width="18" height="18" />
+                  </span>
+                </div>
+
+                <div class="km-compose-flow__header-trailing" aria-hidden="true">
+                  <span class="km-compose-flow__header-action">
+                    <img src="/keymod/icons/compose/ic-os-linux.svg" alt="" width="18" height="18" />
+                  </span>
+                  <span class="km-compose-flow__header-action">
+                    <img src="/keymod/icons/compose/ic-settings.svg" alt="" width="18" height="18" />
+                  </span>
+                  <span class="km-compose-flow__header-action km-compose-flow__header-action--connection">
+                    <img src="/keymod/icons/compose/ic-bluetooth-connected.svg" alt="" width="18" height="18" />
+                  </span>
+                </div>
+              </header>
+
+              <div class="km-compose-flow__compose">
+                <div
+                  class="km-compose-flow__editor km-compose-flow__editor--active"
+                  data-km-compose-editor
+                  aria-readonly="true"
+                >
+                  <pre class="km-compose-flow__editor-text" data-km-compose-editor-text>{compose.demoText}</pre>
+                </div>
+
+                <div class="km-compose-flow__progress-wrap" data-km-compose-progress-wrap hidden>
+                  <div class="km-compose-flow__progress-track">
+                    <div class="km-compose-flow__progress-bar" data-km-compose-progress-bar></div>
+                  </div>
+                  <span class="km-compose-flow__progress-label" data-km-compose-progress-label></span>
+                </div>
+
+                <div class="km-compose-flow__actions">
+                  <button type="button" class="km-compose-flow__action" disabled aria-hidden="true" tabindex="-1">
+                    <img src="/keymod/icons/compose/ic-compose-clear.svg" alt="" width="20" height="20" />
+                  </button>
+                  <button type="button" class="km-compose-flow__action" disabled aria-hidden="true" tabindex="-1">
+                    <img src="/keymod/icons/compose/ic-save.svg" alt="" width="20" height="20" />
+                  </button>
+                  <button
+                    type="button"
+                    class="km-compose-flow__action km-compose-flow__action--library"
+                    data-km-compose-open-library
+                    aria-label={compose.openLibraryLabel}
+                  >
+                    <img src="/keymod/icons/compose/ic-saved-texts.svg" alt="" width="20" height="20" />
+                  </button>
+                  <button
+                    type="button"
+                    class="km-compose-flow__action km-compose-flow__action--send"
+                    data-km-compose-send
+                    aria-label={compose.sendLabel}
+                  >
+                    <img
+                      class="km-compose-flow__icon-send"
+                      src="/keymod/icons/compose/ic-compose-send.svg"
+                      alt=""
+                      width="20"
+                      height="20"
+                    />
+                    <img
+                      class="km-compose-flow__icon-stop"
+                      src="/keymod/icons/compose/ic-compose-stop.svg"
+                      alt=""
+                      width="20"
+                      height="20"
+                      hidden
+                    />
+                    <span class="km-compose-flow__send-hint" data-km-compose-send-hint>{compose.autoSendHint}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="km-compose-flow__panel km-compose-flow__panel--library" data-km-compose-panel="library" hidden>
+              <header class="km-compose-flow__library-header">
+                <button
+                  type="button"
+                  class="km-compose-flow__library-back"
+                  data-km-compose-library-back
+                  aria-label={compose.backLabel}
+                >
+                  <img src="/keymod/icons/compose/ic-arrow-back.svg" alt="" width="18" height="18" />
+                </button>
+                <h4 class="km-compose-flow__library-title">{compose.savedTextsTitle}</h4>
+                <div class="km-compose-flow__library-actions" data-km-compose-library-actions hidden>
+                  <button
+                    type="button"
+                    class="km-compose-flow__library-action"
+                    data-km-compose-library-load
+                    aria-label={compose.loadLabel}
+                  >
+                    <img src="/keymod/icons/compose/ic-load.svg" alt="" width="18" height="18" />
+                  </button>
+                  <button
+                    type="button"
+                    class="km-compose-flow__library-action"
+                    data-km-compose-library-send
+                    aria-label={compose.sendSelectedLabel}
+                  >
+                    <img src="/keymod/icons/compose/ic-compose-send.svg" alt="" width="18" height="18" />
+                  </button>
+                </div>
+              </header>
+
+              <div class="km-compose-flow__library-list" data-km-compose-library-list>
+                {
+                  compose.templates.map((item) => (
+                    <button
+                      type="button"
+                      class="km-compose-flow__saved-row"
+                      data-km-saved-row
+                      data-template-id={item.id}
+                      data-template-content={item.content}
+                      data-template-scenario={item.scenario}
+                    >
+                      <span class="km-compose-flow__saved-row-body">
+                        <span class="km-compose-flow__saved-row-title-row">
+                          {
+                            item.pinned ? (
+                              <img
+                                class="km-compose-flow__saved-row-pin"
+                                src="/keymod/icons/compose/ic-saved-texts.svg"
+                                alt=""
+                                width="14"
+                                height="14"
+                              />
+                            ) : null
+                          }
+                          <span class="km-compose-flow__saved-row-title">{item.title}</span>
+                          <span class={`km-compose-flow__saved-row-scenario km-compose-flow__saved-row-scenario--${item.scenario}`}>
+                            {item.scenarioLabel}
+                          </span>
+                        </span>
+                        <span class="km-compose-flow__saved-row-meta">{item.meta}</span>
+                        <span class="km-compose-flow__saved-row-preview">{previewLine(item.content)}</span>
+                      </span>
+                    </button>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <p class="km-compose-flow__library-hint" data-km-compose-library-hint>{compose.libraryHint}</p>
+    </div>
+
+    <div class="km-compose-flow__bridge" aria-hidden="true">
+      <span class="km-compose-flow__bridge-label">{compose.bridgeLabel}</span>
+      <span class="km-compose-flow__bridge-target" data-km-compose-bridge-target></span>
+      <div class="km-compose-flow__bridge-line">
+        <span class="km-compose-flow__bridge-dot"></span>
+        <span class="km-compose-flow__bridge-dot"></span>
+        <span class="km-compose-flow__bridge-dot"></span>
+      </div>
+      <svg class="km-compose-flow__bridge-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+      </svg>
+    </div>
+
+    <div class="km-compose-flow__monitor">
+      <div class="km-compose-flow__monitor-bezel">
+        <div class="km-compose-flow__targets">
+          <div class="km-compose-flow__target km-compose-flow__target--terminal" data-km-compose-target="terminal">
+            <div class="km-compose-flow__target-bar">
+              <span class="km-compose-flow__target-dot"></span>
+              <span class="km-compose-flow__target-dot"></span>
+              <span class="km-compose-flow__target-dot"></span>
+              <span class="km-compose-flow__target-title">{compose.targets.terminal.title}</span>
+            </div>
+            <div class="km-compose-flow__target-body km-compose-flow__target-body--terminal">
+              <p class="km-compose-flow__terminal-line">
+                <span class="km-compose-flow__terminal-prompt">{compose.terminalPrompt}</span>
+                <span data-km-compose-terminal-output></span>
+                <span class="km-compose-flow__target-cursor" data-km-compose-terminal-cursor aria-hidden="true"></span>
+              </p>
+            </div>
+          </div>
+
+          <div class="km-compose-flow__target km-compose-flow__target--markdown" data-km-compose-target="markdown" hidden>
+            <div class="km-compose-flow__target-bar">
+              <span class="km-compose-flow__target-dot"></span>
+              <span class="km-compose-flow__target-dot"></span>
+              <span class="km-compose-flow__target-dot"></span>
+              <span class="km-compose-flow__target-title">{compose.targets.markdown.title}</span>
+            </div>
+            <div class="km-compose-flow__target-body km-compose-flow__target-body--markdown" data-km-compose-markdown-scroll>
+              <pre class="km-compose-flow__markdown-output"><code data-km-compose-markdown-output></code><span class="km-compose-flow__target-cursor" data-km-compose-markdown-cursor aria-hidden="true"></span></pre>
+            </div>
+          </div>
+
+          <div class="km-compose-flow__target km-compose-flow__target--browser" data-km-compose-target="browser" hidden>
+            <div class="km-compose-flow__target-bar km-compose-flow__target-bar--browser">
+              <span class="km-compose-flow__browser-nav" aria-hidden="true">‹ › ↻</span>
+              <div class="km-compose-flow__browser-url-wrap">
+                <span class="km-compose-flow__browser-url" data-km-compose-browser-output></span>
+                <span class="km-compose-flow__target-cursor km-compose-flow__target-cursor--browser" data-km-compose-browser-cursor aria-hidden="true"></span>
+              </div>
+            </div>
+            <div class="km-compose-flow__target-body km-compose-flow__target-body--browser">
+              <div class="km-compose-flow__browser-page" aria-hidden="true">
+                <span class="km-wordmark km-wordmark--openterface km-compose-flow__browser-logo"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="km-compose-flow__target km-compose-flow__target--apiKey" data-km-compose-target="apiKey" hidden>
+            <div class="km-compose-flow__target-bar">
+              <span class="km-compose-flow__target-dot"></span>
+              <span class="km-compose-flow__target-dot"></span>
+              <span class="km-compose-flow__target-dot"></span>
+              <span class="km-compose-flow__target-title">{compose.targets.apiKey.title}</span>
+            </div>
+            <div class="km-compose-flow__target-body km-compose-flow__target-body--apiKey">
+              <p class="km-compose-flow__apikey-label">{compose.targets.apiKey.fieldLabel}</p>
+              <div class="km-compose-flow__apikey-field">
+                <span data-km-compose-apikey-output></span>
+                <span class="km-compose-flow__target-cursor" data-km-compose-apikey-cursor aria-hidden="true"></span>
+              </div>
+              <button type="button" class="km-compose-flow__apikey-btn" disabled tabindex="-1">{compose.targets.apiKey.buttonLabel}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="km-compose-flow__sr" data-km-compose-live aria-live="polite"></p>
+</div>
+
+<script>
+  import '../../scripts/keymod-compose-send-flow';
+</script>

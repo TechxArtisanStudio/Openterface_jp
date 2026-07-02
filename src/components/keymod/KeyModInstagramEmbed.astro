@@ -1,0 +1,51 @@
+---
+import type { KeymodInstagramEmbed } from '../../data/keymodInstagramEmbeds';
+
+interface Props {
+  embed: KeymodInstagramEmbed;
+  viewProfileLabel: string;
+  viewPostLabel: string;
+}
+
+const { embed, viewProfileLabel, viewPostLabel } = Astro.props;
+const permalink = `${embed.permalink}?utm_source=ig_embed&utm_campaign=loading`;
+const profileUrl = `https://www.instagram.com/${embed.author.replace(/^@/, '')}/`;
+---
+
+<figure class="km-ig-embed" data-ig-format={embed.format}>
+  <div class="km-ig-embed__media">
+    <blockquote
+      class="instagram-media"
+      data-instgrm-captioned
+      data-instgrm-permalink={permalink}
+      data-instgrm-version="14"
+      style="background:#FFF;border:0;border-radius:12px;box-shadow:0 1px 12px rgba(15,23,42,0.08);margin:0;max-width:540px;min-width:326px;padding:0;width:100%;"
+    >
+      <a href={permalink} target="_blank" rel="noopener noreferrer">{embed.author} on Instagram</a>
+    </blockquote>
+  </div>
+  <div class="km-ig-embed__actions">
+    <a
+      class="km-ig-embed__action km-ig-embed__action--profile"
+      href={profileUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-analytics-event="community_click"
+      data-analytics-product="keymod"
+      data-analytics-placement={`keymod_social_instagram_${embed.id}_profile`}
+    >
+      {viewProfileLabel}
+    </a>
+    <a
+      class="km-ig-embed__action km-ig-embed__action--primary"
+      href={permalink}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-analytics-event="community_click"
+      data-analytics-product="keymod"
+      data-analytics-placement={`keymod_social_instagram_${embed.id}`}
+    >
+      {viewPostLabel}
+    </a>
+  </div>
+</figure>

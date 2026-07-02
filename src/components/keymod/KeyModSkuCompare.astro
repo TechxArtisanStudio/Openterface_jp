@@ -1,0 +1,109 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import { getKeymodAsset } from '../../data/keymodAssets';
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['skuCompare'];
+}
+
+const { copy } = Astro.props;
+const miniAsset = getKeymodAsset('sku', 'mini');
+const plusAsset = getKeymodAsset('sku', 'plus');
+---
+
+<KeyModSection id="choose-port" eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.stackLine} centered>
+  <div class="km-grid km-grid--2 km-sku">
+    <article class="km-card km-sku__card">
+      {
+        miniAsset?.src ? (
+          <figure class="km-sku__figure">
+            <img
+              class="km-sku__visual"
+              src={miniAsset.src}
+              alt={miniAsset.alt}
+              width="1280"
+              height="960"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        ) : null
+      }
+      <h3 class="km-card__title">{copy.mini.name}</h3>
+      <p class="km-card__body">
+        <strong>{copy.mini.port}</strong><br />
+        {copy.mini.audience}
+      </p>
+      <p class="km-card__body km-sku__connect">{copy.mini.connect}</p>
+      <p class="km-card__body km-sku__tagline">{copy.mini.tagline}</p>
+      <a
+        href={keymodLinks.crowdSupply}
+        class="km-btn km-btn--primary km-sku__cta"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="crowdsupply_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_sku_mini"
+      >
+        {copy.crowdSupplyCta}
+        <img
+          class="km-btn__icon"
+          src={keymodLinks.crowdSupplyIcon}
+          alt=""
+          width="20"
+          height="20"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </a>
+    </article>
+    <article class="km-card km-sku__card">
+      {
+        plusAsset?.src ? (
+          <figure class="km-sku__figure">
+            <img
+              class="km-sku__visual"
+              src={plusAsset.src}
+              alt={plusAsset.alt}
+              width="1280"
+              height="960"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        ) : null
+      }
+      <h3 class="km-card__title">{copy.plus.name}</h3>
+      <p class="km-card__body">
+        <strong>{copy.plus.port}</strong><br />
+        {copy.plus.audience}
+      </p>
+      <p class="km-card__body km-sku__connect">{copy.plus.connect}</p>
+      <p class="km-card__body km-sku__tagline">{copy.plus.tagline}</p>
+      <a
+        href={keymodLinks.crowdSupply}
+        class="km-btn km-btn--primary km-sku__cta"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="crowdsupply_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_sku_plus"
+      >
+        {copy.crowdSupplyCta}
+        <img
+          class="km-btn__icon"
+          src={keymodLinks.crowdSupplyIcon}
+          alt=""
+          width="20"
+          height="20"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </a>
+    </article>
+  </div>
+</KeyModSection>

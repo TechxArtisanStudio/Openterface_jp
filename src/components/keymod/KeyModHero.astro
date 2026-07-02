@@ -1,0 +1,89 @@
+---
+import KeyModWordmark from './KeyModWordmark.astro';
+import KeyModHeroRail from './KeyModHeroRail.astro';
+import { keymodLinks } from '../../i18n/keymodLanding';
+import { getKeymodAsset } from '../../data/keymodAssets';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['hero'];
+}
+
+const { copy } = Astro.props;
+const heroAsset = getKeymodAsset('hero', 'center');
+---
+
+<section class="km-hero km-hero--light" id="hero" aria-labelledby="hero-title">
+  <div class="km-hero__content">
+    <div class="km-hero__brand">
+      <h1 id="hero-title" class="km-hero__product-name">
+        <KeyModWordmark size="hero" />
+        <span class="sr-only">{copy.productName}</span>
+      </h1>
+      <p class="km-hero__tagline">{copy.tagline}</p>
+    </div>
+
+    <div class="km-hero__stage">
+      <div class="km-hero__image-wrap">
+        {
+          heroAsset?.src ? (
+            <img
+              class="km-hero__image"
+              src={heroAsset.src}
+              alt={heroAsset.alt}
+              width="800"
+              height="800"
+              fetchpriority="high"
+              decoding="async"
+            />
+          ) : null
+        }
+      </div>
+
+      <div class="km-hero__equation" aria-hidden="true">
+        <span class="km-hero__equation-plus">{copy.equationPlus}</span>
+        <span class="km-hero__equation-eq" aria-hidden="true">{copy.equationEquals}</span>
+      </div>
+
+      <KeyModHeroRail />
+    </div>
+
+    {copy.headline ? <p class="km-hero__headline">{copy.headline}</p> : null}
+    <p class="km-hero__lead">{copy.lead}</p>
+
+    <div class="km-hero__actions">
+      <a
+        href={keymodLinks.docs}
+        class="km-btn km-btn--ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="docs_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_hero_docs"
+      >
+        {copy.docsCta}
+      </a>
+      <a
+        href={keymodLinks.crowdSupply}
+        class="km-btn km-btn--primary"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="crowdsupply_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_hero"
+      >
+        {copy.preLaunchCta}
+        <img
+          class="km-btn__icon"
+          src={keymodLinks.crowdSupplyIcon}
+          alt=""
+          width="20"
+          height="20"
+          loading="lazy"
+          decoding="async"
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+  </div>
+</section>

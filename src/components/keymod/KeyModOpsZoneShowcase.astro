@@ -1,0 +1,69 @@
+---
+import KeyModExperimentalIcon from './KeyModExperimentalIcon.astro';
+import KeyModComposeSendFlow from './KeyModComposeSendFlow.astro';
+import KeyModTerminalPreviewFlow from './KeyModTerminalPreviewFlow.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  opsZone: KeymodLandingStrings['modesTheater']['opsZone'];
+}
+
+const { opsZone } = Astro.props;
+---
+
+<div class="km-ops-showcase">
+  <header class="km-ops-showcase__intro">
+    <h3 class="km-ops-showcase__title">{opsZone.intro.title}</h3>
+    <p class="km-ops-showcase__body">{opsZone.intro.body}</p>
+  </header>
+
+  <section class="km-ops-showcase__block" aria-labelledby="ops-compose-title">
+    <span class="km-ops-showcase__badge">{opsZone.compose.badge}</span>
+    <h3 id="ops-compose-title" class="km-ops-showcase__title">{opsZone.compose.title}</h3>
+    <p class="km-ops-showcase__body">{opsZone.compose.body}</p>
+    <KeyModComposeSendFlow compose={opsZone.compose} />
+    {
+      opsZone.compose.demoLinks && opsZone.compose.demoLinks.length > 0 ? (
+        <p class="km-ops-showcase__demos">
+          {
+            opsZone.compose.demoLinks.map((link) => (
+              <span class="km-ops-showcase__demo-item">
+                <a class="km-ops-showcase__demo-link" href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label} ↗
+                </a>
+                {link.description ? <span class="km-ops-showcase__demo-desc">{link.description}</span> : null}
+              </span>
+            ))
+          }
+        </p>
+      ) : null
+    }
+  </section>
+
+  <section class="km-ops-showcase__block" aria-labelledby="ops-terminal-title">
+    <span class="km-ops-showcase__badge">{opsZone.terminal.badge}</span>
+    <h3 id="ops-terminal-title" class="km-ops-showcase__title km-ops-showcase__title-lockup">
+      {opsZone.terminal.title}
+      <KeyModExperimentalIcon
+        class="km-ops-showcase__title-icon km-ops-showcase__title-icon--experimental"
+        title={opsZone.terminal.experimentalHint}
+      />
+    </h3>
+    <p class="km-ops-showcase__body">{opsZone.terminal.body}</p>
+
+    <KeyModTerminalPreviewFlow terminal={opsZone.terminal} />
+
+    <ul class="km-ops-showcase__bullets">
+      <li class="km-ops-showcase__bullet">
+        <strong class="km-ops-showcase__bullet-label">{opsZone.terminal.usb.label}</strong>
+        <span class="km-ops-showcase__bullet-body">{opsZone.terminal.usb.body}</span>
+      </li>
+      <li class="km-ops-showcase__bullet">
+        <strong class="km-ops-showcase__bullet-label">{opsZone.terminal.ble.label}</strong>
+        <span class="km-ops-showcase__bullet-body">{opsZone.terminal.ble.body}</span>
+      </li>
+    </ul>
+
+    <p class="km-ops-showcase__notice">{opsZone.terminal.notice}</p>
+  </section>
+</div>

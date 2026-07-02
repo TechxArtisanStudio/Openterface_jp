@@ -1,0 +1,43 @@
+---
+import KeyModModeDetail from './KeyModModeDetail.astro';
+import KeyModGameEditorCarousel from './KeyModGameEditorCarousel.astro';
+import KeyModGamepadPresetRotator from './KeyModGamepadPresetRotator.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  gameZone: KeymodLandingStrings['modesTheater']['gameZone'];
+  gamepad: KeymodLandingStrings['modesTheater']['gamepad'];
+}
+
+const { gameZone, gamepad } = Astro.props;
+---
+
+<div class="km-game-showcase">
+  <div class="km-game-showcase__intro">
+    <KeyModModeDetail
+      id="mode-gamepad"
+      status={gamepad.badge}
+      title={gamepad.title}
+      body={gamepad.body}
+      sceneId="gamepad"
+      demoLinks={gamepad.demoLinks}
+    />
+  </div>
+
+  <section class="km-game-showcase__block" aria-labelledby="game-preset-title">
+    <h3 id="game-preset-title" class="km-game-showcase__title">{gameZone.presets.title}</h3>
+    <p class="km-game-showcase__body">{gameZone.presets.body}</p>
+    <KeyModGamepadPresetRotator layouts={gameZone.presets.layouts} />
+  </section>
+
+  <section class="km-game-showcase__block" aria-labelledby="game-editor-title">
+    <h3 id="game-editor-title" class="km-game-showcase__title">{gameZone.editor.title}</h3>
+    <p class="km-game-showcase__body">{gameZone.editor.body}</p>
+    <KeyModGameEditorCarousel panels={gameZone.editor.panels} />
+  </section>
+
+  <section class="km-game-showcase__share" aria-labelledby="game-share-title">
+    <h3 id="game-share-title" class="km-game-showcase__title">{gameZone.share.title}</h3>
+    <p class="km-game-showcase__body">{gameZone.share.body}</p>
+  </section>
+</div>

@@ -1,0 +1,100 @@
+---
+import KeyModExperimentalIcon from './KeyModExperimentalIcon.astro';
+import KeyModPovComposite from './KeyModPovComposite.astro';
+import { keymodPovVisibleTabScenes, type KeymodPovSceneId } from '../../data/keymodPovScenes';
+import type { KeymodDemoLink } from '../../i18n/keymodLanding';
+
+export type PovStageSceneCopy = {
+  id: KeymodPovSceneId;
+  status: string;
+  title: string;
+  lead: string;
+  demoLinks?: KeymodDemoLink[];
+};
+
+interface Props {
+  scenes: PovStageSceneCopy[];
+  tabLabels: Record<KeymodPovSceneId, string>;
+  defaultSceneId?: KeymodPovSceneId;
+}
+
+const { scenes, tabLabels, defaultSceneId = 'keyboard' } = Astro.props;
+const defaultScene = scenes.find((s) => s.id === defaultSceneId) ?? scenes[0];
+---
+
+<div class="km-pov-stage" id="km-pov-stage" data-km-pov-stage data-active-scene={defaultSceneId}>
+  <div class="km-pov-stage__tabs" role="tablist" aria-label="KeyCmd mode demo">
+    {
+      keymodPovVisibleTabScenes.map((scene) => (
+        <button
+          type="button"
+          class:list={['km-pov-stage__tab', scene.id === defaultSceneId && 'km-pov-stage__tab--active']}
+          role="tab"
+          id={`pov-tab-${scene.id}`}
+          aria-selected={scene.id === defaultSceneId ? 'true' : 'false'}
+          aria-controls="km-pov-stage-panel"
+          data-pov-tab={scene.id}
+        >
+          <span class="km-pov-stage__tab-label">
+            {tabLabels[scene.id]}
+            {
+              scene.experimental ? (
+                <KeyModExperimentalIcon class="km-pov-stage__tab-icon km-pov-stage__tab-icon--experimental" />
+              ) : null
+            }
+          </span>
+        </button>
+      ))
+    }
+  </div>
+
+  <div
+    class="km-pov-stage__panel"
+    id="km-pov-stage-panel"
+    role="tabpanel"
+    aria-labelledby={`pov-tab-${defaultSceneId}`}
+  >
+    <KeyModPovComposite activeSceneId={defaultSceneId} />
+  </div>
+
+  <div class="km-pov-stage__summary" data-km-pov-summary aria-live="polite">
+    {
+      scenes.map((scene) => (
+        <div
+          class:list={[
+            'km-pov-stage__summary-pane',
+            scene.id === defaultSceneId && 'km-pov-stage__summary-pane--active',
+          ]}
+          data-pov-summary={scene.id}
+          aria-hidden={scene.id !== defaultSceneId ? 'true' : 'false'}
+        >
+          <span class="km-pov-stage__status">{scene.status}</span>
+          <h3 class="km-title km-pov-stage__title">{scene.title}</h3>
+          <p class="km-body km-pov-stage__lead">{scene.lead}</p>
+          {
+            scene.demoLinks && scene.demoLinks.length > 0 ? (
+              <p class="km-pov-stage__demos">
+                {
+                  scene.demoLinks.map((link) => (
+                    <a
+                      class="km-pov-stage__demo-link"
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {link.label} ↗
+                    </a>
+                  ))
+                }
+              </p>
+            ) : null
+          }
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  import '../../scripts/keymod-pov-stage';
+</script>

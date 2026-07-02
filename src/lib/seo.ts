@@ -50,6 +50,7 @@ export const OG_IMAGE_SIZES: Record<string, { width: number; height: number }> =
   'https://assets.openterface.com/images/cover/mini-kvm-toolkit.webp': { width: 900, height: 674 },
   'https://assets.openterface.com/images/cover.webp': { width: 1280, height: 960 },
   'https://assets2.openterface.com/images/keymod/2in1.webp': { width: 1080, height: 1080 },
+  'https://openterface.com/keymod/rebirth/keycmd-welcome-headless.webp': { width: 1280, height: 1175 },
 };
 
 /** Avoid duplicate brand suffix when title already includes site name (e.g. home SEO titles). */

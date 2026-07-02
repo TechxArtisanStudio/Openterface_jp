@@ -1,0 +1,9 @@
+---
+interface Props {
+  label?: string;
+}
+
+const { label = 'New' } = Astro.props;
+---
+
+<span class="km-new-badge" aria-hidden="true">{label}</span>

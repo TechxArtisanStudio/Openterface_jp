@@ -1,0 +1,106 @@
+---
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  panels: KeymodLandingStrings['modesTheater']['gameZone']['editor']['panels'];
+  id?: string;
+}
+
+const { panels, id = 'game-editor-carousel' } = Astro.props;
+const imageWidth = 2400;
+const imageHeight = 1080;
+const firstCaption = panels[0]?.caption ?? '';
+---
+
+<div
+  class="km-game-carousel"
+  id={id}
+  data-km-game-carousel
+  role="region"
+  aria-roledescription="carousel"
+  aria-label="Build your layout editor screenshots"
+  tabindex="0"
+  data-active-slide="0"
+>
+  <div class="km-game-carousel__stage">
+    <button
+      type="button"
+      class="km-game-carousel__nav km-game-carousel__nav--prev"
+      data-km-game-prev
+      aria-label="Previous slide"
+      disabled
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <div class="km-game-carousel__viewport">
+      <div class="km-game-carousel__track" data-km-game-track>
+        {
+          panels.map((panel, index) => (
+            <figure
+              class:list={[
+                'km-game-carousel__slide',
+                'km-media',
+                index === 0 && 'km-game-carousel__slide--lead',
+                index === 1 && 'km-game-carousel__slide--mate',
+              ]}
+              data-km-game-slide
+              data-slide-index={index}
+              data-caption={panel.caption}
+            >
+              <div class="km-game-carousel__frame">
+                <img
+                  class="km-media__img"
+                  src={panel.imageSrc}
+                  alt={panel.imageAlt}
+                  width={imageWidth}
+                  height={imageHeight}
+                  loading={index < 3 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </div>
+              <figcaption class="km-game-carousel__slide-label">{panel.caption}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="km-game-carousel__nav km-game-carousel__nav--next"
+      data-km-game-next
+      aria-label="Next slide"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="km-game-carousel__footer">
+    <p class="km-game-carousel__caption km-game-showcase__caption" data-km-game-caption aria-live="polite">
+      {firstCaption}
+    </p>
+    <div class="km-game-carousel__dots" role="tablist" aria-label="Editor screenshot slides">
+      {
+        panels.map((panel, index) => (
+          <button
+            type="button"
+            class:list={['km-game-carousel__dot', index === 0 && 'km-game-carousel__dot--active']}
+            data-km-game-dot={index}
+            role="tab"
+            aria-label={`Slide ${index + 1}: ${panel.caption}`}
+            aria-current={index === 0 ? 'true' : 'false'}
+          />
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  import '../../scripts/keymod-game-editor-carousel';
+</script>

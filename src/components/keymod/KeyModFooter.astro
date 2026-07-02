@@ -1,0 +1,99 @@
+---
+import KeyCmdWordmark from './KeyCmdWordmark.astro';
+import KeyModNewBadge from './KeyModNewBadge.astro';
+import { keymodLinks } from '../../i18n/keymodLanding';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['footer'];
+}
+
+const { copy } = Astro.props;
+---
+
+<footer class="km-footer" id="footer">
+  <div class="km-footer__inner">
+    <div class="km-footer__cta-row">
+      <a
+        href="#updates"
+        class="km-btn km-btn--primary"
+        data-analytics-event="internal_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_footer_subscribe"
+      >
+        {copy.ctaPrimary}
+      </a>
+      <a
+        href={keymodLinks.keycmd}
+        class="km-btn km-btn--ghost km-footer__keycmd-btn"
+        data-analytics-event="internal_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_footer_keycmd"
+      >
+        <KeyCmdWordmark size="footer" decorative />
+        <span class="sr-only">{copy.ctaKeycmd}</span>
+      </a>
+      <a
+        href={keymodLinks.docs}
+        class="km-btn km-btn--ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="docs_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_footer_docs"
+      >
+        Docs
+      </a>
+      <a
+        href={keymodLinks.discord}
+        class="km-btn km-btn--ghost"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="community_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_footer_discord"
+      >
+        {copy.discordCta}
+      </a>
+      <a
+        href={keymodLinks.forumFooter}
+        class="km-btn km-btn--ghost km-btn--has-new-badge"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="forum_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_footer_forum"
+      >
+        {copy.forumCta}
+        <KeyModNewBadge label={copy.forumNewBadge} />
+      </a>
+    </div>
+    <div class="km-footer__links">
+      <a
+        href={keymodLinks.minikvm}
+        data-analytics-event="internal_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_product_line_minikvm"
+      >
+        Mini-KVM
+      </a>
+      <a
+        href={keymodLinks.kvmgo}
+        data-analytics-event="internal_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_product_line_kvmgo"
+      >
+        KVM-GO
+      </a>
+      <a
+        href={keymodLinks.keycmd}
+        data-analytics-event="internal_click"
+        data-analytics-product="keymod"
+        data-analytics-placement="keymod_footer_keycmd"
+      >
+        KeyCmd
+      </a>
+    </div>
+    <p class="km-footer__legal">{copy.legal}</p>
+  </div>
+</footer>
