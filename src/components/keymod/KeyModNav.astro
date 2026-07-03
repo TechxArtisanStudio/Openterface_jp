@@ -36,9 +36,6 @@ const { copy } = Astro.props;
       >
         {copy.docs}
       </a>
-      <div class="km-nav__locale">
-        <LocaleSwitcher currentPath="/keymod/" currentSearch={Astro.url.search} />
-      </div>
       <a
         href={keymodLinks.crowdSupply}
         class="km-btn km-btn--primary km-nav__cta"
@@ -60,6 +57,9 @@ const { copy } = Astro.props;
           aria-hidden="true"
         />
       </a>
+      <div class="km-nav__locale">
+        <LocaleSwitcher currentPath="/keymod/" currentSearch={Astro.url.search} />
+      </div>
     </nav>
   </div>
 </header>
