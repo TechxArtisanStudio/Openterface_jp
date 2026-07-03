@@ -18,6 +18,9 @@ export type SocialPost = {
   sort: number;
   zIndex: number;
   thumbnail: string;
+  likeCount?: number;
+  commentCount?: number;
+  authorAvatar?: string;
   fetchStatus: 'ok' | 'manual' | 'failed' | 'pending' | string;
 };
 
@@ -96,7 +99,19 @@ export function socialPostToKeymodCommunityCard(post: SocialPost) {
     excerpt: post.excerpt,
     scenarioTag: post.scenarioTag,
     title: post.title,
+    likeCount: post.likeCount,
+    commentCount: post.commentCount,
+    authorAvatar: post.authorAvatar,
   };
+}
+
+function authorInitial(author: string): string {
+  const handle = author.replace(/^@/, '').trim();
+  return (handle[0] ?? '?').toUpperCase();
+}
+
+export function getAuthorInitialForCard(author: string): string {
+  return authorInitial(author);
 }
 
 /** Card view for KeyMod landing community strip. */
