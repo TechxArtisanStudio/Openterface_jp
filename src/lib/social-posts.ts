@@ -28,15 +28,45 @@ import { socialPosts, socialPostsGeneratedAt } from '../data/socialPosts.generat
 
 export { socialPosts, socialPostsGeneratedAt };
 
+const RECENCY_HALF_LIFE_DAYS = 90;
+const MISSING_DATE_RECENCY = 0.35;
+const LANDING_RECENCY_WEIGHT = 0.5;
+const LANDING_LIKES_WEIGHT = 0.5;
+
 function bySort(a: SocialPost, b: SocialPost): number {
   return a.sort - b.sort || a.id.localeCompare(b.id);
 }
 
+/** 0–1 recency score; exponential decay by post age. */
+export function recencyScore(isoDate: string | undefined, nowMs: number): number {
+  if (!isoDate) return MISSING_DATE_RECENCY;
+  const ageDays = (nowMs - Date.parse(isoDate)) / 86_400_000;
+  if (!Number.isFinite(ageDays) || ageDays < 0) return MISSING_DATE_RECENCY;
+  return Math.exp(-ageDays / RECENCY_HALF_LIFE_DAYS);
+}
+
+/** Landing strip rank: 50% recency + 50% normalized likes within candidate set. */
+export function landingRankScore(
+  post: SocialPost,
+  maxLikes: number,
+  nowMs: number,
+): number {
+  const likesNorm = maxLikes > 0 ? (post.likeCount ?? 0) / maxLikes : 0;
+  return LANDING_RECENCY_WEIGHT * recencyScore(post.date, nowMs) + LANDING_LIKES_WEIGHT * likesNorm;
+}
+
+function byLandingRank(a: SocialPost, b: SocialPost, maxLikes: number, nowMs: number): number {
+  const scoreDiff = landingRankScore(b, maxLikes, nowMs) - landingRankScore(a, maxLikes, nowMs);
+  if (scoreDiff !== 0) return scoreDiff;
+  return bySort(a, b);
+}
+
 /** Posts flagged for a product landing strip (featured_placements contains slug). */
 export function getSocialPostsForLanding(productSlug: string, limit?: number): SocialPost[] {
-  const list = socialPosts
-    .filter((p) => p.featuredPlacements.includes(productSlug))
-    .sort(bySort);
+  const candidates = socialPosts.filter((p) => p.featuredPlacements.includes(productSlug));
+  const maxLikes = Math.max(0, ...candidates.map((p) => p.likeCount ?? 0));
+  const nowMs = Date.now();
+  const list = [...candidates].sort((a, b) => byLandingRank(a, b, maxLikes, nowMs));
   return limit != null && limit > 0 ? list.slice(0, limit) : list;
 }
 

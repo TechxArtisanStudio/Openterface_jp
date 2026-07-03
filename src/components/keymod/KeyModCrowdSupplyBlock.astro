@@ -1,5 +1,7 @@
 ---
+import KeyModSection from './KeyModSection.astro';
 import KeyModCrowdSupplyCta from './KeyModCrowdSupplyCta.astro';
+import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -14,6 +16,11 @@ interface Props {
 }
 
 const { variant, copy, id, elevated = true, analyticsPlacement } = Astro.props;
+const isOpensource = variant === 'opensource';
+const sectionElevated = elevated && !isOpensource;
+const opensourceCopy = isOpensource
+  ? (copy as KeymodLandingStrings['crowdSupplyOpensource'])
+  : null;
 const crowdPlacement =
   analyticsPlacement ??
   (id === 'back-the-project'
@@ -30,12 +37,46 @@ const ariaLabel =
     : 'Open hardware and community design';
 ---
 
-<section
-  class:list={['km-section', 'km-crowd-cta-section', elevated && 'km-section--elevated']}
-  id={sectionId}
-  aria-label={ariaLabel}
->
-  <div class="km-section__inner km-section__inner--narrow">
-    <KeyModCrowdSupplyCta variant={variant} copy={copy} analyticsPlacement={crowdPlacement} />
-  </div>
-</section>
+{
+  isOpensource && opensourceCopy ? (
+    <KeyModSection
+      id={sectionId}
+      eyebrow={opensourceCopy.eyebrow}
+      title={opensourceCopy.title}
+      subtitle={opensourceCopy.body}
+      centered
+      narrow
+    >
+      <div class="km-opensource-badges" aria-label={opensourceCopy.badgesLabel}>
+        <img
+          class="km-opensource-badges__badge"
+          src={keymodLinks.openSourceInitiative}
+          alt={opensourceCopy.osiAlt}
+          width="120"
+          height="120"
+          loading="lazy"
+          decoding="async"
+        />
+        <img
+          class="km-opensource-badges__badge"
+          src={keymodLinks.openSourceHardware}
+          alt={opensourceCopy.oshAlt}
+          width="120"
+          height="100"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </KeyModSection>
+  ) : (
+    <section
+      class:list={['km-section', 'km-crowd-cta-section', sectionElevated && 'km-section--elevated']}
+      id={sectionId}
+      aria-label={ariaLabel}
+    >
+      <div class="km-section__inner km-section__inner--narrow">
+        <KeyModCrowdSupplyCta variant={variant} copy={copy} analyticsPlacement={crowdPlacement} />
+      </div>
+    </section>
+  )
+}

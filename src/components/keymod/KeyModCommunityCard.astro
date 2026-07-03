@@ -4,9 +4,10 @@ import { getAuthorInitialForCard, type KeymodCommunityCardView } from '../../lib
 
 interface Props {
   card: KeymodCommunityCardView;
+  clone?: boolean;
 }
 
-const { card } = Astro.props;
+const { card, clone = false } = Astro.props;
 
 const isVideo =
   card.platform === 'youtube' || card.format === 'short' || card.format === 'reel';
@@ -22,100 +23,112 @@ const thumbAlt =
 const authorInitial = getAuthorInitialForCard(card.author);
 const showEngagement =
   card.likeCount != null || card.commentCount != null;
+
+const cardClass = clone
+  ? 'km-community-card km-community-card--clone'
+  : 'km-community-card';
 ---
 
-<a
-  href={card.externalUrl}
-  class="km-community-card"
-  target="_blank"
-  rel="noopener noreferrer"
+<article
+  class={cardClass}
   role="listitem"
-  data-analytics-event="community_click"
-  data-analytics-product="keymod"
-  data-analytics-placement={`keymod_social_${card.id}`}
+  aria-hidden={clone ? true : undefined}
 >
-  <figure class="km-community-card__thumb">
-    <img
-      src={card.thumbnail}
-      alt={thumbAlt}
-      loading="lazy"
-      decoding="async"
-    />
-    <span class="km-community-card__platform">{platformLabel(card.platform)}</span>
-    {
-      isVideo ? (
-        <span class="km-community-card__play" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-            <path d="M8 5v14l11-7z" />
-          </svg>
-        </span>
-      ) : null
-    }
-  </figure>
-  <div class="km-community-card__body">
-    <div class="km-community-card__author-row">
+  <a
+    href={card.externalUrl}
+    class="km-community-card__link"
+    target="_blank"
+    rel="noopener noreferrer"
+    tabindex={clone ? -1 : undefined}
+    data-analytics-event="community_click"
+    data-analytics-product="keymod"
+    data-analytics-placement={`keymod_social_${card.id}`}
+  >
+    <figure class="km-community-card__thumb">
+      <img
+        src={card.thumbnail}
+        alt={thumbAlt}
+        loading="lazy"
+        decoding="async"
+        draggable="false"
+      />
+      <span class="km-community-card__platform">{platformLabel(card.platform)}</span>
       {
-        card.authorAvatar ? (
-          <>
-            <img
-              class="km-community-card__avatar"
-              src={card.authorAvatar}
-              alt=""
-              loading="lazy"
-              decoding="async"
-              width="36"
-              height="36"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"
-            />
-            <span
-              class="km-community-card__avatar km-community-card__avatar--fallback"
-              style="display:none"
-              aria-hidden="true"
-            >
+        isVideo ? (
+          <span class="km-community-card__play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        ) : null
+      }
+    </figure>
+    <div class="km-community-card__body">
+      <div class="km-community-card__author-row">
+        {
+          card.authorAvatar ? (
+            <>
+              <img
+                class="km-community-card__avatar"
+                src={card.authorAvatar}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width="36"
+                height="36"
+                draggable="false"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"
+              />
+              <span
+                class="km-community-card__avatar km-community-card__avatar--fallback"
+                style="display:none"
+                aria-hidden="true"
+              >
+                {authorInitial}
+              </span>
+            </>
+          ) : (
+            <span class="km-community-card__avatar km-community-card__avatar--fallback" aria-hidden="true">
               {authorInitial}
             </span>
-          </>
-        ) : (
-          <span class="km-community-card__avatar km-community-card__avatar--fallback" aria-hidden="true">
-            {authorInitial}
-          </span>
-        )
-      }
-      <p class="km-community-card__author">{card.author}</p>
+          )
+        }
+        <p class="km-community-card__author">{card.author}</p>
+        {
+          showEngagement ? (
+            <div class="km-community-card__engagement" aria-label="Post engagement">
+              {
+                card.likeCount != null ? (
+                  <span class="km-community-card__stat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z" />
+                    </svg>
+                    {card.likeCount}
+                  </span>
+                ) : null
+              }
+              {
+                card.commentCount != null ? (
+                  <span class="km-community-card__stat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z" />
+                    </svg>
+                    {card.commentCount}
+                  </span>
+                ) : null
+              }
+            </div>
+          ) : null
+        }
+      </div>
+      {card.scenarioTag ? <p class="km-community-card__tag">{card.scenarioTag}</p> : null}
       {
-        showEngagement ? (
-          <div class="km-community-card__engagement" aria-label="Post engagement">
-            {
-              card.likeCount != null ? (
-                <span class="km-community-card__stat">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z" />
-                  </svg>
-                  {card.likeCount}
-                </span>
-              ) : null
-            }
-            {
-              card.commentCount != null ? (
-                <span class="km-community-card__stat">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5z" />
-                  </svg>
-                  {card.commentCount}
-                </span>
-              ) : null
-            }
-          </div>
+        card.excerpt ? (
+          <p class="km-community-card__excerpt">&ldquo;{card.excerpt}&rdquo;</p>
+        ) : card.title ? (
+          <p class="km-community-card__title">{card.title}</p>
         ) : null
       }
     </div>
-    {card.scenarioTag ? <p class="km-community-card__tag">{card.scenarioTag}</p> : null}
-    {
-      card.excerpt ? (
-        <p class="km-community-card__excerpt">&ldquo;{card.excerpt}&rdquo;</p>
-      ) : card.title ? (
-        <p class="km-community-card__title">{card.title}</p>
-      ) : null
-    }
-  </div>
-</a>
+  </a>
+</article>

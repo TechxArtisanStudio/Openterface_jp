@@ -1,6 +1,7 @@
 ---
 import KeyModSection from './KeyModSection.astro';
 import { getKeymodAsset } from '../../data/keymodAssets';
+import { keymodLinks } from '../../i18n/keymodLanding';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -9,6 +10,16 @@ interface Props {
 
 const { copy } = Astro.props;
 const welcomeAsset = getKeymodAsset('whatItIs', 'welcome-screen');
+const KEYCMD = 'KeyCmd';
+
+function splitKeycmdTitle(title: string) {
+  const index = title.indexOf(KEYCMD);
+  if (index === -1) return null;
+  return {
+    before: title.slice(0, index),
+    after: title.slice(index + KEYCMD.length),
+  };
+}
 ---
 
 <KeyModSection id="what-it-is" eyebrow={copy.eyebrow} title={copy.title} subtitle={copy.subtitle} centered>
@@ -30,17 +41,38 @@ const welcomeAsset = getKeymodAsset('whatItIs', 'welcome-screen');
     }
     <ol class="km-whatitis__steps">
       {
-        copy.cards.map((card, index) => (
-          <li class="km-whatitis-step">
-            <span class="km-whatitis-step__num" aria-hidden="true">
-              {index + 1}
-            </span>
-            <article class="km-card km-whatitis-step__card">
-              <h3 class="km-card__title">{card.title}</h3>
-              <p class="km-card__body">{card.body}</p>
-            </article>
-          </li>
-        ))
+        copy.cards.map((card, index) => {
+          const keycmdTitle = splitKeycmdTitle(card.title);
+          return (
+            <li class="km-whatitis-step">
+              <span class="km-whatitis-step__num" aria-hidden="true">
+                {index + 1}
+              </span>
+              <article class="km-card km-whatitis-step__card">
+                <h3 class="km-card__title">
+                  {keycmdTitle ? (
+                    <>
+                      {keycmdTitle.before}
+                      <a
+                        href={keymodLinks.keycmd}
+                        class="km-whatitis-step__keycmd-link"
+                        data-analytics-event="outbound_click"
+                        data-analytics-product="keymod"
+                        data-analytics-placement="keymod_whatitis_keycmd"
+                      >
+                        {KEYCMD}
+                      </a>
+                      {keycmdTitle.after}
+                    </>
+                  ) : (
+                    card.title
+                  )}
+                </h3>
+                <p class="km-card__body">{card.body}</p>
+              </article>
+            </li>
+          );
+        })
       }
     </ol>
   </div>

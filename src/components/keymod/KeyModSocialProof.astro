@@ -15,10 +15,32 @@ const posts = getKeymodCommunityCardsFromSocialPosts();
 {
   posts.length > 0 ? (
     <KeyModSection id="social-proof" eyebrow={copy.eyebrow} title={copy.title} centered>
-      <div class="km-community-grid" role="list">
-        {posts.map((post) => (
-          <KeyModCommunityCard card={post} />
-        ))}
+      <div class="km-community" id="social-proof-posts">
+        <div class="km-community-grid-wrap">
+          <div
+            class="km-community-grid__viewport"
+            tabindex="0"
+            aria-label="Community posts, swipe horizontally"
+          >
+            <div class="km-community-grid__track" id="km-community-track" role="list">
+              {posts.map((post) => (
+                <KeyModCommunityCard card={post} />
+              ))}
+              {posts.map((post) => (
+                <KeyModCommunityCard card={post} clone />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <details class="km-community-expand">
+          <summary class="km-community-expand__trigger">{copy.showAllPosts}</summary>
+          <div class="km-community-static" role="list">
+            {posts.map((post) => (
+              <KeyModCommunityCard card={post} />
+            ))}
+          </div>
+        </details>
       </div>
 
       <p class="km-subtitle km-community-grid__footer">
@@ -45,3 +67,10 @@ const posts = getKeymodCommunityCardsFromSocialPosts();
     </KeyModSection>
   ) : null
 }
+
+<script>
+  const track = document.getElementById('km-community-track');
+  if (track && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    track.style.animation = 'none';
+  }
+</script>

@@ -63,10 +63,6 @@ test('no gtag console errors on load', async ({ page }) => {
 });
 
 test('accepting cookies enables GA4 page view tracking', async ({ page }) => {
-  if (process.env.PLAYWRIGHT_BASE_URL?.includes('127.0.0.1')) {
-    test.skip(true, 'GA4 consent + page_view requires production analytics bootstrap');
-  }
-
   const collectRequests: string[] = [];
   page.on('request', (req) => {
     const url = req.url();
@@ -76,6 +72,10 @@ test('accepting cookies enables GA4 page view tracking', async ({ page }) => {
   });
 
   await page.goto('/', { waitUntil: 'networkidle' });
+  if (await isLocalPreview(page)) {
+    test.skip(true, 'GA4 consent + page_view requires production analytics bootstrap');
+  }
+
   await expect(page.evaluate(() => typeof window.gtag === 'function')).resolves.toBe(true);
 
   await page.locator('#cookie-consent-accept').click();
@@ -149,6 +149,61 @@ test('crowdsupply_click includes landing UTM params', async ({ page }) => {
             e?.[0] === 'event' && e?.[1] === 'crowdsupply_click',
         );
         return hit?.[2]?.utm_source === 'test_instagram' && hit?.[2]?.utm_campaign === 'p0_test';
+      }),
+    )
+    .toBe(true);
+});
+
+test('keymod landing exposes crowdsupply_click analytics CTAs', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'domcontentloaded' });
+  await page.locator('#cookie-consent-accept').click();
+  await expect(page.locator('[data-analytics-event="crowdsupply_click"]').first()).toBeVisible();
+  await expect(page.locator('[data-analytics-placement="keymod_hero"]')).toBeVisible();
+});
+
+test('keymod landing splits CS placements by section', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'domcontentloaded' });
+  await page.locator('#cookie-consent-accept').click();
+
+  for (const placement of [
+    'keymod_nav',
+    'keymod_hero',
+    'keymod_theater_crowd',
+    'keymod_subscribe_crowd',
+    'keymod_sku_compare',
+    'keymod_back_project',
+  ]) {
+    await expect(page.locator(`[data-analytics-placement="${placement}"]`)).toHaveCount(1);
+  }
+});
+
+test('keymod landing exposes secondary outbound analytics CTAs', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'domcontentloaded' });
+  await page.locator('#cookie-consent-accept').click();
+
+  await expect(page.locator('[data-analytics-event="docs_click"]').first()).toBeVisible();
+  await expect(page.locator('[data-analytics-placement="keymod_hero_docs"]')).toBeVisible();
+  await expect(page.locator('[data-analytics-event="forum_click"]').first()).toBeVisible();
+  await expect(page.locator('[data-analytics-placement="keymod_footer_discord"]')).toBeVisible();
+  await expect(page.locator('[data-analytics-placement="keymod_footer_subscribe"]')).toBeVisible();
+});
+
+test('keymod docs_click fires with placement after consent', async ({ page }) => {
+  await page.goto('/keymod/', { waitUntil: 'domcontentloaded' });
+  await page.locator('#cookie-consent-accept').click();
+  await page.waitForFunction(() => typeof window.__openterfaceAnalytics?.track === 'function');
+
+  await page.locator('[data-analytics-placement="keymod_hero_docs"]').click({ modifiers: ['Meta'] });
+
+  await expect
+    .poll(async () =>
+      page.evaluate(() => {
+        const dl = window.dataLayer || [];
+        const hit = dl.find(
+          (e: { 0?: string; 1?: string; 2?: Record<string, string> }) =>
+            e?.[0] === 'event' && e?.[1] === 'docs_click',
+        );
+        return hit?.[2]?.placement === 'keymod_hero_docs' && hit?.[2]?.product === 'keymod';
       }),
     )
     .toBe(true);

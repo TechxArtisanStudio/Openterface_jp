@@ -240,6 +240,7 @@ export type KeymodLandingStrings = {
     title: string;
     followIg: string;
     viewAllMedia: string;
+    showAllPosts: string;
   };
   keycmdBridge: {
     eyebrow: string;

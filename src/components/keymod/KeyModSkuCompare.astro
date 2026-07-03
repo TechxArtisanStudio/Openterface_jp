@@ -38,27 +38,6 @@ const plusAsset = getKeymodAsset('sku', 'plus');
       </p>
       <p class="km-card__body km-sku__connect">{copy.mini.connect}</p>
       <p class="km-card__body km-sku__tagline">{copy.mini.tagline}</p>
-      <a
-        href={keymodLinks.crowdSupply}
-        class="km-btn km-btn--primary km-sku__cta"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-analytics-event="crowdsupply_click"
-        data-analytics-product="keymod"
-        data-analytics-placement="keymod_sku_mini"
-      >
-        {copy.crowdSupplyCta}
-        <img
-          class="km-btn__icon"
-          src={keymodLinks.crowdSupplyIcon}
-          alt=""
-          width="20"
-          height="20"
-          loading="lazy"
-          decoding="async"
-          aria-hidden="true"
-        />
-      </a>
     </article>
     <article class="km-card km-sku__card">
       {
@@ -83,27 +62,29 @@ const plusAsset = getKeymodAsset('sku', 'plus');
       </p>
       <p class="km-card__body km-sku__connect">{copy.plus.connect}</p>
       <p class="km-card__body km-sku__tagline">{copy.plus.tagline}</p>
-      <a
-        href={keymodLinks.crowdSupply}
-        class="km-btn km-btn--primary km-sku__cta"
-        target="_blank"
-        rel="noopener noreferrer"
-        data-analytics-event="crowdsupply_click"
-        data-analytics-product="keymod"
-        data-analytics-placement="keymod_sku_plus"
-      >
-        {copy.crowdSupplyCta}
-        <img
-          class="km-btn__icon"
-          src={keymodLinks.crowdSupplyIcon}
-          alt=""
-          width="20"
-          height="20"
-          loading="lazy"
-          decoding="async"
-          aria-hidden="true"
-        />
-      </a>
     </article>
+  </div>
+  <div class="km-sku__footer">
+    <a
+      href={keymodLinks.crowdSupply}
+      class="km-btn km-btn--primary km-sku__footer-cta"
+      target="_blank"
+      rel="noopener noreferrer"
+      data-analytics-event="crowdsupply_click"
+      data-analytics-product="keymod"
+      data-analytics-placement="keymod_sku_compare"
+    >
+      {copy.crowdSupplyCta}
+      <img
+        class="km-btn__icon"
+        src={keymodLinks.crowdSupplyIcon}
+        alt=""
+        width="20"
+        height="20"
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+    </a>
   </div>
 </KeyModSection>
