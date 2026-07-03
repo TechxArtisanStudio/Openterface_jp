@@ -56,15 +56,25 @@ const showEngagement =
     <div class="km-community-card__author-row">
       {
         card.authorAvatar ? (
-          <img
-            class="km-community-card__avatar"
-            src={card.authorAvatar}
-            alt=""
-            loading="lazy"
-            decoding="async"
-            width="36"
-            height="36"
-          />
+          <>
+            <img
+              class="km-community-card__avatar"
+              src={card.authorAvatar}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              width="36"
+              height="36"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'"
+            />
+            <span
+              class="km-community-card__avatar km-community-card__avatar--fallback"
+              style="display:none"
+              aria-hidden="true"
+            >
+              {authorInitial}
+            </span>
+          </>
         ) : (
           <span class="km-community-card__avatar km-community-card__avatar--fallback" aria-hidden="true">
             {authorInitial}
