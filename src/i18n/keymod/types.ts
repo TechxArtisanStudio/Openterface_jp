@@ -240,10 +240,6 @@ export type KeymodLandingStrings = {
     title: string;
     followIg: string;
     viewAllMedia: string;
-    fallbackNote: string;
-    viewOnInstagram: string;
-    viewProfile: string;
-    viewPostOnInstagram: string;
   };
   keycmdBridge: {
     eyebrow: string;

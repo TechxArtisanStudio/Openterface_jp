@@ -1,9 +1,7 @@
 ---
 import KeyModSection from './KeyModSection.astro';
-import KeyModSocialProofLink from './KeyModSocialProofLink.astro';
-import KeyModInstagramEmbed from './KeyModInstagramEmbed.astro';
-import { getKeymodCommunityCards } from '../../data/keymodCommunityMedia';
-import { getKeymodInstagramEmbeds } from '../../data/keymodInstagramEmbeds';
+import KeyModCommunityCard from './KeyModCommunityCard.astro';
+import { getKeymodCommunityCardsFromSocialPosts } from '../../lib/social-posts';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -11,66 +9,39 @@ interface Props {
 }
 
 const { copy } = Astro.props;
-const embeds = getKeymodInstagramEmbeds();
-const embedIds = new Set(embeds.map((e) => e.id));
-const fallbackLinks = getKeymodCommunityCards().filter((card) => embedIds.has(card.id));
+const posts = getKeymodCommunityCardsFromSocialPosts();
 ---
 
-<KeyModSection id="social-proof" eyebrow={copy.eyebrow} title={copy.title} centered>
-  <div class="km-social-proof" data-km-social-proof>
-    <div class="km-social-proof__loading" data-km-social-loading aria-busy="true" aria-label="Loading Instagram posts">
-      <div class="km-social-proof__loading-grid" aria-hidden="true">
-        {embeds.map(() => (
-          <div class="km-social-proof__loading-cell" />
+{
+  posts.length > 0 ? (
+    <KeyModSection id="social-proof" eyebrow={copy.eyebrow} title={copy.title} centered>
+      <div class="km-community-grid" role="list">
+        {posts.map((post) => (
+          <KeyModCommunityCard card={post} />
         ))}
       </div>
-    </div>
 
-    <div class="km-social-proof__embeds" data-km-social-embeds>
-      <div class="km-ig-embed-grid">
-        {embeds.map((embed) => (
-          <KeyModInstagramEmbed
-            embed={embed}
-            viewProfileLabel={copy.viewProfile}
-            viewPostLabel={copy.viewPostOnInstagram}
-          />
-        ))}
-      </div>
-    </div>
-
-    <div class="km-social-proof__fallback" data-km-social-fallback hidden>
-      <p class="km-social-proof__fallback-note">{copy.fallbackNote}</p>
-      <div class="km-social-proof-list">
-        {fallbackLinks.map((card) => (
-          <KeyModSocialProofLink card={card} viewLabel={copy.viewOnInstagram} />
-        ))}
-      </div>
-    </div>
-  </div>
-
-  <p class="km-subtitle km-ig-embed-grid__footer">
-    <a
-      href="https://www.instagram.com/techxartisan/"
-      target="_blank"
-      rel="noopener noreferrer"
-      data-analytics-event="community_click"
-      data-analytics-product="keymod"
-      data-analytics-placement="keymod_social_instagram"
-    >
-      {copy.followIg} ↗
-    </a>
-    {' · '}
-    <a
-      href="/media/?product=keymod"
-      data-analytics-event="internal_click"
-      data-analytics-product="keymod"
-      data-analytics-placement="keymod_social_media_hub"
-    >
-      {copy.viewAllMedia} →
-    </a>
-  </p>
-</KeyModSection>
-
-<script>
-  import '../../scripts/keymod-instagram-embeds';
-</script>
+      <p class="km-subtitle km-community-grid__footer">
+        <a
+          href="https://www.instagram.com/techxartisan/"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="community_click"
+          data-analytics-product="keymod"
+          data-analytics-placement="keymod_social_instagram"
+        >
+          {copy.followIg} ↗
+        </a>
+        {' · '}
+        <a
+          href="/media/?product=keymod"
+          data-analytics-event="internal_click"
+          data-analytics-product="keymod"
+          data-analytics-placement="keymod_social_media_hub"
+        >
+          {copy.viewAllMedia} →
+        </a>
+      </p>
+    </KeyModSection>
+  ) : null
+}

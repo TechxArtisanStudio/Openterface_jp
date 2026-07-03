@@ -18,7 +18,8 @@
     "test:a11y": "playwright test tests/a11y",
     "test:visual": "playwright test tests/visual",
     "test": "npm run test:smoke && npm run test:a11y",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "sync:social-posts": "node scripts/sync-social-posts.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",

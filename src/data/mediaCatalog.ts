@@ -1,6 +1,5 @@
 import { catalogVideos } from './catalogVideos';
 import { mediaCoverage } from './mediaCoverage';
-import { mediaPosts } from './mediaPosts';
 import { mediaTestimonials } from './mediaTestimonials';
 import {
   catalogVideoToMediaEntry,
@@ -8,11 +7,15 @@ import {
   mediaPostToCatalogEntry,
   type MediaCatalogEntry,
 } from '../lib/youtube';
+import { getSocialPostsForMedia, socialPostToMediaCatalogEntry } from '../lib/social-posts';
 
-/** Full Media hub catalog: YouTube + press + social posts (incl. quote reviews). */
+/** Social posts from social-posts.csv (SSOT). */
+const socialCatalog = getSocialPostsForMedia().map(socialPostToMediaCatalogEntry);
+
+/** Full Media hub catalog: YouTube + press + social posts + testimonials. */
 export const mediaCatalog: MediaCatalogEntry[] = [
   ...catalogVideos.map(catalogVideoToMediaEntry),
   ...mediaCoverage.map(mediaCoverageToCatalogEntry),
-  ...mediaPosts.map(mediaPostToCatalogEntry),
+  ...socialCatalog,
   ...mediaTestimonials.map(mediaPostToCatalogEntry),
 ];

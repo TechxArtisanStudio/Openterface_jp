@@ -1,9 +1,9 @@
 ---
 import { PLATFORM_DISPLAY_NAMES, type SocialPlatform } from '../../lib/youtube';
-import type { KeymodCommunityCard } from '../../data/keymodCommunityMedia';
+import type { KeymodCommunityCardView } from '../../lib/social-posts';
 
 interface Props {
-  card: KeymodCommunityCard;
+  card: KeymodCommunityCardView;
 }
 
 const { card } = Astro.props;
@@ -24,7 +24,7 @@ function platformLabel(platform: SocialPlatform | 'youtube'): string {
 }
 
 const thumbAlt =
-  card.title ?? card.excerpt ?? `${platformLabel(card.platform)} post by ${card.author}`;
+  card.excerpt ?? card.title ?? `${platformLabel(card.platform)} post by ${card.author}`;
 ---
 
 <a
@@ -32,6 +32,10 @@ const thumbAlt =
   class="km-community-card"
   target="_blank"
   rel="noopener noreferrer"
+  role="listitem"
+  data-analytics-event="community_click"
+  data-analytics-product="keymod"
+  data-analytics-placement={`keymod_social_${card.id}`}
 >
   <figure class:list={['km-community-card__thumb', thumbClass]}>
     <img
@@ -54,7 +58,12 @@ const thumbAlt =
   <div class="km-community-card__body">
     {card.scenarioTag ? <p class="km-community-card__tag">{card.scenarioTag}</p> : null}
     <p class="km-community-card__author">{card.author}</p>
-    {card.title ? <p class="km-community-card__title">{card.title}</p> : null}
-    {card.excerpt ? <p class="km-community-card__excerpt">&ldquo;{card.excerpt}&rdquo;</p> : null}
+    {
+      card.excerpt ? (
+        <p class="km-community-card__excerpt">&ldquo;{card.excerpt}&rdquo;</p>
+      ) : card.title ? (
+        <p class="km-community-card__title">{card.title}</p>
+      ) : null
+    }
   </div>
 </a>
