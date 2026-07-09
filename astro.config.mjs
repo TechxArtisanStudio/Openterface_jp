@@ -13,6 +13,8 @@ export default defineConfig({
     '/products/accessories/': '/accessories/',
     '/use-cases/': '/products/',
     '/app/': '/apps/',
+    '/kvm/': '/apps/',
+    '/keycmd/': '/apps/',
     '/videos/': '/media/',
   },
     // site-refactor-redirects:end

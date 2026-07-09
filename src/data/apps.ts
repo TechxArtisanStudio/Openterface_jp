@@ -1,9 +1,11 @@
 import { docsPath, siteConfig } from '../config/site';
+import appVersions from '../config/app-versions.generated.json';
 
-/** Bump when docs app-versions.generated.json changes (qt / android). */
+/** Latest release tags from scripts/sync-app-versions.mjs (predev / prebuild). */
 export const appReleaseVersions = {
-  qt: '0.5.25',
-  android: 'v1.2.2',
+  qt: appVersions.qt_version,
+  android: appVersions.android_version,
+  macos: appVersions.macos_version,
 } as const;
 
 const qtBase = `https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/${appReleaseVersions.qt}`;
@@ -26,51 +28,16 @@ export interface AppDownloadSection {
   id: string;
   title: string;
   description: string;
-  storyHref: string;
-  storyLabel: string;
   docsHref: string;
   docsLabel: string;
   platforms: AppPlatformDownloads[];
 }
 
-export interface AppPlatform {
-  name: string;
-  description: string;
-  docsHref: string;
-  downloadLabel: string;
-}
-
-export interface KeyCmdMode {
-  title: string;
-  description: string;
-}
-
-export const appHubCards = [
-  {
-    title: 'Openterface KVM',
-    slug: 'kvm',
-    href: '/kvm/',
-    description:
-      'Host apps for Mini-KVM, KVM-GO, and uConsole KVM Extension — keyboard, video, and mouse over USB with BIOS-level access.',
-    highlights: ['Windows · macOS · Linux · Android', 'Open source on GitHub', 'Screen capture & text transfer'],
-  },
-  {
-    title: 'KeyCmd',
-    slug: 'keycmd',
-    href: '/keycmd/',
-    description:
-      'Turn your phone or tablet into a keyboard, trackpad, and gamepad for any computer — over USB or Bluetooth with KeyMod hardware.',
-    highlights: ['Android & iPadOS beta', 'Shortcut Hub & macros', 'Works with KeyMod, Mini-KVM, KVM-GO'],
-  },
-] as const;
-
 export const kvmDownloadSection: AppDownloadSection = {
-  id: 'kvm-control',
+  id: 'kvm',
   title: 'Openterface KVM',
   description:
     'Host apps for Mini-KVM, KVM-GO, and uConsole KVM Extension — keyboard, video, and mouse over USB.',
-  storyHref: '/kvm/',
-  storyLabel: 'Openterface KVM overview →',
   docsHref: docsPath('/app/kvm/'),
   docsLabel: 'Install guides & FAQs on docs →',
   platforms: [
@@ -173,6 +140,16 @@ export const kvmDownloadSection: AppDownloadSection = {
         external: true,
       },
     },
+    {
+      name: 'iPadOS',
+      description: 'Native iPad host app for Openterface KVM over USB-C.',
+      downloads: [],
+    },
+    {
+      name: 'Web',
+      description: 'Open a browser, connect to your KVM device, and control it — no install.',
+      downloads: [],
+    },
   ],
 };
 
@@ -181,8 +158,6 @@ export const keycmdDownloadSection: AppDownloadSection = {
   title: 'KeyCmd',
   description:
     'Turn your phone or tablet into a keyboard, trackpad, and gamepad — with KeyMod, Mini-KVM, or KVM-GO.',
-  storyHref: '/keycmd/',
-  storyLabel: 'KeyCmd overview →',
   docsHref: docsPath('/app/keycmd/'),
   docsLabel: 'Install guides & FAQs on docs →',
   platforms: [
@@ -198,78 +173,14 @@ export const keycmdDownloadSection: AppDownloadSection = {
       ],
     },
     {
-      name: 'iOS / iPadOS',
-      description: 'KeyCmd for iPhone and iPad — Bluetooth LE or USB-C.',
+      name: 'iOS',
+      description: 'KeyCmd for iPhone — Bluetooth LE or USB-C.',
       downloads: [],
     },
   ],
 };
 
 export const appDownloadSections: AppDownloadSection[] = [kvmDownloadSection, keycmdDownloadSection];
-
-export const kvmFeatures = [
-  'Keyboard, video, and mouse pass-through over USB',
-  'BIOS-level access — boot menus and firmware without network KVM',
-  'Text transfer via simulated keystrokes (ASCII)',
-  'Switchable USB port on supported hardware',
-  'Fully open-source host apps on GitHub',
-];
-
-export const kvmPlatforms: AppPlatform[] = [
-  {
-    name: 'Windows',
-    description: 'Cross-platform QT host app — installer and portable EXE builds.',
-    docsHref: docsPath('/app/kvm/'),
-    downloadLabel: 'Downloads on docs',
-  },
-  {
-    name: 'macOS',
-    description: 'Native macOS app with App Store and portable DMG options.',
-    docsHref: docsPath('/app/kvm/'),
-    downloadLabel: 'Downloads on docs',
-  },
-  {
-    name: 'Linux',
-    description: 'DEB, RPM, and AppImage packages for AMD64 and ARM64.',
-    docsHref: docsPath('/app/kvm/'),
-    downloadLabel: 'Downloads on docs',
-  },
-  {
-    name: 'Android',
-    description: 'Mobile KVM host for on-the-go access via USB-C.',
-    docsHref: docsPath('/app/kvm/'),
-    downloadLabel: 'Google Play & APK on docs',
-  },
-];
-
-export const keycmdModes: KeyCmdMode[] = [
-  {
-    title: 'Basic',
-    description: 'Full-screen keyboard with long-press repeat, key preview, and numpad.',
-  },
-  {
-    title: 'Pro',
-    description: 'Composite layout with Shortcut Hub strips, split keyboard, and IME support.',
-  },
-  {
-    title: 'Gamepad',
-    description: 'Virtual controller with customizable preset layouts and multi-touchpad support.',
-  },
-  {
-    title: 'Presentation',
-    description: 'Slide remote control with timer for Google Slides and other presentation apps.',
-  },
-  {
-    title: 'Voice',
-    description: 'Speech-to-keyboard input powered by Whisper API — hands-free typing.',
-  },
-];
-
-export const keycmdHardware = [
-  { name: 'KeyMod Series', href: '/keymod/' },
-  { name: 'Mini-KVM', href: '/minikvm/' },
-  { name: 'KVM-GO Series', href: '/kvmgo/' },
-];
 
 export const appDocsLinks = {
   overview: docsPath('/app/kvm/'),

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DocLinkBanner from '../../components/DocLinkBanner.astro';
+import OsPlatformIcon from '../../components/OsPlatformIcon.astro';
 import { appDownloadSections } from '../../data/apps';
 ---
 
@@ -12,15 +13,6 @@ import { appDownloadSections } from '../../data/apps';
   canonicalPath="/apps/"
 >
   <DocLinkBanner variant="product" />
-  <section class="product-section product-section--hero bg-gradient-to-br from-brand-light to-white">
-    <div class="product-section__inner text-center">
-      <h1 class="product-display-title">Openterface Apps</h1>
-      <p class="product-lead mt-2">Download host software for every product line</p>
-      <p class="mx-auto mt-3 max-w-2xl text-muted">
-        Direct installers and store links below. Open-source on GitHub — install guides and FAQs live on docs.
-      </p>
-    </div>
-  </section>
 
   {
     appDownloadSections.map((section) => (
@@ -37,25 +29,25 @@ import { appDownloadSections } from '../../data/apps';
               </h2>
               <p class="mt-2 max-w-2xl text-muted">{section.description}</p>
             </div>
-            <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm font-semibold shrink-0">
-              <a href={section.storyHref} class="text-primary-dark hover:underline">
-                {section.storyLabel}
-              </a>
-              <a
-                href={section.docsHref}
-                class="text-primary-dark hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {section.docsLabel}
-              </a>
-            </div>
+            <a
+              href={section.docsHref}
+              class="text-sm font-semibold text-primary-dark hover:underline shrink-0"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {section.docsLabel}
+            </a>
           </div>
 
           <div class="mt-8 grid gap-6 sm:grid-cols-2">
             {section.platforms.map((platform) => (
               <article class="rounded-lg border border-gray-200 bg-white p-5">
-                <h3 class="text-lg font-semibold text-primary-dark">{platform.name}</h3>
+                <div class="flex items-center gap-3">
+                  <span class="flex h-10 w-10 items-center justify-center rounded-md bg-brand-light">
+                    <OsPlatformIcon name={platform.name} />
+                  </span>
+                  <h3 class="text-lg font-semibold text-primary-dark">{platform.name}</h3>
+                </div>
                 <p class="mt-2 text-sm text-muted">{platform.description}</p>
                 {platform.downloads.length > 0 ? (
                   <ul class="mt-4 space-y-2">

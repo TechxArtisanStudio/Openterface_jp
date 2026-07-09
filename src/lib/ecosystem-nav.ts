@@ -56,11 +56,6 @@ export function buildEcosystemNav(
     { label: labels.accessories, href: marketingHref(surface, locale, '/accessories/') },
   ];
 
-  const appsChildren: NavItem[] = [
-    { label: labels.kvmControl, href: marketingHref(surface, locale, '/kvm/') },
-    { label: labels.keycmd, href: marketingHref(surface, locale, '/keycmd/') },
-  ];
-
   const docsHref = surface === 'docs' ? docsPath() : docsPath();
   const newsHref = surface === 'news' ? newsPath() : newsPath();
   const communityHref = marketingHref(surface, locale, '/community/');
@@ -71,11 +66,7 @@ export function buildEcosystemNav(
       href: marketingHref(surface, locale, '/products/'),
       children: productsChildren,
     },
-    {
-      label: labels.apps,
-      href: marketingHref(surface, locale, '/apps/'),
-      children: appsChildren,
-    },
+    { label: labels.apps, href: marketingHref(surface, locale, '/apps/') },
     { label: labels.docs, href: docsHref },
     { label: labels.media, href: marketingHref(surface, locale, '/media/') },
     { label: labels.news, href: newsHref },
