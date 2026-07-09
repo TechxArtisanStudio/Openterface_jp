@@ -57,7 +57,6 @@ export function buildEcosystemNav(
   ];
 
   const appsChildren: NavItem[] = [
-    { label: labels.allApps, href: marketingHref(surface, locale, '/apps/') },
     { label: labels.kvmControl, href: marketingHref(surface, locale, '/kvm/') },
     { label: labels.keycmd, href: marketingHref(surface, locale, '/keycmd/') },
   ];

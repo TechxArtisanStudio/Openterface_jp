@@ -8,29 +8,68 @@ interface ChildLink {
 interface Props {
   label: string;
   children: ChildLink[];
+  /** When set, the label navigates; the chevron toggles the panel. */
+  href?: string;
 }
 
-const { label, children } = Astro.props;
+const { label, children, href } = Astro.props;
 ---
 
-<details class="nav-dropdown relative">
-  <summary class="site-header__nav-link list-none cursor-pointer" aria-haspopup="true">
-    {label}
-    <span class="nav-dropdown__chevron nav-dropdown__chevron--down ml-0.5" aria-hidden="true">▾</span>
-    <span class="nav-dropdown__chevron nav-dropdown__chevron--up ml-0.5" aria-hidden="true">▴</span>
-  </summary>
-  <div class="nav-dropdown__panel">
-    {
-      children.map((child) => (
-        <a
-          href={child.href}
-          class="block px-4 py-2 text-sm text-ink hover:bg-brand-light hover:text-primary-dark"
-          target={child.external ? '_blank' : undefined}
-          rel={child.external ? 'noopener noreferrer' : undefined}
-        >
-          {child.label}
+{
+  href ? (
+    <div class="nav-dropdown relative">
+      <div class="nav-dropdown__trigger site-header__nav-link">
+        <a href={href} class="nav-dropdown__label-link">
+          {label}
         </a>
-      ))
-    }
-  </div>
-</details>
+        <button
+          type="button"
+          class="nav-dropdown__chevron-btn"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-label={`${label} menu`}
+          data-nav-toggle
+        >
+          <span class="nav-dropdown__chevron nav-dropdown__chevron--down" aria-hidden="true">▾</span>
+          <span class="nav-dropdown__chevron nav-dropdown__chevron--up" aria-hidden="true">▴</span>
+        </button>
+      </div>
+      <div class="nav-dropdown__panel" hidden>
+        {
+          children.map((child) => (
+            <a
+              href={child.href}
+              class="block px-4 py-2 text-sm text-ink hover:bg-brand-light hover:text-primary-dark"
+              target={child.external ? '_blank' : undefined}
+              rel={child.external ? 'noopener noreferrer' : undefined}
+            >
+              {child.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  ) : (
+    <details class="nav-dropdown relative">
+      <summary class="site-header__nav-link list-none cursor-pointer" aria-haspopup="true">
+        {label}
+        <span class="nav-dropdown__chevron nav-dropdown__chevron--down ml-0.5" aria-hidden="true">▾</span>
+        <span class="nav-dropdown__chevron nav-dropdown__chevron--up ml-0.5" aria-hidden="true">▴</span>
+      </summary>
+      <div class="nav-dropdown__panel">
+        {
+          children.map((child) => (
+            <a
+              href={child.href}
+              class="block px-4 py-2 text-sm text-ink hover:bg-brand-light hover:text-primary-dark"
+              target={child.external ? '_blank' : undefined}
+              rel={child.external ? 'noopener noreferrer' : undefined}
+            >
+              {child.label}
+            </a>
+          ))
+        }
+      </div>
+    </details>
+  )
+}

@@ -28,7 +28,7 @@ const locale = siteConfig.locale as SiteLocale;
       {
         mainNav.map((item) =>
           item.children ? (
-            <NavDropdown label={item.label} children={item.children} />
+            <NavDropdown label={item.label} href={item.href} children={item.children} />
           ) : (
             <a
               href={item.href}
@@ -71,7 +71,13 @@ const locale = siteConfig.locale as SiteLocale;
             {
               dropdownSections.map((section) => (
                 <div class="mobile-nav-section">
-                  <p class="mobile-nav-section-label">{section.label}</p>
+                  {section.href ? (
+                    <a href={section.href} class="mobile-nav-section-label mobile-nav-section-label--link">
+                      {section.label}
+                    </a>
+                  ) : (
+                    <p class="mobile-nav-section-label">{section.label}</p>
+                  )}
                   <div class="mobile-nav-section-links">
                     {
                       section.children?.map((child) => (
@@ -125,10 +131,40 @@ const locale = siteConfig.locale as SiteLocale;
       if (dropdown.dataset.initialized) return;
       dropdown.dataset.initialized = 'true';
 
+      const toggle = dropdown.querySelector('[data-nav-toggle]');
+      const panel = dropdown.querySelector('.nav-dropdown__panel');
+
+      const setOpen = (open: boolean) => {
+        dropdown.classList.toggle('is-open', open);
+        if (dropdown instanceof HTMLDetailsElement) dropdown.open = open;
+        if (panel instanceof HTMLElement) panel.hidden = !open;
+        toggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+
+      toggle?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const next = !dropdown.classList.contains('is-open');
+        document.querySelectorAll('.nav-dropdown.is-open, .nav-dropdown[open]').forEach((other) => {
+          if (other === dropdown) return;
+          other.classList.remove('is-open');
+          if (other instanceof HTMLDetailsElement) other.open = false;
+          const otherPanel = other.querySelector('.nav-dropdown__panel');
+          if (otherPanel instanceof HTMLElement) otherPanel.hidden = true;
+          other.querySelector('[data-nav-toggle]')?.setAttribute('aria-expanded', 'false');
+        });
+        setOpen(next);
+      });
+
       dropdown.addEventListener('toggle', () => {
         if (!(dropdown instanceof HTMLDetailsElement) || !dropdown.open) return;
-        document.querySelectorAll('.nav-dropdown[open]').forEach((other) => {
-          if (other !== dropdown && other instanceof HTMLDetailsElement) other.open = false;
+        document.querySelectorAll('.nav-dropdown[open], .nav-dropdown.is-open').forEach((other) => {
+          if (other === dropdown) return;
+          if (other instanceof HTMLDetailsElement) other.open = false;
+          other.classList.remove('is-open');
+          const otherPanel = other.querySelector('.nav-dropdown__panel');
+          if (otherPanel instanceof HTMLElement) otherPanel.hidden = true;
+          other.querySelector('[data-nav-toggle]')?.setAttribute('aria-expanded', 'false');
         });
       });
     });
@@ -136,17 +172,24 @@ const locale = siteConfig.locale as SiteLocale;
     document.addEventListener('click', (event) => {
       const target = event.target;
       if (!(target instanceof Node)) return;
-      document.querySelectorAll('.nav-dropdown[open]').forEach((dropdown) => {
-        if (dropdown instanceof HTMLDetailsElement && !dropdown.contains(target)) {
-          dropdown.open = false;
-        }
+      document.querySelectorAll('.nav-dropdown.is-open, .nav-dropdown[open]').forEach((dropdown) => {
+        if (dropdown.contains(target)) return;
+        dropdown.classList.remove('is-open');
+        if (dropdown instanceof HTMLDetailsElement) dropdown.open = false;
+        const panel = dropdown.querySelector('.nav-dropdown__panel');
+        if (panel instanceof HTMLElement) panel.hidden = true;
+        dropdown.querySelector('[data-nav-toggle]')?.setAttribute('aria-expanded', 'false');
       });
     });
 
     document.addEventListener('keydown', (event) => {
       if (event.key !== 'Escape') return;
-      document.querySelectorAll('.nav-dropdown[open]').forEach((dropdown) => {
+      document.querySelectorAll('.nav-dropdown.is-open, .nav-dropdown[open]').forEach((dropdown) => {
+        dropdown.classList.remove('is-open');
         if (dropdown instanceof HTMLDetailsElement) dropdown.open = false;
+        const panel = dropdown.querySelector('.nav-dropdown__panel');
+        if (panel instanceof HTMLElement) panel.hidden = true;
+        dropdown.querySelector('[data-nav-toggle]')?.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -230,12 +273,24 @@ const locale = siteConfig.locale as SiteLocale;
   }
 
   .mobile-nav-section-label {
+    display: block;
     padding: 0 0.5rem;
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: color-mix(in srgb, var(--color-muted) 85%, transparent);
+  }
+
+  .mobile-nav-section-label--link {
+    text-decoration: none;
+  }
+
+  .mobile-nav-section-label--link:hover,
+  .mobile-nav-section-label--link:focus-visible {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
   }
 
   .mobile-nav-section-links {

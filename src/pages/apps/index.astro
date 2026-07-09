@@ -1,54 +1,98 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DocLinkBanner from '../../components/DocLinkBanner.astro';
-import { appDocsLinks, appHubCards } from '../../data/apps';
+import { appDownloadSections } from '../../data/apps';
 ---
 
 <BaseLayout
   title="Openterface Apps"
-  description="Download open-source Openterface host apps — KVM Control for Mini-KVM, KVM-GO, and uConsole; KeyCmd for phone-as-keyboard workflows."
+  description="Download open-source Openterface host apps — Openterface KVM for Mini-KVM, KVM-GO, and uConsole; KeyCmd for phone-as-keyboard workflows."
   keywords="Openterface app, KVM software, KeyCmd, QT host app, Android KVM, open source"
-  ogImageAlt="Openterface Apps — KVM Control and KeyCmd"
+  ogImageAlt="Openterface Apps — Openterface KVM and KeyCmd"
   canonicalPath="/apps/"
 >
   <DocLinkBanner variant="product" />
   <section class="product-section product-section--hero bg-gradient-to-br from-brand-light to-white">
     <div class="product-section__inner text-center">
       <h1 class="product-display-title">Openterface Apps</h1>
-      <p class="product-lead mt-2">Open-source software for every product line</p>
+      <p class="product-lead mt-2">Download host software for every product line</p>
       <p class="mx-auto mt-3 max-w-2xl text-muted">
-        Choose the app that matches your hardware and host platform — or build from source on GitHub. Full installers,
-        release notes, and platform guides live on docs.openterface.com.
+        Direct installers and store links below. Open-source on GitHub — install guides and FAQs live on docs.
       </p>
     </div>
   </section>
 
-  <section class="product-section" aria-label="App product lines">
-    <div class="product-section__inner">
-      <div class="grid gap-6 md:grid-cols-2">
-        {
-          appHubCards.map((card) => (
-            <a
-              href={card.href}
-              class="card group flex flex-col hover:border-primary-dark hover:shadow-md"
-            >
-              <h2 class="text-2xl font-bold text-primary-dark group-hover:text-accent-on-light">{card.title}</h2>
-              <p class="mt-3 flex-1 text-muted">{card.description}</p>
-              <ul class="mt-4 space-y-1 text-sm text-muted">
-                {card.highlights.map((line) => (
-                  <li>• {line}</li>
-                ))}
-              </ul>
-              <span class="mt-6 text-sm font-semibold text-primary-dark">Explore {card.title} →</span>
-            </a>
-          ))
-        }
-      </div>
-      <p class="mt-8 text-center">
-        <a href={appDocsLinks.overview} class="btn btn-secondary" target="_blank" rel="noopener">
-          Full downloads & release notes on docs →
-        </a>
-      </p>
-    </div>
-  </section>
+  {
+    appDownloadSections.map((section) => (
+      <section
+        class="product-section"
+        id={section.id}
+        aria-labelledby={`${section.id}-heading`}
+      >
+        <div class="product-section__inner">
+          <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 class="section-title" id={`${section.id}-heading`}>
+                {section.title}
+              </h2>
+              <p class="mt-2 max-w-2xl text-muted">{section.description}</p>
+            </div>
+            <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm font-semibold shrink-0">
+              <a href={section.storyHref} class="text-primary-dark hover:underline">
+                {section.storyLabel}
+              </a>
+              <a
+                href={section.docsHref}
+                class="text-primary-dark hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {section.docsLabel}
+              </a>
+            </div>
+          </div>
+
+          <div class="mt-8 grid gap-6 sm:grid-cols-2">
+            {section.platforms.map((platform) => (
+              <article class="rounded-lg border border-gray-200 bg-white p-5">
+                <h3 class="text-lg font-semibold text-primary-dark">{platform.name}</h3>
+                <p class="mt-2 text-sm text-muted">{platform.description}</p>
+                {platform.downloads.length > 0 ? (
+                  <ul class="mt-4 space-y-2">
+                    {platform.downloads.map((link) => (
+                      <li>
+                        <a
+                          href={link.href}
+                          class="text-sm font-semibold text-primary-dark hover:underline"
+                          target={link.external ? '_blank' : undefined}
+                          rel={link.external ? 'noopener noreferrer' : undefined}
+                        >
+                          {link.label} →
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="mt-4 text-sm font-medium text-muted">Coming soon</p>
+                )}
+                {platform.repo && (
+                  <p class="mt-3 text-sm text-muted">
+                    Source:{' '}
+                    <a
+                      href={platform.repo.href}
+                      class="font-medium text-primary-dark hover:underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {platform.repo.label}
+                    </a>
+                  </p>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))
+  }
 </BaseLayout>

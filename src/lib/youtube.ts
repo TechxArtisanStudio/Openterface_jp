@@ -122,7 +122,7 @@ export const KNOWN_PRODUCTS = ['minikvm', 'kvm-go', 'uconsole-kvm-extension', 'k
 export const KNOWN_APPS: MediaApp[] = ['kvm', 'keycmd'];
 
 export const APP_DISPLAY_NAMES: Record<MediaApp, string> = {
-  kvm: 'KVM Control',
+  kvm: 'Openterface KVM',
   keycmd: 'KeyCmd',
 };
 
