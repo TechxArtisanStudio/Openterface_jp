@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AppDownloadSection from '../../components/AppDownloadSection.astro';
+import DocLinkBanner from '../../components/DocLinkBanner.astro';
+import { keycmdDownloadSection } from '../../data/apps';
+---
+
+<BaseLayout
+  title={keycmdDownloadSection.title}
+  description={keycmdDownloadSection.description}
+  keywords="KeyCmd, Openterface, phone keyboard, Android APK, open source"
+  ogImageAlt="KeyCmd — phone-as-keyboard host app"
+  canonicalPath="/keycmd/"
+>
+  <DocLinkBanner variant="product" />
+  <AppDownloadSection section={keycmdDownloadSection} headingLevel={1} />
+</BaseLayout>

@@ -14,8 +14,6 @@ export default defineConfig({
     '/use-cases/': '/products/',
     '/product/': '/products/',
     '/app/': '/apps/',
-    '/kvm/': '/apps/',
-    '/keycmd/': '/apps/',
     '/videos/': '/media/',
   },
     // site-refactor-redirects:end

@@ -54,6 +54,8 @@ export const marketingPaths = [
   '/kvmext/',
   '/accessories/',
   '/apps/',
+  '/kvm/',
+  '/keycmd/',
 ] as const;
 
 export function normalizePath(path: string): string {

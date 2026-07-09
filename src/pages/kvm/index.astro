@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AppDownloadSection from '../../components/AppDownloadSection.astro';
+import DocLinkBanner from '../../components/DocLinkBanner.astro';
+import { kvmDownloadSection } from '../../data/apps';
+---
+
+<BaseLayout
+  title={kvmDownloadSection.title}
+  description={kvmDownloadSection.description}
+  keywords="Openterface KVM, KVM software, QT host app, Android KVM, open source"
+  ogImageAlt="Openterface KVM — download host apps"
+  canonicalPath="/kvm/"
+>
+  <DocLinkBanner variant="product" />
+  <AppDownloadSection section={kvmDownloadSection} headingLevel={1} />
+</BaseLayout>

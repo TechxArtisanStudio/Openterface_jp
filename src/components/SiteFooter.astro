@@ -1,5 +1,6 @@
 ---
 import { docsPath, siteConfig } from '../config/site';
+import { keycmdDownloadSection, kvmDownloadSection } from '../data/apps';
 import { ui } from '../i18n/ui';
 import Logo from './Logo.astro';
 import FooterNewsletter from './FooterNewsletter.astro';
@@ -29,7 +30,8 @@ const f = ui.siteFooter;
         <ul class="mt-3 space-y-2 text-sm">
           <li><a href="/media/" class="text-muted hover:text-primary-dark">{f.videos}</a></li>
           <li><a href={docsPath('/faq/')} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">{f.faqs}</a></li>
-          <li><a href="/apps/" class="text-muted hover:text-primary-dark">{f.apps}</a></li>
+          <li><a href="/kvm/" class="text-muted hover:text-primary-dark">{kvmDownloadSection.title}</a></li>
+          <li><a href="/keycmd/" class="text-muted hover:text-primary-dark">{keycmdDownloadSection.title}</a></li>
           <li><a href={docsPath('/support/')} class="text-muted hover:text-primary-dark" target="_blank" rel="noopener">{f.support}</a></li>
           <li><a href="#newsletter" class="text-muted hover:text-primary-dark">{f.newsletterLink}</a></li>
         </ul>

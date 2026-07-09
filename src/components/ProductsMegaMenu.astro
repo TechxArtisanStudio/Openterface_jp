@@ -1,7 +1,5 @@
 ---
 import { getProductsMegaMenuItems } from '../data/productsMegaMenu';
-import { siteConfig } from '../config/site';
-import * as navModule from '../i18n/nav';
 
 interface Props {
   label: string;
@@ -9,19 +7,13 @@ interface Props {
 
 const { label } = Astro.props;
 const items = getProductsMegaMenuItems();
-const navLabels =
-  'localeNavLabels' in navModule && siteConfig.locale !== 'en'
-    ? navModule.localeNavLabels
-    : navModule.enNavLabels;
-const appsCta = `${navLabels.apps} →`;
 ---
 
-<div class="nav-dropdown nav-dropdown--mega products-mega relative" data-products-mega>
+<div class="nav-dropdown nav-dropdown--mega products-mega relative" data-nav-mega>
   <button
     type="button"
     class="products-mega__trigger site-header__nav-link"
     data-nav-toggle
-    data-products-mega-trigger
     aria-haspopup="true"
     aria-expanded="false"
     aria-controls="products-mega-panel"
@@ -60,15 +52,6 @@ const appsCta = `${navLabels.apps} →`;
             </a>
           ))
         }
-      </div>
-
-      <div class="products-mega__footer">
-        <p class="products-mega__footer-text">
-          Cross-platform host apps for KVM control and KeyCmd shortcuts.
-        </p>
-        <a href="/apps/" class="products-mega__footer-link">
-          {appsCta}
-        </a>
       </div>
     </div>
   </div>

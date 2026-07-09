@@ -4,6 +4,7 @@ import Logo from './Logo.astro';
 import LocaleSwitcher from './LocaleSwitcher.astro';
 import NavDropdown from './NavDropdown.astro';
 import ProductsMegaMenu from './ProductsMegaMenu.astro';
+import AppsMegaMenu from './AppsMegaMenu.astro';
 import { enNavMobile } from '../i18n/nav';
 import { siteConfig } from '../config/site';
 import { LOCALE_LABELS, SUPPORTED_LOCALES, switchLocaleUrl, type SiteLocale } from '../lib/locale';
@@ -28,8 +29,10 @@ const locale = siteConfig.locale as SiteLocale;
     <nav class="site-header__nav" aria-label="Main navigation">
       {
         mainNav.map((item) =>
-          item.megaMenu ? (
+          item.megaMenu === 'products' ? (
             <ProductsMegaMenu label={item.label} />
+          ) : item.megaMenu === 'apps' ? (
+            <AppsMegaMenu label={item.label} />
           ) : item.children ? (
             <NavDropdown label={item.label} href={item.href} children={item.children} />
           ) : (
@@ -140,8 +143,8 @@ const locale = siteConfig.locale as SiteLocale;
     });
   }
 
-  function initProductsMegaMenu() {
-    document.querySelectorAll('[data-products-mega]').forEach((dropdown) => {
+  function initNavMegaMenus() {
+    document.querySelectorAll('[data-nav-mega]').forEach((dropdown) => {
       if (dropdown.dataset.initialized) return;
       dropdown.dataset.initialized = 'true';
 
@@ -214,7 +217,7 @@ const locale = siteConfig.locale as SiteLocale;
   }
 
   function initNavDropdowns() {
-    document.querySelectorAll('.nav-dropdown:not([data-products-mega])').forEach((dropdown) => {
+    document.querySelectorAll('.nav-dropdown:not([data-nav-mega])').forEach((dropdown) => {
       if (dropdown.dataset.initialized) return;
       dropdown.dataset.initialized = 'true';
 
@@ -290,11 +293,11 @@ const locale = siteConfig.locale as SiteLocale;
     });
   }
 
-  initProductsMegaMenu();
+  initNavMegaMenus();
   initNavDropdowns();
   initMobileNav();
   document.addEventListener('astro:page-load', () => {
-    initProductsMegaMenu();
+    initNavMegaMenus();
     initNavDropdowns();
     initMobileNav();
   });

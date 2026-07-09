@@ -8,7 +8,7 @@ export const keymodLinks = {
   openSourceInitiative: '/keymod/badges/open-source-initiative.svg',
   openSourceHardware: '/keymod/badges/open-source-hardware.svg',
   keycmd:
-    'https://openterface.com/apps/?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-to-keycmd#keycmd',
+    'https://openterface.com/keycmd/?utm_source=openterfaceapps/?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-to-keycmd#keycmdutm_medium=keymod-landingapps/?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-to-keycmd#keycmdutm_campaign=keymod-to-keycmd',
   docs:
     `${docsPath('/products/keymod/')}?utm_source=openterface&utm_medium=landing&utm_campaign=keymod-landing-v2`,
   discord: 'https://discord.gg/sFTU7O8Xe3',

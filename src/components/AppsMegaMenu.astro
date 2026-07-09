@@ -1,0 +1,104 @@
+---
+import OsPlatformIcon from './OsPlatformIcon.astro';
+import {
+  APP_LOGO_PLACEHOLDER,
+  appFlatPath,
+  appsMegaMenuSections,
+  getCuratedTiles,
+} from '../data/appsMegaMenu';
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="nav-dropdown nav-dropdown--mega apps-mega relative" data-nav-mega>
+  <button
+    type="button"
+    class="apps-mega__trigger site-header__nav-link"
+    data-nav-toggle
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="apps-mega-panel"
+  >
+    {label}
+    <span class="nav-dropdown__chevron nav-dropdown__chevron--down" aria-hidden="true">▾</span>
+    <span class="nav-dropdown__chevron nav-dropdown__chevron--up" aria-hidden="true">▴</span>
+  </button>
+
+  <div
+    id="apps-mega-panel"
+    class="apps-mega__panel nav-dropdown__panel"
+    role="region"
+    aria-label={label}
+    hidden
+  >
+    <div class="apps-mega__inner">
+      <div class="apps-mega__columns">
+        {
+          appsMegaMenuSections.map((section) => {
+            const tiles = getCuratedTiles(section);
+            return (
+              <div class="apps-mega__column">
+                <div class="apps-mega__header">
+                  <img
+                    src={APP_LOGO_PLACEHOLDER}
+                    alt=""
+                    class="apps-mega__logo"
+                    width="48"
+                    height="48"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div class="apps-mega__header-text">
+                    <h3 class="apps-mega__title">{section.title}</h3>
+                    <p class="apps-mega__description">{section.description}</p>
+                    <a href={appFlatPath(section.id)} class="apps-mega__see-all">
+                      All downloads →
+                    </a>
+                  </div>
+                </div>
+
+                <div class="apps-mega__tile-grid">
+                  {
+                    tiles.map((tile) => (
+                      <div class="apps-mega__tile">
+                        <div class="apps-mega__tile-head">
+                          <OsPlatformIcon name={tile.name} class="h-4 w-4 shrink-0 text-primary-dark" />
+                          <span class="apps-mega__tile-os">{tile.name}</span>
+                        </div>
+                        {tile.comingSoon ? (
+                          <span class="apps-mega__tile-muted">Coming soon</span>
+                        ) : (
+                          <a
+                            href={tile.href}
+                            class="apps-mega__tile-link"
+                            target={tile.external ? '_blank' : undefined}
+                            rel={tile.external ? 'noopener noreferrer' : undefined}
+                          >
+                            {tile.label}
+                          </a>
+                        )}
+                      </div>
+                    ))
+                  }
+                </div>
+
+                <a
+                  href={section.docsHref}
+                  class="apps-mega__docs-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {section.docsLabel}
+                </a>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</div>
