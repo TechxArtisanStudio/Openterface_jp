@@ -1,0 +1,33 @@
+---
+interface Props {
+  href: string;
+  label: string;
+  badge?: string;
+  external?: boolean;
+  variant?: 'header' | 'mobile';
+}
+
+const { href, label, badge, external = false, variant = 'header' } = Astro.props;
+const linkClass = variant === 'header' ? 'site-header__nav-link' : 'mobile-nav-link';
+const wrapClass =
+  variant === 'header' ? 'site-header__nav-link-wrap' : 'mobile-nav-link-wrap';
+---
+
+<span class={wrapClass}>
+  <a
+    href={href}
+    class:list={[linkClass, external && variant === 'mobile' && 'mobile-nav-link--external']}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener noreferrer' : undefined}
+  >
+    {label}
+  </a>
+  {badge ? (
+    <span
+      class:list={['site-header__nav-badge', variant === 'mobile' && 'site-header__nav-badge--mobile']}
+      aria-hidden="true"
+    >
+      {badge}
+    </span>
+  ) : null}
+</span>

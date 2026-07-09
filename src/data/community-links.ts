@@ -5,11 +5,14 @@ export interface CommunityLink {
   group: 'chat' | 'social' | 'support';
 }
 
+/** Canonical Discord invite — keep in sync with keymod links and JSON-LD sameAs. */
+export const DISCORD_INVITE_URL = 'https://discord.gg/sFTU7O8Xe3';
+
 export const communityLinks: CommunityLink[] = [
   {
     name: 'Discord',
     description: 'Real-time chat with the team and community.',
-    href: 'https://discord.gg/ruuxSHz',
+    href: DISCORD_INVITE_URL,
     group: 'chat',
   },
   {
@@ -21,7 +24,7 @@ export const communityLinks: CommunityLink[] = [
   {
     name: 'Forum',
     description: 'Long-form threads and product support.',
-    href: 'https://forum.openterface.com',
+    href: 'https://forum.openterface.com/',
     group: 'chat',
   },
   {
@@ -49,3 +52,16 @@ export const communityLinks: CommunityLink[] = [
     group: 'support',
   },
 ];
+
+export const footerSocialLinks = communityLinks.filter((link) => link.name !== 'Forum');
+
+export function socialHrefWithUtm(href: string): string {
+  try {
+    const url = new URL(href);
+    url.searchParams.set('utm_source', 'openterface');
+    url.searchParams.set('utm_medium', 'footer');
+    return url.toString();
+  } catch {
+    return href;
+  }
+}

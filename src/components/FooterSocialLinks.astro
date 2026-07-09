@@ -1,0 +1,29 @@
+---
+import SocialChannelIcon from './SocialChannelIcon.astro';
+import { footerSocialLinks, socialHrefWithUtm } from '../data/community-links';
+
+function iconKey(name: string): string {
+  if (name.startsWith('X ')) return 'x';
+  return name.toLowerCase();
+}
+---
+
+<nav class="footer-social" aria-label="Social channels">
+  <ul class="footer-social__list">
+    {
+      footerSocialLinks.map((link) => (
+        <li>
+          <a
+            href={socialHrefWithUtm(link.href)}
+            class="footer-social__link"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={link.name}
+          >
+            <SocialChannelIcon name={iconKey(link.name)} />
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

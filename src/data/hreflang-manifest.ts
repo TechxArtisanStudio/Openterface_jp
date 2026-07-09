@@ -46,7 +46,6 @@ export const marketingPaths = [
   '/',
   '/about/',
   '/media/',
-  '/community/',
   '/products/',
   '/keymod/',
   '/kvmgo/',

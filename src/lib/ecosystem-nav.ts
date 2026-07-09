@@ -1,4 +1,4 @@
-import { docsPath, newsPath } from '../config/site';
+import { docsPath, newsPath, siteConfig } from '../config/site';
 import { surfaceMarketingHost } from '../config/surface-urls';
 import type { SiteLocale } from './locale';
 
@@ -8,6 +8,7 @@ export interface NavItem {
   label: string;
   href?: string;
   external?: boolean;
+  badge?: string;
   children?: NavItem[];
   /** Marketing header: rich hover mega-menu instead of a plain dropdown. */
   megaMenu?: 'products' | 'apps';
@@ -28,7 +29,8 @@ export interface EcosystemNavLabels {
   docs: string;
   media: string;
   news: string;
-  community: string;
+  forum: string;
+  forumNewBadge: string;
 }
 
 function joinUrl(host: string, path: string): string {
@@ -64,7 +66,6 @@ export function buildEcosystemNav(
 
   const docsHref = surface === 'docs' ? docsPath() : docsPath();
   const newsHref = surface === 'news' ? newsPath() : newsPath();
-  const communityHref = marketingHref(surface, locale, '/community/');
 
   return [
     {
@@ -80,6 +81,11 @@ export function buildEcosystemNav(
     { label: labels.docs, href: docsHref },
     { label: labels.media, href: marketingHref(surface, locale, '/media/') },
     { label: labels.news, href: newsHref },
-    { label: labels.community, href: communityHref },
+    {
+      label: labels.forum,
+      href: siteConfig.links.forum,
+      external: true,
+      badge: labels.forumNewBadge,
+    },
   ];
 }

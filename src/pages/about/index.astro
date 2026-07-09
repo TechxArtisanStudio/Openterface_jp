@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DocLinkBanner from '../../components/DocLinkBanner.astro';
-import { docsPath } from '../../config/site';
+import { docsPath, siteConfig } from '../../config/site';
 ---
 
 <BaseLayout
@@ -26,9 +26,11 @@ import { docsPath } from '../../config/site';
         <a href={docsPath('/about/compliance/')} class="btn btn-secondary" target="_blank" rel="noopener">
           Compliance →
         </a>
-        <a href="/community/" class="btn btn-secondary">
-          Community →
-        </a>
+        <a href={siteConfig.links.forum} class="btn btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Forum →</a>
       </div>
     </div>
   </section>

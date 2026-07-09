@@ -3,6 +3,7 @@ import { mainNav } from '../data/navigation';
 import Logo from './Logo.astro';
 import LocaleSwitcher from './LocaleSwitcher.astro';
 import NavDropdown from './NavDropdown.astro';
+import NavLinkWithBadge from './NavLinkWithBadge.astro';
 import ProductsMegaMenu from './ProductsMegaMenu.astro';
 import AppsMegaMenu from './AppsMegaMenu.astro';
 import { enNavMobile } from '../i18n/nav';
@@ -35,11 +36,16 @@ const locale = siteConfig.locale as SiteLocale;
             <AppsMegaMenu label={item.label} />
           ) : item.children ? (
             <NavDropdown label={item.label} href={item.href} children={item.children} />
+          ) : item.badge || item.external ? (
+            <NavLinkWithBadge
+              href={item.href!}
+              label={item.label}
+              badge={item.badge}
+              external={item.external}
+              variant="header"
+            />
           ) : (
-            <a
-              href={item.href}
-              class="site-header__nav-link"
-            >
+            <a href={item.href} class="site-header__nav-link">
               {item.label}
             </a>
           ),
@@ -99,9 +105,19 @@ const locale = siteConfig.locale as SiteLocale;
               <p class="mobile-nav-section-label">{enNavMobile.ecosystem}</p>
               <div class="mobile-nav-section-links">
                 {
-                  ecosystemLinks.map((item) => (
-                    <a href={item.href} class="mobile-nav-link">{item.label}</a>
-                  ))
+                  ecosystemLinks.map((item) =>
+                    item.badge || item.external ? (
+                      <NavLinkWithBadge
+                        href={item.href!}
+                        label={item.label}
+                        badge={item.badge}
+                        external={item.external}
+                        variant="mobile"
+                      />
+                    ) : (
+                      <a href={item.href} class="mobile-nav-link">{item.label}</a>
+                    ),
+                  )
                 }
               </div>
             </div>

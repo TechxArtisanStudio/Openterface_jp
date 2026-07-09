@@ -15,6 +15,7 @@ export default defineConfig({
     '/product/': '/products/',
     '/app/': '/apps/',
     '/videos/': '/media/',
+    '/community/': 'https://forum.openterface.com/',
   },
     // site-refactor-redirects:end
   site: 'https://jp.openterface.com',
