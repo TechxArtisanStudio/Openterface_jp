@@ -3,6 +3,7 @@ import { mainNav } from '../data/navigation';
 import Logo from './Logo.astro';
 import LocaleSwitcher from './LocaleSwitcher.astro';
 import NavDropdown from './NavDropdown.astro';
+import ProductsMegaMenu from './ProductsMegaMenu.astro';
 import { enNavMobile } from '../i18n/nav';
 import { siteConfig } from '../config/site';
 import { LOCALE_LABELS, SUPPORTED_LOCALES, switchLocaleUrl, type SiteLocale } from '../lib/locale';
@@ -27,7 +28,9 @@ const locale = siteConfig.locale as SiteLocale;
     <nav class="site-header__nav" aria-label="Main navigation">
       {
         mainNav.map((item) =>
-          item.children ? (
+          item.megaMenu ? (
+            <ProductsMegaMenu label={item.label} />
+          ) : item.children ? (
             <NavDropdown label={item.label} href={item.href} children={item.children} />
           ) : (
             <a
@@ -126,8 +129,92 @@ const locale = siteConfig.locale as SiteLocale;
 </header>
 
 <script>
+  function closeAllNavDropdowns(except?: Element | null) {
+    document.querySelectorAll('.nav-dropdown.is-open, .nav-dropdown[open]').forEach((dropdown) => {
+      if (except && dropdown === except) return;
+      dropdown.classList.remove('is-open');
+      if (dropdown instanceof HTMLDetailsElement) dropdown.open = false;
+      const panel = dropdown.querySelector('.nav-dropdown__panel');
+      if (panel instanceof HTMLElement) panel.hidden = true;
+      dropdown.querySelector('[data-nav-toggle]')?.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function initProductsMegaMenu() {
+    document.querySelectorAll('[data-products-mega]').forEach((dropdown) => {
+      if (dropdown.dataset.initialized) return;
+      dropdown.dataset.initialized = 'true';
+
+      const toggle = dropdown.querySelector('[data-nav-toggle]');
+      const panel = dropdown.querySelector('.nav-dropdown__panel');
+      let openTimer: ReturnType<typeof setTimeout> | undefined;
+      let closeTimer: ReturnType<typeof setTimeout> | undefined;
+
+      const setOpen = (open: boolean) => {
+        dropdown.classList.toggle('is-open', open);
+        if (panel instanceof HTMLElement) panel.hidden = !open;
+        toggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
+      };
+
+      const scheduleOpen = () => {
+        clearTimeout(closeTimer);
+        openTimer = setTimeout(() => {
+          closeAllNavDropdowns(dropdown);
+          setOpen(true);
+        }, 120);
+      };
+
+      const scheduleClose = () => {
+        clearTimeout(openTimer);
+        closeTimer = setTimeout(() => setOpen(false), 180);
+      };
+
+      dropdown.addEventListener('pointerenter', scheduleOpen);
+      dropdown.addEventListener('pointerleave', scheduleClose);
+      dropdown.addEventListener('focusin', scheduleOpen);
+      dropdown.addEventListener('focusout', (event) => {
+        const related = event.relatedTarget;
+        if (related instanceof Node && dropdown.contains(related)) return;
+        scheduleClose();
+      });
+
+      toggle?.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const next = !dropdown.classList.contains('is-open');
+        clearTimeout(openTimer);
+        clearTimeout(closeTimer);
+        if (next) {
+          closeAllNavDropdowns(dropdown);
+        }
+        setOpen(next);
+      });
+    });
+  }
+
+  let navGlobalListenersBound = false;
+
+  function bindNavGlobalListeners() {
+    if (navGlobalListenersBound) return;
+    navGlobalListenersBound = true;
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Node)) return;
+      const inside = [...document.querySelectorAll('.nav-dropdown.is-open, .nav-dropdown[open]')].find(
+        (dropdown) => dropdown.contains(target),
+      );
+      if (!inside) closeAllNavDropdowns();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      closeAllNavDropdowns();
+    });
+  }
+
   function initNavDropdowns() {
-    document.querySelectorAll('.nav-dropdown').forEach((dropdown) => {
+    document.querySelectorAll('.nav-dropdown:not([data-products-mega])').forEach((dropdown) => {
       if (dropdown.dataset.initialized) return;
       dropdown.dataset.initialized = 'true';
 
@@ -145,14 +232,7 @@ const locale = siteConfig.locale as SiteLocale;
         event.preventDefault();
         event.stopPropagation();
         const next = !dropdown.classList.contains('is-open');
-        document.querySelectorAll('.nav-dropdown.is-open, .nav-dropdown[open]').forEach((other) => {
-          if (other === dropdown) return;
-          other.classList.remove('is-open');
-          if (other instanceof HTMLDetailsElement) other.open = false;
-          const otherPanel = other.querySelector('.nav-dropdown__panel');
-          if (otherPanel instanceof HTMLElement) otherPanel.hidden = true;
-          other.querySelector('[data-nav-toggle]')?.setAttribute('aria-expanded', 'false');
-        });
+        closeAllNavDropdowns(next ? dropdown : null);
         setOpen(next);
       });
 
@@ -169,29 +249,7 @@ const locale = siteConfig.locale as SiteLocale;
       });
     });
 
-    document.addEventListener('click', (event) => {
-      const target = event.target;
-      if (!(target instanceof Node)) return;
-      document.querySelectorAll('.nav-dropdown.is-open, .nav-dropdown[open]').forEach((dropdown) => {
-        if (dropdown.contains(target)) return;
-        dropdown.classList.remove('is-open');
-        if (dropdown instanceof HTMLDetailsElement) dropdown.open = false;
-        const panel = dropdown.querySelector('.nav-dropdown__panel');
-        if (panel instanceof HTMLElement) panel.hidden = true;
-        dropdown.querySelector('[data-nav-toggle]')?.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key !== 'Escape') return;
-      document.querySelectorAll('.nav-dropdown.is-open, .nav-dropdown[open]').forEach((dropdown) => {
-        dropdown.classList.remove('is-open');
-        if (dropdown instanceof HTMLDetailsElement) dropdown.open = false;
-        const panel = dropdown.querySelector('.nav-dropdown__panel');
-        if (panel instanceof HTMLElement) panel.hidden = true;
-        dropdown.querySelector('[data-nav-toggle]')?.setAttribute('aria-expanded', 'false');
-      });
-    });
+    bindNavGlobalListeners();
   }
 
   function initMobileNav() {
@@ -232,9 +290,11 @@ const locale = siteConfig.locale as SiteLocale;
     });
   }
 
+  initProductsMegaMenu();
   initNavDropdowns();
   initMobileNav();
   document.addEventListener('astro:page-load', () => {
+    initProductsMegaMenu();
     initNavDropdowns();
     initMobileNav();
   });

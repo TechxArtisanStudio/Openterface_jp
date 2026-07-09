@@ -1,0 +1,75 @@
+---
+import { getProductsMegaMenuItems } from '../data/productsMegaMenu';
+import { siteConfig } from '../config/site';
+import * as navModule from '../i18n/nav';
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+const items = getProductsMegaMenuItems();
+const navLabels =
+  'localeNavLabels' in navModule && siteConfig.locale !== 'en'
+    ? navModule.localeNavLabels
+    : navModule.enNavLabels;
+const appsCta = `${navLabels.apps} →`;
+---
+
+<div class="nav-dropdown nav-dropdown--mega products-mega relative" data-products-mega>
+  <button
+    type="button"
+    class="products-mega__trigger site-header__nav-link"
+    data-nav-toggle
+    data-products-mega-trigger
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="products-mega-panel"
+  >
+    {label}
+    <span class="nav-dropdown__chevron nav-dropdown__chevron--down" aria-hidden="true">▾</span>
+    <span class="nav-dropdown__chevron nav-dropdown__chevron--up" aria-hidden="true">▴</span>
+  </button>
+
+  <div
+    id="products-mega-panel"
+    class="products-mega__panel nav-dropdown__panel"
+    role="region"
+    aria-label={label}
+    hidden
+  >
+    <div class="products-mega__inner">
+      <div class="products-mega__grid">
+        {
+          items.map((item) => (
+            <a href={item.href} class="products-mega__card group">
+              <img
+                src={item.heroImage}
+                alt=""
+                class="products-mega__image aspect-[4/3] w-full object-cover"
+                width="320"
+                height="240"
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="products-mega__body">
+                <h3 class="products-mega__title group-hover:text-primary-dark">{item.title}</h3>
+                <p class="products-mega__slogan">{item.slogan}</p>
+                <p class="products-mega__subtitle">{item.subtitle}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="products-mega__footer">
+        <p class="products-mega__footer-text">
+          Cross-platform host apps for KVM control and KeyCmd shortcuts.
+        </p>
+        <a href="/apps/" class="products-mega__footer-link">
+          {appsCta}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

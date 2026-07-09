@@ -6,9 +6,11 @@ export type EcosystemSurface = 'marketing' | 'docs' | 'news';
 
 export interface NavItem {
   label: string;
-  href: string;
+  href?: string;
   external?: boolean;
   children?: NavItem[];
+  /** Marketing header: rich hover mega-menu instead of a plain dropdown. */
+  megaMenu?: boolean;
 }
 
 export interface EcosystemNavLabels {
@@ -48,7 +50,6 @@ export function buildEcosystemNav(
   labels: EcosystemNavLabels,
 ): NavItem[] {
   const productsChildren: NavItem[] = [
-    { label: labels.allProducts, href: marketingHref(surface, locale, '/products/') },
     { label: labels.keymodSeries, href: marketingHref(surface, locale, '/keymod/') },
     { label: labels.kvmGoSeries, href: marketingHref(surface, locale, '/kvmgo/') },
     { label: labels.miniKvm, href: marketingHref(surface, locale, '/minikvm/') },
@@ -63,8 +64,8 @@ export function buildEcosystemNav(
   return [
     {
       label: labels.products,
-      href: marketingHref(surface, locale, '/products/'),
       children: productsChildren,
+      megaMenu: surface === 'marketing',
     },
     { label: labels.apps, href: marketingHref(surface, locale, '/apps/') },
     { label: labels.docs, href: docsHref },

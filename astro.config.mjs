@@ -12,6 +12,7 @@ export default defineConfig({
     '/products/uconsole-kvm-extension/': '/kvmext/',
     '/products/accessories/': '/accessories/',
     '/use-cases/': '/products/',
+    '/product/': '/products/',
     '/app/': '/apps/',
     '/kvm/': '/apps/',
     '/keycmd/': '/apps/',
