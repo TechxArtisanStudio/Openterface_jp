@@ -92,9 +92,22 @@ const locale = siteConfig.locale as SiteLocale;
                   )}
                   <div class="mobile-nav-section-links">
                     {
-                      section.children?.map((child) => (
-                        <a href={child.href} class="mobile-nav-link">{child.label}</a>
-                      ))
+                      section.children?.map((child) =>
+                        child.external ? (
+                          <a
+                            href={child.href}
+                            class="mobile-nav-link mobile-nav-link--external"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {child.label}
+                          </a>
+                        ) : (
+                          <a href={child.href} class="mobile-nav-link">
+                            {child.label}
+                          </a>
+                        ),
+                      )
                     }
                   </div>
                 </div>

@@ -13,6 +13,8 @@ export const localeNavLabels: EcosystemNavLabels = {
   kvmControl: "Openterface KVM",
   keycmd: "KeyCmd",
   docs: "Docs",
+  productDocs: 'Docs →',
+  allDocumentation: 'All documentation →',
   media: "Media",
   news: "News",
   forum: "Forum",

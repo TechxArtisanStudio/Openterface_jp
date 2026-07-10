@@ -34,22 +34,31 @@ const items = getProductsMegaMenuItems();
       <div class="products-mega__grid">
         {
           items.map((item) => (
-            <a href={item.href} class="products-mega__card group">
-              <img
-                src={item.heroImage}
-                alt=""
-                class="products-mega__image aspect-[4/3] w-full object-cover"
-                width="320"
-                height="240"
-                loading="lazy"
-                decoding="async"
-              />
-              <div class="products-mega__body">
-                <h3 class="products-mega__title group-hover:text-primary-dark">{item.title}</h3>
-                <p class="products-mega__slogan">{item.slogan}</p>
-                <p class="products-mega__subtitle">{item.subtitle}</p>
-              </div>
-            </a>
+            <div class="products-mega__card">
+              <a href={item.href} class="products-mega__card-main group">
+                <img
+                  src={item.heroImage}
+                  alt=""
+                  class="products-mega__image aspect-[3/2] w-full object-contain"
+                  width="320"
+                  height="214"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="products-mega__body">
+                  <h3 class="products-mega__title group-hover:text-primary-dark">{item.title}</h3>
+                  <p class="products-mega__slogan">{item.slogan}</p>
+                </div>
+              </a>
+              <a
+                href={item.docsHref}
+                class="products-mega__docs-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.docsLabel}
+              </a>
+            </div>
           ))
         }
       </div>

@@ -27,6 +27,10 @@ export interface EcosystemNavLabels {
   kvmControl: string;
   keycmd: string;
   docs: string;
+  /** Short CTA on product mega-menu cards, e.g. "Docs →". */
+  productDocs: string;
+  /** Hub link in mega-menu footers and mobile accordion. */
+  allDocumentation: string;
   media: string;
   news: string;
   forum: string;
@@ -51,23 +55,25 @@ export function buildEcosystemNav(
   locale: SiteLocale,
   labels: EcosystemNavLabels,
 ): NavItem[] {
+  const docsHubHref = docsPath();
+  const newsHref = newsPath();
+
   const productsChildren: NavItem[] = [
     { label: labels.keymodSeries, href: marketingHref(surface, locale, '/keymod/') },
     { label: labels.kvmGoSeries, href: marketingHref(surface, locale, '/kvmgo/') },
     { label: labels.miniKvm, href: marketingHref(surface, locale, '/minikvm/') },
     { label: labels.kvmExt, href: marketingHref(surface, locale, '/kvmext/') },
     { label: labels.accessories, href: marketingHref(surface, locale, '/accessories/') },
+    { label: labels.allDocumentation, href: docsHubHref, external: true },
   ];
 
   const appsChildren: NavItem[] = [
     { label: labels.kvmControl, href: marketingHref(surface, locale, '/kvm/') },
     { label: labels.keycmd, href: marketingHref(surface, locale, '/keycmd/') },
+    { label: labels.allDocumentation, href: docsHubHref, external: true },
   ];
 
-  const docsHref = surface === 'docs' ? docsPath() : docsPath();
-  const newsHref = surface === 'news' ? newsPath() : newsPath();
-
-  return [
+  const items: NavItem[] = [
     {
       label: labels.products,
       children: productsChildren,
@@ -78,8 +84,15 @@ export function buildEcosystemNav(
       children: appsChildren,
       megaMenu: surface === 'marketing' ? 'apps' : undefined,
     },
-    { label: labels.docs, href: docsHref },
     { label: labels.media, href: marketingHref(surface, locale, '/media/') },
+  ];
+
+  // Docs hub stays top-level on the docs surface; marketing nests it under Products/Apps.
+  if (surface === 'docs') {
+    items.push({ label: labels.docs, href: docsHubHref });
+  }
+
+  items.push(
     { label: labels.news, href: newsHref },
     {
       label: labels.forum,
@@ -87,5 +100,7 @@ export function buildEcosystemNav(
       external: true,
       badge: labels.forumNewBadge,
     },
-  ];
+  );
+
+  return items;
 }
