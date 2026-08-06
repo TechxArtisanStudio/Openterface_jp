@@ -1,0 +1,37 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import KeyModCommunityCard from './KeyModCommunityCard.astro';
+import { getKeymodYouTubeReviewCards } from '../../lib/keymod-landing-media';
+import { siteConfig } from '../../config/site';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['youtubeReviews'];
+}
+
+const { copy } = Astro.props;
+const videos = getKeymodYouTubeReviewCards(siteConfig.locale);
+---
+
+{
+  videos.length > 0 ? (
+    <KeyModSection id="youtube-reviews" eyebrow={copy.eyebrow} title={copy.title} centered>
+      <div class="km-youtube-reviews" id="youtube-review-grid" role="list">
+        {videos.map((video) => (
+          <KeyModCommunityCard card={video} variant="review" />
+        ))}
+      </div>
+
+      <p class="km-subtitle km-youtube-reviews__footer">
+        <a
+          href="/media/?product=keymod"
+          data-analytics-event="internal_click"
+          data-analytics-product="keymod"
+          data-analytics-placement="keymod_youtube_media_hub"
+        >
+          {copy.viewAllMedia} →
+        </a>
+      </p>
+    </KeyModSection>
+  ) : null
+}

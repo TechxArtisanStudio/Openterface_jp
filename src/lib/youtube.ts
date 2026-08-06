@@ -11,6 +11,11 @@ export type YouTubeCsvRow = {
   z_index: string;
   language: string;
   product: string;
+  /** Optional CSV override: `long` | `short`. Blank → infer from URL. */
+  format?: string;
+  /** Optional engagement stats (from YouTube Data API or manual). */
+  like_count?: string;
+  comment_count?: string;
 };
 
 export type HomeVideo = {
@@ -37,6 +42,7 @@ export type SocialPlatform =
   | 'blog'
   | 'linkedin'
   | 'github'
+  | 'youtube'
   | 'other';
 
 export type MediaCoverageEntry = {
@@ -60,6 +66,8 @@ export type CatalogVideo = HomeVideo & {
   /** YouTube long-form vs Shorts; defaults to `long` when omitted in legacy data. */
   format: 'long' | 'short';
   app?: MediaApp;
+  likeCount?: number;
+  commentCount?: number;
 };
 
 export type MediaPostEntry = {
@@ -130,6 +138,13 @@ export function inferVideoFormat(url: string): 'long' | 'short' {
   const u = url.toLowerCase();
   if (u.includes('/shorts/') || u.includes('youtube.com/shorts')) return 'short';
   return 'long';
+}
+
+/** Prefer explicit CSV `format` column; fall back to URL inference. */
+export function resolveVideoFormat(url: string, explicit?: string): 'long' | 'short' {
+  const f = explicit?.trim().toLowerCase();
+  if (f === 'short' || f === 'long') return f;
+  return inferVideoFormat(url);
 }
 
 export function catalogVideoToMediaEntry(video: CatalogVideo): MediaCatalogEntry {
@@ -213,6 +228,7 @@ export const PLATFORM_DISPLAY_NAMES: Record<SocialPlatform, string> = {
   blog: 'Blog',
   linkedin: 'LinkedIn',
   github: 'GitHub',
+  youtube: 'YouTube',
   other: 'Web',
 };
 
@@ -319,13 +335,17 @@ export function rowToCatalogVideo(row: YouTubeCsvRow): CatalogVideo {
   const base = rowToHomeVideo(row);
   const url = row.youtube_url?.trim() ?? '';
   const zRaw = parseInt(row.z_index?.trim() ?? '0', 10);
+  const likeRaw = parseInt(row.like_count?.trim() ?? '', 10);
+  const commentRaw = parseInt(row.comment_count?.trim() ?? '', 10);
   return {
     ...base,
     videoId: extractVideoId(url),
     language: row.language?.trim().toLowerCase() ?? '',
     product: row.product?.trim() ?? '',
     zIndex: Number.isNaN(zRaw) ? 0 : zRaw,
-    format: inferVideoFormat(url),
+    format: resolveVideoFormat(url, row.format),
+    ...(Number.isFinite(likeRaw) ? { likeCount: likeRaw } : {}),
+    ...(Number.isFinite(commentRaw) ? { commentCount: commentRaw } : {}),
   };
 }
 

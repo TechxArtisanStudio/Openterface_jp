@@ -5,9 +5,10 @@ import { getAuthorInitialForCard, type KeymodCommunityCardView } from '../../lib
 interface Props {
   card: KeymodCommunityCardView;
   clone?: boolean;
+  variant?: 'default' | 'review';
 }
 
-const { card, clone = false } = Astro.props;
+const { card, clone = false, variant = 'default' } = Astro.props;
 
 const isVideo =
   card.platform === 'youtube' || card.format === 'short' || card.format === 'reel';
@@ -17,16 +18,33 @@ function platformLabel(platform: SocialPlatform | 'youtube'): string {
   return PLATFORM_DISPLAY_NAMES[platform] ?? platform;
 }
 
+/** Sync used to invent "@handle on platform" when caption was missing — skip those. */
+function isMeaningfulTitle(title: string | undefined, author: string, platform: string): title is string {
+  const t = title?.trim();
+  if (!t) return false;
+  const a = author.trim().toLowerCase();
+  const p = platform.trim().toLowerCase();
+  const lower = t.toLowerCase();
+  if (lower === `${a} on ${p}`) return false;
+  if (lower === `community on ${p}`) return false;
+  return true;
+}
+
+const displayTitle = isMeaningfulTitle(card.title, card.author, card.platform) ? card.title.trim() : undefined;
+
 const thumbAlt =
-  card.excerpt ?? card.title ?? `${platformLabel(card.platform)} post by ${card.author}`;
+  card.excerpt ?? displayTitle ?? `${platformLabel(card.platform)} post by ${card.author}`;
 
 const authorInitial = getAuthorInitialForCard(card.author);
+const showViews = variant === 'review' && Boolean(card.viewsFormatted);
 const showEngagement =
-  card.likeCount != null || card.commentCount != null;
+  card.likeCount != null || card.commentCount != null || showViews;
 
 const cardClass = clone
   ? 'km-community-card km-community-card--clone'
-  : 'km-community-card';
+  : variant === 'review'
+    ? 'km-community-card km-community-card--review'
+    : 'km-community-card';
 ---
 
 <article
@@ -98,6 +116,17 @@ const cardClass = clone
           showEngagement ? (
             <div class="km-community-card__engagement" aria-label="Post engagement">
               {
+                showViews ? (
+                  <span class="km-community-card__stat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                    {card.viewsFormatted}
+                  </span>
+                ) : null
+              }
+              {
                 card.likeCount != null ? (
                   <span class="km-community-card__stat">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -125,8 +154,8 @@ const cardClass = clone
       {
         card.excerpt ? (
           <p class="km-community-card__excerpt">&ldquo;{card.excerpt}&rdquo;</p>
-        ) : card.title ? (
-          <p class="km-community-card__title">{card.title}</p>
+        ) : displayTitle ? (
+          <p class="km-community-card__title">{displayTitle}</p>
         ) : null
       }
     </div>

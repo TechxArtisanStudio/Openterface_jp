@@ -42,7 +42,11 @@ const translations: Record<string, KeymodLandingStrings> = {
 };
 
 export function getKeymodLanding(locale = siteConfig.locale): KeymodLandingStrings {
-  return translations[locale] ?? en;
+  const base = translations[locale] ?? en;
+  return {
+    ...base,
+    youtubeReviews: base.youtubeReviews ?? en.youtubeReviews,
+  };
 }
 
 export const keymodLanding = getKeymodLanding();

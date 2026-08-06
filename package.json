@@ -8,8 +8,8 @@
   },
   "scripts": {
     "sync:videos": "node scripts/sync-home-videos.mjs",
-    "predev": "npm run sync:app-versions && npm run sync:videos",
-    "prebuild": "npm run sync:app-versions && npm run sync:videos",
+    "predev": "npm run sync:app-versions && npm run sync:videos && npm run sync:social-posts",
+    "prebuild": "npm run sync:app-versions && npm run sync:videos && npm run sync:social-posts",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

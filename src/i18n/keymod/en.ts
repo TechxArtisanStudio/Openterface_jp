@@ -1,0 +1,670 @@
+import { keymodLinks } from './links';
+import type { KeymodLandingStrings } from './types';
+
+export const en: KeymodLandingStrings = {
+  meta: {
+    title: 'KeyMod | Wireless USB Multi-tool | Openterface',
+    description:
+      'Pocket USB multi-tool bridge. Plug into the target device, control from KeyCmd on your phone. BIOS-capable HID. Mini for Type-C. Plus for USB-A servers.',
+    keywords:
+      'KeyMod, Wireless USB Multi-tool, KeyCmd, wireless HID, BIOS keyboard, homelab, sysadmin, USB-C, USB-A',
+  },
+  nav: {
+    docs: 'Docs',
+    preLaunchCta: 'Pre-launch',
+  },
+  povTabs: {
+    keyboard: 'Keyboard',
+    touchpad: 'Touchpad',
+    'km-pro': 'KM Pro',
+    'compose-send': 'Compose & Send',
+    gamepad: 'Gamepad',
+    presentation: 'Presentation',
+    terminal: 'Terminal',
+    'ai-chat': 'Agent',
+  },
+  hero: {
+    productName: 'KeyMod',
+    tagline: 'Pocket USB multi-tool bridge.',
+    equationPlus: '+ your phone',
+    equationEquals: '=',
+    lead:
+      'Plug into the target device. BLE control, zero driver, BIOS-ready. Server, PC, or console. Any USB port.',
+    docsCta: 'Docs',
+    preLaunchCta: 'Pre-launch',
+  },
+  whatItIs: {
+    eyebrow: 'What it is',
+    title: 'Hardware plugs in. Software takes control.',
+    subtitle: 'Target → KeyMod → Phone → KeyCmd',
+    cards: [
+      {
+        title: 'Plug in KeyMod (Mini / Plus)',
+        body: 'Into the target device. Zero driver. BIOS-ready.',
+      },
+      {
+        title: 'Open KeyCmd on your phone (Andorid / iOS)',
+        body: 'Pick a mode: KM Basic, KM Pro, gamepad, macros, and more.',
+      },
+    ],
+  },
+  skuCompare: {
+    eyebrow: 'Choose your port',
+    title: 'Mini vs Plus',
+    stackLine: 'Same KeyCmd app. Different dongle for the port on your machine.',
+    crowdSupplyCta: 'Pre-launch on Crowd Supply',
+    mini: {
+      name: 'KeyMod Mini',
+      port: 'USB-C male → target',
+      audience: 'Type-C-first · ultra-compact EDC',
+      connect: 'Phone link: BLE wireless · ~5–10 m in open space.',
+      tagline: 'The C-port dongle for your pocket.',
+    },
+    plus: {
+      name: 'KeyMod Plus',
+      port: 'USB-A male → target',
+      audience: 'Servers · legacy · rack ops',
+      connect:
+        'Phone link: BLE or USB wired to the dongle. Wired is steadier and has more bandwidth (ideal for SSH over USB, etc).',
+      tagline: 'The A-port dongle on the machine.',
+    },
+  },
+  scenarios: {
+    eyebrow: 'Built for your workflow',
+    title: 'Scenario-first, not a mode checklist',
+    items: [
+      {
+        title: 'Rack / server',
+        body: 'Bad posture at the rack. Machine has a display. Plug KeyMod Plus or Mini. Wireless input from KeyCmd, not video capture.',
+        imageLabel: 'Rack shot, monitor visible (reshoot)',
+      },
+      {
+        title: 'IT walk-up',
+        body: 'Kiosk or mini PC with its own screen. Pocket dongle. Control wirelessly from your phone. See range in Mini vs Plus.',
+        imageLabel: 'Kiosk / walk-up scene',
+      },
+      {
+        title: 'EDC pocket control',
+        body: 'The dongle stays in your bag. Your phone is the console when you reach the machine.',
+        imageLabel: 'EDC / pocket scene',
+      },
+    ],
+  },
+  modesTheater: {
+    eyebrow: 'In action',
+    title: 'Modes that change the job',
+    subtitleLines: [
+      'KeyMod stays on the USB port.',
+      'KeyCmd mode changes what you can do from your phone.',
+    ],
+    basic: {
+      badge: 'KM Basic · Launch',
+      title: 'Wireless keyboard',
+      lead: 'Type on your phone; characters appear on the target screen. BIOS-capable HID.',
+      body: 'First-person POV: hands on phone, characters on the target screen. BIOS-capable HID.',
+      mediaLabel: 'POV video loop, KM Basic (reshoot)',
+      demoLinks: [{ label: 'KeyMod intro (IG)', href: keymodLinks.keymodIntroReel }],
+    },
+    touchpad: {
+      badge: 'KM Basic · Launch',
+      title: 'Wireless touchpad',
+      lead: 'Point, click, and scroll on the target from your phone.',
+      body: 'Use your phone as a wireless trackpad for cursor control without a mouse at the machine.',
+      mediaLabel: 'POV touchpad mode (placeholder)',
+      demoLinks: [{ label: 'Keyboard + touchpad demo (IG)', href: keymodLinks.homelabKeyboardDemo }],
+    },
+    kmPro: {
+      badge: 'KM Pro · Keyboard & Mouse',
+      title: 'Hybrid keyboard + mouse layout',
+      lead: 'KeyCmd Pro mode: type and point from one phone screen. Hybrid HID layout for power users.',
+      body: 'Keyboard and Mouse Pro in KeyCmd puts keyboard, trackpad, and shortcuts on one layout. Richer than Basic, still BIOS-capable HID on the target.',
+      mediaLabel: 'POV KM Pro hybrid layout (placeholder)',
+    },
+    proTerminal: {
+      badge: 'Terminal · Preview',
+      title: 'SSH from your phone',
+      lead: 'USB when wired. Bluetooth at the rack. Preview demos ship in KeyCmd today.',
+      body: 'Dedicated Terminal mode in KeyCmd: SSH over USB ECM (Plus) or BLE-Eth (Mini). Full production link-up follows KeyMod firmware Phase 2.',
+      mediaLabel: 'Terminal SSH session (USB transport, reshoot)',
+    },
+    composeSend: {
+      badge: 'KM Pro · Compose & Send',
+      title: 'Paste on phone. Tap Send. Target types.',
+      lead: 'Compose long strings on your phone, then send them to the target in one tap.',
+      body: 'Multi-line HID paste for license keys, deploy scripts, and login prompts. Works in BIOS and locked-down hosts where clipboard paste fails.',
+      mediaLabel: 'Compose & Send demo (IG DZNZVbUBBxD)',
+      demoLinks: [{ label: 'Compose & Send demo (IG)', href: keymodLinks.composeSendDemo }],
+    },
+    opsZone: {
+      eyebrow: 'Ops Zone',
+      intro: {
+        title: 'Phone-side ops console',
+        body: 'Paste long commands to the target, keep a personal runbook, or SSH from your pocket. Plug in KeyMod. The target sees a standard keyboard and mouse with nothing to install or configure. No laptop at the rack.',
+      },
+      compose: {
+        badge: 'KM Pro · Compose & Send',
+        title: 'Paste on phone. Tap Send. Target types.',
+        body: 'Write multi-line commands on your phone, preview, then Send. KeyCmd types on the target over USB or Bluetooth HID. Zero install on the host. Cancel mid-send on long pastes. Your personal runbook: pin, rename, load, or send snippets in one tap (up to 60 items).',
+        demoLinks: [
+          {
+            label: 'Long API string send (IG)',
+            description:
+              'Real screen capture: paste a multi-line API call on your phone, tap Send, and watch KeyCmd type it on the target.',
+            href: keymodLinks.composeSendDemo,
+          },
+          {
+            label: 'Long code block send (IG Reel)',
+            description:
+              'Real demo: compose a long script on the phone and send it character-by-character to a locked-down host.',
+            href: keymodLinks.composeSendCodeReel,
+          },
+          {
+            label: 'Windows CMD: batch-rename images (X)',
+            description:
+              'Real screen capture: paste a batch-rename script on your phone, send it into Windows CMD, and let KeyMod type through dozens of filenames for you.',
+            href: keymodLinks.composeSendBatchRenameDemo,
+          },
+        ],
+        demoText: `ssh deploy@192.168.11.10 'cd /opt/stacks/monitoring && \\
+docker compose pull prometheus grafana node-exporter && \\
+docker compose up -d && \\
+docker compose ps && \\
+curl -sf http://127.0.0.1:9090/-/ready'`,
+        terminalPrompt: 'deploy@homelab:~$',
+        targets: {
+          terminal: { title: 'Target terminal' },
+          markdown: { title: 'Notes.md' },
+          browser: { title: 'Browser' },
+          apiKey: {
+            title: 'Activate license',
+            fieldLabel: 'Enter API key',
+            buttonLabel: 'Activate',
+          },
+        },
+        sendLabel: 'Send',
+        bridgeLabel: 'HID Send',
+        stopLabel: 'Stop',
+        autoSendHint: 'Tap Send',
+        interactiveDemoLabel: 'Interactive demo',
+        progressRemainingLabel: 'left',
+        savedTextsTitle: 'Saved texts',
+        loadLabel: 'Load',
+        sendSelectedLabel: 'Send selected',
+        backLabel: 'Back to compose',
+        openLibraryLabel: 'Open saved texts',
+        libraryHint: 'Tap a saved text to load and send',
+        selectFirstHint: 'Select a saved text first',
+        templates: [
+          {
+            id: 'release-notes',
+            title: 'release-notes',
+            pinned: true,
+            meta: '2d ago',
+            scenario: 'markdown',
+            scenarioLabel: 'Notes',
+            content: `# KeyMod v0.9.2 release notes
+
+## Highlights
+- Compose & Send saved texts (60 items)
+- BLE transport stability fixes
+
+## Upgrade
+1. Pull latest KeyCmd from Play Store
+2. Re-pair KeyMod if prompted`,
+          },
+          {
+            id: 'rotate-root-pass',
+            title: 'license-key',
+            pinned: true,
+            meta: '1w ago',
+            scenario: 'apiKey',
+            scenarioLabel: 'License',
+            content: 'Kx9m-P2nQ-7vL4-wR8j-H3tF-6yN1-0pS5-8uV2-4zA7',
+          },
+          {
+            id: 'homelab-monitoring',
+            title: 'homelab-monitoring',
+            pinned: true,
+            meta: '5h ago',
+            scenario: 'terminal',
+            scenarioLabel: 'Terminal',
+            content: `ssh deploy@192.168.11.10 'cd /opt/stacks/monitoring && \\
+docker compose pull prometheus grafana node-exporter && \\
+docker compose up -d && \\
+docker compose ps && \\
+curl -sf http://127.0.0.1:9090/-/ready'`,
+          },
+          {
+            id: 'campaign-url',
+            title: 'campaign-url',
+            pinned: false,
+            meta: '4h ago',
+            scenario: 'browser',
+            scenarioLabel: 'Browser',
+            content:
+              'https://www.crowd.supply/techxartisan/openterface-keymod-mini?utm_source=keycmd&utm_medium=compose-demo',
+          },
+          {
+            id: 'prod-deploy',
+            title: 'prod-deploy',
+            pinned: false,
+            meta: '2d ago',
+            scenario: 'terminal',
+            scenarioLabel: 'Terminal',
+            content: `cd /opt/app && git pull origin main && \\
+npm ci --omit=dev && \\
+npm run build && \\
+pm2 reload ecosystem.config.js --env production`,
+          },
+          {
+            id: 'docker-prune-safe',
+            title: 'docker-prune-safe',
+            pinned: false,
+            meta: '3d ago',
+            scenario: 'terminal',
+            scenarioLabel: 'Terminal',
+            content: 'docker system prune -af --filter "until=168h" && docker volume ls',
+          },
+        ],
+      },
+      terminal: {
+        badge: 'Terminal · Preview',
+        title: 'SSH from your phone',
+        body: 'Dedicated Terminal mode runs SSH through the KeyMod bridge. Pick USB for speed at the machine or Bluetooth when you are across the room.',
+        experimentalHint: 'Preview feature. Live SSH through KeyMod hardware follows firmware Phase 2.',
+        demo: {
+          interactiveDemoLabel: 'Interactive demo',
+          title: 'Terminal Preview',
+          summary: 'Try the canned SSH session replay. No hardware required.',
+          statusDisconnected: 'Disconnected',
+          statusConnecting: 'Connecting…',
+          statusConnected: 'Connected',
+          demoBleLabel: 'Preview demo (Bluetooth)',
+          demoUsbLabel: 'Preview demo (USB)',
+          transportBle: 'BLE',
+          transportUsb: 'USB',
+          uiFidelityNote: 'Approximate UI. Check KeyCmd on your phone for the live app.',
+          ctrlLabel: 'Ctrl',
+          escLabel: 'Esc',
+          tabLabel: 'Tab',
+        },
+        usb: {
+          label: 'USB ECM · KeyMod Plus',
+          body: 'Wired path when Plus is tethered to your phone. Low latency and high throughput for full-size sessions at the rack.',
+        },
+        ble: {
+          label: 'BLE-Eth · KeyMod Mini',
+          body: 'Wireless SSH when Mini is on the target. Compact terminal geometry recommended. Preview demo available in KeyCmd today.',
+        },
+        notice:
+          'KeyCmd ships Terminal UI and transport stack today with Preview demos (USB and Bluetooth). Live SSH through KeyMod hardware follows firmware Phase 2 sign-off.',
+      },
+    },
+    gameZone: {
+      eyebrow: 'Game Zone',
+      presets: {
+        title: 'Preset layouts',
+        body: 'Tap the Preset chip to cycle saved controller layouts: bundled emu-6 starter, import/export JSON presets (schema v7).',
+        layouts: [
+          {
+            label: 'Default',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-default.webp',
+            imageAlt: 'KeyCmd gamepad Default preset, WASD D-pad with A and B face buttons',
+          },
+          {
+            label: 'XYAB',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-xyab.webp',
+            imageAlt: 'KeyCmd XYAB preset, Nintendo-style face buttons with WASD D-pad',
+          },
+          {
+            label: 'Emu 6',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-emu6.webp',
+            imageAlt: 'KeyCmd Emu 6 preset, six-button arcade-style layout on dark grid',
+          },
+          {
+            label: 'XYAB Trackpad',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-layout.webp',
+            imageAlt: 'KeyCmd XYAB Trackpad preset, touchpad with XYAB face buttons and dual sticks',
+          },
+          {
+            label: 'Minecraft Java',
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-preset-minecraft.webp',
+            imageAlt: 'KeyCmd Minecraft Java preset, hotbar, look zone, and movement controls',
+          },
+        ],
+      },
+      editor: {
+        title: 'Build your layout',
+        body: 'Add D-pad, sticks, touchpads, and face buttons. Tap any module to tune behavior, size, and WASD mapping.',
+        panels: [
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-edit-mode.webp',
+            imageAlt: 'Gamepad module editor, configure stick, button, and touchpad modules',
+            caption: 'Configure modules',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-add-mode.webp',
+            imageAlt: 'Add modules to a gamepad preset: D-pad, stick, touchpad, buttons',
+            caption: 'Add modules',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-hold-lock-turbo.webp',
+            imageAlt: 'Diagonal swipe actions: hold lock and turbo per direction on mouse buttons',
+            caption: 'Hold lock & turbo',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-mouse-button.webp',
+            imageAlt: 'Fine-tune mouse buttons: press timing and turbo interval',
+            caption: 'Mouse button timing',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-dpad-keys.webp',
+            imageAlt: 'Map direction keys: D-pad cross vs split segments',
+            caption: 'Map direction keys',
+          },
+          {
+            imageSrc: '/keymod/rebirth/gamepad/gamepad-editor-scroll-strip.webp',
+            imageAlt: 'Tune scroll strip: height and wheel sensitivity',
+            caption: 'Scroll strip settings',
+          },
+        ],
+      },
+      share: {
+        title: 'Share presets',
+        body: 'Export layouts as JSON and share with your team. Background art embeds in the file. Same gamepad mode on KeyMod and KVM-GO.',
+      },
+    },
+    gamepad: {
+      badge: 'Gamepad mode · Preview',
+      title: 'Phone as game controller',
+      lead: 'KeyCmd gamepad mode: immersive, high-motion control from your phone.',
+      body: 'High-motion gamepad demos from KeyCmd. Same stack works with KeyMod hardware.',
+      mediaLabel: 'Gamepad video, Minecraft (IG)',
+      demoLinks: [
+        { label: 'Gamepad tutorial', href: keymodLinks.gamepadTutorial },
+        { label: 'Minecraft demo (IG)', href: keymodLinks.gamepadDemo },
+        { label: 'KVM-GO gamepad demos', href: keymodLinks.kvmgo },
+      ],
+    },
+    presentation: {
+      badge: 'Presentation',
+      title: 'Slide remote',
+      lead: 'Control Keynote, Google Slides, and decks from your phone.',
+      body: 'Keynote, Google Slides, and deck control from your phone. Handy when you already have the dongle in your bag.',
+      mediaLabel: 'Presentation remote scene',
+      demoLinks: [{ label: 'Presentation tutorial', href: keymodLinks.presentationTutorial }],
+    },
+    aiChat: {
+      badge: 'Agent · Experimental',
+      title: 'Agent on your phone',
+      lead: 'One sentence drives Terminal, macros, and HID on your target.',
+      body: 'Connect your LLM API key in KeyCmd. Agent Mode plans each step and waits for your approval before KeyMod acts on the host.',
+      mediaLabel: 'Agent Mode chat UI on KeyCmd',
+    },
+    agentZone: {
+      eyebrow: 'Agent Zone',
+      intro: {
+        title: 'Say it once. KeyMod does the rest.',
+        body:
+          'Connect your LLM API key in KeyCmd. Agent Mode reads your intent, builds a step-by-step plan across Terminal, macros, HID, and shortcuts, then waits for your approval before anything runs on the host.',
+      },
+      agent: {
+        badge: 'Agent Mode · Experimental',
+        title: 'Plan, approve, act',
+        body:
+          'Bring your own API key (or sign in for limited free tier in KeyCmd). One sentence can chain SSH checks, macro playback, and keyboard shortcuts through the KeyMod bridge: the same firmware stack you use manually, orchestrated by an LLM.',
+        notice:
+          'Preview demo on this page. No API key required. Live Agent chat with host execution ships in KeyCmd preview builds; full firmware-side automation follows our standard KeyCmd-first rollout.',
+        capabilities: [
+          {
+            label: 'Terminal',
+            body: 'SSH remote checks and shell commands on the target.',
+          },
+          {
+            label: 'Macros & HID',
+            body: 'Multi-step desktop workflows and shortcut injection.',
+          },
+          {
+            label: 'Shortcuts & Compose',
+            body: 'Saved texts and one-shot sends, callable from a plan step.',
+          },
+        ],
+        demo: {
+          interactiveDemoLabel: 'Interactive demo',
+          overlayTitle: 'Agent Preview',
+          overlaySummary: 'Pick a scripted workflow. No API key or hardware required.',
+          sessionSubtitle: 'Approve before KeyCmd acts on your host.',
+          connectionReady: 'KeyMod · Ready',
+          pickerHint: 'Pick a demo to preview how Agent plans and acts on your target device.',
+          planLabel: 'PLAN',
+          actPrompt: 'Review the plan before KeyCmd acts on your host.',
+          approveLabel: 'Approve & Run',
+          editPlanLabel: 'Edit plan',
+          cancelLabel: 'Cancel',
+          terminalExecutingLabel: 'TERMINAL · EXECUTING',
+          macroExecutingLabel: 'MACRO · EXECUTING',
+          uiFidelityNote: 'Approximate UI. Check KeyCmd on your phone for the live app.',
+        },
+      },
+    },
+  },
+  firmwareRoadmap: {
+    eyebrow: 'Roadmap',
+    title: 'What we are building next',
+    subtitle: 'Here is what is queued up today.',
+    chipsLabel: 'Queued for firmware / features',
+    chips: ['Network bridge', 'Audio bridge', 'MIDI', 'CLI + MCP automation', 'Remote relay'],
+    forumPrompt:
+      'Got a mode, bridge, or workflow you really want? Post on the Openterface forum. If lots of builders ask for the same thing, it often moves up the queue. KeyMod works better when we build it with you.',
+    forumCta: 'Discuss on the forum ↗',
+    forumNewBadge: 'New',
+  },
+  productJourney: {
+    eyebrow: 'Product journey',
+    title: 'From concept to your desk',
+    subtitle:
+      'Seven milestones shipped. Pre-launch validation is underway. Crowdfunding and fulfillment are next.',
+    scrollHint: '← Swipe for earlier milestones',
+    nowLabel: 'Now',
+    nowSublabel: 'Pre-launch · final hardware & firmware validation',
+    milestones: [
+      {
+        id: 'concept',
+        status: 'done',
+        title: 'Mini-KVM → HID emulator',
+        lead: 'Pocket HID bridge concept rooted in our Mini-KVM stack.',
+      },
+      {
+        id: 'hw-prototype',
+        status: 'done',
+        title: 'Hardware prototyped',
+        lead: 'KeyMod Mini and Plus boards designed and first articles built.',
+      },
+      {
+        id: 'cs-prelaunch',
+        status: 'done',
+        title: 'Crowd Supply pre-launch',
+        lead: 'Campaign page live. Follow for launch day.',
+        href: keymodLinks.crowdSupply,
+      },
+      {
+        id: 'trial-batch-1',
+        status: 'done',
+        title: 'First trial batch',
+        lead: 'Factory trial build to validate assembly and BOM.',
+      },
+      {
+        id: 'beta-1',
+        status: 'done',
+        title: 'Beta round 1',
+        lead: 'Closed beta with real setups shaped KeyCmd and firmware priorities.',
+      },
+      {
+        id: 'firmware-pivot',
+        status: 'pivot',
+        title: 'Concept pivot',
+        lead: 'Reshaped as a pocket USB multi-tool bridge: one dongle, many modes.',
+      },
+      {
+        id: 'trial-batches',
+        status: 'done',
+        title: 'Trial production runs',
+        lead: 'Iterated small batches to harden hardware before mass production.',
+      },
+      {
+        id: 'beta-2',
+        status: 'upcoming',
+        variant: 'beta',
+        badge: 'Beta · Round 2',
+        title: 'Next beta invites',
+        lead: 'Wider closed beta on refreshed firmware and hardware before crowdfunding.',
+        timingLabel: 'Before launch',
+        href: '#updates',
+      },
+      {
+        id: 'crowdfunding',
+        status: 'upcoming',
+        title: 'Crowdfunding opens',
+        timingLabel: '~Mid-July 2026',
+      },
+      {
+        id: 'campaign',
+        status: 'upcoming',
+        title: 'Campaign live',
+        timingLabel: '~1.5 months',
+      },
+      {
+        id: 'mass-production',
+        status: 'upcoming',
+        title: 'Mass production',
+        timingLabel: '~3 months',
+      },
+      {
+        id: 'sea-freight',
+        status: 'upcoming',
+        title: 'Sea freight to US',
+        timingLabel: '~1.5 months',
+      },
+      {
+        id: 'backer-delivery',
+        status: 'upcoming',
+        title: 'Backer delivery',
+        timingLabel: '~2–3 weeks',
+      },
+    ],
+  },
+  socialProof: {
+    eyebrow: 'Community',
+    title: 'Real users, real setups',
+    followIg: 'More demos on @techxartisan',
+    viewAllMedia: 'All KeyMod media',
+    showAllPosts: 'Show all posts',
+  },
+  youtubeReviews: {
+    eyebrow: 'Reviews',
+    title: 'See it in action on YouTube',
+    viewAllMedia: 'All KeyMod media',
+  },
+  keycmdBridge: {
+    eyebrow: 'Software companion',
+    title: 'Controlled from KeyCmd on your phone',
+    body:
+      'KeyCmd is the multi-mode console that powers KeyMod, a pocket USB bridge on the machine. Tiny dongle, full control. Built for rack ops, walk-ups, and everyday IT work.',
+    cta: 'Meet KeyCmd',
+    mediaLabel: 'KeyCmd welcome screen, pick a control mode',
+  },
+  crowdSupplyCampaign: {
+    eyebrow: 'Crowd Supply',
+    title: 'Pre-launch on Crowd Supply',
+    body:
+      'Back KeyMod Mini and Plus on Crowd Supply. Pocket USB bridges that turn your phone into a wireless console. Follow for launch day.',
+    cta: 'Pre-launch',
+  },
+  crowdSupplySupport: {
+    eyebrow: 'Back the project',
+    title: 'Help us ship what is next',
+    body:
+      'Follow KeyMod on Crowd Supply and back the campaign when it opens. Experimental modes like Agent ship faster when more builders support the project. Every backer buys us more engineering time on the firmware roadmap.',
+    cta: 'Follow on Crowd Supply',
+  },
+  crowdSupplyOpensource: {
+    eyebrow: 'Open by design',
+    title: 'Open hardware, built in the open',
+    body:
+      'KeyMod follows the same open-hardware spirit as Openterface Mini-KVM and KVM-GO: transparent design, community feedback, and docs that grow with the product. Open hardware is rare and costly to get right. Your support is what lets us keep building that way.',
+    cta: 'Back open hardware',
+    badgesLabel: 'Open hardware community certifications',
+    osiAlt: 'Open Source Initiative approved open-source license',
+    oshAlt: 'Open Source Hardware Association',
+  },
+  productLine: {
+    eyebrow: 'Openterface family',
+    title: 'Also need video on your laptop?',
+    body: 'Mini-KVM and KVM-GO: video + keyboard and mouse control.',
+    minikvmCta: 'Mini-KVM →',
+    kvmgoCta: 'KVM-GO →',
+  },
+  subscribe: {
+    eyebrow: 'Stay in the loop',
+    title: 'Get KeyMod launch updates',
+    description:
+      'Product launches, firmware releases, and setup guides. At most one email per month. No spam.',
+    benefits: [
+      'Early access to crowdfunding and pre-order windows',
+      'Setup guides and KeyCmd release notes',
+      'Unsubscribe anytime with one click',
+    ],
+    submitLabel: 'Subscribe for updates',
+    namePlaceholder: 'Name (optional)',
+    emailPlaceholder: 'Email address *',
+    footnote: 'At most one email per month. Unsubscribe anytime. Questions? info@openterface.com',
+    crowdSupplyPrompt: 'Already on Crowd Supply?',
+    crowdSupplyLink: 'View the campaign ↗',
+  },
+  faq: {
+    eyebrow: 'FAQ',
+    title: 'Common questions',
+    items: [
+      {
+        q: 'Is this a Bluetooth keyboard app?',
+        a: 'No. KeyMod is USB HID on the target. BLE (or Plus USB) is phone ↔ KeyMod only, not a Bluetooth keyboard emulating into the host OS. Your PC never pairs with your phone over Bluetooth.',
+      },
+      {
+        q: 'KeyMod Mini vs Plus?',
+        a: 'Mini plugs into USB-C on the target and links to your phone over BLE. Plus plugs into USB-A and adds a USB wired path to your phone, which is steadier and has more bandwidth than BLE alone.',
+      },
+      {
+        q: 'KM Basic vs KM Pro?',
+        a: 'Both are Keyboard & Mouse modes inside KeyCmd, not separate products. KM Basic is keyboard, numpad, and touchpad only: simple, physical-style controls with nothing to learn. KM Pro adds strip shortcuts, Compose & Send, Saved texts, and Shortcut Hub for power-user workflows. Terminal is a separate KeyCmd mode (Preview today).',
+      },
+      {
+        q: 'Does the target need software or drivers?',
+        a: 'No. KeyMod emulates a standard USB keyboard and mouse. The target sees plug-and-play HID hardware. BIOS-capable, zero install on the host.',
+      },
+      {
+        q: 'Does KeyMod capture video?',
+        a: 'No. Use Mini-KVM or KVM-GO when you need the screen on your laptop.',
+      },
+      {
+        q: 'Does Gamepad mode make the PC see an Xbox or PlayStation controller?',
+        a: 'No. KeyCmd maps sticks and buttons to keyboard and mouse actions. The target sees standard keyboard + mouse HID, not native gamepad HID.',
+      },
+      {
+        q: 'Why did the story change?',
+        a: 'CH32 platform work pushed KeyMod toward a Wireless USB Multi-tool with a scenario-first launch story.',
+      },
+      {
+        q: 'Why is Agent Mode experimental?',
+        a: 'Agent Mode connects an LLM to KeyMod firmware capabilities (Terminal, macros, HID, and shortcuts) with a plan-and-approve safety model. It ships in KeyCmd preview builds first; full host execution and firmware-side automation follow our standard KeyCmd-first rollout. Backing the Crowd Supply campaign helps us dedicate more engineering time to experimental modes.',
+      },
+    ],
+  },
+  footer: {
+    ctaPrimary: 'Subscribe',
+    ctaKeycmd: 'KeyCmd app',
+    forumCta: 'Forum',
+    discordCta: 'Discord',
+    forumNewBadge: 'New',
+    legal: `© ${new Date().getFullYear()} TechxArtisan · Openterface KeyMod`,
+  },
+};;

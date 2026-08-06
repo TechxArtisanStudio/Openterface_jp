@@ -1,4 +1,4 @@
-import type { MediaCatalogEntry, MediaPostEntry, SocialPlatform } from './youtube';
+import type { CatalogVideo, MediaCatalogEntry, MediaPostEntry, SocialPlatform } from './youtube';
 
 /** Curated social post — generated from social-posts.csv via sync-social-posts.mjs */
 export type SocialPost = {
@@ -117,8 +117,26 @@ export function socialPostToMediaCatalogEntry(post: SocialPost): MediaCatalogEnt
   };
 }
 
+/** Card view for KeyMod landing community strip. */
+export type KeymodCommunityCardView = {
+  id: string;
+  platform: SocialPlatform | 'youtube';
+  format: SocialPost['format'] | CatalogVideo['format'];
+  externalUrl: string;
+  thumbnail: string;
+  author: string;
+  excerpt?: string;
+  scenarioTag?: string;
+  title?: string;
+  date?: string;
+  likeCount?: number;
+  commentCount?: number;
+  viewsFormatted?: string;
+  authorAvatar?: string;
+};
+
 /** Map generated post → KeyMod community card shape (P2 UI consumer). */
-export function socialPostToKeymodCommunityCard(post: SocialPost) {
+export function socialPostToKeymodCommunityCard(post: SocialPost): KeymodCommunityCardView {
   return {
     id: post.id,
     platform: post.platform,
@@ -129,6 +147,7 @@ export function socialPostToKeymodCommunityCard(post: SocialPost) {
     excerpt: post.excerpt,
     scenarioTag: post.scenarioTag,
     title: post.title,
+    date: post.date,
     likeCount: post.likeCount,
     commentCount: post.commentCount,
     authorAvatar: post.authorAvatar,
@@ -143,9 +162,6 @@ function authorInitial(author: string): string {
 export function getAuthorInitialForCard(author: string): string {
   return authorInitial(author);
 }
-
-/** Card view for KeyMod landing community strip. */
-export type KeymodCommunityCardView = ReturnType<typeof socialPostToKeymodCommunityCard>;
 
 export function getKeymodCommunityCardsFromSocialPosts(): KeymodCommunityCardView[] {
   return getKeymodLandingSocialPosts().map(socialPostToKeymodCommunityCard);

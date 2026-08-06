@@ -242,6 +242,11 @@ export type KeymodLandingStrings = {
     viewAllMedia: string;
     showAllPosts: string;
   };
+  youtubeReviews?: {
+    eyebrow: string;
+    title: string;
+    viewAllMedia: string;
+  };
   keycmdBridge: {
     eyebrow: string;
     title: string;

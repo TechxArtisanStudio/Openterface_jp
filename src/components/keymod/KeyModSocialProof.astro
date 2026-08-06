@@ -1,7 +1,8 @@
 ---
 import KeyModSection from './KeyModSection.astro';
 import KeyModCommunityCard from './KeyModCommunityCard.astro';
-import { getKeymodCommunityCardsFromSocialPosts } from '../../lib/social-posts';
+import { getKeymodLandingUgcCards } from '../../lib/keymod-landing-media';
+import { siteConfig } from '../../config/site';
 import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const { copy } = Astro.props;
-const posts = getKeymodCommunityCardsFromSocialPosts();
+const posts = getKeymodLandingUgcCards(siteConfig.locale);
 ---
 
 {

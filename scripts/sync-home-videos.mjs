@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 /**
- * Fetch youtube.csv and generate src/data/homeVideos.ts for static homepage strip.
+ * Fetch youtube.csv and generate src/data/homeVideos.ts + catalogVideos.ts.
+ * Optionally enriches views/likes/comments via YouTube Data API (YOUTUBE_API_KEY).
  */
-import { readFile, writeFile } from 'node:fs/promises';
+import { access, readFile, writeFile } from 'node:fs/promises';
 import { readFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { fetchYouTubeStatistics } from './lib/youtube/fetch-statistics.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
@@ -99,15 +101,34 @@ function parseCsv(text) {
     row.push(field);
     if (row.some((cell) => cell.length > 0)) lines.push(row);
   }
-  if (lines.length < 2) return [];
+  if (lines.length < 2) return { headers: [], rows: [] };
   const headers = lines[0].map((h) => h.trim());
-  return lines.slice(1).map((cells) => {
+  const rows = lines.slice(1).map((cells) => {
     const record = {};
     headers.forEach((h, idx) => {
       record[h] = cells[idx] ?? '';
     });
     return record;
   });
+  return { headers, rows };
+}
+
+function ensureHeader(headers, name) {
+  if (!headers.includes(name)) headers.push(name);
+}
+
+function escapeCsvField(value) {
+  const s = value == null ? '' : String(value);
+  if (/[",\n\r]/.test(s)) return `"${s.replace(/"/g, '""')}"`;
+  return s;
+}
+
+function serializeCsv(headers, rows) {
+  const lines = [headers.join(',')];
+  for (const row of rows) {
+    lines.push(headers.map((h) => escapeCsvField(row[h] ?? '')).join(','));
+  }
+  return `${lines.join('\n')}\n`;
 }
 
 function sortVideos(rows, targetLanguage) {
@@ -151,49 +172,96 @@ function rowToHomeVideo(row) {
   };
 }
 
+function resolveVideoFormat(url, explicit) {
+  const f = explicit?.trim().toLowerCase();
+  if (f === 'short' || f === 'long') return f;
+  const lower = url.toLowerCase();
+  if (lower.includes('/shorts/') || lower.includes('youtube.com/shorts')) return 'short';
+  return 'long';
+}
+
 function rowToCatalogVideo(row) {
   const base = rowToHomeVideo(row);
   const url = row.youtube_url?.trim() ?? '';
   const zRaw = parseInt(row.z_index?.trim() ?? '0', 10);
-  const lower = url.toLowerCase();
-  const format = lower.includes('/shorts/') || lower.includes('youtube.com/shorts') ? 'short' : 'long';
+  const likeRaw = parseInt(row.like_count?.trim() ?? '', 10);
+  const commentRaw = parseInt(row.comment_count?.trim() ?? '', 10);
   return {
     ...base,
     videoId: extractVideoId(url),
     language: row.language?.trim().toLowerCase() ?? '',
     product: row.product?.trim() ?? '',
     zIndex: Number.isNaN(zRaw) ? 0 : zRaw,
-    format,
+    format: resolveVideoFormat(url, row.format),
+    ...(Number.isFinite(likeRaw) ? { likeCount: likeRaw } : {}),
+    ...(Number.isFinite(commentRaw) ? { commentCount: commentRaw } : {}),
   };
 }
 
-async function loadCsvText() {
-  try {
-    const res = await fetch(CSV_URL, { signal: AbortSignal.timeout(15000) });
-    if (res.ok) {
-      console.log(`✓ Fetched ${CSV_URL}`);
-      return await res.text();
-    }
-    console.warn(`⚠ HTTP ${res.status} from CDN, trying local fallback`);
-  } catch (err) {
-    console.warn(`⚠ Fetch failed (${err.message}), trying local fallback`);
-  }
-
+async function loadCsv() {
   for (const path of LOCAL_FALLBACKS) {
     try {
       const text = await readFile(path, 'utf8');
       console.log(`✓ Using local CSV: ${path}`);
-      return text;
+      return { text, path };
     } catch {
       /* try next */
     }
   }
-  throw new Error('Could not load youtube.csv from CDN or local fallback');
+
+  try {
+    const res = await fetch(CSV_URL, { signal: AbortSignal.timeout(15000) });
+    if (res.ok) {
+      console.log(`✓ Fetched ${CSV_URL}`);
+      return { text: await res.text(), path: null };
+    }
+    console.warn(`⚠ HTTP ${res.status} from CDN`);
+  } catch (err) {
+    console.warn(`⚠ Fetch failed (${err.message})`);
+  }
+
+  throw new Error('Could not load youtube.csv from local fallback or CDN');
+}
+
+function applyStatistics(rows, statsById) {
+  let updated = 0;
+  for (const row of rows) {
+    const id = extractVideoId(row.youtube_url?.trim() ?? '');
+    if (!id) continue;
+    const stats = statsById.get(id);
+    if (!stats) continue;
+    if (stats.views != null) row.views = String(stats.views);
+    if (stats.likeCount != null) row.like_count = String(stats.likeCount);
+    if (stats.commentCount != null) row.comment_count = String(stats.commentCount);
+    updated++;
+  }
+  return updated;
 }
 
 async function main() {
-  const csvText = await loadCsvText();
-  const rows = parseCsv(csvText);
+  const { text: csvText, path: localCsvPath } = await loadCsv();
+  const { headers, rows } = parseCsv(csvText);
+  ensureHeader(headers, 'like_count');
+  ensureHeader(headers, 'comment_count');
+  ensureHeader(headers, 'format');
+
+  const videoIds = rows.map((r) => extractVideoId(r.youtube_url?.trim() ?? '')).filter(Boolean);
+  const statsById = await fetchYouTubeStatistics(videoIds);
+  if (statsById.size > 0) {
+    const n = applyStatistics(rows, statsById);
+    console.log(`✓ Enriched ${n} rows with YouTube statistics`);
+  }
+
+  if (localCsvPath) {
+    try {
+      await access(dirname(localCsvPath));
+      await writeFile(localCsvPath, serializeCsv(headers, rows), 'utf8');
+      console.log(`✓ Wrote enriched CSV: ${localCsvPath}`);
+    } catch (err) {
+      console.warn(`⚠ Skipping CSV write (${err.message})`);
+    }
+  }
+
   const sorted = sortVideos(rows, LOCALE);
   const videos = sorted.slice(0, LIMIT).map(rowToHomeVideo);
   const duplicated = [...videos, ...videos];
