@@ -26,7 +26,7 @@ const OG_LOCALE_BY_HOST: Record<string, string> = {
 const EXPECTED_OG_LOCALE = OG_LOCALE_BY_HOST[SITE_HOST] ?? 'en_US';
 
 /** Routes that exist as built pages in sitemap (flat product landings added in 1D–1G). */
-const SITEMAP_ROUTES = ['/', '/about/', '/videos/', '/products/', '/minikvm/', '/kvmgo/', '/keymod/', '/kvmext/', '/accessories/', '/app/', '/kvm/', '/keycmd/'];
+const SITEMAP_ROUTES = ['/', '/about/', '/accessories/', '/apps/', '/keycmd/', '/keymod/', '/kvm/', '/kvmext/', '/kvmgo/', '/media/', '/minikvm/', '/products/'];
 
 test('robots.txt is valid', async ({ request }) => {
   const res = await request.get('/robots.txt');
