@@ -143,7 +143,13 @@ export const kvmDownloadSection: AppDownloadSection = {
     {
       name: 'iPadOS',
       description: 'Native iPad host app for Openterface KVM over USB-C.',
-      downloads: [],
+      downloads: [
+        {
+          label: 'Install from App Store',
+          href: 'https://apps.apple.com/us/app/openterface-kvm-ipad/id6763533664',
+          external: true,
+        },
+      ],
     },
     {
       name: 'Web',
