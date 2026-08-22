@@ -44,10 +44,12 @@ const { opsZone } = Astro.props;
     <span class="km-ops-showcase__badge">{opsZone.terminal.badge}</span>
     <h3 id="ops-terminal-title" class="km-ops-showcase__title km-ops-showcase__title-lockup">
       {opsZone.terminal.title}
-      <KeyModExperimentalIcon
-        class="km-ops-showcase__title-icon km-ops-showcase__title-icon--experimental"
-        title={opsZone.terminal.experimentalHint}
-      />
+      {opsZone.terminal.experimentalHint ? (
+        <KeyModExperimentalIcon
+          class="km-ops-showcase__title-icon km-ops-showcase__title-icon--experimental"
+          title={opsZone.terminal.experimentalHint}
+        />
+      ) : null}
     </h3>
     <p class="km-ops-showcase__body">{opsZone.terminal.body}</p>
 
