@@ -572,7 +572,22 @@ export const ja: KeymodLandingStrings = {
       cta: "KeyCmdの詳細",
       mediaLabel: "KeyCmdウェルカム画面、コントロールモードを選択",
     },
-    crowdSupplyCampaign: {
+    crowdSupplyStats: {
+    eyebrow: 'Campaign progress',
+    title: 'Live on Crowd Supply',
+    ofGoal: 'of {goal} goal',
+    funded: 'Funded',
+    overFunded: 'Stretch goal unlocked!',
+    backers: 'backers',
+    daysLeft: 'days left',
+    updates: 'updates',
+    cta: 'Back the campaign',
+    lastUpdated: 'Updated',
+    updatedJustNow: 'just now',
+    updatedYesterday: 'yesterday',
+    fallbackText: 'Campaign is live on Crowd Supply.',
+  },
+  crowdSupplyCampaign: {
       eyebrow: "Crowd Supply",
       title: "Crowd Supplyでライブ",
       body: "Crowd SupplyでKeyMod MiniとPlusを支援しましょう。スマートフォンをワイヤレスコンソールに変えるポケットUSBブリッジ。キャンペーン live 中。",

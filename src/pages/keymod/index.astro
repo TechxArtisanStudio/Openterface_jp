@@ -34,7 +34,7 @@ const productUrl = new URL(canonicalPath, siteConfig.url).href;
   <ProductJsonLd slot="head" product={product} url={productUrl} />
   <KeyModNav copy={copy.nav} />
   <main>
-    <KeyModHero copy={copy.hero} />
+    <KeyModHero copy={copy.hero} crowdSupplyStats={copy.crowdSupplyStats} />
     <KeyModWhatItIs copy={copy.whatItIs} />
     <KeyModModesTheater copy={copy.modesTheater} povTabs={copy.povTabs} crowdSupplyCampaign={copy.crowdSupplyCampaign} />
     <KeyModYouTubeReviews copy={copy.youtubeReviews} />

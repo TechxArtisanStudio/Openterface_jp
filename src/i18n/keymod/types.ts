@@ -254,6 +254,21 @@ export type KeymodLandingStrings = {
     cta: string;
     mediaLabel: string;
   };
+  crowdSupplyStats: {
+    eyebrow: string;
+    title: string;
+    ofGoal: string;
+    funded: string;
+    overFunded: string;
+    backers: string;
+    daysLeft: string;
+    updates: string;
+    cta: string;
+    lastUpdated: string;
+    updatedJustNow: string;
+    updatedYesterday: string;
+    fallbackText: string;
+  };
   crowdSupplyCampaign: {
     eyebrow: string;
     title: string;

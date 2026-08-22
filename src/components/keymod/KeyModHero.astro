@@ -7,10 +7,39 @@ import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
 
 interface Props {
   copy: KeymodLandingStrings['hero'];
+  crowdSupplyStats?: KeymodLandingStrings['crowdSupplyStats'];
 }
 
-const { copy } = Astro.props;
+const { copy, crowdSupplyStats } = Astro.props;
 const heroAsset = getKeymodAsset('hero', 'center');
+
+/** Load live campaign data from the generated JSON. */
+let stats: {
+  raised: number;
+  goal: number;
+  percentFunded: number;
+  backers: number;
+  daysLeft: number;
+} | null = null;
+
+if (crowdSupplyStats) {
+  try {
+    const data = await import('../../config/crowd-supply.generated.json').then((m) => m.default ?? m);
+    stats = {
+      raised: data.raised,
+      goal: data.goal,
+      percentFunded: data.percentFunded,
+      backers: data.backers,
+      daysLeft: data.daysLeft,
+    };
+  } catch {
+    stats = null;
+  }
+}
+
+function formatCurrency(n: number): string {
+  return n >= 1000 ? `$${(n / 1000).toFixed(n % 1000 === 0 ? 0 : 1)}k` : `$${n}`;
+}
 ---
 
 <section class="km-hero km-hero--light" id="hero" aria-labelledby="hero-title">
@@ -50,6 +79,33 @@ const heroAsset = getKeymodAsset('hero', 'center');
 
     {copy.headline ? <p class="km-hero__headline">{copy.headline}</p> : null}
     <p class="km-hero__lead">{copy.lead}</p>
+
+    {stats && crowdSupplyStats ? (
+      <div class="km-hero__campaign" aria-label={`${stats.percentFunded}% ${crowdSupplyStats.funded}`}>
+        <div class="km-hero__campaign-top">
+          <span class="km-hero__campaign-raised">
+            <sup>$</sup>{stats.raised.toLocaleString()}
+          </span>
+          <span class="km-hero__campaign-raised-sub">
+            {crowdSupplyStats.ofGoal.replace('{goal}', `$${stats.goal.toLocaleString()}`)}
+          </span>
+        </div>
+        <div class="km-hero__campaign-track" role="progressbar" aria-valuenow={stats.percentFunded} aria-valuemin={0} aria-valuemax={100}>
+          <div class="km-hero__campaign-fill" style={`width: ${Math.min(stats.percentFunded, 100)}%`}>
+            <span class="km-hero__campaign-pct">{stats.percentFunded}% {crowdSupplyStats.funded}</span>
+          </div>
+        </div>
+        <div class="km-hero__campaign-meta">
+          <span class="km-hero__campaign-meta-item">
+            <strong>{stats.backers}</strong> {crowdSupplyStats.backers}
+          </span>
+          <span class="km-hero__campaign-meta-dot" aria-hidden="true"></span>
+          <span class="km-hero__campaign-meta-item">
+            <strong>{stats.daysLeft}</strong> {crowdSupplyStats.daysLeft}
+          </span>
+        </div>
+      </div>
+    ) : null}
 
     <div class="km-hero__actions">
       <a

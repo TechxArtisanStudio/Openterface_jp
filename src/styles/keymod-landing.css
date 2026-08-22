@@ -1482,6 +1482,101 @@
   font-size: clamp(0.9375rem, 2.2vw, 1.0625rem);
 }
 
+/* Hero campaign stats — bold visual between lead and CTA buttons */
+.km-hero__campaign {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  max-width: 28rem;
+  margin-inline: auto;
+}
+
+.km-hero__campaign-top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.km-hero__campaign-raised {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 800;
+  color: var(--km-accent);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.km-hero__campaign-raised sup {
+  font-size: 0.55em;
+  vertical-align: super;
+  margin-right: 0.05em;
+}
+
+.km-hero__campaign-raised-sub {
+  font-size: 0.9375rem;
+  color: var(--km-muted);
+}
+
+.km-hero__campaign-track {
+  position: relative;
+  height: 0.625rem;
+  border-radius: 0.3125rem;
+  background: rgba(55, 55, 55, 0.08);
+  overflow: hidden;
+}
+
+.km-hero__campaign-fill {
+  position: relative;
+  height: 100%;
+  border-radius: 0.3125rem;
+  background: linear-gradient(90deg, var(--km-accent), var(--km-accent-dim));
+  transition: width 800ms cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  min-width: 5rem;
+}
+
+.km-hero__campaign-pct {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.km-hero__campaign-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--km-muted);
+}
+
+.km-hero__campaign-meta-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.km-hero__campaign-meta-item strong {
+  font-weight: 700;
+  color: var(--km-text);
+  font-size: 1rem;
+}
+
+.km-hero__campaign-meta-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--km-border);
+  flex-shrink: 0;
+}
+
 .km-hero__actions {
   margin-top: 2rem;
   display: flex;
@@ -6092,7 +6187,9 @@
   opacity: 0.85;
 }
 
+/* Hidden until scenario tags are reviewed for the community strip. */
 .km-community-card__tag {
+  display: none;
   margin: 0 0 0.35rem;
   font-family: var(--km-font-mono);
   font-size: 0.6875rem;
@@ -6119,12 +6216,13 @@
   overflow: hidden;
 }
 
+/* Hidden until excerpts are reviewed/approved as real user quotes. */
 .km-community-card__excerpt {
+  display: none;
   margin: 0.35rem 0 0;
   font-size: 0.8125rem;
   line-height: 1.45;
   color: var(--km-muted);
-  display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -6954,6 +7052,198 @@
 }
 
 /* Crowd Supply + open-source CTA pair */
+/* ── Crowd Supply live stats ── */
+.km-crowd-stats {
+  scroll-margin-top: var(--km-nav-height);
+  padding: clamp(2rem, 5vw, 3.5rem) 1.25rem;
+}
+
+.km-crowd-stats__inner {
+  max-width: 42rem;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: 1rem;
+  border: 1px solid var(--km-border);
+  background: var(--km-surface-elevated);
+  box-shadow: 0 4px 16px rgba(55, 55, 55, 0.06);
+}
+
+.km-crowd-stats__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.km-crowd-stats__cs-logo {
+  display: block;
+  margin: 0.75rem auto 0;
+  height: 1.75rem;
+  width: auto;
+  opacity: 0.7;
+}
+
+.km-crowd-stats__title {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--km-text);
+}
+
+.km-crowd-stats__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Progress bar */
+.km-crowd-stats__progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.km-crowd-stats__progress-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.km-crowd-stats__raised {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 800;
+  color: var(--km-accent);
+  line-height: 1.2;
+}
+
+.km-crowd-stats__raised sup {
+  font-size: 0.6em;
+  vertical-align: super;
+}
+
+.km-crowd-stats__goal {
+  font-size: 0.9375rem;
+  color: var(--km-muted);
+}
+
+.km-crowd-stats__track {
+  position: relative;
+  height: 1.5rem;
+  border-radius: 0.75rem;
+  background: var(--km-brand-light);
+  overflow: hidden;
+}
+
+.km-crowd-stats__fill {
+  position: relative;
+  height: 100%;
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, var(--km-accent), var(--km-accent-dim));
+  transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  min-width: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+}
+
+.km-crowd-stats__pct {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.km-crowd-stats__pct sup {
+  font-size: 0.7em;
+  vertical-align: super;
+}
+
+.km-crowd-stats__over-funded {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--km-accent);
+  text-align: center;
+}
+
+/* Stat tiles */
+.km-crowd-stats__tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.km-crowd-stats__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 1rem 0.5rem;
+  border-radius: 0.625rem;
+  background: var(--km-surface);
+  border: 1px solid var(--km-border);
+}
+
+.km-crowd-stats__tile-value {
+  font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+  font-weight: 800;
+  color: var(--km-text);
+  line-height: 1.2;
+}
+
+.km-crowd-stats__tile-label {
+  font-size: 0.8125rem;
+  color: var(--km-muted);
+  text-transform: lowercase;
+}
+
+/* Footer: CTA + timestamp */
+.km-crowd-stats__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.km-crowd-stats__cta {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.km-crowd-stats__timestamp {
+  font-size: 0.75rem;
+  color: var(--km-muted);
+}
+
+/* Fallback (no data) */
+.km-crowd-stats__fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.km-crowd-stats__fallback-text {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--km-muted);
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .km-crowd-stats__footer {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .km-crowd-stats__cta {
+    width: auto;
+  }
+}
+
 .km-crowd-cta-section {
   scroll-margin-top: var(--km-nav-height);
 }
