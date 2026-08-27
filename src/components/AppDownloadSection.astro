@@ -42,7 +42,7 @@ function platformSlug(name: string): string {
       {
         section.platforms.map((platform) => (
           <article
-            id={platformSlug(platform.name) === 'linux' && section.id === 'kvm' ? 'linux' : `${section.id}-${platformSlug(platform.name)}`}
+            id={section.id === 'kvm' && (platformSlug(platform.name) === 'linux' || platformSlug(platform.name) === 'windows') ? platformSlug(platform.name) : `${section.id}-${platformSlug(platform.name)}`}
             class="rounded-lg border border-gray-200 bg-white p-5"
           >
             <div class="flex items-center gap-3">

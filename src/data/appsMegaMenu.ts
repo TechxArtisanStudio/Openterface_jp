@@ -46,6 +46,15 @@ export function getCuratedTiles(section: AppDownloadSection): CuratedPlatformTil
       };
     }
 
+    if (section.id === 'kvm' && platform.name === 'Windows') {
+      return {
+        name: platform.name,
+        href: `${appFlatPath(section.id)}#windows`,
+        label: 'AMD64 & ARM64',
+        external: false,
+      };
+    }
+
     const primary = platform.downloads[0];
     return {
       name: platform.name,
