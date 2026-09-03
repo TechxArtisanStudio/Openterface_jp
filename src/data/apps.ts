@@ -46,12 +46,12 @@ export const kvmDownloadSection: AppDownloadSection = {
       description: 'Cross-platform QT host for AMD64 and ARM64, installer and portable EXE.',
       downloads: [
         {
-          label: `Download ${appReleaseVersions.qt} Installer`,
+          label: `Download ${appReleaseVersions.qt} AMD64 Installer`,
           href: `${qtBase}/openterfaceQT_windows_amd64_installer.exe`,
           external: true,
         },
         {
-          label: `Download ${appReleaseVersions.qt} Portable EXE`,
+          label: `Download ${appReleaseVersions.qt} AMD64 Portable EXE`,
           href: `${qtBase}/openterfaceQT_windows_amd64_portable.exe`,
           external: true,
         },
