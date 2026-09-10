@@ -9,6 +9,7 @@ export const tr: KeymodLandingStrings = {
     },
     nav: {
       docs: "Dokümanlar",
+    forum: "Forum",
       preLaunchCta: "Ön Lansman",
     },
     povTabs: {

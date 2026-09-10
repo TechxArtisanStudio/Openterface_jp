@@ -20,6 +20,7 @@ let stats: {
   percentFunded: number;
   backers: number;
   daysLeft: number;
+  fetchedAt: string;
 } | null = null;
 
 if (crowdSupplyStats) {
@@ -31,6 +32,7 @@ if (crowdSupplyStats) {
       percentFunded: data.percentFunded,
       backers: data.backers,
       daysLeft: data.daysLeft,
+      fetchedAt: data.fetchedAt ?? '',
     };
   } catch {
     stats = null;
@@ -95,7 +97,7 @@ function formatCurrency(n: number): string {
             <span class="km-hero__campaign-pct">{stats.percentFunded}% {crowdSupplyStats.funded}</span>
           </div>
         </div>
-        <div class="km-hero__campaign-meta">
+        <div class="km-hero__campaign-meta" data-updated={stats.fetchedAt ? new Date(stats.fetchedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) : ''}>
           <span class="km-hero__campaign-meta-item">
             <strong>{stats.backers}</strong> {crowdSupplyStats.backers}
           </span>

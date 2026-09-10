@@ -50,14 +50,26 @@ const items = getProductsMegaMenuItems();
                   <p class="products-mega__slogan">{item.slogan}</p>
                 </div>
               </a>
-              <a
-                href={item.docsHref}
-                class="products-mega__docs-link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.docsLabel}
-              </a>
+              <div class="products-mega__links">
+                <a
+                  href={item.docsHref}
+                  class="products-mega__docs-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.docsLabel}
+                </a>
+                {item.faqHref && item.faqLabel ? (
+                  <a
+                    href={item.faqHref}
+                    class="products-mega__faq-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {item.faqLabel}
+                  </a>
+                ) : null}
+              </div>
             </div>
           ))
         }

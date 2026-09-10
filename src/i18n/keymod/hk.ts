@@ -9,6 +9,7 @@ export const hk: KeymodLandingStrings = {
     },
     nav: {
       docs: "文檔",
+    forum: "論壇",
       preLaunchCta: "預售",
     },
     povTabs: {

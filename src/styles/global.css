@@ -382,6 +382,26 @@
     text-decoration: none;
   }
 
+  .products-mega__links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    margin: 0 0.75rem 0.75rem;
+  }
+
+  .products-mega__faq-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    text-decoration: none;
+  }
+
+  .products-mega__faq-link:hover,
+  .products-mega__faq-link:focus-visible {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+  }
+
   .products-mega__docs-link:hover,
   .products-mega__docs-link:focus-visible {
     text-decoration: underline;

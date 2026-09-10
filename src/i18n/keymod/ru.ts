@@ -9,6 +9,7 @@ export const ru: KeymodLandingStrings = {
     },
     nav: {
       docs: "Документация",
+    forum: "Форум",
       preLaunchCta: "Предзапуск",
     },
     povTabs: {

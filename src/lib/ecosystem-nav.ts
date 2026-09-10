@@ -29,6 +29,8 @@ export interface EcosystemNavLabels {
   docs: string;
   /** Short CTA on product mega-menu cards, e.g. "Docs →". */
   productDocs: string;
+  /** Quieter secondary CTA under Docs on product mega cards. */
+  productFaqs: string;
   /** Hub link in mega-menu footers and mobile accordion. */
   allDocumentation: string;
   media: string;

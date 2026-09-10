@@ -1,0 +1,51 @@
+---
+import KeyModSection from './KeyModSection.astro';
+import type { KeymodLandingStrings } from '../../i18n/keymodLanding';
+
+interface Props {
+  copy: KeymodLandingStrings['press'];
+}
+
+const { copy } = Astro.props;
+const articles = copy?.articles ?? [];
+---
+
+{
+  articles.length > 0 ? (
+    <KeyModSection id="press" eyebrow={copy.eyebrow} title={copy.title} centered>
+      <div class="km-press-grid" role="list">
+        {articles.map((article) => (
+          <a
+            class="km-press-card"
+            href={article.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            role="listitem"
+            data-analytics-event="press_click"
+            data-analytics-product="keymod"
+            data-analytics-placement={article.publication.toLowerCase().replace(/[^a-z0-9]+/g, '_')}
+          >
+            <span class="km-press-card__publication">
+              {article.favicon && (
+                <img
+                  class="km-press-card__favicon"
+                  src={article.favicon}
+                  alt=""
+                  width="16"
+                  height="16"
+                  loading="lazy"
+                />
+              )}
+              {article.publication}
+            </span>
+            <span class="km-press-card__headline">{article.headline}</span>
+            {article.quote && (
+              <blockquote class="km-press-card__quote">"{article.quote}"</blockquote>
+            )}
+            <span class="km-press-card__link">Read article ↗</span>
+          </a>
+        ))}
+      </div>
+    </KeyModSection>
+  ) : null
+}

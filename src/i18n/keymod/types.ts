@@ -51,6 +51,7 @@ export type KeymodLandingStrings = {
   };
   nav: {
     docs: string;
+    forum: string;
     preLaunchCta: string;
   };
   povTabs: KeymodPovTabs;
@@ -247,6 +248,18 @@ export type KeymodLandingStrings = {
     title: string;
     viewAllMedia: string;
   };
+  press?: {
+    eyebrow: string;
+    title: string;
+    articles: {
+      publication: string;
+      headline: string;
+      url: string;
+      favicon?: string;
+      quote?: string;
+    }[];
+  };
+
   keycmdBridge: {
     eyebrow: string;
     title: string;

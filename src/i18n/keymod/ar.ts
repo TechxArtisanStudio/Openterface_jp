@@ -9,6 +9,7 @@ export const ar: KeymodLandingStrings = {
     },
     nav: {
       docs: "الوثائق",
+    forum: "المنتدى",
       preLaunchCta: "قبل الإطلاق",
     },
     povTabs: {

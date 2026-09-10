@@ -5,6 +5,7 @@ import KeyModNav from '../../components/keymod/KeyModNav.astro';
 import KeyModHero from '../../components/keymod/KeyModHero.astro';
 import KeyModWhatItIs from '../../components/keymod/KeyModWhatItIs.astro';
 import KeyModSkuCompare from '../../components/keymod/KeyModSkuCompare.astro';
+import KeyModPress from '../../components/keymod/KeyModPress.astro';
 import KeyModModesTheater from '../../components/keymod/KeyModModesTheater.astro';
 import KeyModFirmwareRoadmap from '../../components/keymod/KeyModFirmwareRoadmap.astro';
 import KeyModSocialProof from '../../components/keymod/KeyModSocialProof.astro';
@@ -39,6 +40,7 @@ const productUrl = new URL(canonicalPath, siteConfig.url).href;
     <KeyModModesTheater copy={copy.modesTheater} povTabs={copy.povTabs} crowdSupplyCampaign={copy.crowdSupplyCampaign} />
     <KeyModYouTubeReviews copy={copy.youtubeReviews} />
     <KeyModSocialProof copy={copy.socialProof} />
+    <KeyModPress copy={copy.press} />
     <KeyModSkuCompare copy={copy.skuCompare} />
     <KeyModFirmwareRoadmap copy={copy.firmwareRoadmap} />
     <KeyModCrowdSupplyBlock variant="opensource" copy={copy.crowdSupplyOpensource} />
