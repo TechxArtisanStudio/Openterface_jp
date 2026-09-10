@@ -14,6 +14,8 @@ export const keymodLinks = {
   discord: 'https://discord.gg/sFTU7O8Xe3',
   forum:
     'https://forum.openterface.com?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-firmware-roadmap',
+  forumNav:
+    'https://forum.openterface.com/c/keymod/9?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-nav',
   forumFooter:
     'https://forum.openterface.com?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-footer',
   minikvm: '/minikvm/',
@@ -29,6 +31,4 @@ export const keymodLinks = {
   composeSendBatchRenameDemo: 'https://x.com/TechxArtisan/status/2057121671400554849',
   presentationTutorial:
     `${docsPath('/tutorial/keymod/10-presentation/')}?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-pov-demo`,
-  forumNav:
-    'https://forum.openterface.com/c/keymod/9?utm_source=openterface&utm_medium=keymod-landing&utm_campaign=keymod-nav',
 } as const;

@@ -259,7 +259,6 @@ export type KeymodLandingStrings = {
       quote?: string;
     }[];
   };
-
   keycmdBridge: {
     eyebrow: string;
     title: string;
