@@ -6,9 +6,6 @@ import HomeSubscribeSection from '../components/HomeSubscribeSection.astro';
 import DocLinkBanner from '../components/DocLinkBanner.astro';
 import SiteJsonLd from '../components/SiteJsonLd.astro';
 import { homeSlides, homeSeo } from '../data/homeSlides';
-import { getHomeStrings } from '../i18n/home';
-
-const home = getHomeStrings('en');
 ---
 
 <BaseLayout
@@ -25,39 +22,4 @@ const home = getHomeStrings('en');
   <DocLinkBanner variant="home" />
 
   <HomeSubscribeSection />
-
-  <section class="py-10 md:py-16">
-    <div class="mx-auto max-w-6xl px-4 text-center">
-      <h2 class="section-title">{home.sectionTitle}</h2>
-      <p class="section-subtitle mx-auto max-w-2xl text-base md:text-lg">
-        {home.sectionSubtitle}
-      </p>
-      <div class="mt-6 grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-        <a href="/keymod/" class="card hover:border-primary-dark hover:shadow-md">
-          <h3 class="font-semibold">KeyMod</h3>
-          <p class="mt-2 text-sm text-muted">{home.keymodBlurb}</p>
-        </a>
-        <a href="/kvmgo/" class="card hover:border-primary-dark hover:shadow-md">
-          <h3 class="font-semibold">KVM-GO</h3>
-          <p class="mt-2 text-sm text-muted">{home.kvmgoBlurb}</p>
-        </a>
-        <a href="/minikvm/" class="card hover:border-primary-dark hover:shadow-md">
-          <h3 class="font-semibold">Mini-KVM</h3>
-          <p class="mt-2 text-sm text-muted">{home.minikvmBlurb}</p>
-        </a>
-        <a href="/kvmext/" class="card hover:border-primary-dark hover:shadow-md">
-          <h3 class="font-semibold">KVM Extension</h3>
-          <p class="mt-2 text-sm text-muted">{home.kvmextBlurb}</p>
-        </a>
-        <a href="/accessories/" class="card hover:border-primary-dark hover:shadow-md">
-          <h3 class="font-semibold">Accessories</h3>
-          <p class="mt-2 text-sm text-muted">{home.accessoriesBlurb}</p>
-        </a>
-      </div>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/keymod/" class="btn btn-secondary">{home.viewAll}</a>
-        <a href="/kvm/" class="btn btn-primary">{home.downloadApp}</a>
-      </div>
-    </div>
-  </section>
 </BaseLayout>
