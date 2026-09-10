@@ -40,7 +40,7 @@ export const keymodProduct: Product = {
   hwFeatures: [
     {
       title: 'Phone as keyboard & trackpad',
-      description: 'Full HID keyboard and mouse from your phone — no target software required.',
+      description: 'Full HID keyboard and mouse from your phone. No software on the target.',
     },
     {
       title: 'USB + Bluetooth dual connect',
@@ -48,7 +48,7 @@ export const keymodProduct: Product = {
     },
     {
       title: 'True hardware HID',
-      description: 'CH9329-based emulation — proven Openterface HID core from Mini-KVM.',
+      description: 'CH9329-based emulation with the same HID core as Mini-KVM.',
     },
     {
       title: 'Compact pocket form',
@@ -66,7 +66,7 @@ export const keymodProduct: Product = {
   swFeatures: [
     {
       title: 'KeyCmd mobile app',
-      description: 'Open-source Android & iPadOS app — also works with Mini-KVM and KVM-GO.',
+      description: 'Open-source Android and iPadOS app. Also works with Mini-KVM and KVM-GO.',
     },
     {
       title: 'Shortcut Hub & macros',
@@ -80,7 +80,7 @@ export const keymodProduct: Product = {
   specs: [
     { label: 'Connectivity', value: 'USB-C (+ USB A on 2-in-1 variant) · Bluetooth HID' },
     { label: 'HID modes', value: 'Keyboard, mouse, gamepad' },
-    { label: 'Target device', value: 'Plug-and-play — no software install' },
+    { label: 'Target device', value: 'Plug-and-play with no software install' },
     { label: 'Host apps', value: 'KeyCmd on Android & iPadOS (beta)' },
     { label: 'Chipset', value: 'CH9329 HID emulator + Bluetooth module' },
     { label: 'License', value: 'Open source hardware & software' },
@@ -100,7 +100,7 @@ export const keymodProduct: Product = {
     },
     {
       title: 'LED signage players',
-      description: 'On-site updates to signage controllers — phone as full keyboard.',
+      description: 'On-site updates to signage controllers. Your phone acts as the keyboard.',
       href: docsPath('/products/keymod/use-cases/'),
     },
     {
@@ -114,7 +114,7 @@ export const keymodProduct: Product = {
     },
     {
       title: 'Quick workflow shortcuts',
-      description: 'Developers and IT staff — occasional input without extra gear.',
+      description: 'Developers and IT staff who need occasional input without extra gear.',
       href: docsPath('/products/keymod/use-cases/'),
     },
     {

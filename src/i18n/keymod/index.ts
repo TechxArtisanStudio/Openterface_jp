@@ -46,6 +46,7 @@ export function getKeymodLanding(locale = siteConfig.locale): KeymodLandingStrin
   return {
     ...base,
     youtubeReviews: base.youtubeReviews ?? en.youtubeReviews,
+    press: base.press ?? en.press,
     crowdSupplyStats: base.crowdSupplyStats ?? en.crowdSupplyStats,
   };
 }
