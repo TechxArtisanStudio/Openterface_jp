@@ -8,8 +8,8 @@
   },
   "scripts": {
     "sync:videos": "node scripts/sync-home-videos.mjs",
-    "predev": "npm run sync:app-versions && npm run sync:videos && npm run sync:social-posts",
-    "prebuild": "npm run sync:app-versions && npm run sync:videos && npm run sync:social-posts",
+    "predev": "npm run sync:app-versions && npm run sync:videos && npm run sync:social-posts && npm run sync:crowd-supply",
+    "prebuild": "npm run sync:app-versions && npm run sync:videos && npm run sync:social-posts && npm run sync:crowd-supply",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -20,7 +20,9 @@
     "test": "npm run test:smoke && npm run test:a11y",
     "lighthouse": "lhci autorun",
     "sync:social-posts": "node scripts/sync-social-posts.mjs",
-    "sync:app-versions": "node scripts/sync-app-versions.mjs"
+    "sync:app-versions": "node scripts/sync-app-versions.mjs",
+    "sync:crowd-supply": "node scripts/sync-crowd-supply.mjs",
+    "test:unit": "node --experimental-strip-types --test tests/unit/*.test.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
