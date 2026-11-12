@@ -9,7 +9,7 @@ export const appReleaseVersions = {
 } as const;
 
 const qtBase = `https://github.com/TechxArtisanStudio/Openterface_QT/releases/download/${appReleaseVersions.qt}`;
-const androidApk = `https://github.com/TechxArtisanStudio/Openterface_Android/releases/download/${appReleaseVersions.android}/OpenterfaceAndroid-release.apk`;
+const androidApk = `https://github.com/TechxArtisanStudio/Openterface_Android/releases/download/${appReleaseVersions.android}/Openterface-${appReleaseVersions.android}-release.apk`;
 
 export interface AppDownloadLink {
   label: string;
@@ -187,7 +187,7 @@ export const keycmdDownloadSection: AppDownloadSection = {
       description: 'Beta APK with keyboard, trackpad, gamepad, macros, and voice input.',
       downloads: [
         {
-          label: 'Download beta APK (v0.19)',
+          label: 'Download latest beta APK',
           href: siteConfig.links.keycmdAndroidApk,
           external: true,
         },
